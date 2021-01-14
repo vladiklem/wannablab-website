@@ -1,0 +1,10 @@
+@import "~assets/styles/config/colors";
+
+.topBarLink {
+    font-size: 24px;
+    transition: all ease-in-out 0.25s;
+
+    &:hover {
+        color: $gray-900;
+    }
+}

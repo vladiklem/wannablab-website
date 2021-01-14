@@ -1,0 +1,87 @@
+@import "~assets/styles/config/colors";
+
+.customFormGroup {
+    position: relative;
+    padding: 16px 0;
+}
+
+.customFormInput {
+    font-family: inherit;
+    padding: 8px 24px 8px 12px;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid $gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: $gray-900;
+    background: transparent;
+    transition: all ease-in-out 0.2s;
+    font-weight: 700;
+
+    &.invalid {
+        border-bottom-color: $red-400;
+    }
+
+    &.textarea {
+        height: 48px;
+    }
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown ~ .customFormLabel {
+        font-size: 1.3rem;
+        cursor: text;
+        top: 20px;
+    }
+}
+
+.customFormLabel {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin-bottom: 0;
+    padding-left: 12px;
+    padding-bottom: 4px;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $gray;
+    background-color: $white;
+    font-weight: 700;
+}
+
+.customFormInput:focus {
+    border-image: linear-gradient(to right, $primary, $secondary);
+    border-image-slice: 1;
+
+    ~ .customFormLabel {
+        position: absolute;
+        top: 0;
+        display: block;
+        transition: 0.2s;
+        font-size: 1rem;
+        color: $primary;
+    }
+}
+
+.customFormInput {
+    &:required,
+    &:invalid {
+        box-shadow: none;
+    }
+}
+
+.customErrorMessage {
+    position: absolute;
+    bottom: -10px;
+    left: 12px;
+    color: $red-400;
+}
+
+@media only screen and (max-width: 1024px) {
+    .customErrorMessage {
+        font-size: 14px;
+    }
+}

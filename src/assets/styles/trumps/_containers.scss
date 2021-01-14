@@ -1,0 +1,9 @@
+@import "~assets/styles/config/containers";
+
+.container-with-top-bar {
+    padding-top: $topBarHeight;
+}
+
+.container-with-side-bar {
+    padding-left: $sideBarWidth;
+}

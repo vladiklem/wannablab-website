@@ -1,0 +1,63 @@
+@import "~assets/styles/config/colors";
+@import "~assets/styles/config/shadows";
+
+.form {
+    width: 560px;
+    padding: 24px 40px 32px 40px;
+    background-color: $white;
+    box-shadow: $shadow-medium;
+}
+
+.button {
+    margin-top: 24px;
+}
+
+.successCover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 100%;
+    background-color: $white;
+    color: $gray-900;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all ease-in-out 0.5s;
+    z-index: 3;
+
+    &.isSuccess {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.withTestCover {
+    opacity: 0;
+    overflow: hidden;
+    transition: all ease-in-out 0.5s;
+    max-height: 500px;
+
+    &.testNotChecked {
+        max-height: 0;
+    }
+
+    &.isTestChecked {
+        opacity: 1;
+    }
+}
+
+.successIcon {
+    color: transparent;
+}
+
+.testTimeList {
+    margin-left: -8px;
+    margin-bottom: -8px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .form {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+}

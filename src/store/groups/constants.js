@@ -1,0 +1,22 @@
+export const GROUPS = {
+    INIT: {
+        IDLE: "GROUPS_INIT_IDLE",
+        SUCCUSS: "GROUPS_INIT_SUCCESS",
+        FAILURE: "GROUPS_INIT_FAILURE",
+    },
+    ADD: {
+        IDLE: "GROUPS_ADD_IDLE",
+        SUCCESS: "GROUPS_ADD_SUCCESS",
+        FAILURE: "GROUPS_ADD_FAILURE",
+    },
+    DELETE: {
+        IDLE: "GROUPS_DELETE_IDLE",
+        SUCCESS: "GROUPS_DELETE_SUCCESS",
+        FAILURE: "GROUPS_DELETE_FAILURE",
+    },
+    EDIT: {
+        IDLE: "GROUPS_EDIT_IDLE",
+        SUCCESS: "GROUPS_EDIT_SUCCESS",
+        FAILURE: "GROUPS_EDIT_FAILURE",
+    },
+};

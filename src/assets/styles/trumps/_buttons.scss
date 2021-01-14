@@ -1,0 +1,33 @@
+@import "~assets/styles/config/colors";
+
+.btn-unstyled {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+    box-shadow: none !important;
+}
+
+.btn-success-gradient {
+    background: $green;
+    color: $white;
+    line-height: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all ease-in-out 0.25s;
+
+    &:hover {
+        background: $green-700;
+        color: $white;
+    }
+}
+
+.btn-white {
+    background-color: $white;
+    color: $gray-900;
+}
+
+.btn-invisible {
+    background-color: transparent;
+    color: transparent;
+}

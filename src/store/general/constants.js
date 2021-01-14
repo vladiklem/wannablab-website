@@ -1,0 +1,24 @@
+export const GENERAL = {
+    INIT: {
+        IDLE: "GENERAL_INIT_IDLE",
+        SUCCESS: "GENERAL_INIT_SUCCESS",
+        FAILURE: "GENERAL_INIT_FAILURE",
+    },
+    ADD_TEST: {
+        IDLE: "GENRAL_ADD_TEST_IDLE",
+        SUCCESS: "GENRAL_ADD_TEST_SUCCESS",
+        FAILURE: "GENRAL_ADD_TEST_FAILURE",
+    },
+    BOOK_TEST: {
+        IDLE: "GENERAL_BOOK_TEST_IDLE",
+        SUCCESS: "GENERAL_BOOK_TEST_SUCCESS",
+        FAILURE: "GENERAL_BOOK_TEST_FAILURE",
+    },
+    DELETE_TEST: {
+        IDLE: "GENERAL_DELETE_TEST_IDLE",
+        SUCCESS: "GENERAL_DELETE_TEST_SUCCESS",
+        FAILURE: "GENERAL_DELETE_TEST_FAILURE",
+    },
+};
+
+export const testSettingID = "testTime";

@@ -1,0 +1,75 @@
+@import "~assets/styles/config/containers";
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sideBarWidth;
+    max-width: $sideBarWidth;
+    background: #7386d5;
+    color: #fff;
+    margin-left: -#{$sideBarWidth};
+    transition: all 0.5s;
+}
+
+.sidebar.isOpen {
+    margin-left: 0;
+    transition: 0.5s;
+}
+
+.sidebarHeader {
+    min-height: $topBarHeight;
+    background: #6d7fcc;
+}
+
+.sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+.menu-open {
+    background: #6d7fcc;
+}
+
+.nav-item:hover {
+    color: #7386d5;
+    background: #fff;
+}
+
+.items-menu {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+li a.dropdown-toggle::after {
+    display: inline-flex;
+    position: relative;
+    left: 60%;
+    top: 10%;
+}
+
+.sidebarHeader > span {
+    position: relative;
+    float: right;
+    margin: 0.5em;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+}
+.sidebarMenu {
+    height: calc(100vh - #{$topBarHeight});
+    overflow-y: scroll;
+}
+
+.sidebarMenu::-webkit-scrollbar {
+    width: 10px;
+}
+
+.sidebarMenu::-webkit-scrollbar-thumb {
+    background: #5466b3;
+    border-radius: 3px;
+}
+
+.sidebarMenu::-webkit-scrollbar-thumb:hover {
+    background: #3a4c99;
+}
