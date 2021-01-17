@@ -6,6 +6,7 @@ import cx from "classnames";
 import { UserProfile } from "pages/UserProfile/UserProfile";
 import { Home } from "pages/Home/Home";
 import { AdminPage } from "pages/AdminPage/AdminPage";
+import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { Button, TopBar, buttonColorEnum } from "components/index";
 import { firebaseService } from "services/firebaseService";
 
@@ -36,7 +37,7 @@ export const RootContainer = () => {
 
     return (
         <Router>
-            <TopBar className="px-5 d-flex flex-row-reverse justify-content-between align-items-center">
+            <TopBar className="d-none px-5 flex-row-reverse justify-content-between align-items-center">
                 <Button color={buttonColorEnum.INVISIBLE} size="lg" onClick={toggle}>
                     Адмінка
                 </Button>
@@ -50,6 +51,7 @@ export const RootContainer = () => {
             <Switch>
                 <Route path="/" children={<Home isOpen={isOpen} toggle={toggle} />} exact />
                 <Route path="/admin" children={<AdminPage />} />
+                <Route path="/check-list" children={<ChecklistPage />} />
                 <Route path="/user/:slag" children={<UserProfile />} />
             </Switch>
         </Router>
