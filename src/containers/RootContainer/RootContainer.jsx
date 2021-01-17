@@ -50,8 +50,8 @@ export const RootContainer = () => {
             </TopBar>
             <Switch>
                 <Route path="/" children={<Home isOpen={isOpen} toggle={toggle} />} exact />
-                <Route path="/admin" children={<AdminPage />} />
                 <Route path="/check-list" children={<ChecklistPage />} />
+                <Route path="/admin" children={<AdminPage />} />
                 <Route path="/user/:slag" children={<UserProfile />} />
             </Switch>
         </Router>
