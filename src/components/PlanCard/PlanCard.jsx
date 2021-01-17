@@ -48,8 +48,12 @@ export const PlanCard = ({
                 <span className={styles.price}>{price}</span>
                 <span>{`/${per}`}</span>
             </div>
-            {!!description && <div className="mb-3 px-2 text-center">{description}</div>}
             <div className="w-100 mb-4">
+                {!!description && (
+                    <div className="mb-3">
+                        <Check className="mr-2" fill="#fff" /> {description}
+                    </div>
+                )}
                 {featuresList.map((featureLabel, index) => (
                     <div
                         className={cx({
