@@ -1,0 +1,69 @@
+@import "~assets/styles/config/containers";
+@import "~assets/styles/config/colors";
+
+.container {
+    position: relative;
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 400px;
+    transform: none;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.h1 {
+    position: absolute;
+    top: 61%;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #203b82;
+    text-shadow: 2px 2px 8px #eaeaea;
+}
+
+.h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sectionImageRight {
+    object-fit: contain;
+    opacity: 0.8;
+    float: right;
+}
+
+.section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sectionImageLeft {
+    object-fit: contain;
+    opacity: 0.8;
+    float: left;
+    margin-right: 10px;
+}
+
+.sectionContainer {
+    background: rgb(171, 223, 218);
+    background: linear-gradient(
+        180deg,
+        rgba(171, 223, 218, 1) 0%,
+        rgba(171, 193, 255, 1) 50%,
+        rgba(246, 198, 197, 1) 100%
+    );
+}
+
+.footer {
+    background-color: rgba(246, 198, 197, 1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.text {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #753286;
+}
