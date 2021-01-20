@@ -60,11 +60,10 @@ export const Home = ({ isOpen, toggle }) => {
                                 price={1190}
                                 icon={<BasicPlanIcon />}
                                 featuresList={[
-                                    "Cпікінг-клаби в групах одного рівня 3-4 людини (8 + резерний)",
-                                    "Інспирейшн вебінари англійською з цікавими людьми, яким англійська допомогає в житті",
-                                    "Практика кожного дня в голосових телеграма разом з нами та іншими студентами",
+                                    "8 спікінг-клабів в групах одного рівня до 4 людей",
+                                    "inspitation вебінари з цікавими людьми англійською",
                                 ]}
-                                buttonLabel="Хоцю"
+                                buttonLabel="Хочу"
                                 className="mb-4 mr-4 shadow-medium"
                             />
                             <PlanCard
@@ -72,26 +71,26 @@ export const Home = ({ isOpen, toggle }) => {
                                 price={1600}
                                 type={planTypeEnum.PRO}
                                 icon={<ProPlanIcon />}
-                                description="Pro включає все що входить в Basic"
+                                description="все що є в Basic"
                                 featuresList={[
-                                    "Індивідуальний план розвитку з регулярною перевіркою прогресу",
-                                    "Підписка на Netflix + спільний перегляд кожного тижня",
-                                    "Among Us раз в тиждень в інтернаціональних лоббі",
+                                    "індивідуальний план розвитку з регулярною перевіркою прогресу",
+                                    "підписка на Netflix",
+                                    "командний перегляд серіалів та онлайн-ігри щотижня",
                                 ]}
-                                buttonLabel="Моя прєлесть"
+                                buttonLabel="Хочу"
                                 className="mb-4 mr-4 shadow-medium"
                             />
                             <PlanCard
-                                title="all-Featured"
+                                title="All-Featured"
                                 price={2450}
                                 type={planTypeEnum.ALL_FEATURED}
                                 icon={<AllFeaturedPlanIcon />}
-                                description="all-Featured включає все що входить в Basic і Pro"
+                                description="все що є в Basic та Pro"
                                 featuresList={[
-                                    "Тет-а-тет з нейтів спікером по 15хв 2 рази на тиждень",
-                                    "Індивідуальне заняття раз в тиждень",
+                                    "тет-а-тет з нейтів спікером 2 рази на тиждень",
+                                    "приватне заняття з ментором раз на тиждень",
                                 ]}
-                                buttonLabel="Сюдаа"
+                                buttonLabel="Хочу"
                                 className="mb-4 mr-4 shadow-medium"
                             />
                         </div>

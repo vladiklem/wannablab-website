@@ -21,7 +21,10 @@ export const LeadForm = ({ className }) => {
     const { register, handleSubmit, watch, errors } = useForm();
 
     const hasFreeTime = useMemo(
-        () => testTime && testTime.length && testTime.reduce((acc, { isBooked }) => acc || !isBooked, true),
+        () =>
+            testTime &&
+            testTime.length &&
+            testTime.reduce((acc, { isBooked }) => acc || !isBooked, true),
         [testTime],
     );
 
@@ -40,7 +43,7 @@ export const LeadForm = ({ className }) => {
             className={cx("position-relative rounded", styles.form, className)}
             onSubmit={handleSubmit(onSubmit)}
         >
-            <h2 className="text-center text-gray-900">Новий блабер</h2>
+            <h2 className="text-center text-gray-900">Привіт, блабер!</h2>
             <Input name="name" label="Ім'я" ref={register({ required: true })} />
             <Input
                 name="phoneNumber"

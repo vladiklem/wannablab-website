@@ -2,7 +2,16 @@
 @import "~assets/styles/config/colors";
 
 .container {
+    background-color: rgb(171, 223, 218);
     position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.headingText {
+    color: #f56961;
+    text-shadow: none;
 }
 
 .backgroundImage {
@@ -11,6 +20,15 @@
     transform: none;
     object-fit: cover;
     object-position: center bottom;
+
+    @media only screen and (min-width: 768px) {
+        height: 500px;
+        object-position: center center;
+    }
+
+    @media only screen and (min-width: 768px) {
+        height: 100vh;
+    }
 }
 
 .h1 {
@@ -21,6 +39,12 @@
     text-align: center;
     color: #203b82;
     text-shadow: 2px 2px 8px #eaeaea;
+
+    @media only screen and (min-width: 768px) {
+        font-size: 4rem;
+        padding-left: 200px;
+        padding-right: 200px;
+    }
 }
 
 .h2 {
@@ -43,7 +67,6 @@
     object-fit: contain;
     opacity: 0.8;
     float: left;
-    margin-right: 10px;
 }
 
 .sectionContainer {
