@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import cx from "classnames";
 
@@ -22,6 +22,7 @@ firebaseService.init();
 
 export const RootContainer = () => {
     const dispatch = useDispatch();
+    const { withTopBar } = useSelector((state) => state.general);
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = useCallback(() => {
@@ -37,7 +38,12 @@ export const RootContainer = () => {
 
     return (
         <Router>
-            <TopBar className="d-none px-5 flex-row-reverse justify-content-between align-items-center">
+            <TopBar
+                className={cx("px-5 flex-row-reverse justify-content-between align-items-center", {
+                    "d-flex": withTopBar,
+                    "d-none": !withTopBar,
+                })}
+            >
                 <Button color={buttonColorEnum.INVISIBLE} size="lg" onClick={toggle}>
                     Адмінка
                 </Button>

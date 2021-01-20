@@ -80,3 +80,8 @@ export const deleteTestFailure = (error) => ({
         error,
     },
 });
+
+export const toggleTopBar = () => ({
+    type: GENERAL.TOGGLE_TOP_BAR.IDLE,
+});
+

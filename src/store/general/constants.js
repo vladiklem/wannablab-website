@@ -19,6 +19,9 @@ export const GENERAL = {
         SUCCESS: "GENERAL_DELETE_TEST_SUCCESS",
         FAILURE: "GENERAL_DELETE_TEST_FAILURE",
     },
+    TOGGLE_TOP_BAR: {
+        IDLE: "GENERAL_TOGGLE_TOP_BAR_IDLE",
+    },
 };
 
 export const testSettingID = "testTime";

@@ -1,10 +1,8 @@
-import React, { Fragment, useCallback } from "react";
-import { useHistory } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
+import React, { Fragment, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import cx from "classnames";
 
-import { adminPasswordCheck } from "utils/password";
-import { mediaBreakpointsEnum } from "constants/enums";
+import { toggleTopBar } from "store/general/actions";
 import checklist from "assets/images/checklist.jpg";
 import goal from "assets/images/goal.png";
 import vocabulary from "assets/images/vocabulary.png";
@@ -14,20 +12,12 @@ import regularity from "assets/images/regularity.png";
 
 import styles from "./ChecklistPage.module.scss";
 
-export const ChecklistPage = ({ isOpen, toggle }) => {
-    const history = useHistory();
-    const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
+export const ChecklistPage = () => {
+    const dispatch = useDispatch();
 
-    const toAdmin = useCallback(() => {
-        history.push("/admin");
-    }, [history]);
-
-    const onSubmit = useCallback(
-        (data) => {
-            adminPasswordCheck(data) && toAdmin();
-        },
-        [toAdmin],
-    );
+    useEffect(() => {
+        dispatch(toggleTopBar());
+    }, [dispatch]);
 
     return (
         <Fragment>

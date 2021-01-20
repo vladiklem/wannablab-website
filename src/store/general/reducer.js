@@ -26,6 +26,7 @@ const handlers = {
         testTime: { ...state.testTime, ...payload.entity },
     }),
     [GENERAL.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
+    [GENERAL.TOGGLE_TOP_BAR.IDLE]: (state) => ({ ...state, withTopBar: !state.withTopBar}),
 };
 
 export const generalReducer = createReducer(initialState, handlers);
