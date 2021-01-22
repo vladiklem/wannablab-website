@@ -85,3 +85,6 @@ export const toggleTopBar = () => ({
     type: GENERAL.TOGGLE_TOP_BAR.IDLE,
 });
 
+export const authAsAdmin = () => ({
+    type: GENERAL.AUTH_AS_ADMIN.IDLE,
+});

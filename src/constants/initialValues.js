@@ -14,3 +14,8 @@ export const initialEvent = {
     members: [],
     description: "",
 };
+
+export const initialModalState = {
+    name: null,
+    isOpen: false,
+};

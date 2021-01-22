@@ -5,6 +5,7 @@ import { objToArray } from "utils/converters";
 const initialState = {
     withTopBar: true,
     withSideBar: true,
+    isAdmin: false,
     testTime: [],
     error: "",
 };
@@ -27,6 +28,7 @@ const handlers = {
     }),
     [GENERAL.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
     [GENERAL.TOGGLE_TOP_BAR.IDLE]: (state) => ({ ...state, withTopBar: !state.withTopBar}),
+    [GENERAL.AUTH_AS_ADMIN.IDLE]: (state) => { console.log("fjjfq1"); return ({ ...state, isAdmin: true })},
 };
 
 export const generalReducer = createReducer(initialState, handlers);
