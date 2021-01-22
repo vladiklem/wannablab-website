@@ -22,6 +22,9 @@ export const GENERAL = {
     TOGGLE_TOP_BAR: {
         IDLE: "GENERAL_TOGGLE_TOP_BAR_IDLE",
     },
+    AUTH_AS_ADMIN: {
+        IDLE: "AUTH_AS_ADMIN",
+    },
 };
 
 export const testSettingID = "testTime";

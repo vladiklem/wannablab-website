@@ -16,3 +16,7 @@ export const mediaBreakpointsEnum = {
     LG: 992,
     XL: 1200,
 };
+
+export const modalNamesEnum = {
+    LOGIN: "LOGIN_MODAL",
+};

@@ -67,8 +67,6 @@ export const PlanCard = ({
                 ))}
             </div>
             <Button
-                tag="a"
-                href="#lead-form"
                 className="mt-auto"
                 color={buttonColorEnum.WHITE}
                 onClick={onClick}
