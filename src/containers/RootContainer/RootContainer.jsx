@@ -5,6 +5,7 @@ import cx from "classnames";
 
 import { ModalsContainer } from "containers/ModalsContainer/ModalsContainer";
 import { Home } from "pages/Home/Home";
+import { BlaberRoom } from "pages/BlaberRoom/BlaberRoom";
 import { AdminPage } from "pages/AdminPage/AdminPage";
 import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
@@ -62,7 +63,8 @@ export const RootContainer = () => {
                 <div className={cx({ "container-with-top-bar": withTopBar })}>
                     <ModalsContainer modalState={modalState} />
                     <Switch>
-                        <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
+                        <Route path="/" render={renderRoute({ routeComponent: BlaberRoom })} exact />
+                        {/* <Route path="/" render={renderRoute({ routeComponent: Home })} exact /> */}
                         <Route
                             path="/check-list"
                             render={renderRoute({ routeComponent: ChecklistPage })}

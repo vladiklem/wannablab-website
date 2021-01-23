@@ -19,7 +19,7 @@ const handlers = {
     [GENERAL.INIT.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
     [GENERAL.ADD_TEST.SUCCESS]: (state, { payload }) => ({
         ...state,
-        testTime: { ...state.testTime, ...payload.test },
+        testTime: [...state.testTime, ...payload.test],
     }),
     [GENERAL.ADD_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
     [GENERAL.BOOK_TEST.SUCCESS]: (state, { payload }) => ({
@@ -27,8 +27,8 @@ const handlers = {
         testTime: { ...state.testTime, ...payload.entity },
     }),
     [GENERAL.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [GENERAL.TOGGLE_TOP_BAR.IDLE]: (state) => ({ ...state, withTopBar: !state.withTopBar}),
-    [GENERAL.AUTH_AS_ADMIN.IDLE]: (state) => { console.log("fjjfq1"); return ({ ...state, isAdmin: true })},
+    [GENERAL.TOGGLE_TOP_BAR.IDLE]: (state) => ({ ...state, withTopBar: !state.withTopBar }),
+    [GENERAL.AUTH_AS_ADMIN.IDLE]: (state) => ({ ...state, isAdmin: true }),
 };
 
 export const generalReducer = createReducer(initialState, handlers);

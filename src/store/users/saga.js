@@ -32,7 +32,6 @@ function* initUsersSaga() {
 
 function* addUserSaga({ payload }) {
     try {
-        console.log(payload);
         yield call(firebaseService.add, FIREBASE_DATA_USERS, payload.user);
         yield put(addUserSuccess(payload.user));
     } catch (error) {

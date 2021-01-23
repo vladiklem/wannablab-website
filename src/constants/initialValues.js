@@ -5,12 +5,19 @@ export const initialUser = {
     phoneNumer: "",
     startLevel: "A2",
     description: "",
+    groupId: "",
 };
 
 export const initialEvent = {
     title: "",
     start: "",
     end: "",
+    members: [],
+    description: "",
+};
+
+export const initialGroup = {
+    title: "",
     members: [],
     description: "",
 };
