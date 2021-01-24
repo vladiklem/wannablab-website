@@ -15,6 +15,9 @@ import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initGeneral } from "store/general/actions";
+import { initCurrentUser } from "store/currentUser/actions";
+import { isAdminSelector } from "selectors/general";
+import { isLoggedInSelector } from "selectors/blaber"
 import { modalNamesEnum } from "constants/enums";
 
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
@@ -44,6 +47,7 @@ export const RootContainer = () => {
         dispatch(initEvents());
         dispatch(initGroups());
         dispatch(initGeneral());
+        dispatch(initCurrentUser());
     }, [dispatch]);
 
     return (
@@ -63,13 +67,13 @@ export const RootContainer = () => {
                 <div className={cx({ "container-with-top-bar": withTopBar })}>
                     <ModalsContainer modalState={modalState} />
                     <Switch>
-                        <Route path="/" render={renderRoute({ routeComponent: BlaberRoom })} exact />
-                        {/* <Route path="/" render={renderRoute({ routeComponent: Home })} exact /> */}
+                        <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
                         <Route
                             path="/check-list"
                             render={renderRoute({ routeComponent: ChecklistPage })}
                         />
-                        <PrivateRoute path="/admin" component={AdminPage} />
+                        <PrivateRoute path="/profile" component={BlaberRoom} selector={isLoggedInSelector} />
+                        <PrivateRoute path="/admin" component={AdminPage} selector={isAdminSelector} />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>

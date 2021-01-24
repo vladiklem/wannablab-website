@@ -5,7 +5,6 @@ export const initialUser = {
     phoneNumer: "",
     startLevel: "A2",
     description: "",
-    groupId: "",
 };
 
 export const initialEvent = {
@@ -13,6 +12,7 @@ export const initialEvent = {
     start: "",
     end: "",
     members: [],
+    groupId: "",
     description: "",
 };
 

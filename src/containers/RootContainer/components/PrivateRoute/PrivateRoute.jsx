@@ -1,9 +1,16 @@
 import { React } from "react";
-import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 
-export const PrivateRoute = ({ component: Component, ...props }) => {
-    const { isAdmin } = useSelector((state) => state.general);
+import { Loader } from "components/index";
 
-    return <Route {...props}>{true ? <Component /> : <Redirect to="/" />}</Route>;
+export const PrivateRoute = ({ component: Component, selector, ...props }) => {
+    const { isLoading, isVisible } = useSelector(selector);
+    console.log(isLoading, isVisible);
+
+    return isLoading ? (
+        <Loader />
+    ) : (
+        <Route {...props}>{isVisible ? <Component /> : <Redirect to="/" />}</Route>
+    );
 };

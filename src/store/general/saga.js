@@ -1,7 +1,9 @@
 import { put, call, select, takeLatest } from "redux-saga/effects";
 
 import { firebaseService } from "services/firebaseService";
+import { localStorageService } from "services/localStorageService";
 import { FIREBASE_DATA_GENERAL } from "constants/firebase";
+import { LOCAL_STORAGE_APP } from "constants/localStorage";
 
 import { GENERAL, testSettingID } from "./constants";
 import {
@@ -11,6 +13,7 @@ import {
     addTestFailure,
     bookTestSuccess,
     bookTestFailure,
+    authAsAdminSuccess,
 } from "./actions";
 
 function* initGeneralSaga() {
@@ -22,7 +25,9 @@ function* initGeneralSaga() {
             general[setting.id] = { ...setting.data() };
         });
 
-        yield put(initGeneralSuccess(general));
+        const localData = yield call(localStorageService.init);
+
+        yield put(initGeneralSuccess({ ...general, ...localData }));
     } catch (error) {
         yield put(initGeneralFailure(error.message));
     }
@@ -56,8 +61,16 @@ function* bookTestSaga({ payload }) {
     }
 }
 
+function* authAsAdminSaga() {
+    try {
+        yield call(localStorageService.setItem, LOCAL_STORAGE_APP, { isAdmin: true });
+        yield put(authAsAdminSuccess());
+    } catch(error) {}
+}
+
 export const generalSaga = [
     takeLatest(GENERAL.INIT.IDLE, initGeneralSaga),
     takeLatest(GENERAL.ADD_TEST.IDLE, addTestSaga),
     takeLatest(GENERAL.BOOK_TEST.IDLE, bookTestSaga),
+    takeLatest(GENERAL.AUTH_AS_ADMIN.IDLE, authAsAdminSaga),
 ];

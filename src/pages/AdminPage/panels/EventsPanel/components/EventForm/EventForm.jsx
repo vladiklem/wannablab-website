@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import { Input, Button, Select, CustomSelect } from "components/index";
-import { objWithId } from "utils/converters";
+import { objWithId, groupsToSelectOptions } from "utils/converters";
 import { initialEvent } from "constants/initialValues";
 import { eventTypeOptions, mentorOptions } from "constants/options";
 import { formModeEnum, formSubmitButtonEnum } from "constants/enums";
@@ -21,6 +22,7 @@ export const EventForm = ({
     const { control, reset, register, handleSubmit, errors, watch } = useForm({
         defaultValues: initialValue,
     });
+    const groupOptions = groupsToSelectOptions(useSelector((state) => state.groups.data));
 
     const type = watch("type", props.type);
 
@@ -84,6 +86,12 @@ export const EventForm = ({
                             ref={register}
                         />
                     )}
+                    <CustomSelect
+                        label="Група"
+                        name="groupId"
+                        options={groupOptions}
+                        ref={register}
+                    />
                     <Controller
                         control={control}
                         name="members"

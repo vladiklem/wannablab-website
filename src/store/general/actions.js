@@ -88,3 +88,7 @@ export const toggleTopBar = () => ({
 export const authAsAdmin = () => ({
     type: GENERAL.AUTH_AS_ADMIN.IDLE,
 });
+
+export const authAsAdminSuccess = () => ({
+    type: GENERAL.AUTH_AS_ADMIN.SUCCESS,
+});

@@ -11,9 +11,7 @@ class FirebaseService {
     }
 
     init() {
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
+        !firebase.apps.length && firebase.initializeApp(firebaseConfig);
 
         this.db = firebase.firestore();
     }
