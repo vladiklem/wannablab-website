@@ -12,6 +12,13 @@ export const initialEvent = {
     start: "",
     end: "",
     members: [],
+    groupId: "",
+    description: "",
+};
+
+export const initialGroup = {
+    title: "",
+    members: [],
     description: "",
 };
 

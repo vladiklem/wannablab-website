@@ -33,10 +33,9 @@ export const AdminPage = () => {
                 </ul>
             </SideBar>
             <div className={cx({
-                "container-with-top-bar": withTopBar,
                 "container-with-side-bar": withSideBar,
             })}>
-                <div className="pt-3 container">
+                <div className="pl-4">
                     <Switch>
                         <Route path={`${path}/users`}>
                             <UsersPanel />

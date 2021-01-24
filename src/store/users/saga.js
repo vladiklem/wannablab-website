@@ -1,7 +1,10 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 
 import { firebaseService } from "services/firebaseService";
+import { localStorageService } from "services/localStorageService";
+import { initCurrentUserSuccess } from "store/currentUser/actions";
 import { FIREBASE_DATA_USERS } from "constants/firebase";
+import { LOCAL_STORAGE_CURRENT_USER } from "constants/localStorage";
 
 import { USERS } from "./constants";
 import {
@@ -24,15 +27,24 @@ function* initUsersSaga() {
             users.push({ id: item.id, ...item.data() });
         });
 
+        const localData = yield call(localStorageService.getItem, LOCAL_STORAGE_CURRENT_USER);
+
         yield put(initUsersSuccess(users));
-    } catch(error) {
+        yield put(initCurrentUserSuccess(
+            localData.username
+                ? {
+                      isLoggedIn: true,
+                      profile: users.find(({ username }) => username === localData.username),
+                  }
+                : { isLoggedIn: false },
+        ));
+    } catch (error) {
         yield put(initUsersFailure(error.message));
     }
 }
 
 function* addUserSaga({ payload }) {
     try {
-        console.log(payload);
         yield call(firebaseService.add, FIREBASE_DATA_USERS, payload.user);
         yield put(addUserSuccess(payload.user));
     } catch (error) {

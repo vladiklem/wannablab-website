@@ -20,3 +20,9 @@ export const mediaBreakpointsEnum = {
 export const modalNamesEnum = {
     LOGIN: "LOGIN_MODAL",
 };
+
+export const userTypesEnum = {
+    BLABER: "BLABER",
+    MENTOR: "MENTOR",
+    GUEST: "GUEST",
+};

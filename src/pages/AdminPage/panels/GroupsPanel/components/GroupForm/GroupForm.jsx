@@ -1,30 +1,25 @@
 import React, { useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import { Input, Button, Select, CustomSelect } from "components/index";
-import { objWithId, groupsToSelectOptions } from "utils/converters";
-import { initialEvent } from "constants/initialValues";
-import { eventTypeOptions, mentorOptions } from "constants/options";
+import { objWithId } from "utils/converters";
+import { initialGroup } from "constants/initialValues";
+import { mentorOptions } from "constants/options";
 import { formModeEnum, formSubmitButtonEnum } from "constants/enums";
 
-export const EventForm = ({
+export const GroupForm = ({
     mode = formModeEnum.CREATE,
-    initialValue = initialEvent,
+    initialValue = initialGroup,
     userOptions,
     isOpen,
     toggle,
     onSubmit,
     onDelete,
-    ...props
 }) => {
-    const { control, reset, register, handleSubmit, errors, watch } = useForm({
+    const { control, reset, register, handleSubmit, errors } = useForm({
         defaultValues: initialValue,
     });
-    const groupOptions = groupsToSelectOptions(useSelector((state) => state.groups.data));
-
-    const type = watch("type", props.type);
 
     const submitMiddleware = useCallback(
         (data) => {
@@ -59,37 +54,9 @@ export const EventForm = ({
                         errorMessage={errors.title && "Невалідна назва"}
                     />
                     <CustomSelect
-                        label="Тип івенту"
-                        name="type"
-                        options={eventTypeOptions}
-                        ref={register}
-                    />
-                    <Input
-                        label="Початок"
-                        name="startDate"
-                        type="datetime-local"
-                        ref={register({ required: true })}
-                        errorMessage={errors.startDate && "Дата початку обов'язкова"}
-                    />
-                    <Input
-                        label="Кінець"
-                        name="endDate"
-                        type="datetime-local"
-                        ref={register({ required: true })}
-                        errorMessage={errors.endDate && "Дата завершення обов'язкова"}
-                    />
-                    {(type === eventTypeOptions[0].value || !type) && (
-                        <CustomSelect
-                            label="Ментор"
-                            name="mentor"
-                            options={mentorOptions}
-                            ref={register}
-                        />
-                    )}
-                    <CustomSelect
-                        label="Група"
-                        name="groupId"
-                        options={groupOptions}
+                        label="Ментор"
+                        name="mentor"
+                        options={mentorOptions}
                         ref={register}
                     />
                     <Controller

@@ -17,8 +17,6 @@ const submitActions = {
 export const UsersPanel = () => {
     const dispatch = useDispatch();
     const users = useSelector((store) => store.users.data);
-    const error = useSelector((store) => store.users.error);
-    console.log(error);
 
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [formMode, setFormMode] = useState(formModeEnum.CREATE);
@@ -30,10 +28,10 @@ export const UsersPanel = () => {
         setFormInitialValue(initialUser);
         toggleForm();
     }, [toggleForm]);
-    const onFormSumit = useCallback((data) => { console.log(data); dispatch(submitActions[formMode](data)); }, [
-        formMode,
-        dispatch,
-    ]);
+    const onFormSumit = useCallback(
+        (data) => dispatch(submitActions[formMode](data)),
+        [formMode, dispatch],
+    );
     const onDelete = useCallback((id) => dispatch(deleteUser(id)), [dispatch]);
     const onEdit = useCallback(
         (user) => {
@@ -55,7 +53,12 @@ export const UsersPanel = () => {
                 initialValue={userFormInitialValue}
             />
             {users.map((user) => (
-                <UserItem key={user.id} user={user} onDelete={onDelete} onEdit={onEdit} />
+                <UserItem
+                    key={user.id || user.username}
+                    user={user}
+                    onDelete={onDelete}
+                    onEdit={onEdit}
+                />
             ))}
         </div>
     );

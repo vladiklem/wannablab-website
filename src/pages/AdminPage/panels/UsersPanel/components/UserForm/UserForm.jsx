@@ -63,7 +63,6 @@ export const UserForm = ({
                         name="email"
                         id="email"
                         ref={register({
-                            required: true,
                             pattern: /(|^)[\w\d._%+-]+@(?:[\w\d-]+\.)+(\w{2,})(|$)/i,
                         })}
                         errorMessage={errors.email && "Невалідне Е-мило"}
@@ -75,7 +74,7 @@ export const UserForm = ({
                         ref={register({
                             pattern: /((\+38)?\(?\d{3}\)?[\s-]?(\d{7}|\d{3}[\s-]\d{2}[\s-]\d{2}|\d{3}-\d{4}))/,
                         })}
-                        errorMessage={errors.email && "Невалідний номер телефону"}
+                        errorMessage={errors.phoneNumber && "Невалідний номер телефону"}
                     />
                     <CustomSelect
                         name="startLevel"

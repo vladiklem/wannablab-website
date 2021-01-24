@@ -1,15 +1,17 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Modal, ModalFooter } from "reactstrap";
 
 import { Input, Button } from "components/index";
 import { authAsAdmin } from "store/general/actions";
+import { authUser } from "store/currentUser/actions";
 import { adminPasswordCheck } from "utils/password";
 
 export const LoginForm = ({ isOpen, toggle }) => {
     const dispatch = useDispatch();
+    const blabers = useSelector((state) => state.users.data);
     const history = useHistory();
     const { handleSubmit, register } = useForm();
 
@@ -19,11 +21,28 @@ export const LoginForm = ({ isOpen, toggle }) => {
         toggle();
     }, [dispatch, history, toggle]);
 
+    const toBlaberRoom = useCallback(
+        (username) => {
+            dispatch(authUser({ login: username }));
+            history.push(`/profile`);
+            toggle();
+        },
+        [dispatch, history, toggle],
+    );
+
+    const userCredentialsCheck = useCallback(
+        (login) => {
+            const blaber = blabers.find(({ username }) => username === login);
+            blaber && toBlaberRoom(blaber.username);
+        },
+        [blabers, toBlaberRoom],
+    );
+
     const onSubmit = useCallback(
         (data) => {
-            adminPasswordCheck(data) && toAdmin();
+            adminPasswordCheck(data) ? toAdmin() : userCredentialsCheck(data.login);
         },
-        [toAdmin],
+        [toAdmin, userCredentialsCheck],
     );
 
     return (

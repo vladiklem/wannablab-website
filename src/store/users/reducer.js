@@ -19,12 +19,10 @@ const handlers = {
         data: state.data.filter((user) => user.id !== payload.id),
     }),
     [USERS.DELETE.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [USERS.EDIT.SUCCESS]: (state, { payload }) => {
-        console.log(payload);
-        return ({
+    [USERS.EDIT.SUCCESS]: (state, { payload }) => ({
         ...state,
         data: state.data.map((user) => (user.id === payload.user.id ? payload.user : user)),
-    })},
+    }),
     [USERS.EDIT.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
 };
 

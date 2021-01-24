@@ -23,7 +23,8 @@ export const GENERAL = {
         IDLE: "GENERAL_TOGGLE_TOP_BAR_IDLE",
     },
     AUTH_AS_ADMIN: {
-        IDLE: "AUTH_AS_ADMIN",
+        IDLE: "AUTH_AS_ADMIN_IDLE",
+        SUCCESS: "AUTH_AS_ADMIN_SUCCESS",
     },
 };
 

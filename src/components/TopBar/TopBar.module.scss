@@ -1,11 +1,15 @@
 @import "~assets/styles/config/colors";
+@import "~assets/styles/config/containers";
 
 .topBar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
-    height: 80px;
-    padding: 16px;
+    height: $topBarHeight;
     background-color: $primary-soft;
+
+    .blaberRoom {
+        height: $blaberRoomTopBarHeight;
+    }
 }
