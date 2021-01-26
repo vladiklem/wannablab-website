@@ -20,12 +20,19 @@ export const BlaberRoom = () => {
     const events = useSelector(selectEventsByGroupId(group.id));
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.XL });
     const formattedEvents = useMemo(() => getFormattedCalendarEvents(events), [events]);
+    const lastPaymentDate = useMemo(
+        () =>
+            profile.payments && profile.payments.length
+                ? moment(profile.payments[profile.payments.length - 1].date).format("LL")
+                : "Оплати немає",
+        [profile],
+    );
 
     return (
         <div className={styles.container}>
             <div className={cx("position-relative", styles.topPanel)}>
                 <p>{group.title}</p>
-                <p>{moment(profile.payments[profile.payments.length - 1].date).format("LL")}</p>
+                <p>{lastPaymentDate}</p>
                 <div className={styles.avatarWrapper}>
                     <img className={styles.avatar} src={images.uramen12} alt="Avatar" />
                     <h1>{profile.fullName}</h1>
