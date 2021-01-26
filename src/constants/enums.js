@@ -26,3 +26,12 @@ export const userTypesEnum = {
     MENTOR: "MENTOR",
     GUEST: "GUEST",
 };
+
+export const eventTypesEnum = {
+    GROUP_LESSON: "groupLesson",
+    WEBINAR: "webinar",
+    LECTION: "lection",
+    PRIVATE_LESSON: "privateLesson",
+    WATCH: "watch",
+    CALL: "call",
+};

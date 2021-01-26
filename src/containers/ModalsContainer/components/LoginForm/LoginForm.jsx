@@ -22,8 +22,8 @@ export const LoginForm = ({ isOpen, toggle }) => {
     }, [dispatch, history, toggle]);
 
     const toBlaberRoom = useCallback(
-        (username) => {
-            dispatch(authUser({ login: username }));
+        (blaber) => {
+            dispatch(authUser(blaber));
             history.push(`/profile`);
             toggle();
         },
@@ -31,16 +31,16 @@ export const LoginForm = ({ isOpen, toggle }) => {
     );
 
     const userCredentialsCheck = useCallback(
-        (login) => {
-            const blaber = blabers.find(({ username }) => username === login);
-            blaber && toBlaberRoom(blaber.username);
+        (data) => {
+            const blaber = blabers.find(({ username }) => username === data.login);
+            blaber && toBlaberRoom(blaber);
         },
         [blabers, toBlaberRoom],
     );
 
     const onSubmit = useCallback(
         (data) => {
-            adminPasswordCheck(data) ? toAdmin() : userCredentialsCheck(data.login);
+            adminPasswordCheck(data) ? toAdmin() : userCredentialsCheck(data);
         },
         [toAdmin, userCredentialsCheck],
     );

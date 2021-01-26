@@ -24,6 +24,10 @@ const handlers = {
         data: state.data.map((user) => (user.id === payload.user.id ? payload.user : user)),
     }),
     [USERS.EDIT.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
+    [USERS.ADD_PAYMENT.SUCCESS]: (state, { payload }) => ({
+        ...state,
+        data: state.data.map((user) => (user.id === payload.user.id ? payload.user : user)),
+    }),
 };
 
 export const usersReducer = createReducer(initialState, handlers);

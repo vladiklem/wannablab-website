@@ -11,10 +11,14 @@ export const initCurrentUserSuccess = (blaber) => ({
     }
 });
 
-export const authUser = ({ login }) => ({
+export const initCurrentUserFailure = () => ({
+    type: CURRENT_USER.INIT.FAILURE,
+});
+
+export const authUser = (blaber) => ({
     type: CURRENT_USER.AUTH.IDLE,
     payload: {
-        username: login,
+        blaber,
     },
 });
 
@@ -22,5 +26,12 @@ export const authUserSuccess = (blaber) => ({
     type: CURRENT_USER.AUTH.SUCCESS,
     payload: {
         blaber,
+    },
+});
+
+export const authUserFailure = (error, data) => ({
+    type: CURRENT_USER.AUTH.FAILURE,
+    payload: {
+        error,
     },
 });

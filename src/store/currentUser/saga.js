@@ -1,47 +1,21 @@
-import { call, select, takeLatest, put } from "redux-saga/effects";
+import { call, takeLatest, put } from "redux-saga/effects";
 
 import { localStorageService } from "services/localStorageService";
 import { LOCAL_STORAGE_CURRENT_USER } from "constants/localStorage";
 
 import { CURRENT_USER } from "./constants";
-import { initCurrentUserSuccess, authUserSuccess } from "./actions";
+import { authUserFailure, authUserSuccess } from "./actions";
 
-function* initCurrentUserSaga() {
-    try {
-        const localData = yield call(localStorageService.getItem, LOCAL_STORAGE_CURRENT_USER);
-        const blabers = yield select((state) => state.users.data);
-
-        yield put(initCurrentUserSuccess(
-            localData.username && blabers.length
-                ? {
-                      isLoggedIn: true,
-                      profile: blabers.find(({ username }) => username === localData.username),
-                  }
-                : { isLoggedIn: false },
-        ));
-    } catch (error) {}
-}
-
-function* authUserSaga({ payload }) {
+function* authUserSaga({ payload: { blaber } }) {
     try {
         yield call(localStorageService.setItem, LOCAL_STORAGE_CURRENT_USER, {
-            username: payload.username,
+            username: blaber.username,
         });
-        const blabers = yield select((state) => state.users.data);
-        console.log(payload);
 
-        yield put(authUserSuccess(
-            payload.username && blabers.length
-                ? {
-                      isLoggedIn: true,
-                      profile: blabers.find(({ username }) => username === payload.username),
-                  }
-                : { isLoggedIn: false },
-        ));
-    } catch (error) {}
+        yield put(blaber.username ? authUserSuccess(blaber) : authUserFailure("No blabber found"));
+    } catch (error) {
+        yield put(authUserFailure(error.message));
+    }
 }
 
-export const currentUserSaga = [
-    takeLatest(CURRENT_USER.INIT.IDLE, initCurrentUserSaga),
-    takeLatest(CURRENT_USER.AUTH.IDLE, authUserSaga),
-];
+export const currentUserSaga = [takeLatest(CURRENT_USER.AUTH.IDLE, authUserSaga)];

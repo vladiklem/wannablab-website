@@ -53,8 +53,8 @@ export const RootContainer = () => {
     return (
         <Router>
             <TopBar isVisible={withTopBar}>
-                <Button color={buttonColorEnum.INVISIBLE} size="lg" onClick={openLoginModal}>
-                    Адмінка
+                <Button color={buttonColorEnum.UNSTYLED} size="lg" onClick={openLoginModal}>
+                    Залогінитись
                 </Button>
                 <a
                     className={cx(styles.topBarLink, "text-gray-900 font-weight-bold")}

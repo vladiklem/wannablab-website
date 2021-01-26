@@ -6,7 +6,6 @@ import { Loader } from "components/index";
 
 export const PrivateRoute = ({ component: Component, selector, ...props }) => {
     const { isLoading, isVisible } = useSelector(selector);
-    console.log(isLoading, isVisible);
 
     return isLoading ? (
         <Loader />

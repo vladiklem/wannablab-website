@@ -11,7 +11,7 @@ import { GroupsPanel } from "./panels/GroupsPanel/GroupsPanel";
 import { GeneralPanel } from "./panels/GeneralPanel/GeneralPanel";
 
 export const AdminPage = () => {
-    const { withTopBar, withSideBar } = useSelector(state => state.general);
+    const { withSideBar } = useSelector(state => state.general);
     const { url, path } = useRouteMatch();
 
     return (
@@ -35,7 +35,7 @@ export const AdminPage = () => {
             <div className={cx({
                 "container-with-side-bar": withSideBar,
             })}>
-                <div className="pl-4">
+                <div>
                     <Switch>
                         <Route path={`${path}/users`}>
                             <UsersPanel />

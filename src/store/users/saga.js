@@ -1,8 +1,8 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, select } from "redux-saga/effects";
 
 import { firebaseService } from "services/firebaseService";
 import { localStorageService } from "services/localStorageService";
-import { initCurrentUserSuccess } from "store/currentUser/actions";
+import { authUserSuccess } from "store/currentUser/actions";
 import { FIREBASE_DATA_USERS } from "constants/firebase";
 import { LOCAL_STORAGE_CURRENT_USER } from "constants/localStorage";
 
@@ -16,7 +16,9 @@ import {
     deleteUserSuccess,
     editUserSuccess,
     editUserFailure,
+    addPaymentSuccess,
 } from "./actions";
+import { initCurrentUserFailure } from "store/currentUser/actions";
 
 function* initUsersSaga() {
     try {
@@ -30,14 +32,11 @@ function* initUsersSaga() {
         const localData = yield call(localStorageService.getItem, LOCAL_STORAGE_CURRENT_USER);
 
         yield put(initUsersSuccess(users));
-        yield put(initCurrentUserSuccess(
-            localData.username
-                ? {
-                      isLoggedIn: true,
-                      profile: users.find(({ username }) => username === localData.username),
-                  }
-                : { isLoggedIn: false },
-        ));
+        const currentUser =
+            localData.username &&
+            users.length &&
+            users.find(({ username }) => username === localData.username);
+        yield put(currentUser ? authUserSuccess(currentUser) : initCurrentUserFailure());
     } catch (error) {
         yield put(initUsersFailure(error.message));
     }
@@ -70,9 +69,26 @@ function* editUserSaga({ payload: { user } }) {
     }
 }
 
+function* addPaymentSaga({ payload: { payment } }) {
+    try {
+        const users = yield select((state) => state.users.data);
+        const userById = users.find(({ id }) => id === payment.userId);
+        const updatedUser = {
+            ...userById,
+            payments: userById.payments ? [...userById.payments, payment] : [payment],
+        };
+        yield call(firebaseService.update, FIREBASE_DATA_USERS, payment.userId, updatedUser, {
+            merge: true,
+        });
+        yield put(addPaymentSuccess(updatedUser));
+    } catch (error) {
+    }
+}
+
 export const usersSaga = [
     takeLatest(USERS.INIT.IDLE, initUsersSaga),
     takeLatest(USERS.ADD.IDLE, addUserSaga),
     takeLatest(USERS.DELETE.IDLE, deleteUserSaga),
     takeLatest(USERS.EDIT.IDLE, editUserSaga),
+    takeLatest(USERS.ADD_PAYMENT.IDLE, addPaymentSaga),
 ];

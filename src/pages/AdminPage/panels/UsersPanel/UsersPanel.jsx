@@ -2,12 +2,13 @@ import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Button } from "components/index";
-import { addUser, deleteUser, editUser } from "store/users/actions";
+import { addUser, deleteUser, editUser, addPayment } from "store/users/actions";
 import { initialUser } from "constants/initialValues";
 import { formModeEnum } from "constants/enums";
 
-import { UserItem } from "./components/UserItem/UserItem";
+import { UsersList } from "./components/UsersList/UsersList";
 import { UserForm } from "./components/UserForm/UserForm";
+import { PaymentForm } from './components/PaymentForm/PaymentForm';
 
 const submitActions = {
     CREATE: addUser,
@@ -18,11 +19,13 @@ export const UsersPanel = () => {
     const dispatch = useDispatch();
     const users = useSelector((store) => store.users.data);
 
-    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [isUserFormOpen, setIsUserFormOpen] = useState(false);
     const [formMode, setFormMode] = useState(formModeEnum.CREATE);
     const [userFormInitialValue, setFormInitialValue] = useState(initialUser);
+    const [userId, setUserId] = useState(null);
+    const [isPaymentFormOpen, setIsPaymentFormOpen] = useState(false);
 
-    const toggleForm = useCallback(() => setIsFormOpen((isOpen) => !isOpen), [setIsFormOpen]);
+    const toggleForm = useCallback(() => setIsUserFormOpen((isOpen) => !isOpen), [setIsUserFormOpen]);
     const onAdd = useCallback(() => {
         setFormMode(formModeEnum.CREATE);
         setFormInitialValue(initialUser);
@@ -42,24 +45,35 @@ export const UsersPanel = () => {
         [toggleForm],
     );
 
+    const togglePaymentForm = useCallback(() => setIsPaymentFormOpen((isOpen) => !isOpen), []);
+
+    const onPay = useCallback((id) => {
+        setUserId(id);
+        togglePaymentForm();
+    }, [togglePaymentForm]);
+
+    const onPaymentSubmit = useCallback((payment) => {
+        dispatch(addPayment({ userId, ...payment }));
+    }, [dispatch, userId]);
+
     return (
         <div>
             <Button onClick={onAdd}>add user</Button>
             <UserForm
                 mode={formMode}
-                isOpen={isFormOpen}
+                isOpen={isUserFormOpen}
                 toggle={toggleForm}
                 onSubmit={onFormSumit}
                 initialValue={userFormInitialValue}
             />
-            {users.map((user) => (
-                <UserItem
-                    key={user.id || user.username}
-                    user={user}
-                    onDelete={onDelete}
-                    onEdit={onEdit}
-                />
-            ))}
+            <PaymentForm
+                userId={userId}
+                isOpen={isPaymentFormOpen}
+                toggle={togglePaymentForm}
+                onSubmit={onPaymentSubmit}
+
+            />
+            <UsersList users={users} onDelete={onDelete} onEdit={onEdit} onPay={onPay} />
         </div>
     );
 };

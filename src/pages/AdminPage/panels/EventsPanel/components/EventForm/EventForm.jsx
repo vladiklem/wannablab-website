@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
@@ -7,7 +7,7 @@ import { Input, Button, Select, CustomSelect } from "components/index";
 import { objWithId, groupsToSelectOptions } from "utils/converters";
 import { initialEvent } from "constants/initialValues";
 import { eventTypeOptions, mentorOptions } from "constants/options";
-import { formModeEnum, formSubmitButtonEnum } from "constants/enums";
+import { formModeEnum, formSubmitButtonEnum, eventTypesEnum } from "constants/enums";
 
 export const EventForm = ({
     mode = formModeEnum.CREATE,
@@ -16,15 +16,13 @@ export const EventForm = ({
     isOpen,
     toggle,
     onSubmit,
-    onDelete,
-    ...props
+    onDelete
 }) => {
-    const { control, reset, register, handleSubmit, errors, watch } = useForm({
+    const [type, setType] = useState(eventTypesEnum.GROUP_LESSON);
+    const { control, reset, register, handleSubmit, errors } = useForm({
         defaultValues: initialValue,
     });
     const groupOptions = groupsToSelectOptions(useSelector((state) => state.groups.data));
-
-    const type = watch("type", props.type);
 
     const submitMiddleware = useCallback(
         (data) => {
@@ -33,6 +31,8 @@ export const EventForm = ({
         },
         [toggle, onSubmit, initialValue],
     );
+
+    const onTypeChange = useCallback((e) => setType(e.target.value), [setType]);
 
     const handleDelete = useCallback(() => {
         onDelete(initialValue.id);
@@ -63,6 +63,7 @@ export const EventForm = ({
                         name="type"
                         options={eventTypeOptions}
                         ref={register}
+                        onChange={onTypeChange}
                     />
                     <Input
                         label="Початок"
@@ -78,7 +79,7 @@ export const EventForm = ({
                         ref={register({ required: true })}
                         errorMessage={errors.endDate && "Дата завершення обов'язкова"}
                     />
-                    {(type === eventTypeOptions[0].value || !type) && (
+                    {type === eventTypesEnum.PRIVATE_LESSON && (
                         <CustomSelect
                             label="Ментор"
                             name="mentor"
@@ -86,30 +87,34 @@ export const EventForm = ({
                             ref={register}
                         />
                     )}
-                    <CustomSelect
-                        label="Група"
-                        name="groupId"
-                        options={groupOptions}
-                        ref={register}
-                    />
-                    <Controller
-                        control={control}
-                        name="members"
-                        render={({ onChange, onBlur, value, name, ref }) => (
-                            <Select
-                                className="mb-2"
-                                isMulti={true}
-                                options={userOptions}
-                                onChange={onChange}
-                                onBlur={onBlur}
-                                value={value}
-                                name={name}
-                                ref={ref}
-                                closeMenuOnSelect={false}
-                                placeholder="Блабери..."
-                            />
-                        )}
-                    />
+                    {type === eventTypesEnum.GROUP_LESSON && (
+                        <CustomSelect
+                            label="Група"
+                            name="groupId"
+                            options={groupOptions}
+                            ref={register}
+                        />
+                    )}
+                    {(type === eventTypesEnum.WATCH || type === eventTypesEnum.WEBINAR) && (
+                        <Controller
+                            control={control}
+                            name="members"
+                            render={({ onChange, onBlur, value, name, ref }) => (
+                                <Select
+                                    className="mb-2"
+                                    isMulti={true}
+                                    options={userOptions}
+                                    onChange={onChange}
+                                    onBlur={onBlur}
+                                    value={value}
+                                    name={name}
+                                    ref={ref}
+                                    closeMenuOnSelect={false}
+                                    placeholder="Блабери..."
+                                />
+                            )}
+                        />
+                    )}
                     <Input
                         label="Опис"
                         name="description"

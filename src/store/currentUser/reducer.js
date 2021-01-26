@@ -13,19 +13,25 @@ export const initialState = {
     },
 };
 
-const setBlaber = (state, { payload }) => ({
-    ...state,
-    ...(payload.blaber.isLoggedIn ? {
-        isLoading: false,
-    isLoggedIn: true,
-    type: userTypesEnum.BLABER,
-    profile: payload.blaber.profile,
-    } : payload.blaber),
-});
-
 export const handlers = {
-    [CURRENT_USER.INIT.SUCCESS]: setBlaber,
-    [CURRENT_USER.AUTH.SUCCESS]: setBlaber,
+    [CURRENT_USER.AUTH.SUCCESS]: (state, { payload }) => ({
+        ...state,
+        isLoggedIn: true,
+        isLoading: false,
+        type: userTypesEnum.BLABER,
+        profile: payload.blaber,
+    }),
+    [CURRENT_USER.AUTH.FAILURE]: (state, { payload }) => ({
+        ...state,
+        error: payload.error,
+        isLoggedIn: false,
+        isLoading: false,
+    }),
+    [CURRENT_USER.INIT.FAILURE]: (state) => ({
+        ...state,
+        isLoading: false,
+        isLoggedIn: false,
+    }),
 };
 
 export const currentUserReducer = createReducer(initialState, handlers);

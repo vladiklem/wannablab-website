@@ -80,3 +80,17 @@ export const editUserFailure = (error) => ({
         error,
     },
 });
+
+export const addPayment = (payment) => ({
+    type: USERS.ADD_PAYMENT.IDLE,
+    payload: {
+        payment,
+    },
+});
+
+export const addPaymentSuccess = (user) => ({
+    type: USERS.ADD_PAYMENT.SUCCESS,
+    payload: {
+        user,
+    },
+});

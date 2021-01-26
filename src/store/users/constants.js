@@ -19,4 +19,7 @@ export const USERS = {
         SUCCESS: "USERS_EDIT_SUCCESS",
         FAILURE: "USERS_EDIT_FAILURE",
     },
+    ADD_PAYMENT: {
+        IDLE: "USERS_ADD_PAYMENT_IDLE",
+    },
 };
