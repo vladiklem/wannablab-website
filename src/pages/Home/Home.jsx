@@ -53,7 +53,7 @@ export const Home = () => {
                         />
                         <PlanCard
                             title="Pro"
-                            price={1600}
+                            price={1850}
                             type={planTypeEnum.PRO}
                             icon={<ProPlanIcon />}
                             description="все що є в Basic"
@@ -68,7 +68,7 @@ export const Home = () => {
                         />
                         <PlanCard
                             title="All-Featured"
-                            price={2450}
+                            price={2990}
                             type={planTypeEnum.ALL_FEATURED}
                             icon={<AllFeaturedPlanIcon />}
                             description="все що є в Basic та Pro"

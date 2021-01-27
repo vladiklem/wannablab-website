@@ -46,7 +46,7 @@ export const PlansSlider = () => {
                 <div className="d-flex justify-content-center bg-primary-soft">
                     <PlanCard
                         title="Pro"
-                        price={1600}
+                        price={1850}
                         type={planTypeEnum.PRO}
                         icon={<ProPlanIcon />}
                         description="все що є в Basic"
@@ -61,7 +61,7 @@ export const PlansSlider = () => {
                 <div className="d-flex justify-content-center bg-primary-soft">
                     <PlanCard
                         title="All-Featured"
-                        price={2450}
+                        price={2990}
                         type={planTypeEnum.ALL_FEATURED}
                         icon={<AllFeaturedPlanIcon />}
                         description="все що є в Basic та Pro"

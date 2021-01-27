@@ -58,34 +58,38 @@ export const LeadForm = ({ className }) => {
                     "Невалідний номер телефону"
                 }
             />
-            {!!hasFreeTime && (
-                <Checkbox
-                    className="mt-3"
-                    name="withTest"
-                    label="Одразу вибрати час для тесту рівня"
-                    ref={register}
-                />
-            )}
+            <Checkbox
+                className="mt-3"
+                name="withTest"
+                label="Одразу вибрати час для тесту рівня"
+                ref={register}
+            />
             <div
                 className={cx(styles.withTestCover, {
                     [styles.isTestChecked]: isTestChecked,
                     [styles.testNotChecked]: !isTestChecked,
                 })}
             >
-                <div className={cx("d-flex align-items-center flex-wrap", styles.testTimeList)}>
-                    {testTime.map(({ id, dateTime, isBooked }) =>
-                        !isBooked ? (
-                            <Radio
-                                className="ml-2 mb-2"
-                                name="time"
-                                key={id}
-                                id={id}
-                                value={id}
-                                label={getTestTimeLabel(dateTime)}
-                                ref={register}
-                            />
-                        ) : null,
-                    )}
+                <div
+                    className={cx("d-flex align-items-center flex-wrap", {
+                        [styles.testTimeList]: hasFreeTime,
+                    })}
+                >
+                    {hasFreeTime
+                        ? testTime.map(({ id, dateTime, isBooked }) =>
+                              !isBooked ? (
+                                  <Radio
+                                      className="ml-2 mb-2"
+                                      name="time"
+                                      key={id}
+                                      id={id}
+                                      value={id}
+                                      label={getTestTimeLabel(dateTime)}
+                                      ref={register}
+                                  />
+                              ) : null,
+                          )
+                        : "Нажаль вівльного часу немає, залиш нам свої контакти і ми знайдемо його для тебе :)"}
                 </div>
             </div>
             <Button
