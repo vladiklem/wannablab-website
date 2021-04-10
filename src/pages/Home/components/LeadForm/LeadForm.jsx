@@ -13,7 +13,7 @@ import { instagramLink } from "constants/social";
 
 import styles from "./LeadForm.module.scss";
 
-export const LeadForm = ({ className }) => {
+export const LeadForm = ({ className, ...props }) => {
     const dispatch = useDispatch();
     const { isLoading, isSuccess } = useSelector((state) => state.leads);
     const testTime = useSelector((state) => state.general.testTime);
@@ -40,10 +40,11 @@ export const LeadForm = ({ className }) => {
 
     return (
         <form
-            className={cx("position-relative rounded", styles.form, className)}
+            className={cx("position-relative", styles.form, className)}
             onSubmit={handleSubmit(onSubmit)}
+            {...props}
         >
-            <h2 className="text-center text-gray-900">Привіт, блабер!</h2>
+            <h2 className="h2 text-center text-gray-900">Привіт, блабер!</h2>
             <Input name="name" label="Ім'я" ref={register({ required: true })} />
             <Input
                 name="phoneNumber"

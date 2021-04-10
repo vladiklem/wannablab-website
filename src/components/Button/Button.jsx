@@ -18,7 +18,7 @@ export const Button = ({
     isRounded,
     isLoading,
     isBold,
-    size,
+    size = "md",
     children,
     disabled,
     ...props
@@ -27,6 +27,7 @@ export const Button = ({
         <ReactstrapButton
             className={cx(className, {
                 "py-3": isSquare && size === "lg",
+                "p-1": isSquare && size === "md",
                 [styles.rounded50]: isRounded,
                 "font-weight-bold": isBold,
             })}

@@ -1,0 +1,36 @@
+@import "~assets/styles/config/shadows";
+
+.scrollable {
+    .container {
+        overflow: auto;
+        white-space: nowrap;
+        margin-left: -16px;
+        margin-right: -16px;
+        scroll-behavior: smooth;
+    }
+
+    .item {
+        display: inline-block;
+        white-space: normal;
+        border-radius: 12px;
+    }
+
+    .arrow {
+        position: absolute;
+        top: 50%;
+
+        &:active svg{
+            transform: scale(1.1);
+        }
+
+        &.right{
+            right: -12px;
+            transform: translateY(-50%);
+        }
+
+        &.left{
+            left: -12px;
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+}

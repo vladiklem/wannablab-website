@@ -3,7 +3,7 @@
 .background {
     min-height: 100vh;
     width: 100vw;
-    background-color: $primary-soft;
+    // background-color: $primary-soft;
 }
 
 .topBarLink {
@@ -13,4 +13,13 @@
     &:hover {
         color: $gray-900;
     }
+}
+
+.heading {
+    width: calc(100vw - 156px);
+    text-align: center;
+}
+
+.subheading {
+    font-size: 14px;
 }

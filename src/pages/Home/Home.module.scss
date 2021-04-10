@@ -2,7 +2,11 @@
 @import "~assets/styles/config/colors";
 
 .firstSection {
-    height: calc(100vh - #{$topBarHeight});
+    min-height: calc(100vh - 100px);
+}
+
+.lastSection {
+    min-height: calc(100vh - 96px);
 }
 
 .section {
@@ -16,6 +20,15 @@
 .planCardsList {
     margin-bottom: -24px;
     margin-right: -24px;
+}
+
+.leadForm {
+    border: 3px solid $primary;
+    border-radius: 20px !important;
+}
+
+.fontSize22 {
+    font-size: 22px !important;
 }
 
 @media only screen and (max-width: 1024px) {

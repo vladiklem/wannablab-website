@@ -17,8 +17,10 @@ import { initGroups } from "store/groups/actions";
 import { initGeneral } from "store/general/actions";
 import { initCurrentUser } from "store/currentUser/actions";
 import { isAdminSelector } from "selectors/general";
-import { isLoggedInSelector } from "selectors/blaber"
+import { isLoggedInSelector } from "selectors/blaber";
 import { modalNamesEnum } from "constants/enums";
+
+import logo from "assets/images/logo.png";
 
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
@@ -52,7 +54,7 @@ export const RootContainer = () => {
 
     return (
         <Router>
-            <TopBar isVisible={withTopBar}>
+            <TopBar isVisible={false}>
                 <Button color={buttonColorEnum.UNSTYLED} size="lg" onClick={openLoginModal}>
                     Залогінитись
                 </Button>
@@ -63,8 +65,12 @@ export const RootContainer = () => {
                     Ціни
                 </a>
             </TopBar>
+            <header className="px-3 pt-3 d-flex align-items-center">
+                <img src={logo} width="50" height="60" alt="Logo" />
+                <h1 className={cx("font-chewy-regular ml-4 mb-0", styles.heading)}>wannablab</h1>
+            </header>
             <main className={styles.background}>
-                <div className={cx({ "container-with-top-bar": withTopBar })}>
+                <div className={cx({ "container-with-top-bar": false })}>
                     <ModalsContainer modalState={modalState} />
                     <Switch>
                         <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
@@ -72,12 +78,26 @@ export const RootContainer = () => {
                             path="/check-list"
                             render={renderRoute({ routeComponent: ChecklistPage })}
                         />
-                        <PrivateRoute path="/profile" component={BlaberRoom} selector={isLoggedInSelector} />
-                        <PrivateRoute path="/admin" component={AdminPage} selector={isAdminSelector} />
+                        <PrivateRoute
+                            path="/profile"
+                            component={BlaberRoom}
+                            selector={isLoggedInSelector}
+                        />
+                        <PrivateRoute
+                            path="/admin"
+                            component={AdminPage}
+                            selector={isAdminSelector}
+                        />
                         <Route component={NotFoundPage} />
                     </Switch>
                 </div>
             </main>
+            <footer className="px-3_5 py-4">
+                <h2 className="regular">Powered by wannablab family</h2>
+                <div>
+                    <p className="regular">Found more at:</p>
+                </div>
+            </footer>
         </Router>
     );
 };
