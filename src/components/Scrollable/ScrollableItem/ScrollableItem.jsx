@@ -3,6 +3,8 @@ import cx from "classnames";
 
 import styles from "../Scrollable.module.scss";
 
-export const ScrollableItem = ({ className, children }) => (
-    <div className={cx(styles.item, className)}>{children}</div>
+export const ScrollableItem = ({ className, children, ...props }) => (
+    <div className={cx(styles.item, className)} {...props}>
+        {children}
+    </div>
 );

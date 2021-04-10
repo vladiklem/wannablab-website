@@ -1,13 +1,9 @@
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 import cx from "classnames";
-
-import { mediaBreakpointsEnum } from "constants/enums";
 
 import styles from "./TopBar.module.scss";
 
 export const TopBar = ({ className, isVisible = true, children }) => {
-    const isMobileView = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     return (
         <nav
