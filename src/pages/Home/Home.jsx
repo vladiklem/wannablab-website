@@ -9,6 +9,7 @@ import { Scrollable, ScrollableItem } from "components/index";
 import groupLessonsImg from "assets/images/group-lessons.png";
 import personalLessonsImg from "assets/images/personal-lessons.png";
 import smallTalkLessonsImg from "assets/images/small-talk.png";
+import dianaAvatar from "assets/images/diana-avatar.png";
 
 import martaAvatar from "assets/images/marta_avatar.png";
 
@@ -157,6 +158,75 @@ export const Home = () => {
                     ))}
                 </Scrollable>
             </section> */}
+            <section>
+                <h2 className="h2 mt-5 mb-2">Марафон від Діани для початківців</h2>
+                <div>Тривалість: 45днів</div>
+                <img
+                    className="d-block border-circle mb-2"
+                    height={100}
+                    width={100}
+                    src={dianaAvatar}
+                    alt="Diana's avatar"
+                />
+
+                <ul className="features-list">
+                    <li>Я розкажу з чого варто починати вивчати іноземну мову</li>
+                    <li>Поясню вживання часів, яких усі так бояться</li>
+                    <li>Розкажу свої лайфхаки, щоб твоє навчання було легким та цікавим</li>
+                    <li>Дам лексику для підтримання діалогу на побутові теми або для подорожей</li>
+                    <li>Допоможу подолати мовний бар'єр</li>
+                    <li>Змотивую та надам слушні поради</li>
+                </ul>
+
+                <h2 className="h2 mt-5 mb-2">Для кого підходить марафон?</h2>
+
+                <ul className="features-list">
+                    <li>Для тих, хто колись вивчав англійську, але підзабув, і хоче відновити знання</li>
+                    <li>Для тих, хто ще тільки почав вивчати англійську</li>
+                    <li>Для тих, хто вирішив вивчати англійську починаючи з сьогодні</li>
+                </ul>
+
+
+                <h2 className="h2 mt-5 mb-2">Пілся прохождення курсу я зможу:</h2>
+
+                <ul className="features-list">
+                    <li>Вести діалог із незнайомцем</li>
+                    <li>Описувати свій звичайний робочий та вихідний день</li>
+                    <li>Розповідати про свої інереси та самопочуття</li>
+                    <li>Обговорювати новини</li>
+                    <li>Забронювати кімнату у готелі</li>
+                    <li>Розповісти про мрії, плани на майбутнє</li>
+                    <li>Описати зовнішність інших людей та свою</li>
+                    <li>Замовити їжу, враховуючи свої вподобання</li>
+                </ul>
+
+                <h2 className="h2 mt-5 mb-2">Що я зрозумію із граматики?</h2>
+                <ul className="features-list">
+                    <li>Минулий, теперішній та майбутній часи</li>
+                    <li>Викорисання артиклів</li>
+                    <li>Використання прийменників</li>
+                    <li>Множина</li>
+                    <li>Побудова питальних речень</li>
+                    <li>Модальні дієслова</li>
+                </ul>
+
+                <h2  className="h2 mt-5 mb-2"> Домашнє завдання та комунікація</h2>
+                
+                <ul className="features-list">
+                    <li>На тебе чекає 20 відео-уроків із розробленими письмовими та усними вправами</li>
+                    <li>Моя підтримка 24/7 у Телеграм</li>
+                    <li>Усні завдання допоможуть тобі почати говорити і поставити правильну вимову</li>
+                    <li>Письмові завдання і тести доможуть закріпити знання із граматики</li>
+                    <li>Перевірка твоїх завдань буде в індивідуальному форматі в переписці зі мною у Телеграм</li>
+                    <li>Усне домашнє завдання - твоє говоріння в аудіо-повідомленні Телеграм. Я слухаю, потім коригую вимову, виправляю помилки, якщо такі були у реченні.</li>
+                    <li>Стосовно письмового домашнього завдання даю свій фідбек та пояснюю зроблені помилки</li>
+                    <li>Завдання зможеш надіслати мені у зручний для себе час протягом 2 наступних днів</li>
+                </ul>
+
+
+
+            </section>
+
             <div id="blaber-form" className={styles.lastSection}>
                 <div className="d-flex justify-content-center pt-5">
                     <LeadForm className={styles.leadForm} />
