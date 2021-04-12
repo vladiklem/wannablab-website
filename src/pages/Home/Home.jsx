@@ -139,15 +139,8 @@ export const Home = () => {
                     ))}
                 </Scrollable>
             </section>
-            <section className="section">
-                <h2>Вкажи свій рівень і ми підберемо найкращий план розвитку</h2>
-                <div>
-                    <Button className={styles.button}>Beginner (A1)</Button>
-                    <Button>Elementary (A2)</Button>
-                    <Button>Intermediate (B1)</Button>
-                    <Button>Upper-intermediate (B2)</Button>
-                    <Button>Advanced (C1)</Button>
-                </div>
+            {/* WIP */}
+            {/* <section className="section">
                 <h2 className="h2">Наші ментори</h2>
                 <Scrollable>
                     {mentors.map(({ name, imgSrc }) => (
@@ -163,7 +156,7 @@ export const Home = () => {
                         </ScrollableItem>
                     ))}
                 </Scrollable>
-            </section>
+            </section> */}
             <div id="blaber-form" className={styles.lastSection}>
                 <div className="d-flex justify-content-center pt-5">
                     <LeadForm className={styles.leadForm} />
