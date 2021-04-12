@@ -31,8 +31,36 @@
     font-size: 22px !important;
 }
 
+.button {
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 100%;
+        height: calc(100% + 10px) ;
+        background-color: red;
+        animation: pulse 5s infinite;
+        z-index: -1;
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     .leadForm {
         margin-top: 0px;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
     }
 }

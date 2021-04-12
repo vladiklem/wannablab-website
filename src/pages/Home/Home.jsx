@@ -8,7 +8,9 @@ import { Scrollable, ScrollableItem } from "components/index";
 
 import groupLessonsImg from "assets/images/group-lessons.png";
 import personalLessonsImg from "assets/images/personal-lessons.png";
-import smallTalkLessonsImg from "assets/images/small-talk.png"
+import smallTalkLessonsImg from "assets/images/small-talk.png";
+
+import martaAvatar from "assets/images/marta_avatar.png";
 
 import styles from "./Home.module.scss";
 
@@ -48,7 +50,14 @@ const services = [
         title: "Small talks",
         description: "Швидка практика на кожен день",
         imgSrc: smallTalkLessonsImg,
-    }
+    },
+];
+
+const mentors = [
+    {
+        name: "Марта",
+        imgSrc: martaAvatar,
+    },
 ];
 
 export const Home = () => {
@@ -66,7 +75,7 @@ export const Home = () => {
                     Школа розмовної англійської для реального життя. Цінуємо кожного 😊
                 </h2>
                 <Button
-                    className="font-weight-bold mt-4"
+                    className="font-weight-bold mt-4 text-highlighted"
                     color="purple-soft"
                     size="lg"
                     onClick={onOrderClick}
@@ -74,7 +83,7 @@ export const Home = () => {
                     Замовити тест рівня
                 </Button>
                 <Button
-                    className="font-weight-bold mt-3"
+                    className="font-weight-bold mt-3 text-highlighted"
                     href="https://t.me/emerello"
                     color="blue-soft"
                     size="lg"
@@ -91,9 +100,17 @@ export const Home = () => {
                 <Scrollable>
                     {items.map(({ title, schedule, membersCount }, index) => (
                         <ScrollableItem
-                            className={cx("shadow-soft py-2 px-3", {
+                            className={cx("shadow-soft border-radius-20", {
                                 "mr-3": index !== items.length - 1,
                             })}
+                            contentClassName="py-2 px-3"
+                            action={{
+                                children: "Деталі",
+                                block: true,
+                                color: "green-soft",
+                                className: "border-radius-20",
+                                size: "sm",
+                            }}
                         >
                             <h3 className="h3 mb-1">{title}</h3>
                             <h3 className="h3 mb-1">{schedule}</h3>
@@ -118,6 +135,31 @@ export const Home = () => {
                                 alt={description}
                             />
                             <h3 className="h3 text-center">{title}</h3>
+                        </ScrollableItem>
+                    ))}
+                </Scrollable>
+            </section>
+            <section className="section">
+                <h2>Вкажи свій рівень і ми підберемо найкращий план розвитку</h2>
+                <div>
+                    <Button className={styles.button}>Beginner (A1)</Button>
+                    <Button>Elementary (A2)</Button>
+                    <Button>Intermediate (B1)</Button>
+                    <Button>Upper-intermediate (B2)</Button>
+                    <Button>Advanced (C1)</Button>
+                </div>
+                <h2 className="h2">Наші ментори</h2>
+                <Scrollable>
+                    {mentors.map(({ name, imgSrc }) => (
+                        <ScrollableItem>
+                            <img
+                                className="d-block border-circle"
+                                height={100}
+                                width={100}
+                                src={imgSrc}
+                                alt={name}
+                            />
+                            <h3 className="h3 text-center">{name}</h3>
                         </ScrollableItem>
                     ))}
                 </Scrollable>

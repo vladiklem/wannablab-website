@@ -55,6 +55,19 @@
 
     &:hover {
         box-shadow: $shadow-soft;
-        color:  white;
+        color:  $white;
+    }
+}
+
+.btn-green-soft {
+    background-color: $green-soft;
+    color: $white;
+    border: 0;
+    transition: all ease-in-out .25s;
+    outline: 0;
+
+    &:hover {
+        box-shadow: $shadow-soft;
+        color: $white;
     }
 }
