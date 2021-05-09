@@ -31,21 +31,6 @@
     }
 }
 
-.withTestCover {
-    opacity: 0;
-    overflow: hidden;
-    transition: all ease-in-out 0.5s;
-    max-height: 500px;
-
-    &.testNotChecked {
-        max-height: 0;
-    }
-
-    &.isTestChecked {
-        opacity: 1;
-    }
-}
-
 .successIcon {
     color: transparent;
 }

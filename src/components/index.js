@@ -10,3 +10,4 @@ export * from "./Checkbox/Checkbox";
 export * from "./Radio/Radio";
 export * from "./Scrollable/Scrollable";
 export * from "./Scrollable/ScrollableItem/ScrollableItem";
+export * from "./List/List";

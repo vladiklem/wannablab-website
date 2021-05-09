@@ -7,30 +7,52 @@ import { ArrowDownFill } from "components/Icons/ArrowDownFill";
 
 import styles from "./Collapse.module.scss";
 
-export const Collapse = ({ className, togglerContent, children }) => {
+export const Collapse = ({
+    className = "",
+    togglerContent = "Toggle",
+    contentClassName = "p-3",
+    togglerClassName = "",
+    withArrow = false,
+    arrowClassName = "",
+    onToggle,
+    children,
+}) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const toggle = useCallback(() => setIsOpen((isOpen) => !isOpen), [setIsOpen]);
+    const toggle = useCallback(() => {
+        onToggle && onToggle();
+        setIsOpen((isOpen) => !isOpen);
+    }, [onToggle, setIsOpen]);
 
     return (
-        <div className={cx("border rounded", className)}>
+        <div className={className}>
             <Button
-                className="px-3"
+                className={togglerClassName}
                 color={buttonColorEnum.UNSTYLED}
                 size="lg"
                 block={true}
                 isSquare={true}
                 onClick={toggle}
             >
-                <div className="d-flex align-items-center justify-content-between">
+                <div
+                    className={cx({
+                        "d-flex align-items-center justify-content-between": withArrow,
+                    })}
+                >
                     {togglerContent}
-                    <span className={cx("mr-3", styles.arrow, { [styles.rotated]: isOpen })}>
-                        <ArrowDownFill width={32} height={32} />
-                    </span>
+                    {withArrow && (
+                        <span
+                            className={cx("mr-3", styles.arrow, arrowClassName, {
+                                [styles.rotated]: isOpen,
+                            })}
+                        >
+                            <ArrowDownFill width={32} height={32} />
+                        </span>
+                    )}
                 </div>
             </Button>
             <ReactstrapCollapse isOpen={isOpen}>
-                <div className="p-3">{children}</div>
+                <div className={contentClassName}>{children}</div>
             </ReactstrapCollapse>
         </div>
     );

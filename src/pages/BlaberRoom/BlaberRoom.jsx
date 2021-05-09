@@ -8,7 +8,7 @@ import moment from "moment";
 import { selectGroupByUserId, selectEventsByGroupId } from "selectors/blaber";
 import { getFormattedCalendarEvents } from "helpers/date";
 import { mediaBreakpointsEnum } from "constants/enums";
-import { images } from "constants/images";
+import { IMAGES } from "constants/images";
 
 import styles from "./BlaberRoom.module.scss";
 
@@ -34,7 +34,7 @@ export const BlaberRoom = () => {
                 <p>{group.title}</p>
                 <p>{lastPaymentDate}</p>
                 <div className={styles.avatarWrapper}>
-                    <img className={styles.avatar} src={images.uramen12} alt="Avatar" />
+                    <img className={styles.avatar} src={IMAGES.uramen12} alt="Avatar" />
                     <h1>{profile.fullName}</h1>
                 </div>
             </div>

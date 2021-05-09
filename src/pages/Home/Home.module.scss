@@ -13,6 +13,10 @@
     min-height: 100vh;
 }
 
+.banner {
+    border-radius: 16px;
+}
+
 .leadForm {
     margin-top: 48px;
 }
@@ -20,6 +24,14 @@
 .planCardsList {
     margin-bottom: -24px;
     margin-right: -24px;
+}
+
+.card {
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
 }
 
 .leadForm {

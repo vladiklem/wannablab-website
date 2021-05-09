@@ -1,34 +1,24 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import MaskedInput from "react-input-mask";
 import cx from "classnames";
 
-import { Button, buttonColorEnum, Input, Checkbox, Radio } from "components/index";
+import { Button, buttonColorEnum, Input } from "components/index";
 import { SuccessIcon } from "components/Icons/SuccessIcon";
 import { Instagram, Telegram } from "components/Icons/social";
 import { addLead } from "store/leads/actions";
 import { bookTest } from "store/general/actions";
-import { getTestTimeLabel } from "helpers/date";
 import { instagramLink } from "constants/social";
 
 import styles from "./LeadForm.module.scss";
 
-export const LeadForm = ({ className, ...props }) => {
+export const LeadForm = ({ className, description = "", ...props }) => {
     const dispatch = useDispatch();
     const { isLoading, isSuccess } = useSelector((state) => state.leads);
-    const testTime = useSelector((state) => state.general.testTime);
 
     const { register, handleSubmit, watch, errors } = useForm();
 
-    const hasFreeTime = useMemo(
-        () =>
-            testTime &&
-            testTime.length &&
-            testTime.reduce((acc, { isBooked }) => acc || !isBooked, true),
-        [testTime],
-    );
-
-    const isTestChecked = watch("withTest");
 
     const onSubmit = useCallback(
         (data) => {
@@ -44,55 +34,31 @@ export const LeadForm = ({ className, ...props }) => {
             onSubmit={handleSubmit(onSubmit)}
             {...props}
         >
-            <h2 className="h2 text-center text-gray-900">Привіт, блабер!</h2>
+            <h2 className="h2 mb-2 text-center text-gray-900">Привіт, блабер!</h2>
+            <h3 className="h3 mb-3">{description} <br/> Залиште свої контакти і ми самі перетелефонуємо 😃</h3>
             <Input name="name" label="Ім'я" ref={register({ required: true })} />
-            <Input
+            <MaskedInput
+                mask="+38 (\099) 999 9999"
+                maskChar="_"
+                alwaysShowMask={false}
                 name="phoneNumber"
-                label="Номер телефону"
-                ref={register({
-                    required: true,
-                    pattern: /((\+38)?\(?\d{3}\)?[\s-]?(\d{7}|\d{3}[\s-]\d{2}[\s-]\d{2}|\d{3}-\d{4}))/,
-                })}
-                errorMessage={
-                    errors.phoneNumber &&
-                    errors.phoneNumber.type === "pattern" &&
-                    "Невалідний номер телефону"
-                }
-            />
-            <Checkbox
-                className="mt-3"
-                name="withTest"
-                label="Одразу вибрати час для тесту рівня"
-                ref={register}
-            />
-            <div
-                className={cx(styles.withTestCover, {
-                    [styles.isTestChecked]: isTestChecked,
-                    [styles.testNotChecked]: !isTestChecked,
-                })}
             >
-                <div
-                    className={cx("d-flex align-items-center flex-wrap", {
-                        [styles.testTimeList]: hasFreeTime,
-                    })}
-                >
-                    {hasFreeTime
-                        ? testTime.map(({ id, dateTime, isBooked }) =>
-                              !isBooked ? (
-                                  <Radio
-                                      className="ml-2 mb-2"
-                                      name="time"
-                                      key={id}
-                                      id={id}
-                                      value={id}
-                                      label={getTestTimeLabel(dateTime)}
-                                      ref={register}
-                                  />
-                              ) : null,
-                          )
-                        : "Нажаль вівльного часу немає, залиш нам свої контакти і ми знайдемо його для тебе :)"}
-                </div>
-            </div>
+                {(inputProps) => (
+                    <Input
+                        name="phoneNumber"
+                        label="Номер телефону"
+                        ref={register({
+                            required: true,
+                        })}
+                        errorMessage={
+                            errors.phoneNumber &&
+                            errors.phoneNumber.type === "pattern" &&
+                            "Невалідний номер телефону"
+                        }
+                        {...inputProps}
+                    />
+                )}
+            </MaskedInput>
             <Button
                 block
                 color={buttonColorEnum.SUCCESS_GRADIENT}

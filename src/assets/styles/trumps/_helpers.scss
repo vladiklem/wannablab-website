@@ -1,3 +1,13 @@
 .reflect-element {
     transform: rotate(180deg);
 }
+
+.hidden-element {
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.transition-250 {
+    transition: all 250ms ease-in-out;
+}

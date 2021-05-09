@@ -38,6 +38,7 @@ function* initUsersSaga() {
             users.find(({ username }) => username === localData.username);
         yield put(currentUser ? authUserSuccess(currentUser) : initCurrentUserFailure());
     } catch (error) {
+        console.log(error);
         yield put(initUsersFailure(error.message));
     }
 }
