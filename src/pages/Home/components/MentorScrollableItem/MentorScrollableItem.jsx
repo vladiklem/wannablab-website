@@ -4,12 +4,16 @@ import cx from "classnames";
 import { ScrollableItem, Button, List, Collapse } from "components/index";
 import styles from "../../Home.module.scss";
 
-export const MentorScrollableItem = ({ item: { name, avatar }, index, items }) => {
+export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onMentorSelect }) => {
     const [isToggled, setIsToggled] = useState(false);
 
     const onToggle = useCallback(() => {
         setIsToggled((toggled) => !toggled);
     }, [setIsToggled]);
+
+    const handleClick = useCallback(() => {
+        onMentorSelect({ name });
+    }, [onMentorSelect, name]);
 
     return (
         <ScrollableItem
@@ -25,20 +29,15 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items }) =
                     src={avatar}
                     alt={name}
                 />
-                <div className="pt-3 px-2 pb-2">
+                <div className="pt-3 px-2">
                     <h3 className="h2 text-center">{name}</h3>
                     <Collapse
                         className="w-100 bg-white"
                         contentClassName=""
                         togglerContent={
                             <>
-                                <List className={cx("transition-250", {"mb-3": !isToggled })} list={["IELTS на C1", "1.5р досвіду"]} />
-                                <Button
-                                    className={cx("transition-250", { "hidden-element": isToggled })}
-                                    block={true}
-                                >
-                                    Більше{" "}
-                                </Button>
+                                <List list={["IELTS на C1", "1.5р досвіду"]} />
+                                <Button block={true}>Більше </Button>
                             </>
                         }
                         onToggle={onToggle}
@@ -48,6 +47,7 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items }) =
                             block={true}
                             color="green-soft"
                             className="font-weight-semibold text-hilighted"
+                            onClick={handleClick}
                         >
                             Хочу
                         </Button>

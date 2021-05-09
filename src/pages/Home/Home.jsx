@@ -12,14 +12,25 @@ export const Home = () => {
         document.getElementById("blaber-form").scrollIntoView();
         setTimeout(() => document.getElementById("name").focus(), 600);
     }, []);
-    const onGroupSelect = (item) => {
-        setDescription(`Ви записуєтесь в группу \n\n "${item.title}" 🎉 `);
-        onOrderClick();
-    }
+    const onGroupSelect = useCallback(
+        (item) => {
+            setDescription(`Ви записуєтесь в группу \n\n "${item.title}" 🎉 `);
+            onOrderClick();
+        },
+        [setDescription, onOrderClick],
+    );
+    const onMentorSelect = useCallback(
+        ({ name }) => {
+            setDescription(`Ви записуєтесь на приватні заняття до \n\n "${name}" 🎉 `);
+            onOrderClick();
+        },
+        [setDescription, onOrderClick],
+    );
+
     return (
         <div className="container mt-4 px-4">
             <GreetingsSection onOrderClick={onOrderClick} />
-            <InteractionSection onGroupSelect={onGroupSelect} />
+            <InteractionSection onMentorSelect={onMentorSelect} onGroupSelect={onGroupSelect} />
             <section id="blaber-form" className={styles.lastSection}>
                 <div className="d-flex justify-content-center pt-5">
                     <LeadForm className={styles.leadForm} description={description} />

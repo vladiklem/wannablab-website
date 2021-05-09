@@ -41,13 +41,18 @@ const items = [
     },
 ];
 
-export const InteractionSection = ({ onGroupSelect }) => {
+export const InteractionSection = ({ onGroupSelect, onMentorSelect }) => {
     return (
         <section>
             <h2 className="h2 mb-2">Наші ментори</h2>
             <Scrollable>
                 {mentorsList.map((item, index) => (
-                   <MentorScrollableItem item={item} index={index} items={mentorsList} />
+                    <MentorScrollableItem
+                        onMentorSelect={onMentorSelect}
+                        item={item}
+                        index={index}
+                        items={mentorsList}
+                    />
                 ))}
             </Scrollable>
             <h2 className="h2 mb-2">Календар груп</h2>

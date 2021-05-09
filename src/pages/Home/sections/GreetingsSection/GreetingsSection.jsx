@@ -8,9 +8,12 @@ import styles from "../../Home.module.scss";
 
 export const GreetingsSection = ({ onOrderClick }) => (
     <section className={cx(styles.firstSection, "d-flex flex-column")}>
-        <h2 className={cx(styles.fontSize22, "h2 mb-4")}>
-            Школа розмовної англійської з індивідуальним підходом. Цінуємо кожного 😊
+        <h2 className={cx(styles.fontSize22, "h2")}>
+            Школа розмовної англійської з індивідуальним підходом.
         </h2>
+        <div class="typing-container mb-4">
+            <div class={cx(styles.fontSize22, "h2 typing-wrapper")}>Цінуємо кожного 😊</div>
+        </div>
         <Button
             className="font-weight-bold mb-3 text-highlighted"
             color="purple-soft"
