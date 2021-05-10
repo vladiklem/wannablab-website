@@ -15,7 +15,7 @@ export const GreetingsSection = ({ onOrderClick }) => (
             <div className="font-medium typing-wrapper">Цінуємо кожного 😊</div>
         </div>
         <Button
-            className="font-weight-bold mb-3 text-highlighted"
+            className="font-weight-bold mb-3 text-highlighted rounded-20"
             color="purple-soft"
             size="lg"
             onClick={onOrderClick}
@@ -23,7 +23,7 @@ export const GreetingsSection = ({ onOrderClick }) => (
             Замовити тест рівня
         </Button>
         <Button
-            className="font-weight-bold mb-4 text-highlighted"
+            className="font-weight-bold mb-4 text-highlighted rounded-20"
             href="https://t.me/emerello"
             color="blue-soft"
             size="lg"

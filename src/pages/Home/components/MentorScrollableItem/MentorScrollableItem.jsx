@@ -17,7 +17,7 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
 
     return (
         <ScrollableItem
-            className={cx("shadow-soft rounded-20", {
+            className={cx("shadow-soft rounded-20 bg-white", {
                 "mr-3": index !== items.length - 1,
             })}
         >
@@ -38,7 +38,7 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
                             <>
                                 <List list={["IELTS на C1", "1.5р досвіду"]} />
                                 <p
-                                    className={cx("rounded-20 py-2 transition-250 mt-3", {
+                                    className={cx("rounded-16 py-2 transition-250 mt-3", {
                                         "mb-n3 shadow-soft": !isToggled,
                                     })}
                                 >

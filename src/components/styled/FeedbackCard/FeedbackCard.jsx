@@ -9,7 +9,7 @@ export const FeedbackCard = ({ className, avatar, alt, description }) => (
     <div
         className={cx(
             styles.feedback,
-            "position-relative rounded-20 px-4 pt-3 pb-4 shadow",
+            "position-relative rounded-20 px-4 pt-3 pb-4 shadow bg-white",
             className,
         )}
     >

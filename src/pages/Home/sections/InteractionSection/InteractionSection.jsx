@@ -9,7 +9,7 @@ import { MentorScrollableItem } from "../../components/MentorScrollableItem/Ment
 export const InteractionSection = ({ groups, onGroupSelect, onMentorSelect }) => {
     return (
         <section>
-            <h2 className="h2 mb-4">Наші ментори</h2>
+            <h2 className="h2 font-weight-bold mb-4">Наші ментори</h2>
             <Scrollable>
                 {mentorsList.map((item, index) => (
                     <MentorScrollableItem
@@ -21,7 +21,7 @@ export const InteractionSection = ({ groups, onGroupSelect, onMentorSelect }) =>
                     />
                 ))}
             </Scrollable>
-            <h2 className="h2 mb-4">Календар груп</h2>
+            <h2 className="h2 font-weight-bold mb-4">Календар груп</h2>
             <Scrollable offset={200}>
                 {groups.map((item, index) => (
                     <GroupScrollableItem
@@ -33,7 +33,7 @@ export const InteractionSection = ({ groups, onGroupSelect, onMentorSelect }) =>
                     />
                 ))}
             </Scrollable>
-            <h2 className="h2 mt-5 mb-4">Що ми пропонуємо?</h2>
+            <h2 className="h2 font-weight-bold mt-5 mb-4">Що ми пропонуємо?</h2>
             <Scrollable>
                 {servicesList.map(({ title, description, slug, imgSrc }, index) => (
                     <ScrollableItem

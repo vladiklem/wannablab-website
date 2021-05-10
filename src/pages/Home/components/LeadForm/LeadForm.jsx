@@ -19,7 +19,6 @@ export const LeadForm = ({ className, description = "", ...props }) => {
 
     const { register, handleSubmit, errors } = useForm();
 
-
     const onSubmit = useCallback(
         (data) => {
             dispatch(addLead(data));
@@ -34,8 +33,11 @@ export const LeadForm = ({ className, description = "", ...props }) => {
             onSubmit={handleSubmit(onSubmit)}
             {...props}
         >
-            <h2 className="h2 mb-2 text-center text-gray-900">Привіт, блабер!</h2>
-            <h3 className="h3 mb-3">{description} <br/> Залиште свої контакти і ми самі перетелефонуємо 😃</h3>
+            <h2 className="h2 mb-2_5 text-center text-gray-900">Привіт, блабер!</h2>
+            <h3 className="regular mb-2">
+                {description} {description && <br />} Залиште свої контакти і ми самі
+                перетелефонуємо 😃
+            </h3>
             <Input name="name" label="Ім'я" ref={register({ required: true })} />
             <MaskedInput
                 mask="+38 (\099) 999 9999"

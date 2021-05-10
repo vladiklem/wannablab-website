@@ -6,7 +6,7 @@ import { usersFeedbackList } from "constants/lists";
 
 export const FeedbackSection = () => (
     <section>
-        <h2 className="h2 mb-3">Наші студенти про нас</h2>
+        <h2 className="h2 font-weight-bold mb-3">Наші студенти про нас</h2>
         <div className="d-flex flex-column">
             {usersFeedbackList.map((item, index) => (
                 <FeedbackCard

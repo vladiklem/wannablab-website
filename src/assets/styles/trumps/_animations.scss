@@ -16,6 +16,24 @@
     }
 }
 
+.shadow-pulp-animation {
+    animation: shadowpulp 3s infinite;
+}
+
+@keyframes shadowpulp {
+    0% {
+        box-shadow: $shadow-soft;
+    }
+
+    50% {
+        box-shadow: $shadow-medium;
+    }
+
+    100% {
+        box-shadow: $shadow-soft;
+    }
+}
+
 @keyframes typing {
     from {
         width: 0;

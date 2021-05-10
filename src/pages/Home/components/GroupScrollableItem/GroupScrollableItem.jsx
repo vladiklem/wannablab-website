@@ -17,7 +17,7 @@ export const GroupScrollableItem = ({
 
     return (
         <ScrollableItem
-            className={cx("shadow-soft rounded-20", {
+            className={cx("shadow-pulp-animation transition-250 rounded-20 bg-white", {
                 "mr-3": index !== items.length - 1,
             })}
         >
