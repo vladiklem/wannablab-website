@@ -1,0 +1,16 @@
+.feedback {
+    &__title {
+        padding-left: 96px;
+    }
+
+    &__avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    &__quote_icon {
+        position: absolute;
+        top: 12px;
+        left: 52px;
+    }
+}

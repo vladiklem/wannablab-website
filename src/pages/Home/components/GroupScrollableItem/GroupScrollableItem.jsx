@@ -6,21 +6,18 @@ import { ScrollableItem, Button, List } from "components/index";
 import styles from "../../Home.module.scss";
 
 export const GroupScrollableItem = ({
-    item: { title, membersCount },
+    item: { title, members},
     index,
     items,
     onGroupSelect,
 }) => {
-    const onClick = useCallback(
-        () => {
-            onGroupSelect({ title });
-        },
-        [onGroupSelect, title],
-    );
+    const onClick = useCallback(() => {
+        onGroupSelect({ title });
+    }, [onGroupSelect, title]);
 
     return (
         <ScrollableItem
-            className={cx("shadow-soft border-radius-20", {
+            className={cx("shadow-soft rounded-20", {
                 "mr-3": index !== items.length - 1,
             })}
         >
@@ -29,13 +26,13 @@ export const GroupScrollableItem = ({
                 <List list={["Понеділок, 19:00", "Середа, 19:00"]} />
                 <div className="d-flex align-items-center">
                     <Team height={32} width={32} />
-                    <h3 className="ml-2 h3">{`${membersCount}/4`}</h3>
+                    <h3 className="ml-2 h3">{`${members.length}/4`}</h3>
                 </div>
                 <Button
                     block={true}
                     onClick={onClick}
                     color="green-soft"
-                    className="border-radius-16 mt-4 text-highlighted"
+                    className="rounded-16 mt-4 text-highlighted"
                 >
                     записатися
                 </Button>

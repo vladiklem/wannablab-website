@@ -1,50 +1,15 @@
 import React from "react";
 import cx from "classnames";
 
-import { Scrollable, ScrollableItem, List, Button, Collapse } from "components/index";
+import { Scrollable, ScrollableItem } from "components/index";
 import { servicesList, mentorsList } from "constants/lists";
 import { GroupScrollableItem } from "../../components/GroupScrollableItem/GroupScrollableItem";
 import { MentorScrollableItem } from "../../components/MentorScrollableItem/MentorScrollableItem";
 
-import styles from "../../Home.module.scss";
-
-const items = [
-    {
-        title: "Curious otters",
-        schedule: "ПН, СР 19:00",
-        membersCount: 3,
-    },
-    {
-        title: "WB-16",
-        schedule: "ВТ, ЧТ 19:00",
-        membersCount: 3,
-    },
-    {
-        title: "WB-15",
-        schedule: "ВТ, ЧТ 18:00",
-        membersCount: 3,
-    },
-    {
-        title: "WB-15",
-        schedule: "ВТ, ЧТ 18:00",
-        membersCount: 3,
-    },
-    {
-        title: "WB-15",
-        schedule: "ВТ, ЧТ 18:00",
-        membersCount: 3,
-    },
-    {
-        title: "WB-15",
-        schedule: "ВТ, ЧТ 18:00",
-        membersCount: 3,
-    },
-];
-
-export const InteractionSection = ({ onGroupSelect, onMentorSelect }) => {
+export const InteractionSection = ({ groups, onGroupSelect, onMentorSelect }) => {
     return (
         <section>
-            <h2 className="h2 mb-2">Наші ментори</h2>
+            <h2 className="h2 mb-4">Наші ментори</h2>
             <Scrollable>
                 {mentorsList.map((item, index) => (
                     <MentorScrollableItem
@@ -52,26 +17,28 @@ export const InteractionSection = ({ onGroupSelect, onMentorSelect }) => {
                         item={item}
                         index={index}
                         items={mentorsList}
+                        key={item.name}
                     />
                 ))}
             </Scrollable>
-            <h2 className="h2 mb-2">Календар груп</h2>
+            <h2 className="h2 mb-4">Календар груп</h2>
             <Scrollable offset={200}>
-                {items.map((item, index) => (
+                {groups.map((item, index) => (
                     <GroupScrollableItem
                         item={item}
                         onGroupSelect={onGroupSelect}
                         index={index}
-                        items={items}
+                        items={groups}
+                        key={item.title}
                     />
                 ))}
             </Scrollable>
-            <h2 className="h2 mt-5 mb-2">Що ми пропонуємо?</h2>
+            <h2 className="h2 mt-5 mb-4">Що ми пропонуємо?</h2>
             <Scrollable>
                 {servicesList.map(({ title, description, slug, imgSrc }, index) => (
                     <ScrollableItem
                         className={cx("shadow-soft py-2 px-3", {
-                            "mr-3": index !== items.length - 1,
+                            "mr-3": index !== servicesList.length - 1,
                         })}
                         key={slug}
                     >

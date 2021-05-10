@@ -5,28 +5,8 @@
     min-height: calc(100vh - 100px);
 }
 
-.lastSection {
-    min-height: calc(100vh - 96px);
-}
-
-.section {
-    min-height: 100vh;
-}
-
 .banner {
     border-radius: 16px;
-}
-
-.leadForm {
-    margin-top: 48px;
-}
-
-.planCardsList {
-    margin-bottom: -24px;
-    margin-right: -24px;
-}
-
-.card {
 }
 
 .img {
@@ -34,29 +14,18 @@
     height: auto;
 }
 
-.leadForm {
-    border: 3px solid $primary;
-    border-radius: 20px !important;
-}
+.card {
+    padding-bottom: 40px !important;
 
-.fontSize22 {
-    font-size: 22px !important;
-}
-
-.button {
-    position: relative;
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: -5px;
-        left: 0;
-        width: 100%;
-        height: calc(100% + 10px) ;
-        background-color: red;
-        animation: pulse 5s infinite;
-        z-index: -1;
+    &__toggled {
+        padding-bottom: 32px !important;
     }
+}
+
+.imgAvatar {
+    height: 80px;
+    width: 80px;
+    border-radius: 100px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -65,14 +34,11 @@
     }
 }
 
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
+.lastSection {
+    min-height: calc(100vh - 96px);
+}
+
+.leadForm {
+    border: 3px solid $primary;
+    border-radius: 20px !important;
 }

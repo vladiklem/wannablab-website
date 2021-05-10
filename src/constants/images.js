@@ -4,6 +4,7 @@ import personalLessonsImg from "assets/images/personal-lessons.png";
 import smallTalkLessonsImg from "assets/images/small-talk.png";
 import martaAvatar from "assets/images/marta_avatar.png";
 import values1 from "assets/images/values1.jpeg";
+import sophia from "assets/images/sophia.jpeg";
 
 export const IMAGES = {
     uramen12,
@@ -12,4 +13,5 @@ export const IMAGES = {
     smallTalkLessonsImg,
     martaAvatar,
     values1,
+    sophia,
 };

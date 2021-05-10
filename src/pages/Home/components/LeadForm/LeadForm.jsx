@@ -17,7 +17,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
     const dispatch = useDispatch();
     const { isLoading, isSuccess } = useSelector((state) => state.leads);
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { register, handleSubmit, errors } = useForm();
 
 
     const onSubmit = useCallback(

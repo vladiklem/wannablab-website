@@ -7,12 +7,12 @@ import { IMAGES } from "constants/images";
 import styles from "../../Home.module.scss";
 
 export const GreetingsSection = ({ onOrderClick }) => (
-    <section className={cx(styles.firstSection, "d-flex flex-column")}>
-        <h2 className={cx(styles.fontSize22, "h2")}>
+    <section className={cx(styles.firstSection, "d-flex flex-column mb-5")}>
+        <h2 className="font-medium">
             Школа розмовної англійської з індивідуальним підходом.
         </h2>
-        <div class="typing-container mb-4">
-            <div class={cx(styles.fontSize22, "h2 typing-wrapper")}>Цінуємо кожного 😊</div>
+        <div className="typing-container mb-4">
+            <div className="font-medium typing-wrapper">Цінуємо кожного 😊</div>
         </div>
         <Button
             className="font-weight-bold mb-3 text-highlighted"

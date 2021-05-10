@@ -17,13 +17,13 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
 
     return (
         <ScrollableItem
-            className={cx("shadow-soft border-radius-20", {
+            className={cx("shadow-soft rounded-20", {
                 "mr-3": index !== items.length - 1,
             })}
         >
-            <div className={cx("p-4", styles.card)}>
+            <div className={cx("transition-250 px-4 pt-4", styles.card, { [styles.card__toggled]: isToggled })}>
                 <img
-                    className={cx("d-block border-radius-20", styles.img)}
+                    className={cx("d-block rounded-20", styles.img)}
                     height={272}
                     width={272}
                     src={avatar}
@@ -37,7 +37,13 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
                         togglerContent={
                             <>
                                 <List list={["IELTS на C1", "1.5р досвіду"]} />
-                                <Button block={true}>Більше </Button>
+                                <p
+                                    className={cx("rounded-20 py-2 transition-250 mt-3", {
+                                        "mb-n3 shadow-soft": !isToggled,
+                                    })}
+                                >
+                                    більше...
+                                </p>
                             </>
                         }
                         onToggle={onToggle}
@@ -46,7 +52,7 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
                         <Button
                             block={true}
                             color="green-soft"
-                            className="font-weight-semibold text-hilighted"
+                            className="rounded-16 font-weight-semibold text-hilighted"
                             onClick={handleClick}
                         >
                             Хочу

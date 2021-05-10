@@ -33,3 +33,12 @@ export const mentorsList = [
         avatar: IMAGES.martaAvatar,
     },
 ];
+
+export const usersFeedbackList = [
+    {
+        name: "Sofia",
+        avatar: IMAGES.sophia,
+        description: "Нещодавно підписала контракт з англомовним клієнтом, з яким сама працювала. Можу говорити з ним по 45 хвилин і взагалі ніякого дискомфорту немає.",
+        alt: "Софія, студентка школи розмовної англійської wannablab",
+    }
+];
