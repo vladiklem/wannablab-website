@@ -13,11 +13,16 @@ export const Input = forwardRef(
             name,
             invalid,
             errorMessage,
+            alternative = false,
             ...props
         },
         ref,
     ) => {
-        return (
+        return alternative ? (
+            <div>
+                <Tag className={styles.alternativeInput} id={id || name} name={name} {...props}/>
+            </div>
+        ) : (
             <div className={cx(className, styles.customFormGroup)}>
                 <Tag
                     id={id || name}

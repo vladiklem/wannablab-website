@@ -19,6 +19,8 @@ export const mediaBreakpointsEnum = {
 
 export const modalNamesEnum = {
     LOGIN: "LOGIN_MODAL",
+    AD: "AD_MODAL",
+    NONE: "NONE_MODAL",
 };
 
 export const userTypesEnum = {

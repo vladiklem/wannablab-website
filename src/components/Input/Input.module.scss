@@ -37,6 +37,20 @@
     }
 }
 
+.alternativeInput {
+    border: 0;
+    border-bottom: 2px solid $gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: $gray-900;
+    background: transparent;
+    transition: all ease-in-out 0.2s;
+
+    &:focus {
+        border-color: rgba(45, 206, 137, 1);
+    }
+}
+
 .customFormLabel {
     display: block;
     position: absolute;

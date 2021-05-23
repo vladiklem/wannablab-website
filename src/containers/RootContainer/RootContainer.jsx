@@ -9,18 +9,17 @@ import { BlaberRoom } from "pages/BlaberRoom/BlaberRoom";
 import { AdminPage } from "pages/AdminPage/AdminPage";
 import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
-import { Button, TopBar, buttonColorEnum } from "components/index";
+import { Button, TopBar, buttonColorEnum, Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initGeneral } from "store/general/actions";
+import { toggleModal } from "store/modals/actions";
 import { initCurrentUser } from "store/currentUser/actions";
 import { isAdminSelector } from "selectors/general";
 import { isLoggedInSelector } from "selectors/blaber";
 import { modalNamesEnum } from "constants/enums";
-
-import logo from "assets/images/logo.png";
 
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
@@ -33,11 +32,33 @@ export const RootContainer = () => {
     const dispatch = useDispatch();
 
     const [modalState, setModalState] = useState(undefined);
+    const [coursesClicked, setCoursesClicked] = useState(false);
+    const [pricesClicked, setPricesClicked] = useState(false);
 
     const openLoginModal = useCallback(
         () => setModalState({ name: modalNamesEnum.LOGIN, isOpen: true }),
         [setModalState],
     );
+
+    const onCoursesClick = () => {
+        setCoursesClicked(true);
+        setTimeout(() => {
+            setCoursesClicked(false);
+        }, 560);
+    };
+
+    const onPricesClick = () => {
+        setPricesClicked(true);
+        setTimeout(() => {
+            setPricesClicked(false);
+        }, 560);
+    };
+
+    const openAdModal = useCallback(
+        () => setModalState({ name: modalNamesEnum.AD, isOpen: true }),
+        [setModalState],
+    );
+
     const renderRoute = useCallback(
         ({ routeComponent: Component }) => (props) => <Component {...props} />,
         [],
@@ -50,6 +71,14 @@ export const RootContainer = () => {
         dispatch(initGeneral());
         dispatch(initCurrentUser());
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         dispatch(toggleModal(modalNamesEnum.AD));
+    //     }, 5000);
+    // }, [dispatch]);
+
+    console.log(coursesClicked);
 
     return (
         <Router>
@@ -64,39 +93,30 @@ export const RootContainer = () => {
                     Ціни
                 </a>
             </TopBar>
-            <header className="px-3 pt-3 d-flex align-items-center">
-                <img src={logo} width="50" height="60" alt="Logo" />
-                <h1 className={cx("font-chewy-regular ml-4 mb-0", styles.heading)}>wannablab</h1>
-            </header>
-            <main className={styles.background}>
-                <div className={cx({ "container-with-top-bar": false })}>
-                    <ModalsContainer modalState={modalState} />
-                    <Switch>
-                        <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
-                        <Route
-                            path="/check-list"
-                            render={renderRoute({ routeComponent: ChecklistPage })}
-                        />
-                        <PrivateRoute
-                            path="/profile"
-                            component={BlaberRoom}
-                            selector={isLoggedInSelector}
-                        />
-                        <PrivateRoute
-                            path="/admin"
-                            component={AdminPage}
-                            selector={isAdminSelector}
-                        />
-                        <Route component={NotFoundPage} />
-                    </Switch>
-                </div>
+            <Header onCoursesClick={onCoursesClick} onPricesClick={onPricesClick} />
+            <main
+                className={cx(styles.background, "mb-3", {
+                    "list-scale-animation1": coursesClicked,
+                    "list-scale-animation2": pricesClicked,
+                })}
+            >
+                <ModalsContainer modalState={modalState} />
+                <Switch>
+                    <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
+                    <Route
+                        path="/check-list"
+                        render={renderRoute({ routeComponent: ChecklistPage })}
+                    />
+                    <PrivateRoute
+                        path="/profile"
+                        component={BlaberRoom}
+                        selector={isLoggedInSelector}
+                    />
+                    <PrivateRoute path="/admin" component={AdminPage} selector={isAdminSelector} />
+                    <Route component={NotFoundPage} />
+                </Switch>
             </main>
-            <footer className="px-3_5 py-4">
-                <h2 className="regular">Powered by wannablab family</h2>
-                <div>
-                    <p className="regular">Found more at:</p>
-                </div>
-            </footer>
+            <Footer />
         </Router>
     );
 };

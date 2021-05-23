@@ -1,3 +1,5 @@
+@import "~assets/styles/config/colors";
+
 .reflect-element {
     transform: rotate(180deg);
 }
@@ -6,8 +8,45 @@
     width: 0;
     height: 0;
     opacity: 0;
+    clip-path: circle(0);
 }
 
 .transition-250 {
     transition: all 250ms ease-in-out;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+.white-space-normal {
+    white-space: normal !important;
+}
+
+.burger-icon {
+    position: relative;
+    height: 4px;
+    width: 32px;
+    border-radius: 20px;
+    background-color: $gray-900;
+
+    &:after,
+    &:before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        height: 4px;
+        width: 32px;
+        border-radius: 20px;
+        background-color: $gray-900;
+    }
+
+    &:after {
+        bottom: -10px;
+    }
+    
+    &:before {
+        top: -10px;
+    }
 }

@@ -1,3 +1,37 @@
+@import "~assets/styles/config/colors";
+
+@mixin scale1Items {
+    animation: scale1 250ms forwards;
+
+    &:nth-child(1) {
+        animation-delay: 100ms;
+    }
+
+    &:nth-child(2) {
+        animation-delay: 200ms;
+    }
+
+    &:nth-child(3) {
+        animation-delay: 300ms;
+    }
+}
+
+@mixin scale2Items {
+    animation: scale2 250ms forwards;
+
+    &:nth-child(1) {
+        animation-delay: 100ms;
+    }
+
+    &:nth-child(2) {
+        animation-delay: 200ms;
+    }
+
+    &:nth-child(3) {
+        animation-delay: 300ms;
+    }
+}
+
 .typing {
     &-container {
         /*This part is important for centering*/
@@ -16,21 +50,91 @@
     }
 }
 
-.shadow-pulp-animation {
-    animation: shadowpulp 3s infinite;
+.circle-pulp-animation {
+    position: relative;
+
+    &:before {
+        content: " ";
+        width: 12px;
+        height: 12px;
+        background-color: $green-200;
+        border-radius: 16px;
+        position: absolute;
+        animation: scale-opacity-pulp 2s infinite;
+    }
+
+    &:after {
+        content: " ";
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 4px;
+        height: 4px;
+        border-radius: 8px;
+        background-color: $green-500;
+    }
 }
 
-@keyframes shadowpulp {
+.list-scale-animation1 {
+    .scale-item1 {
+        @include scale1Items();
+    }
+}
+
+.list-scale-animation2 {
+    .scale-item2 {
+        @include scale2Items();
+    }
+}
+
+.list-scale-animation3 {
+    .scale-item3 {
+        @include scale1Items();
+    }
+}
+
+@keyframes scale1 {
     0% {
-        box-shadow: $shadow-soft;
+        transform: scale(1);
     }
 
     50% {
-        box-shadow: $shadow-medium;
+        transform: scale(1.1);
     }
 
     100% {
-        box-shadow: $shadow-soft;
+        transform: scale(1);
+    }
+}
+
+@keyframes scale2 {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-opacity-pulp {
+    0% {
+        transform: scale(1);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0;
     }
 }
 

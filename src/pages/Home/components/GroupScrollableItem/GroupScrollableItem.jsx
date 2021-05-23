@@ -5,19 +5,14 @@ import { Team } from "components/Icons/Team";
 import { ScrollableItem, Button, List } from "components/index";
 import styles from "../../Home.module.scss";
 
-export const GroupScrollableItem = ({
-    item: { title, members},
-    index,
-    items,
-    onGroupSelect,
-}) => {
+export const GroupScrollableItem = ({ item: { title, members }, index, items, onGroupSelect }) => {
     const onClick = useCallback(() => {
         onGroupSelect({ title });
     }, [onGroupSelect, title]);
 
     return (
         <ScrollableItem
-            className={cx("shadow-pulp-animation transition-250 rounded-20 bg-white", {
+            className={cx("shadow-pulp-animation transition-250 rounded-xl bg-white", {
                 "mr-3": index !== items.length - 1,
             })}
         >
@@ -32,7 +27,7 @@ export const GroupScrollableItem = ({
                     block={true}
                     onClick={onClick}
                     color="green-soft"
-                    className="rounded-16 mt-4 text-highlighted"
+                    className="rounded-lg mt-4 text-highlighted"
                 >
                     записатися
                 </Button>

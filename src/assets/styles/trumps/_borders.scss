@@ -1,11 +1,13 @@
-.border-circle {
-    border-radius: 50px;
+@import "~assets/styles/config/borders";
+
+.rounded-lg {
+    border-radius: $border-radius-lg !important;
 }
 
-.rounded-20 {
-    border-radius: 20px !important;
+.rounded-xl {
+    border-radius: $border-radius-xl !important;
 }
 
-.rounded-16 {
-    border-radius: 16px !important;
+.border-primary-soft {
+    border-color: $primary-soft !important;
 }

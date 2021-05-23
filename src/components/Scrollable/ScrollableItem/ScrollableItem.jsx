@@ -1,13 +1,14 @@
 import React from "react";
 import cx from "classnames";
 
-import { Button } from "components/index";
-
-import styles from "../Scrollable.module.scss";
-
-export const ScrollableItem = ({ className, contentClassName, action, children, ...props }) => (
-    <div className={cx(styles.item, className)} {...props}>
-        <div className={contentClassName}>{children}</div>
-        {!!action && <Button {...action} />}
+export const ScrollableItem = ({
+    className,
+    contentClassName,
+    children,
+    direction = "column",
+    ...props
+}) => (
+    <div className={cx(`white-space-normal d-inline-flex flex-${direction}`, className)} {...props}>
+        {children}
     </div>
 );

@@ -2,10 +2,8 @@
 @import "~assets/styles/config/shadows";
 
 .form {
-    width: 560px;
+    max-width: 560px;
     padding: 24px 40px 32px 40px;
-    background-color: $white;
-    box-shadow: $shadow-medium;
 }
 
 .button {

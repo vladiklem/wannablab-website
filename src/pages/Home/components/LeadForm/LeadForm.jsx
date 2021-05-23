@@ -29,11 +29,11 @@ export const LeadForm = ({ className, description = "", ...props }) => {
 
     return (
         <form
-            className={cx("position-relative", styles.form, className)}
+            className={cx("position-relative shadow rounded-xl bg-white", styles.form, className)}
             onSubmit={handleSubmit(onSubmit)}
             {...props}
         >
-            <h2 className="h2 mb-2_5 text-center text-gray-900">Привіт, блабер!</h2>
+            {/* <h2 className="h2 mb-2_5 text-center text-gray-900">Привіт, блабер!</h2> */}
             <h3 className="regular mb-2">
                 {description} {description && <br />} Залиште свої контакти і ми самі
                 перетелефонуємо 😃

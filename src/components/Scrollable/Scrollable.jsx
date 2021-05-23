@@ -6,22 +6,32 @@ import { Button } from "components/index";
 
 import styles from "./Scrollable.module.scss";
 
-export const Scrollable = ({ className, withArrows = false, offset = 145, children }) => {
+export const Scrollable = ({
+    className,
+    withArrows = false,
+    isScrollHidden = false,
+    isScrollbarVisible = true,
+    offset = 145,
+    children,
+    containerClassName = "",
+}) => {
     const scrollableContainer = useRef(null);
     const [arrows, setArrows] = useState({ l: false, r: true });
 
-    const setVisibility = useCallback((isRight = true) => {
-        const leftIndent = scrollableContainer.current.scrollLeft + (isRight ? 1 : -1) * offset;
-        setArrows({
-            l: (leftIndent >= 10),
-            r: (
-                10 <
-                scrollableContainer.current.scrollWidth -
-                    leftIndent -
-                    scrollableContainer.current.clientWidth
-            ),
-        });
-    }, [offset]);
+    const setVisibility = useCallback(
+        (isRight = true) => {
+            const leftIndent = scrollableContainer.current.scrollLeft + (isRight ? 1 : -1) * offset;
+            setArrows({
+                l: leftIndent >= 10,
+                r:
+                    10 <
+                    scrollableContainer.current.scrollWidth -
+                        leftIndent -
+                        scrollableContainer.current.clientWidth,
+            });
+        },
+        [offset],
+    );
 
     const onScrollLeftTo = useCallback((offset) => {
         return (
@@ -44,7 +54,18 @@ export const Scrollable = ({ className, withArrows = false, offset = 145, childr
 
     return (
         <div className={cx("position-relative", styles.scrollable, className)}>
-            <div ref={scrollableContainer} className={cx("pt-3_5 pb-5 px-4_5", styles.container)}>
+            <div
+                ref={scrollableContainer}
+                className={cx(
+                    "p-4",
+                    {
+                        "overflow-hidden": isScrollHidden,
+                        [styles.containerScrollbarInvisible]: !isScrollbarVisible,
+                    },
+                    styles.container,
+                    containerClassName,
+                )}
+            >
                 {children}
             </div>
             {withArrows && arrows.l && (

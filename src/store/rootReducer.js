@@ -6,6 +6,7 @@ import { groupsReducer } from "./groups/reducer";
 import { leadsReducer } from "./leads/reducer";
 import { generalReducer } from "./general/reducer";
 import { currentUserReducer } from "./currentUser/reducer";
+import { modalsReducer } from './modals/reducer';
 
 export const rootReducer = combineReducers({
     users: usersReducer,
@@ -14,4 +15,5 @@ export const rootReducer = combineReducers({
     leads: leadsReducer,
     general: generalReducer,
     currentUser: currentUserReducer,
+    modals: modalsReducer,
 });

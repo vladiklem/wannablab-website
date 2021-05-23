@@ -4,13 +4,16 @@
     .container {
         overflow: auto;
         white-space: nowrap;
-        margin-left: -24px;
-        margin-right: -24px;
         scroll-behavior: smooth;
+
+        &ScrollbarInvisible::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     .item {
-        display: inline-block;
+        display: inline-flex;
+        flex-direction: column;
         white-space: normal;
         border-radius: 12px;
     }
@@ -19,16 +22,16 @@
         position: absolute;
         top: 50%;
 
-        &:active svg{
+        &:active svg {
             transform: scale(1.1);
         }
 
-        &.right{
+        &.right {
             right: -12px;
             transform: translateY(-50%);
         }
 
-        &.left{
+        &.left {
             left: -12px;
             transform: translateY(-50%) rotate(180deg);
         }
