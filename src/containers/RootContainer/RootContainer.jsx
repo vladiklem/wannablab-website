@@ -100,7 +100,7 @@ export const RootContainer = () => {
                 onPricesClick={onPricesClick}
             />
             <main
-                className={cx(styles.background, "mb-3", {
+                className={cx(styles.background, {
                     "list-scale-animation1": coursesClicked,
                     "list-scale-animation2": pricesClicked,
                 })}
