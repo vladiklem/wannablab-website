@@ -54,8 +54,8 @@ export const Home = () => {
                 onGroupSelect={onGroupSelect}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className={cx("container d-flex flex-column align-items-center", styles.formSection)}>
-                <h2 className="h2 font-weight-bold mt-4">Привіт, блабере!</h2>
+            <section id="blaber-form" className={cx("container d-flex flex-column align-items-center exp-bg", styles.formSection)}>
+                <h2 className="h2 mt-4 text-white text-center">Вже <strong>44 людини</strong> займаються з нами!</h2>
                 <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                     <LeadForm description={description} />
                 </div>
