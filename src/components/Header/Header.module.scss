@@ -1,0 +1,29 @@
+.mobileMenu {
+    position: absolute;
+    top: -150px;
+    left: 0;
+    right: 0;
+    height: 84px;
+    background: white;
+    overflow: auto;
+    opacity: 0;
+    
+    &.visible {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.burger {
+    z-index: 1000;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: white;
+    padding-left: 16px;
+    padding-right: 16px;
+}

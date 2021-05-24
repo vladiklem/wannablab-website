@@ -2,7 +2,7 @@ import React from "react";
 
 import { Scrollable } from "components/index";
 import { mentorsList } from "constants/lists";
-import { MentorScrollableItem } from "../../components/MentorScrollableItem/MentorScrollableItem";
+import { MentorScrollableItem } from "components/styled/MentorScrollableItem/MentorScrollableItem";
 
 export const InteractionSections = ({ groups, onGroupSelect, onMentorSelect }) => {
     return (

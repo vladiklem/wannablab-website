@@ -9,7 +9,6 @@ export const QuoteUpIcon = (props) => (
         width="95.333px"
         height="95.332px"
         viewBox="0 0 95.333 95.332"
-        // style="enable-background:new 0 0 95.333 95.332;"
         {...props}
     >
         <g>

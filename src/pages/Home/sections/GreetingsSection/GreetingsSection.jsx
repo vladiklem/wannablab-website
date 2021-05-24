@@ -3,16 +3,24 @@ import cx from "classnames";
 
 import { Button, Scrollable } from "components/index";
 import { coursesList } from "constants/lists";
-import { ServiceScrollableItem } from "../../components/ServiceScrollableItem/ServiceScrollableItem";
+import { ServiceScrollableItem } from "components/styled/ServiceScrollableItem/ServiceScrollableItem";
 
-export const GreetingsSection = ({ onOrderClick, isPortable, className }) => (
-    <section className={cx("d-flex flex-column", className)}>
-        <h2 className="font-medium">
+export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className }) => (
+    <section className={cx("d-flex flex-column container", className)}>
+        <h2
+            className={cx({
+                "font-medium": !isPortable,
+                "regular font-weight-semibold": isPortable,
+            })}
+        >
             <strong> Англійська </strong> під культурним соусом. Єднаємо українського спеціаліста та
             англомовного клієнта.
         </h2>
         <div className="typing-container mb-2">
-            <div className="font-medium typing-wrapper">Цінуємо кожного 😊</div>
+            <div className={cx("typing-wrapper", {
+                "font-medium": !isPortable,
+                "regular font-weight-semibold": isPortable,
+            })}>Цінуємо кожного 😊</div>
         </div>
         <h2 className="hidden-element">Що ми пропонуємо?</h2>
         <Scrollable containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
@@ -22,6 +30,8 @@ export const GreetingsSection = ({ onOrderClick, isPortable, className }) => (
                     array={array}
                     src={imgSrc}
                     key={item.slug}
+                    isPortable={isPortable}
+                    onClick={toCourse}
                     {...item}
                 />
             ))}

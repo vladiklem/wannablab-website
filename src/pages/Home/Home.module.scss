@@ -1,23 +1,6 @@
 @import "~assets/styles/config/containers";
 @import "~assets/styles/config/colors";
 
-.badge {
-    
-}
-
-.img {
-    max-width: 100%;
-    height: auto;
-}
-
-.card {
-    padding-bottom: 40px !important;
-
-    &__toggled {
-        padding-bottom: 32px !important;
-    }
-}
-
 .imgAvatar {
     height: 80px;
     width: 80px;
@@ -25,7 +8,7 @@
 }
 
 .formSection {
-    height: calc(100vh - 140px);
+    height: 100vh;
 }
 
 @media only screen and (max-width: 1024px) {

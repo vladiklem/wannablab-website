@@ -8,6 +8,14 @@
     border-radius: $border-radius-xl !important;
 }
 
+.border-circle {
+    border-radius: $border-radius-circle !important;
+}
+
+.border-width-2 {
+    border-width: 2px !important;
+}
+
 .border-primary-soft {
     border-color: $primary-soft !important;
 }

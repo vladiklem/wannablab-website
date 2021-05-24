@@ -3,20 +3,19 @@ import cx from "classnames";
 
 import { Team } from "components/Icons/Team";
 import { ScrollableItem, Button, List } from "components/index";
-import styles from "../../Home.module.scss";
 
-export const GroupScrollableItem = ({ item: { title, members }, index, items, onGroupSelect }) => {
+export const GroupScrollableItem = ({ item: { title, members }, index, array, onGroupSelect }) => {
     const onClick = useCallback(() => {
         onGroupSelect({ title });
     }, [onGroupSelect, title]);
 
     return (
         <ScrollableItem
-            className={cx("shadow-pulp-animation transition-250 rounded-xl bg-white", {
-                "mr-3": index !== items.length - 1,
+            className={cx("shadow-soft transition-250 rounded-xl bg-white", {
+                "mr-3": index !== array.length - 1,
             })}
         >
-            <div className={cx("p-4", styles.card)}>
+            <div className="p-4">
                 <h3 className="h3 font-weight-bold mb-1">{title}</h3>
                 <List list={["Понеділок, 19:00", "Середа, 19:00"]} />
                 <div className="d-flex align-items-center">

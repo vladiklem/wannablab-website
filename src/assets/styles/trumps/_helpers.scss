@@ -8,6 +8,9 @@
     width: 0;
     height: 0;
     opacity: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     clip-path: circle(0);
 }
 
@@ -24,12 +27,17 @@
     white-space: normal !important;
 }
 
+.scrollbar-invisible::-webkit-scrollbar {
+    display: none;
+}
+
 .burger-icon {
     position: relative;
     height: 4px;
     width: 32px;
     border-radius: 20px;
     background-color: $gray-900;
+    transition: all 250ms ease-in-out;
 
     &:after,
     &:before {
@@ -40,13 +48,30 @@
         width: 32px;
         border-radius: 20px;
         background-color: $gray-900;
+        transition: all 250ms ease-in-out;
     }
 
     &:after {
         bottom: -10px;
     }
-    
+
     &:before {
         top: -10px;
     }
+
+    &.open {
+        background-color: transparent;
+
+        &:after {
+            transform: rotate(90deg);
+        }
+
+        &:before {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.full-screen-height {
+    height: 100vh;
 }

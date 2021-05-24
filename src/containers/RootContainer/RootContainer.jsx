@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import cx from "classnames";
 
 import { ModalsContainer } from "containers/ModalsContainer/ModalsContainer";
@@ -9,17 +10,17 @@ import { BlaberRoom } from "pages/BlaberRoom/BlaberRoom";
 import { AdminPage } from "pages/AdminPage/AdminPage";
 import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
+import { CoursePage } from "pages/CoursePage/CoursePage";
 import { Button, TopBar, buttonColorEnum, Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initGeneral } from "store/general/actions";
-import { toggleModal } from "store/modals/actions";
 import { initCurrentUser } from "store/currentUser/actions";
 import { isAdminSelector } from "selectors/general";
 import { isLoggedInSelector } from "selectors/blaber";
-import { modalNamesEnum } from "constants/enums";
+import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 
@@ -34,6 +35,8 @@ export const RootContainer = () => {
     const [modalState, setModalState] = useState(undefined);
     const [coursesClicked, setCoursesClicked] = useState(false);
     const [pricesClicked, setPricesClicked] = useState(false);
+
+    const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     const openLoginModal = useCallback(
         () => setModalState({ name: modalNamesEnum.LOGIN, isOpen: true }),
@@ -54,10 +57,10 @@ export const RootContainer = () => {
         }, 560);
     };
 
-    const openAdModal = useCallback(
-        () => setModalState({ name: modalNamesEnum.AD, isOpen: true }),
-        [setModalState],
-    );
+    // const openAdModal = useCallback(
+    //     () => setModalState({ name: modalNamesEnum.AD, isOpen: true }),
+    //     [setModalState],
+    // );
 
     const renderRoute = useCallback(
         ({ routeComponent: Component }) => (props) => <Component {...props} />,
@@ -78,8 +81,6 @@ export const RootContainer = () => {
     //     }, 5000);
     // }, [dispatch]);
 
-    console.log(coursesClicked);
-
     return (
         <Router>
             <TopBar isVisible={false}>
@@ -93,7 +94,11 @@ export const RootContainer = () => {
                     Ціни
                 </a>
             </TopBar>
-            <Header onCoursesClick={onCoursesClick} onPricesClick={onPricesClick} />
+            <Header
+                isPortable={isPortable}
+                onCoursesClick={onCoursesClick}
+                onPricesClick={onPricesClick}
+            />
             <main
                 className={cx(styles.background, "mb-3", {
                     "list-scale-animation1": coursesClicked,
@@ -103,6 +108,10 @@ export const RootContainer = () => {
                 <ModalsContainer modalState={modalState} />
                 <Switch>
                     <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
+                    <Route
+                        path="/course/:slug"
+                        render={renderRoute({ routeComponent: CoursePage })}
+                    />
                     <Route
                         path="/check-list"
                         render={renderRoute({ routeComponent: ChecklistPage })}
@@ -116,7 +125,7 @@ export const RootContainer = () => {
                     <Route component={NotFoundPage} />
                 </Switch>
             </main>
-            <Footer />
+            <Footer isPortable={isPortable} />
         </Router>
     );
 };

@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import cx from "classnames";
 
 import { ScrollableItem, Button, List, Collapse } from "components/index";
-import styles from "../../Home.module.scss";
 
 export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onMentorSelect, className }) => {
     const [isToggled, setIsToggled] = useState(false);
@@ -22,12 +21,10 @@ export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onM
             }, className)}
         >
             <div
-                className={cx("transition-250 px-4 pt-4", styles.card, {
-                    [styles.card__toggled]: isToggled,
-                })}
+                className="transition-250 px-4 pt-4"
             >
                 <img
-                    className={cx("d-block rounded-xl", styles.img)}
+                    className="d-block rounded-xl image"
                     height={272}
                     width={272}
                     src={avatar}

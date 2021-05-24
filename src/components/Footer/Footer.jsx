@@ -1,12 +1,33 @@
 import React from "react";
+import cx from "classnames";
 
 import { ContactsBlock } from "components/styled/ContactsBlock/ContactsBlock";
 
-export const Footer = () => {
+import logo from "assets/images/logo.png";
+
+import styles from "./Footer.module.scss";
+
+export const Footer = ({ isPortable }) => {
     return (
-        <footer className="px-3_5 py-4">
-            <h2 className="regular mb-2">powered by <span className="font-weight-semibold">wannablab family</span></h2>
-            <ContactsBlock />
+        <footer
+            className={styles.footer}
+            id="wannablab-footer"
+        >
+            <div
+                className={cx("d-flex px-4 pt-3_5 pb-5 container", {
+                    "flex-column": isPortable,
+                    "flex-wrap": !isPortable,
+                })}
+            >
+                <div className="row align-items-center mb-3 no-gutters w-100">
+                    <img className="mr-3" src={logo} width="50" height="60" alt="wannablab logo" />
+                    <p className="regular">
+                        powered by <br />{" "}
+                        <span className="font-weight-semibold">wannablab family</span>
+                    </p>
+                </div>
+                <ContactsBlock />
+            </div>
         </footer>
     );
 };

@@ -6,10 +6,6 @@
     -webkit-font-smoothing: antialiased;
 }
 
-.font-chewy-regular {
-    font-family: "Chewy", sans-serif !important;
-}
-
 .h1 {
     @include smoothFont();
 
@@ -57,7 +53,7 @@
     font-weight: 500;
 }
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, .h1, .h2, .h3, .regular, label {
     margin-bottom: 0;
 }
 
