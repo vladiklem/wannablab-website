@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
+import cx from "classnames";
 
 import { coursesList, usersFeedbackList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
@@ -73,7 +74,7 @@ export const CoursePage = () => {
                 />
                 <h2 className="h2 mb-3">Про курс</h2>
                 <div className="row mb-5">
-                    <div className="col-8">
+                    <div className="col-md-8 col-sm-12">
                         <h3 className="regular">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Facilisis gravida
@@ -98,9 +99,11 @@ export const CoursePage = () => {
             </section>
             <section
                 id="wannablab-lead-form"
-                className="full-screen-height d-flex flex-column align-items-center"
+                className={cx("full-screen-height d-flex flex-column align-items-center", {
+                    "justify-content-center": !isPortable
+                })}
             >
-                <h2 className="h1 mb-5 mt-2 text-center">
+                <h2 className="h1 mb-5 text-center">
                     Курс пройшли вже <strong>57 людей</strong>
                 </h2>
                 <LeadForm />

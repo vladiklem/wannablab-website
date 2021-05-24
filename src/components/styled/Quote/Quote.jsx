@@ -21,7 +21,7 @@ export const Quote = ({ src, alt, text, author, className, isPortable }) => (
         </div>
         <div className="col-md-10 col-sm-12 d-flex flex-column position-relative">
             <p className={cx("h3 mb-2 font-weight-normal", styles.quote__text)}>{text}</p>
-            <span className="regular">{author}</span>
+            <span className="regular font-weight-semibold">{author}</span>
             <QuoteUpIcon width={48} height={48} className={styles.quote__icon} fill="#D7BCF7" />
         </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import cx from "classnames";
-import { ArrowRight } from "components/Icons/ArrowRight";
+import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 
 import { Button } from "components/index";
 
@@ -8,7 +8,7 @@ import styles from "./Scrollable.module.scss";
 
 export const Scrollable = ({
     className,
-    withArrows = false,
+    hasArrows = false,
     isScrollHidden = false,
     isScrollbarVisible = true,
     offset = 145,
@@ -54,6 +54,24 @@ export const Scrollable = ({
 
     return (
         <div className={cx("position-relative", styles.scrollable, className)}>
+            {hasArrows && (
+                <div className="w-25 ml-auto">
+                    <Button
+                        color="unstyled"
+                        onClick={onClickArrowLeft}
+                        className={cx(styles.arrow, styles.left, "p-0 mr-3")}
+                    >
+                        <ArrowRightLong width={20} height={20} />
+                    </Button>
+                    <Button
+                        color="unstyled"
+                        onClick={onClickArrowRight}
+                        className={cx(styles.arrow, "p-0")}
+                    >
+                        <ArrowRightLong className="shadow-soft" width={20} height={20} />
+                    </Button>
+                </div>
+            )}
             <div
                 ref={scrollableContainer}
                 className={cx(
@@ -68,26 +86,6 @@ export const Scrollable = ({
             >
                 {children}
             </div>
-            {withArrows && arrows.l && (
-                <Button
-                    color="unstyled"
-                    onClick={onClickArrowLeft}
-                    className={cx(styles.arrow, styles.left)}
-                    isSquare={true}
-                >
-                    <ArrowRight width={20} height={20} />
-                </Button>
-            )}
-            {withArrows && arrows.r && (
-                <Button
-                    color="unstyled"
-                    onClick={onClickArrowRight}
-                    className={cx(styles.arrow, styles.right)}
-                    isSquare={true}
-                >
-                    <ArrowRight width={20} height={20} />
-                </Button>
-            )}
         </div>
     );
 };

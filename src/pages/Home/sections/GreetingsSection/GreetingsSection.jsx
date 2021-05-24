@@ -23,7 +23,7 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
             })}>Цінуємо кожного 😊</div>
         </div>
         <h2 className="hidden-element">Що ми пропонуємо?</h2>
-        <Scrollable containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
+        <Scrollable hasArrows={true} offset={isPortable ? 300 : 460} containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
             {coursesList.map(({ imgSrc, ...item }, index, array) => (
                 <ServiceScrollableItem
                     index={index}

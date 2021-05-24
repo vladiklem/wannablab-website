@@ -53,7 +53,7 @@ export const Home = () => {
                 onMentorSelect={onMentorSelect}
                 onGroupSelect={onGroupSelect}
             />
-            <FeedbackSection />
+            <FeedbackSection isPortable={isPortable} />
             <section id="blaber-form" className={cx("container d-flex flex-column align-items-center", styles.formSection)}>
                 <h2 className="h2 font-weight-bold mt-4">Привіт, блабере!</h2>
                 <div className="flex-grow-1 d-flex align-items-center justify-content-center">
