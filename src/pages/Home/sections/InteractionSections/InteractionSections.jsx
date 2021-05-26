@@ -4,7 +4,7 @@ import { Scrollable } from "components/index";
 import { mentorsList } from "constants/lists";
 import { MentorScrollableItem } from "components/styled/MentorScrollableItem/MentorScrollableItem";
 
-export const InteractionSections = ({ groups, onGroupSelect, onMentorSelect }) => {
+export const InteractionSections = ({ toMentor, onMentorSelect }) => {
     return (
         <>
             <section id="wannablab-teachers" className="container pt-3 mb-5">
@@ -17,11 +17,11 @@ export const InteractionSections = ({ groups, onGroupSelect, onMentorSelect }) =
                 >
                     {mentorsList.map(({ name, ...itemProps }, index) => (
                         <MentorScrollableItem
-                            onMentorSelect={onMentorSelect}
                             index={index}
                             array={mentorsList}
                             key={name}
                             name={name}
+                            onClick={toMentor}
                             {...itemProps}
                         />
                     ))}

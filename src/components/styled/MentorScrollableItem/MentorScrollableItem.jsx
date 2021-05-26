@@ -11,16 +11,17 @@ export const MentorScrollableItem = ({
     src,
     index,
     array,
-    onMentorSelect,
     className,
     color,
     list,
     description,
     instHref = "",
+    slug,
+    onClick,
 }) => {
     const handleClick = useCallback(() => {
-        onMentorSelect({ name });
-    }, [onMentorSelect, name]);
+        onClick(slug);
+    }, [onClick, slug]);
 
     return (
         <ScrollableItem
@@ -42,8 +43,8 @@ export const MentorScrollableItem = ({
                 className={cx("position-relative text-decoration-none px-2", styles.name)}
                 href={instHref}
             >
-                <h3 className="h2 d-flex align-items-center justify-content-center text-center mb-3 text-gray-900">
-                    <Instagram width={24} height={24} className="mr-2" />
+                <h3 className="h3 d-flex align-items-center justify-content-center text-center mb-3 text-gray-900">
+                    <Instagram width={20} height={20} className="mr-2" />
                     {name}
                 </h3>
             </a>

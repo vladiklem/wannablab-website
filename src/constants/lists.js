@@ -62,6 +62,7 @@ export const valuesList = [
 
 export const mentorsList = [
     {
+        slug: "marta-yarosh",
         name: "Марта Ярош",
         src: IMAGES.martaAvatar,
         list: ["Сертифікат IELTS на C2", "2 роки досвіду"],
@@ -69,6 +70,7 @@ export const mentorsList = [
         description: "Вчитель та модель в одному лиці.",
     },
     {
+        slug: "kate-timchenko",
         name: "Катя Тимченко",
         description: "",
         src: IMAGES.kateAvatar,
@@ -76,12 +78,14 @@ export const mentorsList = [
         color: "soft-purple",
     },
     {
+        slug: "ann-stepova",
         name: "Аня Степова",
         src: IMAGES.anyaAvatar,
         list: ["Сертифікат IELTS на C1", "3 роки досвіду"],
         color: "soft-blue",
     },
     {
+        slug: "marina-torokhtiy",
         name: "Марина Торохтій",
         src: IMAGES.martaAvatar,
         list: ["Сертифікат IELTS на C1", "3 роки досвіду"],

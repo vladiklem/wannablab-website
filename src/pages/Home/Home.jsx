@@ -45,6 +45,13 @@ export const Home = () => {
         [history],
     );
 
+    const toMentor = useCallback(
+        (slug) => {
+            history.push(`/mentor/${slug}`);
+        },
+        [history],
+    );
+
     return (
         <article className="mt-4">
             <GreetingsSection
@@ -52,7 +59,11 @@ export const Home = () => {
                 isPortable={isPortable}
                 toCourse={toCourse}
             />
-            <InteractionSections onMentorSelect={onMentorSelect} onGroupSelect={onGroupSelect} />
+            <InteractionSections
+                toMentor={toMentor}
+                onMentorSelect={onMentorSelect}
+                onGroupSelect={onGroupSelect}
+            />
             <FeedbackSection isPortable={isPortable} />
             <section id="blaber-form" className={cx("exp-bg", styles.formSection)}>
                 <div className="container d-flex flex-column align-items-center">

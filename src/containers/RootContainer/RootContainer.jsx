@@ -11,6 +11,7 @@ import { AdminPage } from "pages/AdminPage/AdminPage";
 import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
 import { CoursePage } from "pages/CoursePage/CoursePage";
+import { MentorPage } from "pages/MentorPage/MentorPage";
 import { Button, TopBar, buttonColorEnum, Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
@@ -113,6 +114,10 @@ export const RootContainer = () => {
                     <Route
                         path="/course/:slug"
                         render={renderRoute({ routeComponent: CoursePage })}
+                    />
+                    <Route
+                        path="/mentor/:slug"
+                        render={renderRoute({ routeComponent: MentorPage })}
                     />
                     <Route
                         path="/check-list"
