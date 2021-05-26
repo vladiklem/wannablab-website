@@ -68,6 +68,7 @@ h1, h2, h3, h4, p, .h1, .h2, .h3, .regular, label {
             position: absolute;
         }
     }
+
     &-features {
         li:before {
             content: " ";
@@ -78,7 +79,20 @@ h1, h2, h3, h4, p, .h1, .h2, .h3, .regular, label {
             background-color: $purple-soft;
             border-radius: 12px;
         }
+
+        &-white {
+            li:before {
+                content: " ";
+                left: 0;
+                top: 8px;
+                width: 8px;
+                height: 8px;
+                background-color: $white;
+                border-radius: 12px;
+            }
+        }
     }
+
     &-check {
         li {
             padding-left: 24px;

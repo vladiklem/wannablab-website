@@ -6,7 +6,7 @@ import { coursesList } from "constants/lists";
 import { ServiceScrollableItem } from "components/styled/ServiceScrollableItem/ServiceScrollableItem";
 
 export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className }) => (
-    <section className={cx("d-flex flex-column container", className)}>
+    <section className={cx("d-flex flex-column container mb-4", className)}>
         <h2
             className={cx({
                 "font-medium": !isPortable,
@@ -16,7 +16,7 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
             <strong> Англійська </strong> під культурним соусом. Єднаємо українського спеціаліста та
             англомовного клієнта.
         </h2>
-        <div className="typing-container mb-2">
+        <div className="typing-container mb-2" id="wannablab-courses">
             <div className={cx("typing-wrapper", {
                 "font-medium": !isPortable,
                 "regular font-weight-semibold": isPortable,

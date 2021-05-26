@@ -1,9 +1,6 @@
 import React, { useMemo, useCallback } from "react";
 
 import { Button, Collapse } from "components/index";
-import avatar from "assets/images/uramen12.jpeg";
-
-import styles from "./UserItem.module.scss";
 
 export const UserItem = ({ user, onEdit, onDelete, onPay }) => {
     const { fullName, description } = user;
@@ -11,7 +8,6 @@ export const UserItem = ({ user, onEdit, onDelete, onPay }) => {
     const togglerContent = useMemo(
         () => (
             <span className="d-flex align-items-center">
-                <img src={avatar} alt="User avatar" className={styles.userAvatar} />
                 <h3 className="ml-3 mb-0">{fullName}</h3>
             </span>
         ),

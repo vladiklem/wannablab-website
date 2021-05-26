@@ -20,7 +20,7 @@ export const Home = () => {
 
     const onOrderClick = useCallback(() => {
         document.getElementById("blaber-form").scrollIntoView();
-        setTimeout(() => document.getElementById("name").focus(), 700);
+        setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
     const onGroupSelect = useCallback(
@@ -38,9 +38,12 @@ export const Home = () => {
         [setDescription, onOrderClick],
     );
 
-    const toCourse = useCallback((slug) => {
-        history.push(`/course/${slug}`)
-    }, [history]);
+    const toCourse = useCallback(
+        (slug) => {
+            history.push(`/course/${slug}`);
+        },
+        [history],
+    );
 
     return (
         <article className="mt-4">
@@ -49,15 +52,16 @@ export const Home = () => {
                 isPortable={isPortable}
                 toCourse={toCourse}
             />
-            <InteractionSections
-                onMentorSelect={onMentorSelect}
-                onGroupSelect={onGroupSelect}
-            />
+            <InteractionSections onMentorSelect={onMentorSelect} onGroupSelect={onGroupSelect} />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className={cx("container d-flex flex-column align-items-center exp-bg", styles.formSection)}>
-                <h2 className="h2 mt-4 text-white text-center">Вже <strong>44 людини</strong> займаються з нами!</h2>
-                <div className="flex-grow-1 d-flex align-items-center justify-content-center">
-                    <LeadForm description={description} />
+            <section id="blaber-form" className={cx("exp-bg", styles.formSection)}>
+                <div className="container d-flex flex-column align-items-center">
+                    <h2 className="h2 mt-5 mb-5 text-center">
+                        Вже <strong>44 людини</strong> займаються з нами!
+                    </h2>
+                    <div className="flex-grow-1 d-flex align-items-center justify-content-center">
+                        <LeadForm description={description} />
+                    </div>
                 </div>
             </section>
         </article>

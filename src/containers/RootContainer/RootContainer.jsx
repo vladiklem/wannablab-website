@@ -43,12 +43,14 @@ export const RootContainer = () => {
         [setModalState],
     );
 
-    const onCoursesClick = () => {
-        setCoursesClicked(true);
+    const onCoursesClick = useCallback(() => {
+        setTimeout(() => {
+            setCoursesClicked(true);
+        }, 300);
         setTimeout(() => {
             setCoursesClicked(false);
-        }, 560);
-    };
+        }, 1260);
+    }, []);
 
     const onPricesClick = () => {
         setPricesClicked(true);

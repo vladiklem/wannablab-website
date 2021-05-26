@@ -63,21 +63,29 @@ export const valuesList = [
 export const mentorsList = [
     {
         name: "Марта Ярош",
-        avatar: IMAGES.martaAvatar,
-        className: "bg-light-purple",
+        src: IMAGES.martaAvatar,
+        list: ["Сертифікат IELTS на C2", "2 роки досвіду"],
+        color: "light-green",
+        description: "Вчитель та модель в одному лиці.",
     },
     {
         name: "Катя Тимченко",
-        avatar: IMAGES.martaAvatar,
-        className: "bg-light-blue",
+        description: "",
+        src: IMAGES.kateAvatar,
+        list: ["Сертифікат IELTS на C1", "3 роки досвіду"],
+        color: "soft-purple",
     },
     {
         name: "Аня Степова",
-        avatar: IMAGES.martaAvatar,
+        src: IMAGES.anyaAvatar,
+        list: ["Сертифікат IELTS на C1", "3 роки досвіду"],
+        color: "soft-blue",
     },
     {
         name: "Марина Торохтій",
-        avatar: IMAGES.martaAvatar,
+        src: IMAGES.martaAvatar,
+        list: ["Сертифікат IELTS на C1", "3 роки досвіду"],
+        color: "soft-purple",
     },
 ];
 

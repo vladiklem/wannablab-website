@@ -6,7 +6,7 @@ import cx from "classnames";
 
 import { coursesList, usersFeedbackList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
-import { Button, Scrollable, List } from "components/index";
+import { Button, Scrollable, List, Loader } from "components/index";
 import { selectGroups } from "store/groups/selectors";
 import { GroupScrollableItem, Quote } from "components/styled/index";
 
@@ -20,34 +20,55 @@ export const CoursePage = () => {
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     return (
-        <article className="pt-4 container">
-            <section className="mb-5">
+        <article className="pt-4">
+            <section className="mb-5 container">
                 <div className="row">
                     <div className="col-md-6 colsm-12">
                         <h1 className="h1 mb-2">{course.title}</h1>
                         <h2 className="regular mb-3">{course.description}</h2>
-                        <div className="row flex-nowrap no-gutters mb-3">
-                            <Button
-                                className="w-100 mr-3 text-highlighted font-weight-semibold py-2"
-                                color="blue-soft"
-                            >
-                                Читати більше
-                            </Button>
-                            <Button
-                                className="w-100 text-highlighted font-weight-semibold py-2"
-                                color="purple-soft"
-                                href="#wannablab-lead-form"
-                            >
-                                Хочу
-                            </Button>
+                        <div className="row flex-nowrap mb-3">
+                            <span className="col-6">
+                                <Button
+                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    color="blue-soft"
+                                >
+                                    Читати більше
+                                </Button>
+                            </span>
+                            <span className="col-6">
+                                <Button
+                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    color="purple-soft"
+                                    href="#wannablab-lead-form"
+                                >
+                                    Хочу
+                                </Button>
+                            </span>
                         </div>
                         <div>
                             <h2 className="h3">Календар груп</h2>
-                            <Scrollable className="mt-n2">
-                                {groups.map((item, index, array) => (
-                                    <GroupScrollableItem index={index} array={array} item={item} />
-                                ))}
-                            </Scrollable>
+                            {groups.length ? (
+                                <Scrollable className={cx("mt-n2 mb-2", styles.coursePage__groups)}>
+                                    {groups.map((item, index, array) => (
+                                        <GroupScrollableItem
+                                            index={index}
+                                            array={array}
+                                            item={item}
+                                        />
+                                    ))}
+                                </Scrollable>
+                            ) : (
+                                <Loader color="purple-soft" />
+                            )}
+                        </div>
+                        <div className="row">
+                            <div className={cx("col-md-6 col-sm-12", { "mb-1": isPortable })}>
+                                <span className="font-weight-semibold">Формат:</span> онлайн уроки
+                                по Google Meet
+                            </div>
+                            <div className="col-md-6 col-sm-12">
+                                <span className="font-weight-semibold">Ціна:</span> 1190 грн
+                            </div>
                         </div>
                     </div>
                     <div className="col-md-6 col-sm-12">
@@ -56,22 +77,10 @@ export const CoursePage = () => {
                             src={course.imgSrc}
                             alt={course.description}
                         />
-                        <div className="row">
-                            <div className="col-6">Формат: онлайн уроки по Google Meet</div>
-                            <div className="col-3">Ціна: 1190 грн</div>
-                            <div className="col-3"></div>
-                        </div>
                     </div>
                 </div>
             </section>
-            <section>
-                <Quote
-                    src={usersFeedbackList[0].avatar}
-                    text={usersFeedbackList[0].description}
-                    author={usersFeedbackList[0].name}
-                    isPortable={isPortable}
-                    className="mb-5"
-                />
+            <section className="mb-5 container">
                 <h2 className="h2 mb-3">Про курс</h2>
                 <div className="row mb-5">
                     <div className="col-md-8 col-sm-12">
@@ -94,20 +103,37 @@ export const CoursePage = () => {
                         </h3>
                     </div>
                 </div>
+                <Quote
+                    src={usersFeedbackList[0].avatar}
+                    text={usersFeedbackList[0].description}
+                    author={usersFeedbackList[0].name}
+                    isPortable={isPortable}
+                    className="mb-5"
+                />
                 <h2 className="h2 mb-3">Ми навчимося</h2>
                 <List list={["класно", "комунікувати", "англійською"]} />
             </section>
-            <section
+            <section id="wannablab-lead-form" className="exp-bg full-screen-height">
+                <div className="container d-flex flex-column align-items-center">
+                    <h2 className="h2 mt-5 mb-5 text-center">
+                        Курс пройшли вже <strong>57 людей</strong>
+                    </h2>
+                    <div className="flex-grow-1 d-flex align-items-center justify-content-center">
+                        <LeadForm />
+                    </div>
+                </div>
+            </section>
+            {/* <section
                 id="wannablab-lead-form"
                 className={cx("full-screen-height d-flex flex-column align-items-center", {
-                    "justify-content-center": !isPortable
+                    "justify-content-center": !isPortable,
                 })}
             >
                 <h2 className="h1 mb-5 text-center">
                     Курс пройшли вже <strong>57 людей</strong>
                 </h2>
                 <LeadForm />
-            </section>
+            </section> */}
         </article>
     );
 };

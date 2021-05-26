@@ -7,16 +7,22 @@ import { MentorScrollableItem } from "components/styled/MentorScrollableItem/Men
 export const InteractionSections = ({ groups, onGroupSelect, onMentorSelect }) => {
     return (
         <>
-            <section id="wannablab-teachers" className="container pt-5 mb-5">
+            <section id="wannablab-teachers" className="container pt-3 mb-5">
                 <h2 className="h2 font-weight-bold mb-3">Наші ментори</h2>
-                <Scrollable containerClassName="ml-n4 mr-n4">
-                    {mentorsList.map((item, index) => (
+                <Scrollable
+                    containerClassName="ml-n4 mr-n4"
+                    hasArrows={true}
+                    isScrollbarVisible={false}
+                    offset={250}
+                >
+                    {mentorsList.map(({ name, ...itemProps }, index) => (
                         <MentorScrollableItem
                             onMentorSelect={onMentorSelect}
-                            item={item}
                             index={index}
-                            items={mentorsList}
-                            key={item.name}
+                            array={mentorsList}
+                            key={name}
+                            name={name}
+                            {...itemProps}
                         />
                     ))}
                 </Scrollable>

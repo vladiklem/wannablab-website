@@ -1,65 +1,62 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import cx from "classnames";
 
-import { ScrollableItem, Button, List, Collapse } from "components/index";
+import { ScrollableItem, Button, List } from "components/index";
+import { Instagram } from "components/Icons/social/Instagram";
 
-export const MentorScrollableItem = ({ item: { name, avatar }, index, items, onMentorSelect, className }) => {
-    const [isToggled, setIsToggled] = useState(false);
+import styles from "./MentorScrollableItem.module.scss";
 
-    const onToggle = useCallback(() => {
-        setIsToggled((toggled) => !toggled);
-    }, [setIsToggled]);
-
+export const MentorScrollableItem = ({
+    name,
+    src,
+    index,
+    array,
+    onMentorSelect,
+    className,
+    color,
+    list,
+    description,
+    instHref = "",
+}) => {
     const handleClick = useCallback(() => {
         onMentorSelect({ name });
     }, [onMentorSelect, name]);
 
     return (
         <ScrollableItem
-            className={cx("shadow-soft rounded-xl bg-white", {
-                "mr-4": index !== items.length - 1,
-            }, className)}
+            className={cx(
+                "shadow-soft rounded-xl bg-white transition-250 d-flex flex-column",
+                { "mr-3": array.length - 1 !== index },
+                styles.container,
+                className,
+            )}
         >
-            <div
-                className="transition-250 px-4 pt-4"
+            <img
+                className={cx("d-block image", styles.image)}
+                height={300}
+                width={300}
+                src={src}
+                alt={name}
+            />
+            <a
+                className={cx("position-relative text-decoration-none px-2", styles.name)}
+                href={instHref}
             >
-                <img
-                    className="d-block rounded-xl image"
-                    height={272}
-                    width={272}
-                    src={avatar}
-                    alt={name}
-                />
-                <div className="pt-3 px-2">
-                    <h3 className="h2 text-center">{name}</h3>
-                    <Collapse
-                        className="w-100 bg-white"
-                        contentClassName=""
-                        togglerContent={
-                            <>
-                                <List list={["IELTS на C1", "1.5р досвіду"]} />
-                                <p
-                                    className={cx("rounded-lg py-2 transition-250 mt-3", {
-                                        "mb-n3 shadow-soft": !isToggled,
-                                    })}
-                                >
-                                    більше...
-                                </p>
-                            </>
-                        }
-                        onToggle={onToggle}
-                    >
-                        <List className="mb-3" list={["Урок 400 UAH", "Місячний курс 2900 UAH"]} />
-                        <Button
-                            block={true}
-                            color="green-soft"
-                            className="rounded-lg font-weight-bold text-hilighted"
-                            onClick={handleClick}
-                        >
-                            Хочу
-                        </Button>
-                    </Collapse>
+                <h3 className="h2 d-flex align-items-center justify-content-center text-center mb-3 text-gray-900">
+                    <Instagram width={24} height={24} className="mr-2" />
+                    {name}
+                </h3>
+            </a>
+            <div
+                className={`text-wrap flex-grow-1 d-flex flex-column justify-content-between p-3 rounded-xl bg-${color} font-weight-semibold text-white text-highlighted`}
+            >
+                <div>
+                    <p className="mb-2">{description}</p>
+                    <List className="mb-2" type="features-white" list={list} />
                 </div>
+                <Button color="white" className="rounded-lg" block={true} onClick={handleClick}>
+                    Більше
+                </Button>
             </div>
         </ScrollableItem>
     );

@@ -46,11 +46,11 @@ export const ServiceScrollableItem = ({
             </div>
             <h3 className="h3 mt-3 mb-2">{title}</h3>
             <div className="row flex-grow-1">
-                <div className="col-md-8 col-sm-12">
+                <div className={cx("col-md-8 col-sm-12", { "d-flex flex-column": isPortable })}>
                     <h4 className={cx("regular", { "mb-4": !isPortable })}>{description}</h4>
                     {isPortable && (
-                        <div className="row">
-                            <span className="col-6">
+                        <div className="row flex-grow-1">
+                            <span className="col-6 d-flex align-items-center">
                                 <img className="d-block image" src={src} alt={description} />
                             </span>
                             <span className="col-6 d-flex align-items-center justify-content-center">

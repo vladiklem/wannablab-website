@@ -8,7 +8,7 @@ export const ScrollableItem = ({
     direction = "column",
     ...props
 }) => (
-    <div className={cx(`white-space-normal d-inline-flex flex-${direction}`, className)} {...props}>
+    <div className={cx(`text-wrap d-inline-flex flex-shrink-0 flex-${direction}`, className)} {...props}>
         {children}
     </div>
 );

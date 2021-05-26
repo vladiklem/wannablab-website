@@ -14,16 +14,9 @@ export const FeedbackSection = ({ isPortable }) => (
                     text={usersFeedbackList[0].description}
                     author={usersFeedbackList[0].name}
                     isPortable={isPortable}
-                    className="mb-5"
+                    className={cx("mb-5", { "w-75": !isPortable })}
                 />
             ))}
-            {/* {usersFeedbackList.map((item, index) => (
-                <FeedbackCard
-                    {...item}
-                    key={item.alt}
-                    className={cx({ "mb-3": usersFeedbackList.length - 1 === index })}
-                />
-            ))} */}
         </div>
     </section>
 );

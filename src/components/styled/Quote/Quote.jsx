@@ -12,7 +12,7 @@ export const Quote = ({ src, alt, text, author, className, isPortable }) => (
                 width={118}
                 height={118}
                 className={cx("image rounded-circle border border-width-2 border-primary-soft", {
-                    "mx-4": !isPortable,
+                    "mx-2": !isPortable,
                     "mb-2": isPortable,
                 })}
                 src={src}

@@ -5,10 +5,11 @@
     &.mobile {
         width: auto;
         max-width: 300px;
+        min-height: 460px;
     }
-}
 
-.status {
-    width: 12px;
-    height: 12px;
+    .status {
+        width: 12px;
+        height: 12px;
+    }
 }

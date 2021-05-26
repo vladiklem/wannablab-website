@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useRef, useCallback } from "react";
 import cx from "classnames";
 import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 
@@ -16,22 +16,6 @@ export const Scrollable = ({
     containerClassName = "",
 }) => {
     const scrollableContainer = useRef(null);
-    const [arrows, setArrows] = useState({ l: false, r: true });
-
-    const setVisibility = useCallback(
-        (isRight = true) => {
-            const leftIndent = scrollableContainer.current.scrollLeft + (isRight ? 1 : -1) * offset;
-            setArrows({
-                l: leftIndent >= 10,
-                r:
-                    10 <
-                    scrollableContainer.current.scrollWidth -
-                        leftIndent -
-                        scrollableContainer.current.clientWidth,
-            });
-        },
-        [offset],
-    );
 
     const onScrollLeftTo = useCallback((offset) => {
         return (
@@ -44,13 +28,11 @@ export const Scrollable = ({
 
     const onClickArrowLeft = useCallback(() => {
         onScrollLeftTo(-offset);
-        setVisibility(false);
-    }, [onScrollLeftTo, offset, setVisibility]);
+    }, [onScrollLeftTo, offset]);
 
     const onClickArrowRight = useCallback(() => {
         onScrollLeftTo(offset);
-        setVisibility();
-    }, [onScrollLeftTo, offset, setVisibility]);
+    }, [onScrollLeftTo, offset]);
 
     return (
         <div className={cx("position-relative", styles.scrollable, className)}>
