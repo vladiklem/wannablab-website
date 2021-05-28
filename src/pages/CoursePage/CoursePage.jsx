@@ -6,12 +6,14 @@ import cx from "classnames";
 
 import { coursesList, usersFeedbackList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
-import { Button, Scrollable, List, Loader } from "components/index";
+import { Button, List } from "components/index";
 import { selectGroups } from "store/groups/selectors";
-import { GroupScrollableItem, Quote } from "components/styled/index";
+import { Quote } from "components/styled/index";
 
 import styles from "./CoursePage.module.scss";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
+import { GroupsScrollableList } from "components/styled/GroupsScrollableList/GroupsScrollableList";
+import { MentorsScrollableList } from "components/styled/MentorsScrollableList/MentorsScrollableList";
 
 export const CoursePage = () => {
     const groups = useSelector(selectGroups);
@@ -29,15 +31,15 @@ export const CoursePage = () => {
                         <div className="row flex-nowrap mb-3">
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    className="w-100 text-highlighted py-2 font-weight-bold"
                                     color="blue-soft"
                                 >
-                                    Читати більше
+                                    Більше
                                 </Button>
                             </span>
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    className="w-100 text-highlighted py-2 font-weight-bold"
                                     color="purple-soft"
                                     href="#wannablab-lead-form"
                                 >
@@ -46,19 +48,17 @@ export const CoursePage = () => {
                             </span>
                         </div>
                         <div>
-                            <h2 className="h3">Календар груп</h2>
-                            {groups.length ? (
-                                <Scrollable className={cx("mt-n2 mb-2", styles.coursePage__groups)}>
-                                    {groups.map((item, index, array) => (
-                                        <GroupScrollableItem
-                                            index={index}
-                                            array={array}
-                                            item={item}
-                                        />
-                                    ))}
-                                </Scrollable>
-                            ) : (
-                                <Loader color="purple-soft" />
+                            {slug === "solo-plan" && (
+                                <>
+                                    <h2 className="h3">Наші ментори</h2>
+                                    <MentorsScrollableList />
+                                </>
+                            )}
+                            {(slug === "pro-plan" || slug === "basic-plan") && (
+                                <>
+                                    <h2 className="h3">Календар груп</h2>
+                                    <GroupsScrollableList list={groups} isPortable={isPortable} />
+                                </>
                             )}
                         </div>
                         <div className="row">
@@ -67,7 +67,8 @@ export const CoursePage = () => {
                                 по Google Meet
                             </div>
                             <div className="col-md-6 col-sm-12">
-                                <span className="font-weight-semibold">Ціна:</span> 1190 грн
+                                <span className="font-weight-semibold">Ціна:</span>
+                                {` ${course.price} грн`}
                             </div>
                         </div>
                     </div>
@@ -108,7 +109,7 @@ export const CoursePage = () => {
                     text={usersFeedbackList[0].description}
                     author={usersFeedbackList[0].name}
                     isPortable={isPortable}
-                    className="mb-5"
+                    className={cx("mb-5", { "w-75": isPortable })}
                 />
                 <h2 className="h2 mb-3">Ми навчимося</h2>
                 <List list={["класно", "комунікувати", "англійською"]} />

@@ -3,18 +3,4 @@
         max-width: 100%;
         max-height: 100%;
     }
-
-    &__groups {
-        animation: groupsFadeIn, 1s, forwards;
-    }
-}
-
-@keyframes groupsFadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
 }

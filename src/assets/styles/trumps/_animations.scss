@@ -73,6 +73,16 @@
         border-radius: 8px;
         background-color: $green-500;
     }
+
+    &.start-soon {
+        &:before {
+            background-color: rgba(255, 179, 71, .5);
+        }
+    
+        &:after {
+            background-color: $orange-soft;
+        }
+    }
 }
 
 .list-scale-animation1 {

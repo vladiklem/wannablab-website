@@ -49,7 +49,6 @@ export const GroupForm = ({
                         ref={register({
                             required: true,
                             minLength: 3,
-                            maxLength: 20,
                         })}
                         errorMessage={errors.title && "Невалідна назва"}
                     />

@@ -1,19 +1,23 @@
 import React from "react";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
 import cx from "classnames";
 
 import { mentorsList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
-import { Button } from "components/index";
+import { Button, Loader } from "components/index";
 
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
+import { GroupsScrollableList } from "components/styled/GroupsScrollableList/GroupsScrollableList";
+import { selectGroups } from "store/groups/selectors";
 
 export const MentorPage = () => {
     const { slug } = useParams();
-    console.log(slug);
-    const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
+    const groups = useSelector(selectGroups);
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
+
+    const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
 
     return (
         <article className="pt-4">
@@ -25,15 +29,16 @@ export const MentorPage = () => {
                         <div className="row flex-nowrap mb-3">
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    className="w-100 text-highlighted font-weight-bold py-2"
                                     color="blue-soft"
+                                    href="#wannablab-teacher-description"
                                 >
                                     Читати більше
                                 </Button>
                             </span>
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-semibold py-2"
+                                    className="w-100 text-highlighted font-weight-bold py-2"
                                     color="purple-soft"
                                     href="#wannablab-lead-form"
                                 >
@@ -41,22 +46,14 @@ export const MentorPage = () => {
                                 </Button>
                             </span>
                         </div>
-                        {/* <div>
-                            <h2 className="h3">Календар груп</h2>
-                            {groups.length ? (
-                                <Scrollable className={cx("mt-n2 mb-2", styles.coursePage__groups)}>
-                                    {groups.map((item, index, array) => (
-                                        <GroupScrollableItem
-                                            index={index}
-                                            array={array}
-                                            item={item}
-                                        />
-                                    ))}
-                                </Scrollable>
-                            ) : (
-                                <Loader color="purple-soft" />
-                            )}
-                        </div> */}
+                        {groups.length ? (
+                            <>
+                                <h2 className="h3">Календар груп</h2>
+                                <GroupsScrollableList list={groups} />
+                            </>
+                        ) : (
+                            <Loader />
+                        )}
                         <div className="row">
                             <div className={cx("col-md-6 col-sm-12", { "mb-1": isPortable })}>
                                 <span className="font-weight-semibold">Формат:</span> онлайн уроки
@@ -68,11 +65,15 @@ export const MentorPage = () => {
                         </div>
                     </div>
                     <div className="col-md-6 col-sm-12">
-                        <img className="image rounded-xl" src={mentor.src} alt={mentor.description} />
+                        <img
+                            className="image rounded-xl"
+                            src={mentor.src}
+                            alt={mentor.description}
+                        />
                     </div>
                 </div>
             </section>
-            <section className="mb-5 container">
+            <section className="pt-5 container" id="wannablab-teacher-description">
                 <h2 className="h2 mb-3">Про Ментора</h2>
                 <div className="row mb-5">
                     <div className="col-md-8 col-sm-12">
