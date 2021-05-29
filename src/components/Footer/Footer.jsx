@@ -2,17 +2,15 @@ import React from "react";
 import cx from "classnames";
 
 import { ContactsBlock } from "components/styled/ContactsBlock/ContactsBlock";
+import { Button, buttonColorEnum } from "components/index";
 
 import logo from "assets/images/logo.png";
 
 import styles from "./Footer.module.scss";
 
-export const Footer = ({ isPortable }) => {
+export const Footer = ({ isPortable, handleLogin }) => {
     return (
-        <footer
-            className={styles.footer}
-            id="wannablab-footer"
-        >
+        <footer className={styles.footer} id="wannablab-footer">
             <div
                 className={cx("d-flex px-4 pt-3_5 pb-5 container", {
                     "flex-column": isPortable,
@@ -26,8 +24,11 @@ export const Footer = ({ isPortable }) => {
                         <span className="font-weight-semibold">wannablab family</span>
                     </p>
                 </div>
-                <ContactsBlock />
+                <ContactsBlock className="mb-3" />
             </div>
+            <Button onClick={handleLogin} color={buttonColorEnum.UNSTYLED}>
+                Залогінитися
+            </Button>
         </footer>
     );
 };

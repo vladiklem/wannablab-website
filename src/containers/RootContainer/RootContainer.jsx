@@ -20,6 +20,7 @@ import { initGroups } from "store/groups/actions";
 import { initGeneral } from "store/general/actions";
 import { initCurrentUser } from "store/currentUser/actions";
 import { isAdminSelector } from "selectors/general";
+import { toggleModal } from "store/modals/actions";
 import { isLoggedInSelector } from "selectors/blaber";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
@@ -32,16 +33,14 @@ firebaseService.init();
 
 export const RootContainer = () => {
     const dispatch = useDispatch();
-
-    const [modalState, setModalState] = useState(undefined);
     const [coursesClicked, setCoursesClicked] = useState(false);
     const [pricesClicked, setPricesClicked] = useState(false);
 
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     const openLoginModal = useCallback(
-        () => setModalState({ name: modalNamesEnum.LOGIN, isOpen: true }),
-        [setModalState],
+        () => dispatch(toggleModal(modalNamesEnum.LOGIN )),
+        [dispatch],
     );
 
     const onCoursesClick = useCallback(() => {
@@ -108,7 +107,7 @@ export const RootContainer = () => {
                     "list-scale-animation2": pricesClicked,
                 })}
             >
-                <ModalsContainer modalState={modalState} />
+                <ModalsContainer />
                 <Switch>
                     <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
                     <Route
@@ -132,7 +131,7 @@ export const RootContainer = () => {
                     <Route component={NotFoundPage} />
                 </Switch>
             </main>
-            <Footer isPortable={isPortable} />
+            <Footer handleLogin={openLoginModal} isPortable={isPortable} />
         </Router>
     );
 };

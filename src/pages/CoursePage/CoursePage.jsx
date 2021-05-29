@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
@@ -21,12 +21,24 @@ export const CoursePage = () => {
     const course = coursesList.find(({ slug: courseSlug }) => slug === courseSlug);
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 1000,
+            behavior: "smooth"
+        });
+    }, []);
+
     return (
         <article className="pt-4">
             <section className="mb-5 container">
                 <div className="row">
-                    <div className="col-md-6 colsm-12">
+                    <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{course.title}</h1>
+                        <img
+                            className={styles.coursePage__image}
+                            src={course.imgSrc}
+                            alt={course.description}
+                        />
                         <h2 className="regular mb-3">{course.description}</h2>
                         <div className="row flex-nowrap mb-3">
                             <span className="col-6">
@@ -34,7 +46,7 @@ export const CoursePage = () => {
                                     className="w-100 text-highlighted py-2 font-weight-bold"
                                     color="blue-soft"
                                 >
-                                    Більше
+                                    {isPortable ? "Більше" : "Читати більше"}
                                 </Button>
                             </span>
                             <span className="col-6">
@@ -43,7 +55,7 @@ export const CoursePage = () => {
                                     color="purple-soft"
                                     href="#wannablab-lead-form"
                                 >
-                                    Хочу
+                                    {isPortable ? "Хочу" : "Хочу...дуже :3"}
                                 </Button>
                             </span>
                         </div>
@@ -72,7 +84,7 @@ export const CoursePage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-sm-12">
+                    <div className={cx("col-md-6 col-sm-12", { "d-none": isPortable })}>
                         <img
                             className={styles.coursePage__image}
                             src={course.imgSrc}

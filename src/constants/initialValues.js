@@ -30,8 +30,3 @@ export const initialGroup = {
     members: [],
     description: "",
 };
-
-export const initialModalState = {
-    name: null,
-    isOpen: false,
-};

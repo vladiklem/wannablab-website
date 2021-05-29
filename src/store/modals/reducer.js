@@ -9,8 +9,12 @@ export const initialState = {
 export const handlers = {
     [modalNamesEnum.AD]: (state, action) => ({
         name: action.name,
-        isOpen: !state.isOpen,
+        isOpen: state.name === action.name ? !state.isOpen : true,
     }),
+    [modalNamesEnum.LOGIN]: (state, action) => { console.log(action); return ({
+        name: action.name,
+        isOpen: state.name === action.name ? !state.isOpen : true,
+    })},
 };
 
 export const modalsReducer = createReducer(initialState, handlers);

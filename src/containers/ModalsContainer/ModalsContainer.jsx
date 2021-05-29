@@ -1,29 +1,23 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { modalNamesEnum } from "constants/enums";
-import { initialModalState } from "constants/initialValues";
+import { toggleModal } from "store/modals/actions";
 
 import { LoginForm } from "./LoginForm/LoginForm";
-import { UniversalModal } from './UniversalModal/UniversalModal';
+import { UniversalModal } from "./UniversalModal/UniversalModal";
 
-export const ModalsContainer = ({ modalState = initialModalState, modalProps }) => {
-    const [state, setState] = useState(modalState);
-    const modal = useSelector(store => store.modals);
+export const ModalsContainer = () => {
+    const dispatch = useDispatch();
+    const { name, modalProps = {}, isOpen} = useSelector((store) => store.modals);
 
-    const toggle = useCallback(() => setState((state) => ({ ...state, isOpen: !state.isOpen })), [
-        setState,
-    ]);
+    const toggle = useCallback(() => dispatch(toggleModal(name)), [dispatch, name]);
 
-    useEffect(() => {
-        setState(modalState);
-    }, [modalState]);
-
-    switch (modal.name) {
+    switch (name) {
         case modalNamesEnum.LOGIN:
-            return <LoginForm isOpen={state.isOpen} toggle={toggle} {...modalProps} />;
+            return <LoginForm isOpen={isOpen} toggle={toggle} {...modalProps} />;
         case modalNamesEnum.AD:
-            return <UniversalModal />
+            return <UniversalModal />;
         default:
             return null;
     }

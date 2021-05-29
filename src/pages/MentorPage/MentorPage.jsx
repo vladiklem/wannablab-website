@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
@@ -19,11 +19,25 @@ export const MentorPage = () => {
 
     const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
+
     return (
         <article className="pt-4">
             <section className="mb-5 container">
                 <div className="row">
-                    <div className="col-md-6 colsm-12">
+                    <div className={cx("col-md-6 col-sm-12 d-none", { "d-block": isPortable })}>
+                        <img
+                            className="image rounded-xl mb-2"
+                            src={mentor.src}
+                            alt={mentor.description}
+                        />
+                    </div>
+                    <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{mentor.name}</h1>
                         <h2 className="regular mb-3">{mentor.description}</h2>
                         <div className="row flex-nowrap mb-3">
@@ -33,7 +47,7 @@ export const MentorPage = () => {
                                     color="blue-soft"
                                     href="#wannablab-teacher-description"
                                 >
-                                    Читати більше
+                                    {isPortable ? "Більше" : "Читати більше"}
                                 </Button>
                             </span>
                             <span className="col-6">
@@ -49,7 +63,7 @@ export const MentorPage = () => {
                         {groups.length ? (
                             <>
                                 <h2 className="h3">Календар груп</h2>
-                                <GroupsScrollableList list={groups} />
+                                <GroupsScrollableList isPortable={isPortable} list={groups} />
                             </>
                         ) : (
                             <Loader />
@@ -64,7 +78,7 @@ export const MentorPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 col-sm-12">
+                    <div className={cx("col-md-6 col-sm-12", { "d-none": isPortable })}>
                         <img
                             className="image rounded-xl"
                             src={mentor.src}

@@ -7,7 +7,11 @@
     margin: 0;
     background-color: transparent;
     border: 0;
-    box-shadow: $shadow-none !important;
+    box-shadow: $shadow-none;
+
+    &:focus {
+        box-shadow: $shadow-none;
+    }
 }
 
 .btn-success-gradient {
@@ -48,12 +52,12 @@
     background-color: $purple-soft;
     color: $white;
     border: none;
-    transition: all ease-in-out .25s;
+    transition: all ease-in-out 0.25s;
     outline: 0;
 
     &:hover {
         box-shadow: $shadow-soft;
-        color:  white;
+        color: white;
     }
 }
 
@@ -61,12 +65,12 @@
     background-color: $blue-soft;
     color: $white;
     border: 0;
-    transition: all ease-in-out .25s;
+    transition: all ease-in-out 0.25s;
     outline: 0;
 
     &:hover {
         box-shadow: $shadow-soft;
-        color:  $white;
+        color: $white;
     }
 }
 
@@ -74,7 +78,7 @@
     background-color: $green-soft;
     color: $white;
     border: 0;
-    transition: all ease-in-out .25s;
+    transition: all ease-in-out 0.25s;
     outline: 0;
 
     &:hover {

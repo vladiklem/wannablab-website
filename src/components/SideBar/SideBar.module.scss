@@ -1,13 +1,13 @@
 @import "~assets/styles/config/containers";
+@import "~assets/styles/config/colors";
 
 .sidebar {
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
     width: $sideBarWidth;
     max-width: $sideBarWidth;
-    background: #7386d5;
-    color: #fff;
+    border-right: 2px solid $gray;
     margin-left: -#{$sideBarWidth};
     transition: all 0.5s;
 }

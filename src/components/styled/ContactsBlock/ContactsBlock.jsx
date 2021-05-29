@@ -4,8 +4,8 @@ import cx from "classnames";
 import { Instagram, Telegram } from "components/Icons/social";
 import { EmailNewsForm } from "forms/EmailNewsForm/EmailNewsForm";
 
-export const ContactsBlock = ({ isRow = true }) => (
-    <div className="d-flex flex-column">
+export const ContactsBlock = ({ isRow = true, className }) => (
+    <div className={cx("d-flex flex-column", className)}>
         <h1 className="hidden-element">Контакти</h1>
         <p className="regular mb-1">коннект з нами:</p>
         <ul className={cx("d-flex flex-wrap mb-3", { "flex-column": !isRow })}>

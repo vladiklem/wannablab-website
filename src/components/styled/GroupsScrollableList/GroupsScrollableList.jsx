@@ -10,6 +10,7 @@ export const GroupsScrollableList = ({ isPortable, list = [], ...props }) => (
         hasArrows={true}
         isScrollbarVisible={false}
         className={cx("mt-n2 mb-2", { "mx-n4": isPortable })}
+        offset={250}
         {...props}
     >
         {list.map((item, index, array) => (

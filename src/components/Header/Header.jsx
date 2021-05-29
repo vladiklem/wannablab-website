@@ -1,20 +1,48 @@
 import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router";
 import cx from "classnames";
-
-import { NavItem } from "./NavItem/NavItem";
 
 import { buttonColorEnum, Button } from "components/Button/Button";
 
+import { NavItem } from "./NavItem/NavItem";
 import styles from "./Header.module.scss";
 
 import logo from "assets/images/logo.png";
 
+const navigation = [
+    {
+        children: "Вчителі",
+        id: "wannablab-teachers",
+    },
+    {
+        children: "Ціни",
+        id: "wannablab-prices",
+    },
+    {
+        children: "Курси",
+        id: "wannablab-courses",
+    },
+    {
+        children: "Відгуки",
+        id: "wannablab-feedback",
+    },
+    {
+        children: "Контакти",
+        id: "wannablab-footer",
+    },
+];
+
 export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
+    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
     const onClick = useCallback(() => {
         setIsOpen((open) => !open);
     }, [setIsOpen]);
+
+    const handleRedirect = useCallback(() => {
+        history.location.pathname !== "/" && history.push("/");
+    }, [history]);
 
     return (
         <header
@@ -48,15 +76,9 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
                 })}
             >
                 <ul className="d-flex scrollbar-invisible overflow-auto py-4 pl-3">
-                    <NavItem id="wannablab-teachers">Вчителі</NavItem>
-                    <NavItem id="wannablab-prices" onClick={onPricesClick}>
-                        Ціни
-                    </NavItem>
-                    <NavItem id="wannablab-courses" onClick={onCoursesClick}>
-                        Курси
-                    </NavItem>
-                    <NavItem id="wannablab-feedback">Відгуки</NavItem>
-                    <NavItem id="wannablab-footer">Контакти</NavItem>
+                    {navigation.map((item) => (
+                        <NavItem onClick={handleRedirect} {...item} />
+                    ))}
                 </ul>
                 <span
                     onClick={onClick}
