@@ -10,6 +10,8 @@ import { LeadForm } from "components/styled/LeadForm/LeadForm";
 
 import { mediaBreakpointsEnum } from "constants/enums";
 
+import ReactGA from 'react-ga';
+
 import styles from "./Home.module.scss";
 
 export const Home = () => {
@@ -20,6 +22,11 @@ export const Home = () => {
 
     const onOrderClick = useCallback(() => {
         document.getElementById("blaber-form").scrollIntoView();
+        ReactGA.event({
+            category: 'Homepage',
+            action: 'Clicked Позвонити пізніше',
+            label: 'Test'
+          });
         setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
