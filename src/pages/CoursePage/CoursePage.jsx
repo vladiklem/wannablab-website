@@ -35,7 +35,7 @@ export const CoursePage = () => {
                     <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{course.title}</h1>
                         <img
-                            className={styles.coursePage__image}
+                            className={cx(styles.coursePage__image, "d-md-none")}
                             src={course.imgSrc}
                             alt={course.description}
                         />

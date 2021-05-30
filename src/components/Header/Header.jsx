@@ -40,9 +40,14 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
         setIsOpen((open) => !open);
     }, [setIsOpen]);
 
-    const handleRedirect = useCallback(() => {
-        history.location.pathname !== "/" && history.push("/");
-    }, [history]);
+    const handleRedirect = useCallback(
+        (id) => {
+            history.location.pathname !== "/" && history.push("/");
+            id === "wannablab-courses" && onCoursesClick();
+            id === "wannablab-prices" && onPricesClick();
+        },
+        [history, onCoursesClick, onPricesClick],
+    );
 
     return (
         <header
@@ -77,7 +82,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
             >
                 <ul className="d-flex scrollbar-invisible overflow-auto py-4 pl-3">
                     {navigation.map((item) => (
-                        <NavItem onClick={handleRedirect} {...item} />
+                        <NavItem onClick={handleRedirect} key={item.id} {...item} />
                     ))}
                 </ul>
                 <span
