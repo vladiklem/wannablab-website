@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import cx from "classnames";
 
-import { ScrollableItem, Button, buttonColorEnum } from "components/index";
+import { ScrollableItem, Button, buttonColorEnum, List } from "components/index";
 
 import styles from "./ServiceScrollableItem.module.scss";
 
@@ -9,7 +9,8 @@ export const ServiceScrollableItem = ({
     index,
     array,
     src,
-    shortDescription = "",
+    featuredList,
+    priceList,
     title,
     key,
     lessonsCount,
@@ -53,14 +54,15 @@ export const ServiceScrollableItem = ({
             <h3 className="h3 mt-3 mb-2">{title}</h3>
             <div className="row flex-grow-1">
                 <div className={cx("col-md-8 col-sm-12", { "d-flex flex-column": isPortable })}>
-                    <h4 className={cx("regular", { "mb-4": !isPortable })}>{shortDescription}</h4>
+                <List className="mb-2" type="features-white" list={featuredList} />
+                    {/* <h4 className={cx("regular", { "mb-4": !isPortable })}>{shortDescription}</h4> */}
                     {isPortable && (
                         <div className="row flex-grow-1">
                             <span className="col-6 d-flex align-items-center">
-                                <img className="d-block image" src={src} alt={shortDescription} />
+                                <img className="d-block image" src={src} alt="" />
                             </span>
                             <span className="col-6 d-flex align-items-center justify-content-center">
-                                <p>{`${price} грн`}</p>
+                            <List className="mb-2" type="features-white" list={priceList} />
                             </span>
                         </div>
                     )}
@@ -71,7 +73,7 @@ export const ServiceScrollableItem = ({
                             <img
                                 className="d-block ml-auto mr-auto image"
                                 src={src}
-                                alt={shortDescription}
+                                alt=""
                             />
                         )}
                     </div>
