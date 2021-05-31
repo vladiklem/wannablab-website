@@ -86,3 +86,11 @@
         color: $white;
     }
 }
+
+.btn-red {
+    background-color: $red-400;
+    color: $white;
+    border: 0;
+    transition: all ease-in-out 0.25s;
+    outline: 0;
+}

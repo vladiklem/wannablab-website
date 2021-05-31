@@ -14,7 +14,7 @@ export const GroupsScrollableList = ({ isPortable, list = [], ...props }) => (
         {...props}
     >
         {list.map((item, index, array) => (
-            <GroupScrollableItem index={index} array={array} item={item} />
+            <GroupScrollableItem key={item.id} index={index} array={array} item={item} />
         ))}
     </Scrollable>
 );

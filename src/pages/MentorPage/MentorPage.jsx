@@ -7,6 +7,7 @@ import cx from "classnames";
 import { mentorsList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
 import { Button, Loader } from "components/index";
+import { scrollToTop } from "helpers/general";
 
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
 import { GroupsScrollableList } from "components/styled/GroupsScrollableList/GroupsScrollableList";
@@ -20,10 +21,7 @@ export const MentorPage = () => {
     const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
 
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        scrollToTop();
     }, []);
 
     return (

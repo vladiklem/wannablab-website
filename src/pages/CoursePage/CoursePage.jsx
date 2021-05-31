@@ -9,6 +9,7 @@ import { mediaBreakpointsEnum } from "constants/enums";
 import { Button, List } from "components/index";
 import { selectGroups } from "store/groups/selectors";
 import { Quote } from "components/styled/index";
+import { scrollToTop } from "helpers/general";
 
 import styles from "./CoursePage.module.scss";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
@@ -22,10 +23,7 @@ export const CoursePage = () => {
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     useEffect(() => {
-        window.scrollTo({
-            top: 1000,
-            behavior: "smooth"
-        });
+        scrollToTop();
     }, []);
 
     return (

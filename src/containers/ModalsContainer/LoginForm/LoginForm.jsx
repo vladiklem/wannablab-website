@@ -5,13 +5,12 @@ import { useForm } from "react-hook-form";
 import { Modal, ModalFooter } from "reactstrap";
 
 import { Input, Button } from "components/index";
-import { authAsAdmin } from "store/general/actions";
+import { authAsAdmin } from "store/app/actions";
 import { authUser } from "store/currentUser/actions";
 import { adminPasswordCheck } from "utils/password";
 
 export const LoginForm = ({ isOpen, toggle }) => {
     const dispatch = useDispatch();
-    const blabers = useSelector((state) => state.users.data);
     const history = useHistory();
     const { handleSubmit, register } = useForm();
 
@@ -21,28 +20,11 @@ export const LoginForm = ({ isOpen, toggle }) => {
         toggle();
     }, [dispatch, history, toggle]);
 
-    const toBlaberRoom = useCallback(
-        (blaber) => {
-            dispatch(authUser(blaber));
-            history.push(`/profile`);
-            toggle();
-        },
-        [dispatch, history, toggle],
-    );
-
-    const userCredentialsCheck = useCallback(
-        (data) => {
-            const blaber = blabers.find(({ username }) => username === data.login);
-            blaber && toBlaberRoom(blaber);
-        },
-        [blabers, toBlaberRoom],
-    );
-
     const onSubmit = useCallback(
         (data) => {
-            adminPasswordCheck(data) ? toAdmin() : userCredentialsCheck(data);
+            adminPasswordCheck(data) && toAdmin();
         },
-        [toAdmin, userCredentialsCheck],
+        [toAdmin],
     );
 
     return (

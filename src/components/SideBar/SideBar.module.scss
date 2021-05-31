@@ -3,12 +3,11 @@
 
 .sidebar {
     position: fixed;
-    top: 80px;
+    top: 0;
     left: 0;
-    width: $sideBarWidth;
-    max-width: $sideBarWidth;
+    bottom: 0;
+    max-width: 600px;
     border-right: 2px solid $gray;
-    margin-left: -#{$sideBarWidth};
     transition: all 0.5s;
 }
 

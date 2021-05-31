@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
 
-import { toggleTopBar } from "store/general/actions";
+import { toggleTopBar } from "store/app/actions";
 import checklist from "assets/images/checklist.jpeg";
 import goal from "assets/images/goal.png";
 import vocabulary from "assets/images/vocabulary.png";

@@ -11,10 +11,10 @@ export const handlers = {
         name: action.name,
         isOpen: state.name === action.name ? !state.isOpen : true,
     }),
-    [modalNamesEnum.LOGIN]: (state, action) => { console.log(action); return ({
+    [modalNamesEnum.LOGIN]: (state, action) => ({
         name: action.name,
         isOpen: state.name === action.name ? !state.isOpen : true,
-    })},
+    }),
 };
 
 export const modalsReducer = createReducer(initialState, handlers);

@@ -1,24 +1,30 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
-import cx from "classnames";
+import { useMediaQuery } from "react-responsive";
 
 import { SideBar } from "components/index";
+import { scrollToTop } from "helpers/general";
+import { mediaBreakpointsEnum } from "constants/enums";
 
-import { EventsPanel } from "./panels/EventsPanel/EventsPanel";
-import { UsersPanel } from "./panels/UsersPanel/UsersPanel";
-import { GroupsPanel } from "./panels/GroupsPanel/GroupsPanel";
-import { GeneralPanel } from "./panels/GeneralPanel/GeneralPanel";
+import { EventsPanel } from "./EventsPanel/EventsPanel";
+import { UsersPanel } from "./UsersPanel/UsersPanel";
+import { GroupsPanel } from "./GroupsPanel/GroupsPanel";
+import { CustomersPanel } from './CustomersPanel/CustomersPanel';
+// import { AppPanel } from "./AppPanel/AppPanel";
 
 export const AdminPage = () => {
-    const { withSideBar } = useSelector(state => state.general);
     const { url, path } = useRouteMatch();
+    const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
+
+    useEffect(() => {
+        scrollToTop();
+    }, []);
 
     return (
         <>
             <SideBar title="wannablab" isOpen={true}>
                 <ul>
-                    <li>
+                    {/* <li>
                         <Link to={`${url}/users`}>Блабери</Link>
                     </li>
                     <li>
@@ -28,13 +34,14 @@ export const AdminPage = () => {
                         <Link to={`${url}/groups`}>Групи</Link>
                     </li>
                     <li>
-                        <Link to={`${url}/general`}>Налаштування</Link>
+                        <Link to={`${url}/app`}>Налаштування</Link>
+                    </li> */}
+                    <li>
+                        <Link to={`${url}/customers`}>Кастомери</Link>
                     </li>
                 </ul>
             </SideBar>
-            <div className={cx({
-                "container-with-side-bar": withSideBar,
-            })}>
+            <div>
                 <div>
                     <Switch>
                         <Route path={`${path}/users`}>
@@ -46,9 +53,12 @@ export const AdminPage = () => {
                         <Route path={`${path}/groups`}>
                             <GroupsPanel />
                         </Route>
-                        <Route path={`${path}/general`}>
-                            <GeneralPanel />
+                        <Route path={`${path}/customers`}>
+                            <CustomersPanel isPortable={isPortable} />
                         </Route>
+                        {/* <Route path={`${path}/app`}>
+                            <AppPanel />
+                        </Route> */}
                     </Switch>
                 </div>
             </div>

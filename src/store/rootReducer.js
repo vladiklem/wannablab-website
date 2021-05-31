@@ -4,16 +4,16 @@ import { usersReducer } from "./users/reducer";
 import { eventsReducer } from "./events/reducer";
 import { groupsReducer } from "./groups/reducer";
 import { leadsReducer } from "./leads/reducer";
-import { generalReducer } from "./general/reducer";
+import { appReducer } from "./app/reducer";
 import { currentUserReducer } from "./currentUser/reducer";
-import { modalsReducer } from './modals/reducer';
+import { modalsReducer } from "./modals/reducer";
 
 export const rootReducer = combineReducers({
     users: usersReducer,
     events: eventsReducer,
     groups: groupsReducer,
     leads: leadsReducer,
-    general: generalReducer,
+    app: appReducer,
     currentUser: currentUserReducer,
     modals: modalsReducer,
 });

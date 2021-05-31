@@ -8,7 +8,7 @@ import { Button, buttonColorEnum, Input } from "components/index";
 import { SuccessIcon } from "components/Icons/SuccessIcon";
 import { Instagram, Telegram } from "components/Icons/social";
 import { addLead } from "store/leads/actions";
-import { bookTest } from "store/general/actions";
+import { bookTest } from "store/app/actions";
 import { instagramLink } from "constants/social";
 
 import styles from "./LeadForm.module.scss";

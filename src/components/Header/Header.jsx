@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import cx from "classnames";
 
@@ -8,6 +9,7 @@ import { NavItem } from "./NavItem/NavItem";
 import styles from "./Header.module.scss";
 
 import logo from "assets/images/logo.png";
+import { selectIsAdmin } from "store/app/selectors";
 
 const navigation = [
     {
@@ -32,7 +34,7 @@ const navigation = [
     },
 ];
 
-export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
+export const Header = ({ onCoursesClick, onPricesClick, isPortable, isAdmin }) => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -51,9 +53,11 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
 
     return (
         <header
-            className={cx("container d-flex pt-4", {
+            className={cx({
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
+                "d-none": isAdmin,
+                "container d-flex pt-4": !isAdmin,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">

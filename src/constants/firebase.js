@@ -6,8 +6,8 @@ export const FIREBASE_DATA_GROUPS = "groups";
 
 export const FIREBASE_DATA_LEADS = "leads";
 
-export const FIREBASE_DATA_GENERAL = {
-    SLUG: "general",
+export const FIREBASE_DATA_APP = {
+    SLUG: "app",
     TEST_TIME: "testTime",
 };
 

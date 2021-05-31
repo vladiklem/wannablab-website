@@ -8,9 +8,9 @@ import logo from "assets/images/logo.png";
 
 import styles from "./Footer.module.scss";
 
-export const Footer = ({ isPortable, handleLogin }) => {
+export const Footer = ({ isPortable, isAdmin, handleLogin }) => {
     return (
-        <footer className={styles.footer} id="wannablab-footer">
+        <footer className={cx(styles.footer, { "d-none": isAdmin })} id="wannablab-footer">
             <div
                 className={cx("d-flex px-4 pt-3_5 pb-5 container", {
                     "flex-column": isPortable,

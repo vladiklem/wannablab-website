@@ -4,7 +4,7 @@ import { usersSaga } from "./users/saga";
 import { eventsSaga } from "./events/saga";
 import { groupsSaga } from "./groups/saga";
 import { leadsSaga } from "./leads/saga";
-import { generalSaga } from "./general/saga";
+import { appSaga } from "./app/saga";
 import { currentUserSaga } from "./currentUser/saga";
 
 export const rootSaga = function* () {
@@ -13,7 +13,7 @@ export const rootSaga = function* () {
         ...eventsSaga,
         ...groupsSaga,
         ...leadsSaga,
-        ...generalSaga,
+        ...appSaga,
         ...currentUserSaga,
     ]);
 };
