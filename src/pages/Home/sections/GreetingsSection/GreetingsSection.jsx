@@ -13,8 +13,7 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
                 "regular font-weight-semibold": isPortable,
             })}
         >
-            <strong> Англійська </strong> під культурним соусом. Єднаємо українського спеціаліста та
-            англомовного клієнта.
+            Навчаємо розмовній англійській онлайн для професійних цілей
         </h2>
         <div className="typing-container mb-2" id="wannablab-courses">
             <div className={cx("typing-wrapper", {
@@ -22,7 +21,7 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
                 "regular font-weight-semibold": isPortable,
             })}>Цінуємо кожного 😊</div>
         </div>
-        <h2 className="hidden-element">Що ми пропонуємо?</h2>
+        <h2>Наші плани та курси</h2>
         <Scrollable hasArrows={true} offset={isPortable ? 300 : 460} containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
             {coursesList.map(({ imgSrc, ...item }, index, array) => (
                 <ServiceScrollableItem
@@ -57,14 +56,14 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
                 color="blue-soft"
                 size="lg"
             >
-                Написати нам
+                Написати нам в Телеграм
             </Button>
             <Button
                 className="font-weight-bold text-highlighted rounded-xl"
                 color="green-soft"
                 size="lg"
             >
-                Інтерактивний тест
+                Пройти тестування рівня
             </Button>
         </div>
     </section>
