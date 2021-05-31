@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import cx from "classnames";
 
@@ -9,7 +8,6 @@ import { NavItem } from "./NavItem/NavItem";
 import styles from "./Header.module.scss";
 
 import logo from "assets/images/logo.png";
-import { selectIsAdmin } from "store/app/selectors";
 
 const navigation = [
     {

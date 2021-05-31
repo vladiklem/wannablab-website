@@ -1,12 +1,11 @@
 import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Modal, ModalFooter } from "reactstrap";
 
 import { Input, Button } from "components/index";
 import { authAsAdmin } from "store/app/actions";
-import { authUser } from "store/currentUser/actions";
 import { adminPasswordCheck } from "utils/password";
 
 export const LoginForm = ({ isOpen, toggle }) => {

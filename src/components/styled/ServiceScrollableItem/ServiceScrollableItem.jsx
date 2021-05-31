@@ -42,7 +42,10 @@ export const ServiceScrollableItem = ({
             <div className="d-flex align-items-center">
                 <p className={cx("mr-3", { "font-small": isPortable })}>{lessonsCount} уроків</p>
                 <span
-                    className={cx(styles.status, `circle-pulp-animation ${status.id} transition-250 mr-1`)}
+                    className={cx(
+                        styles.status,
+                        `circle-pulp-animation ${status.id} transition-250 mr-1`,
+                    )}
                 ></span>
                 <p className={cx({ "font-small": isPortable })}>
                     {cx({
@@ -54,7 +57,7 @@ export const ServiceScrollableItem = ({
             <h3 className="h3 mt-3 mb-2">{title}</h3>
             <div className="row flex-grow-1">
                 <div className={cx("col-md-8 col-sm-12", { "d-flex flex-column": isPortable })}>
-                <List className="mb-2" type="features-white" list={featuredList} />
+                    <List className="mb-2" type="features-white" list={featuredList} />
                     {/* <h4 className={cx("regular", { "mb-4": !isPortable })}>{shortDescription}</h4> */}
                     {isPortable && (
                         <div className="row flex-grow-1">
@@ -62,20 +65,14 @@ export const ServiceScrollableItem = ({
                                 <img className="d-block image" src={src} alt="" />
                             </span>
                             <span className="col-6 d-flex align-items-center justify-content-center">
-                            <List className="mb-2" type="features-white" list={priceList} />
+                                <List className="mb-2" type="features-white" list={priceList} />
                             </span>
                         </div>
                     )}
                 </div>
                 {!isPortable && (
                     <div className="col-4 d-flex align-items-center justify-content-center">
-                        {src && (
-                            <img
-                                className="d-block ml-auto mr-auto image"
-                                src={src}
-                                alt=""
-                            />
-                        )}
+                        {src && <img className="d-block ml-auto mr-auto image" src={src} alt="" />}
                     </div>
                 )}
             </div>
