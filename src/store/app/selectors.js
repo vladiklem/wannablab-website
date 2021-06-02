@@ -1,4 +1,4 @@
-export const selectIsAdmin = (state) => ({
-    isVisible: state.app.isAdmin,
+export const selectAdmin = (state) => ({
+    ...state.app.admin,
     isLoading: state.app.isLoading,
 });

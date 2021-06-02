@@ -1,5 +1,4 @@
 import React from "react";
-import cx from "classnames";
 
 import { Quote } from "components/styled/index";
 import { usersFeedbackList } from "constants/lists";
@@ -14,7 +13,8 @@ export const FeedbackSection = ({ isPortable }) => (
                     text={usersFeedbackList[0].description}
                     author={usersFeedbackList[0].name}
                     isPortable={isPortable}
-                    className={cx("mb-5", { "w-75": !isPortable })}
+                    className="mb-5"
+                    key={usersFeedbackList[0].name}
                 />
             ))}
         </div>

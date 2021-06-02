@@ -12,11 +12,11 @@ class LocalStorageService {
     }
 
     getItem(key) {
-        return JSON.parse(window.localStorage.getItem(key) || "{}");
+        return JSON.parse(localStorage.getItem(key) || "{}");
     }
 
     setItem(key, value) {
-        return window.localStorage.setItem(key, JSON.stringify(value))
+        return localStorage.setItem(key, JSON.stringify(value))
     }
 }
 

@@ -1,94 +1,97 @@
-import { GENERAL } from "./constants";
+import { APP } from "./constants";
 
 export const initApp = () => ({
-    type: GENERAL.INIT.IDLE,
+    type: APP.INIT.IDLE,
 });
 
 export const initAppSuccess = (settings) => ({
-    type: GENERAL.INIT.SUCCESS,
+    type: APP.INIT.SUCCESS,
     payload: {
         settings,
     },
 });
 
 export const initAppFailure = (error) => ({
-    type: GENERAL.INIT.FAILURE,
+    type: APP.INIT.FAILURE,
     payload: {
         error,
     },
 });
 
 export const addTest = (test) => ({
-    type: GENERAL.ADD_TEST.IDLE,
+    type: APP.ADD_TEST.IDLE,
     payload: {
         test,
     },
 });
 
 export const addTestSuccess = (test) => ({
-    type: GENERAL.ADD_TEST.SUCCESS,
+    type: APP.ADD_TEST.SUCCESS,
     payload: {
         test,
     },
 });
 
 export const addTestFailure = (error) => ({
-    type: GENERAL.ADD_TEST.FAILURE,
+    type: APP.ADD_TEST.FAILURE,
     payload: {
         error,
     },
 });
 
 export const bookTest = (id) => ({
-    type: GENERAL.BOOK_TEST.IDLE,
+    type: APP.BOOK_TEST.IDLE,
     payload: {
         id,
     },
 });
 
 export const bookTestSuccess = (entity) => ({
-    type: GENERAL.BOOK_TEST.SUCCESS,
+    type: APP.BOOK_TEST.SUCCESS,
     payload: {
         entity,
     },
 });
 
 export const bookTestFailure = (error) => ({
-    type: GENERAL.BOOK_TEST.FAILURE,
+    type: APP.BOOK_TEST.FAILURE,
     payload: {
         error,
     },
 });
 
 export const deleteTest = (id) => ({
-    type: GENERAL.DELETE_TEST.IDLE,
+    type: APP.DELETE_TEST.IDLE,
     payload: {
         id,
     },
 });
 
 export const deleteTestSuccess = (id) => ({
-    type: GENERAL.DELETE_TEST.SUCCESS,
+    type: APP.DELETE_TEST.SUCCESS,
     payload: {
         id,
     },
 });
 
 export const deleteTestFailure = (error) => ({
-    type: GENERAL.DELETE_TEST.FAILURE,
+    type: APP.DELETE_TEST.FAILURE,
     payload: {
         error,
     },
 });
 
-export const toggleTopBar = () => ({
-    type: GENERAL.TOGGLE_TOP_BAR.IDLE,
+export const toggleAdminVisibility = (isVisible = null) => ({
+    type: APP.ADMIN.TOGGLE_VISIBILITY.IDLE,
+    payload: {
+        isVisible
+    }
 });
 
-export const authAsAdmin = () => ({
-    type: GENERAL.AUTH_AS_ADMIN.IDLE,
+export const appAdminAuth = () => ({
+    type: APP.ADMIN.AUTH.IDLE,
 });
 
 export const authAsAdminSuccess = () => ({
-    type: GENERAL.AUTH_AS_ADMIN.SUCCESS,
+    type: APP.ADMIN.AUTH.SUCCESS,
 });
