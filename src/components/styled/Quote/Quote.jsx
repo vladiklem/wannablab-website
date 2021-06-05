@@ -6,7 +6,7 @@ import styles from "./Quote.module.scss";
 import cx from "classnames";
 
 export const Quote = ({ src, alt, text, author, className, isPortable }) => (
-    <div className={cx("row d-flex align-items-center", styles.quote, className)}>
+    <div className={cx("row d-flex align-items-center p-2", styles.quote, className)}>
         <div className="col-md-2 col-sm-12">
             <img
                 width={118}

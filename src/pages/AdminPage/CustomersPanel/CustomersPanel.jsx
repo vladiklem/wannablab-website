@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Input } from "components/index";
-import { updateLead } from "store/leads/actions";
+import { deleteLead, updateLead } from "store/leads/actions";
 
 import { LeadItem } from "./LeadItem/LeadItem";
 
@@ -36,6 +36,13 @@ export const CustomersPanel = ({ isPortable }) => {
         [dispatch],
     );
 
+    const onDelete = useCallback(
+        (id) => {
+            dispatch(deleteLead(id));
+        },
+        [dispatch],
+    );
+
     const [newLeads, oldLeads] = useMemo(
         () =>
             filteredLeads.reduce(
@@ -59,10 +66,22 @@ export const CustomersPanel = ({ isPortable }) => {
             />
             <div>
                 {newLeads.map((item) => (
-                    <LeadItem onUpdate={onUpdate} isPortable={isPortable} {...item} key={item.id} />
+                    <LeadItem
+                        onUpdate={onUpdate}
+                        onDelete={onDelete}
+                        isPortable={isPortable}
+                        {...item}
+                        key={item.id}
+                    />
                 ))}
                 {oldLeads.map((item) => (
-                    <LeadItem onUpdate={onUpdate} isPortable={isPortable} {...item} key={item.id} />
+                    <LeadItem
+                        onUpdate={onUpdate}
+                        onDelete={onDelete}
+                        isPortable={isPortable}
+                        {...item}
+                        key={item.id}
+                    />
                 ))}
             </div>
         </article>

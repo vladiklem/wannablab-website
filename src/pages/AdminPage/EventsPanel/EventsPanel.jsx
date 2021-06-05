@@ -10,7 +10,7 @@ import { getFormattedCalendarEvents } from "helpers/date";
 import { initialEvent } from "constants/initialValues";
 import { formModeEnum } from "constants/enums";
 
-import { EventForm } from "./components/EventForm/EventForm";
+import { EventForm } from "./EventForm/EventForm";
 
 const localizer = momentLocalizer(moment);
 

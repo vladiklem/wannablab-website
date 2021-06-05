@@ -13,16 +13,27 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
                 "regular font-weight-semibold": isPortable,
             })}
         >
-            Навчаємо розмовній англійській онлайн для професійних цілей
+            Навчаємо розмовній <strong>англійській</strong> онлайн для професійних цілей
         </h2>
-        <div className="typing-container mb-2" id="wannablab-courses">
-            <div className={cx("typing-wrapper", {
-                "font-medium": !isPortable,
-                "regular font-weight-semibold": isPortable,
-            })}>Цінуємо кожного 😊</div>
+        <div className="typing-container mb-4" id="wannablab-courses">
+            <div
+                className={cx("typing-wrapper", {
+                    "font-medium": !isPortable,
+                    "regular font-weight-semibold": isPortable,
+                })}
+            >
+                Цінуємо кожного 😊
+            </div>
         </div>
-        <h2>Наші плани та курси</h2>
-        <Scrollable hasArrows={true} offset={isPortable ? 300 : 460} containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
+        <Scrollable
+            hasArrows={true}
+            offset={isPortable ? 300 : 460}
+            containerClassName="ml-n4 mr-n4"
+            isScrollbarVisible={false}
+            components={{
+                Header: <h2 className="h3 font-weight-bold">Наші плани та курси</h2>,
+            }}
+        >
             {coursesList.map(({ imgSrc, ...item }, index, array) => (
                 <ServiceScrollableItem
                     index={index}

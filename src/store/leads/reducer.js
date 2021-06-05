@@ -26,6 +26,10 @@ export const handlers = {
         ...state,
         data: state.data.map((item) => (item.id === payload.lead.id ? payload.lead : item)),
     }),
+    [LEADS.DELETE.SUCCESS]: (state, { payload }) => ({
+        ...state,
+        data: state.data.filter((item) => item.id !== payload.id),
+    }),
 };
 
 export const leadsReducer = createReducer(initialState, handlers);

@@ -19,11 +19,12 @@ import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initApp } from "store/app/actions";
 import { initCurrentUser } from "store/currentUser/actions";
-import { selectIsAdmin } from "store/app/selectors";
+import { selectAdmin } from "store/app/selectors";
 import { toggleModal } from "store/modals/actions";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+import { RouterListener } from "./RouterListener/RouterListener";
 
 import styles from "./RootContainer.module.scss";
 import "assets/styles/index.scss";
@@ -33,7 +34,7 @@ firebaseService.init();
 
 export const RootContainer = () => {
     const dispatch = useDispatch();
-    const admin = useSelector(selectIsAdmin);
+    const admin = useSelector(selectAdmin);
     const [coursesClicked, setCoursesClicked] = useState(false);
     const [pricesClicked, setPricesClicked] = useState(false);
 
@@ -79,7 +80,7 @@ export const RootContainer = () => {
                 isPortable={isPortable}
                 onCoursesClick={onCoursesClick}
                 onPricesClick={onPricesClick}
-                isAdmin={admin.isVisible}
+                isVisible={!admin.isVisible}
             />
             <main
                 className={cx(styles.background, {
@@ -88,6 +89,7 @@ export const RootContainer = () => {
                 })}
             >
                 <ModalsContainer />
+                <RouterListener />
                 <Switch>
                     <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
                     <Route
@@ -103,14 +105,20 @@ export const RootContainer = () => {
                         render={renderRoute({ routeComponent: ChecklistPage })}
                     />
                     <Route path="/quiz" render={renderRoute({ routeComponent: QuizPage })} />
-                    <PrivateRoute path="/admin" component={AdminPage} selector={selectIsAdmin} />
+                    <PrivateRoute
+                        path="/admin"
+                        isLoading={admin.isLoading}
+                        hasAccess={admin.isAdmin}
+                        component={AdminPage}
+                        selector={selectAdmin}
+                    />
                     <Route component={NotFoundPage} />
                 </Switch>
             </main>
             <Footer
                 handleLogin={openLoginModal}
                 isPortable={isPortable}
-                isAdmin={admin.isVisible}
+                isVisible={!admin.isVisible}
             />
         </Router>
     );

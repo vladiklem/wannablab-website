@@ -1,38 +1,53 @@
 import { createReducer } from "helpers/store";
-import { GENERAL } from "./constants";
-import { objToArray } from "utils/converters";
+import { APP } from "./constants";
 
 const initialState = {
     withSideBar: true,
-    isAdmin: false,
+    admin: {
+        isAdmin: false,
+        isVisible: false,
+    },
     isLoading: true,
     testTime: [],
     error: "",
 };
 
 const handlers = {
-    [GENERAL.INIT.SUCCESS]: (state, { payload }) => ({
+    [APP.INIT.SUCCESS]: ({ admin, ...state }, { payload: { settings } }) => ({
         ...state,
-        ...payload.settings,
-        testTime: objToArray(payload.settings.testTime),
+        ...settings,
+        admin: { ...admin, isAdmin: settings.isAdmin },
         isLoading: false,
     }),
-    [GENERAL.INIT.FAILURE]: (state, { payload }) => ({
+    [APP.INIT.FAILURE]: (state, { payload }) => ({
         ...state,
         error: payload.error,
         isLoading: false,
     }),
-    [GENERAL.ADD_TEST.SUCCESS]: (state, { payload }) => ({
+    [APP.ADD_TEST.SUCCESS]: (state, { payload }) => ({
         ...state,
         testTime: [...state.testTime, ...payload.test],
     }),
-    [GENERAL.ADD_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [GENERAL.BOOK_TEST.SUCCESS]: (state, { payload }) => ({
+    [APP.ADD_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
+    [APP.BOOK_TEST.SUCCESS]: (state, { payload }) => ({
         ...state,
         testTime: { ...state.testTime, ...payload.entity },
     }),
-    [GENERAL.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [GENERAL.AUTH_AS_ADMIN.SUCCESS]: (state) => ({ ...state, isAdmin: true }),
+    [APP.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
+    [APP.ADMIN.AUTH.SUCCESS]: (state) => ({
+        ...state,
+        admin: { isAdmin: true, isVisible: true },
+    }),
+    [APP.ADMIN.TOGGLE_VISIBILITY.IDLE]: ({ admin, ...state }, { payload }) => {
+        console.log(admin, payload.isVisible);
+        return {
+            ...state,
+            admin: {
+                ...admin,
+                isVisible: payload.isVisible === null ? !admin.isVisible : payload.isVisible,
+            },
+        };
+    },
 };
 
 export const appReducer = createReducer(initialState, handlers);

@@ -5,13 +5,15 @@ import { Collapse, Button } from "components/index";
 
 import styles from "./LeadItem.module.scss";
 
-export const LeadItem = ({ id, status, name, phoneNumber, onUpdate, isPortable }) => {
+export const LeadItem = ({ id, status, name, phoneNumber, onUpdate, onDelete, isPortable }) => {
     const handleUpdate = useCallback(() => onUpdate({ id, status: "touched", name, phoneNumber }), [
         id,
         name,
         phoneNumber,
         onUpdate,
     ]);
+
+    const handleDelete = useCallback(() => onDelete(id), [id, onDelete]);
 
     return (
         <Collapse
@@ -37,7 +39,9 @@ export const LeadItem = ({ id, status, name, phoneNumber, onUpdate, isPortable }
                 </Button>
             </span>
             <span className="col-6">
-                <Button color="red">Видалити</Button>
+                <Button onClick={handleDelete} color="red">
+                    Видалити
+                </Button>
             </span>
         </Collapse>
     );

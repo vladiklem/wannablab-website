@@ -12,7 +12,6 @@ export const ServiceScrollableItem = ({
     featuredList,
     priceList,
     title,
-    key,
     lessonsCount,
     status,
     price = "300",
@@ -36,7 +35,6 @@ export const ServiceScrollableItem = ({
                 },
                 className,
             )}
-            key={key}
             {...props}
         >
             <div className="d-flex align-items-center">

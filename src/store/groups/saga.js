@@ -8,8 +8,10 @@ import {
     initGroupsFailure,
     addGroupSuccess,
     addGroupFailure,
-    editGroupSuccess,
-    editGroupFailure,
+    updateGroupSuccess,
+    updateGroupFailure,
+    deleteGroupSuccess,
+    deleteGroupFailure,
 } from "./actions";
 import { GROUPS } from "./constants";
 
@@ -34,17 +36,27 @@ function* addGroupSaga({ payload }) {
     }
 }
 
-function* editGroupSaga({ payload: { group } }) {
+function* updateGroupSaga({ payload: { group } }) {
     try {
         yield call(firebaseService.update, FIREBASE_DATA_GROUPS, group.id, group, { merge: true });
-        yield put(editGroupSuccess(group));
+        yield put(updateGroupSuccess(group));
     } catch (error) {
-        yield put(editGroupFailure(error));
+        yield put(updateGroupFailure(error));
+    }
+}
+
+function* deleteGroupSaga({ payload }) {
+    try {
+        yield call(firebaseService.delete, FIREBASE_DATA_GROUPS, payload.id);
+        yield put(deleteGroupSuccess(payload.id));
+    } catch (error) {
+        yield put(deleteGroupFailure(error.message));
     }
 }
 
 export const groupsSaga = [
     takeLatest(GROUPS.INIT.IDLE, initGroupsSaga),
     takeLatest(GROUPS.ADD.IDLE, addGroupSaga),
-    takeLatest(GROUPS.EDIT.IDLE, editGroupSaga),
+    takeLatest(GROUPS.UPDATE.IDLE, updateGroupSaga),
+    takeLatest(GROUPS.DELETE.IDLE, deleteGroupSaga),
 ];

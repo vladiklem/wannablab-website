@@ -56,3 +56,24 @@ export const updateLeadFailure = (error) => ({
         error,
     },
 });
+
+export const deleteLead = (id) => ({
+    type: LEADS.DELETE.IDLE,
+    payload: {
+        id,
+    },
+});
+
+export const deleteLeadSuccess = (id) => ({
+    type: LEADS.DELETE.SUCCESS,
+    payload: {
+        id,
+    },
+});
+
+export const deleteLeadFailure = (error) => ({
+    type: LEADS.DELETE.FAILURE,
+    payload: {
+        error,
+    },
+});

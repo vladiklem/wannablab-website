@@ -6,9 +6,9 @@ import { addUser, deleteUser, editUser, addPayment } from "store/users/actions";
 import { initialUser } from "constants/initialValues";
 import { formModeEnum } from "constants/enums";
 
-import { UsersList } from "./components/UsersList/UsersList";
-import { UserForm } from "./components/UserForm/UserForm";
-import { PaymentForm } from './components/PaymentForm/PaymentForm';
+import { UsersList } from "./UsersList/UsersList";
+import { UserForm } from "./UserForm/UserForm";
+import { PaymentForm } from "./PaymentForm/PaymentForm";
 
 const submitActions = {
     CREATE: addUser,
@@ -25,16 +25,18 @@ export const UsersPanel = () => {
     const [userId, setUserId] = useState(null);
     const [isPaymentFormOpen, setIsPaymentFormOpen] = useState(false);
 
-    const toggleForm = useCallback(() => setIsUserFormOpen((isOpen) => !isOpen), [setIsUserFormOpen]);
+    const toggleForm = useCallback(() => setIsUserFormOpen((isOpen) => !isOpen), [
+        setIsUserFormOpen,
+    ]);
     const onAdd = useCallback(() => {
         setFormMode(formModeEnum.CREATE);
         setFormInitialValue(initialUser);
         toggleForm();
     }, [toggleForm]);
-    const onFormSumit = useCallback(
-        (data) => dispatch(submitActions[formMode](data)),
-        [formMode, dispatch],
-    );
+    const onFormSumit = useCallback((data) => dispatch(submitActions[formMode](data)), [
+        formMode,
+        dispatch,
+    ]);
     const onDelete = useCallback((id) => dispatch(deleteUser(id)), [dispatch]);
     const onEdit = useCallback(
         (user) => {
@@ -47,18 +49,26 @@ export const UsersPanel = () => {
 
     const togglePaymentForm = useCallback(() => setIsPaymentFormOpen((isOpen) => !isOpen), []);
 
-    const onPay = useCallback((id) => {
-        setUserId(id);
-        togglePaymentForm();
-    }, [togglePaymentForm]);
+    const onPay = useCallback(
+        (id) => {
+            setUserId(id);
+            togglePaymentForm();
+        },
+        [togglePaymentForm],
+    );
 
-    const onPaymentSubmit = useCallback((payment) => {
-        dispatch(addPayment({ userId, ...payment }));
-    }, [dispatch, userId]);
+    const onPaymentSubmit = useCallback(
+        (payment) => {
+            dispatch(addPayment({ userId, ...payment }));
+        },
+        [dispatch, userId],
+    );
 
     return (
-        <div>
-            <Button onClick={onAdd}>add user</Button>
+        <div className="container mt-3">
+            <Button className="mb-2" onClick={onAdd}>
+                add user
+            </Button>
             <UserForm
                 mode={formMode}
                 isOpen={isUserFormOpen}
@@ -71,7 +81,6 @@ export const UsersPanel = () => {
                 isOpen={isPaymentFormOpen}
                 toggle={togglePaymentForm}
                 onSubmit={onPaymentSubmit}
-
             />
             <UsersList users={users} onDelete={onDelete} onEdit={onEdit} onPay={onPay} />
         </div>

@@ -32,7 +32,7 @@ const navigation = [
     },
 ];
 
-export const Header = ({ onCoursesClick, onPricesClick, isPortable, isAdmin }) => {
+export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible }) => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -54,8 +54,8 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isAdmin }) =
             className={cx({
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
-                "d-none": isAdmin,
-                "container d-flex pt-4": !isAdmin,
+                "d-none": !isVisible,
+                "container d-flex pt-4": isVisible,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">
