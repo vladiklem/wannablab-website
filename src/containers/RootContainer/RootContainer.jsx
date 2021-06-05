@@ -11,6 +11,7 @@ import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
 import { CoursePage } from "pages/CoursePage/CoursePage";
 import { MentorPage } from "pages/MentorPage/MentorPage";
+import { QuizPage } from "pages/QuizPage/QuizPage";
 import { Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
@@ -101,6 +102,7 @@ export const RootContainer = () => {
                         path="/check-list"
                         render={renderRoute({ routeComponent: ChecklistPage })}
                     />
+                    <Route path="/quiz" render={renderRoute({ routeComponent: QuizPage })} />
                     <PrivateRoute path="/admin" component={AdminPage} selector={selectIsAdmin} />
                     <Route component={NotFoundPage} />
                 </Switch>

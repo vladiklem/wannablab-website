@@ -9,10 +9,10 @@
         z-index: 1;
     }
 
-    &__label {
+    &__defaulLabel {
         padding: 2px 8px;
         margin-bottom: 0;
-        border: 1px solid $primary;
+        border: 1px solid $primary-new;
         border-radius: 10px;
         color: $gray-900;
         font-weight: bold;
@@ -20,9 +20,50 @@
         z-index: 2;
     }
 
-    &__input:checked ~ &__label {
-        background-color: $primary;
+    &__input:checked ~ &__defaultLabel {
+        background-color: $primary-new;
         color: $white;
         text-align: center;
+    }
+
+    &__borderedLabel {
+        padding-left: 48px;
+        padding-bottom: 16px;
+        padding-top: 16px;
+        padding-right: 16px;
+
+        &:before {
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            border: 1px solid $primary-new;
+            height: 24px;
+            width: 24px;
+            border-radius: 20px;
+            transition: all .25s;
+        }
+    }
+
+    &__check {
+        position: absolute;
+        top: 23px;
+        left: 8px;
+        clip-path: circle(0);
+
+        .radio__input:checked ~ & {
+            clip-path: none;
+            left: 19px;
+            z-index: 10;
+        }
+    }
+
+    &__input:checked ~ &__borderedLabel {
+        border-color: $primary-new !important;
+
+        &:before {
+            background-color: $primary-new;
+        }
     }
 }

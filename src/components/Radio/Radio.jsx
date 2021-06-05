@@ -2,16 +2,18 @@ import React, { forwardRef } from "react";
 import cx from "classnames";
 
 import styles from "./Radio.module.scss";
+import { Check } from "components/Icons/Check";
 
-export const RadioTypesEnum = {
+export const radioTypesEnum = {
     DEFAULT: "default",
+    BORDERED: "bordered",
 };
 
 export const Radio = forwardRef(
     (
         {
             className,
-            type = RadioTypesEnum.DEFAULT,
+            type = radioTypesEnum.BORDERED,
             value,
             name,
             id,
@@ -21,7 +23,7 @@ export const Radio = forwardRef(
         },
         ref,
     ) => (
-        <div className={cx("position-relative", styles.radio, className)}>
+        <div className={cx("position-relative transition-250", styles.radio, className)}>
             <input
                 className={styles.radio__input}
                 name={name}
@@ -31,11 +33,21 @@ export const Radio = forwardRef(
                 ref={ref}
                 {...props}
             />
+            <Check
+                fill="#fff"
+                height={12}
+                width={12}
+                className={cx("transition-250", styles.radio__check)}
+            />
             <label
                 className={cx(
-                    "position-relative",
-                    { [styles.radio__label]: type === RadioTypesEnum.DEFAULT },
-                    labelClassName = "mb-0",
+                    "position-relative transition-250 border rounded-lg w-100 mb-3 font-weight-bold h3",
+                    {
+                        [styles.radio__defaultLabel]: type === radioTypesEnum.DEFAULT,
+                        [cx(styles.radio__borderedLabel, "border")]:
+                            type === radioTypesEnum.BORDERED,
+                    },
+                    labelClassName,
                 )}
                 htmlFor={id || value}
             >

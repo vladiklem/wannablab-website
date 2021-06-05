@@ -2,6 +2,12 @@ import React, { forwardRef } from "react";
 import cx from "classnames";
 import styles from "./Input.module.scss";
 
+export const inputTypeEnum = {
+    DEFAULT: "default",
+    ALTERNATIVE: "alternative",
+    NEW: "new-design-system",
+};
+
 export const Input = forwardRef(
     (
         {
@@ -14,11 +20,12 @@ export const Input = forwardRef(
             invalid,
             errorMessage,
             alternative = false,
+            type = inputTypeEnum.DEFAULT,
             ...props
         },
         ref,
     ) => {
-        return alternative ? (
+        return alternative || (type === inputTypeEnum.ALTERNATIVE) ? (
             <div>
                 <Tag
                     className={cx(styles.alternativeInput, className)}
@@ -37,12 +44,15 @@ export const Input = forwardRef(
                     className={cx(styles.customFormInput, {
                         [styles.invalid]: invalid || errorMessage,
                         [styles.textarea]: Tag === "textarea",
+                        [styles.new]: type === inputTypeEnum.NEW,
                     })}
                     {...props}
                 />
                 {!!label && (
                     <label
-                        className={cx(styles.customFormLabel, labelClassName)}
+                        className={cx(styles.customFormLabel, {
+                            "bg-white-new": type === inputTypeEnum.NEW,
+                        }, labelClassName)}
                         htmlFor={id || name}
                     >
                         {label}

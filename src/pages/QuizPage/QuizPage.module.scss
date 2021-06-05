@@ -1,0 +1,10 @@
+.container {
+    .form {
+        min-height: calc(100vh - 200px);
+    }
+
+    .progressBar {
+        height: 8px;
+        background-color: red;
+    }
+}
