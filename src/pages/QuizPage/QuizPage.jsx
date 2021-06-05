@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import MaskedInput from "react-input-mask";
 import cx from "classnames";
 
 import { Button, Input, inputTypeEnum, Radio } from "components/index";
 
 import styles from "./QuizPage.module.scss";
-import { ContactsBlock } from "components/styled/ContactsBlock/ContactsBlock";
 import { useHistory } from "react-router";
 import { Check } from "components/Icons/Check";
+
+import { StepItem } from "./StepItem/StepItem";
 
 const steps = [
     {
@@ -45,8 +45,6 @@ const steps = [
     },
     {
         type: "input",
-        // name: "firstName",
-        // label: "Ім'я",
         component: Input,
         focus: "firstName",
         commonProps: { type: inputTypeEnum.NEW },
@@ -70,19 +68,12 @@ const steps = [
     },
 ];
 
-const renderTag = (renderChildren, { maskProps, ...props }) =>
-    maskProps ? (
-        <MaskedInput {...maskProps}>
-            {(maskedInputProps) => renderChildren({ ...maskedInputProps, ...props })}
-        </MaskedInput>
-    ) : (
-        renderChildren(props)
-    );
-
 export const QuizPage = () => {
     const history = useHistory();
     const { handleSubmit, register } = useForm();
     const [step, setStep] = useState(0);
+
+    const stepItem = useMemo(() => steps[step] || {}, [step]);
 
     const onSubmit = useCallback((data) => {
         console.log(data);
@@ -99,7 +90,7 @@ export const QuizPage = () => {
                 step + 1 === steps.length && handleSubmit(onSubmit)();
                 step === steps.length && toHome();
                 setStep((step) => step + 1);
-            }, 450);
+            }, 350);
         },
         [setStep, step, handleSubmit, onSubmit, toHome],
     );
@@ -108,13 +99,16 @@ export const QuizPage = () => {
         setStep((step) => step - 1);
     }, []);
 
+    const progressBarWidth = useMemo(() => (step === 0 ? 5 : (100 / steps.length) * step), [step]);
+    const buttonOnClick = useMemo(() => (step < steps.length - 1 ? onPrev : onNext), [
+        onNext,
+        onPrev,
+        step,
+    ]);
+
     useEffect(() => {
-        steps[step] &&
-            steps[step].focus &&
-            (() => {
-                setTimeout(() => document.getElementById(steps[step].focus).focus(), 100);
-            })();
-    }, [step]);
+        stepItem.focus && setTimeout(() => document.getElementById(stepItem.focus).focus(), 100);
+    }, [stepItem]);
 
     return (
         <div className={cx(styles.container, "container pt-4")}>
@@ -125,45 +119,21 @@ export const QuizPage = () => {
                 )}
             >
                 <div className="flex-grow-1">
-                    {steps[step] && steps[step].description && (
-                        <h2 className="h3 mb-3 text-highlighted">{steps[step].description}</h2>
+                    {stepItem.description && (
+                        <h2 className="h3 mb-3 text-highlighted">{stepItem.description}</h2>
                     )}
                     <div className="mb-3">
-                        {steps.map(({ component, commonProps = {}, ...item }, index) => {
-                            const Tag = component;
-
-                            return (
-                                <div
-                                    className={cx("transition-250 row", {
-                                        "hidden-element": index !== step,
-                                    })}
-                                >
-                                    {item.list ? (
-                                        item.list.map((tagProps) =>
-                                            renderTag(
-                                                () => (
-                                                    <div className="col-sm-12 col-md-6">
-                                                        <Tag
-                                                            {...tagProps}
-                                                            {...commonProps}
-                                                            onClick={
-                                                                item.type === "radio"
-                                                                    ? onNext
-                                                                    : undefined
-                                                            }
-                                                            ref={register()}
-                                                        />
-                                                    </div>
-                                                ),
-                                                tagProps,
-                                            ),
-                                        )
-                                    ) : (
-                                        <Tag {...item.props} ref={register()} />
-                                    )}
-                                </div>
-                            );
-                        })}
+                        {steps.map(({ component, commonProps = {}, ...item }, index) => (
+                            <StepItem
+                                {...item}
+                                commonProps={commonProps}
+                                component={component}
+                                isHidden={step !== index}
+                                register={register}
+                                onClick={item.type === "radio" ? onNext : undefined}
+                                key={item.name}
+                            />
+                        ))}
                         <div
                             className={cx("transition-250", {
                                 "hidden-element": steps.length !== step,
@@ -184,7 +154,7 @@ export const QuizPage = () => {
                         block
                         className="d-flex align-items-center justify-content-center bg-primary-new rounded-lg font-weight-semibold"
                         size="lg"
-                        onClick={step < steps.length - 1 ? onPrev : onNext}
+                        onClick={buttonOnClick}
                         type="submit"
                         disabled={step === 0}
                     >
@@ -195,7 +165,7 @@ export const QuizPage = () => {
                     </Button>
                     <div className="w-100 mt-3 border p-1 rounded-xl border-primary-new">
                         <div
-                            style={{ width: `${step === 0 ? 5 : (100 / steps.length) * step}%` }}
+                            style={{ width: `${progressBarWidth}%` }}
                             className={cx(
                                 styles.progressBar,
                                 "bg-secondary-new rounded-xl transition-250",
