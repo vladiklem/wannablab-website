@@ -2,17 +2,17 @@ import React, { useState, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Button } from "components/index";
-import { addGroup, editGroup } from "store/groups/actions";
+import { addGroup, deleteGroup, updateGroup } from "store/groups/actions";
 import { usersToSelectOptions } from "utils/converters";
 import { initialGroup } from "constants/initialValues";
 import { formModeEnum } from "constants/enums";
 
-import { GroupsList } from "./components/GroupsList/GroupsList";
-import { GroupForm } from "./components/GroupForm/GroupForm";
+import { GroupsList } from "./GroupsList/GroupsList";
+import { GroupForm } from "./GroupForm/GroupForm";
 
 const submitActions = {
     CREATE: addGroup,
-    EDIT: editGroup,
+    EDIT: updateGroup,
 };
 
 export const GroupsPanel = () => {
@@ -27,20 +27,35 @@ export const GroupsPanel = () => {
     const userOptions = useMemo(() => usersToSelectOptions(users), [users]);
 
     const toggleForm = useCallback(() => setIsFormOpen((isOpen) => !isOpen), [setIsFormOpen]);
+
     const onAdd = useCallback(() => {
         setFormMode(formModeEnum.CREATE);
         setFormInitialValue(initialGroup);
         toggleForm();
     }, [toggleForm]);
-    const onFormSubmit = useCallback((data) => dispatch(submitActions[formMode](data)) , [
+
+    const onFormSubmit = useCallback((data) => dispatch(submitActions[formMode](data)), [
         formMode,
         dispatch,
     ]);
 
+    const onDelete = useCallback((id) => dispatch(deleteGroup(id)), [dispatch]);
+
+    const onEdit = useCallback(
+        (group) => {
+            setFormMode(formModeEnum.EDIT);
+            setFormInitialValue(group);
+            toggleForm();
+        },
+        [toggleForm],
+    );
+
     return (
-        <div>
-            <Button onClick={onAdd}>add group</Button>
-            <GroupsList groups={groups} />
+        <div className="container">
+            <Button className="mb-2" onClick={onAdd}>
+                add group
+            </Button>
+            <GroupsList onEdit={onEdit} groups={groups} onDelete={onDelete} />
             <GroupForm
                 isOpen={isFormOpen}
                 toggle={toggleForm}

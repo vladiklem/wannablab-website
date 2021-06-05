@@ -73,8 +73,6 @@ export const RootContainer = () => {
         dispatch(initLeads());
     }, [dispatch]);
 
-    console.log(admin);
-
     return (
         <Router>
             <Header

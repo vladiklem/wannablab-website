@@ -13,11 +13,12 @@ import { GroupsPanel } from "./GroupsPanel/GroupsPanel";
 import { CustomersPanel } from "./CustomersPanel/CustomersPanel";
 
 import styles from "./AdminPage.module.scss";
+import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 
 export const AdminPage = () => {
     const { url, path } = useRouteMatch();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleSidebar = useCallback(() => {
         setIsOpen((open) => !open);
@@ -30,29 +31,38 @@ export const AdminPage = () => {
     return (
         <>
             <SideBar isOpen={isOpen} title="wannablab">
-                <Button color={buttonColorEnum.UNSTYLED} onClick={toggleSidebar}>
+                <Button
+                    className="px-3 py-2 mx-2 mt-3"
+                    color={buttonColorEnum.UNSTYLED}
+                    onClick={toggleSidebar}
+                >
                     закрити
                 </Button>
-                <ul className="pt-5 px-2">
-                    <li>
+                <ul className="pt-3 px-2">
+                    <li className="px-3 py-2">
                         <Link to={`${url}/users`}>Блабери</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to={`${url}/events`}>Івенти</Link>
-                    </li>
-                    <li>
+                    </li> */}
+                    <li className="px-3 py-2">
                         <Link to={`${url}/groups`}>Групи</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to={`${url}/app`}>Налаштування</Link>
-                    </li>
+                    </li> */}
                     <li className="px-3 py-2">
                         <Link to={`${url}/customers`}>Кастомери</Link>
                     </li>
                 </ul>
             </SideBar>
             <div>
-                <div className={cx(styles.container, { [styles.isDektop]: !isPortable})}>
+                <div className="ml-4 mt-4">
+                    <Button color={buttonColorEnum.UNSTYLED} onClick={toggleSidebar}>
+                        меню <ArrowRightLong height={24} />
+                    </Button>
+                </div>
+                <div className={cx(styles.container, { [styles.isDektop]: !isPortable })}>
                     <Switch>
                         <Route exact={true} path={`${path}/customers`}>
                             <CustomersPanel isPortable={isPortable} />

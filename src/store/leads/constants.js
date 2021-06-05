@@ -14,4 +14,9 @@ export const LEADS = {
         SUCCESS: "LEADS_UPDATE_SUCCESS",
         FAILURE: "LEADS_UPDATE_FAILURE",
     },
+    DELETE: {
+        IDLE: "LEADS_DELETE_IDLE",
+        SUCCESS: "LEADS_DELETE_SUCCESS",
+        FAILURE: "LEADS_DELETE_FAILURE",
+    },
 };
