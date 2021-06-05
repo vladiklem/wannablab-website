@@ -8,6 +8,7 @@ import { Button, Input, inputTypeEnum, Radio } from "components/index";
 import styles from "./QuizPage.module.scss";
 import { ContactsBlock } from "components/styled/ContactsBlock/ContactsBlock";
 import { useHistory } from "react-router";
+import { Check } from "components/Icons/Check";
 
 const steps = [
     {
@@ -93,20 +94,25 @@ export const QuizPage = () => {
 
     const onNext = useCallback(
         (e) => {
-            e.preventDefault();
-            console.log(step);
-            step + 1 === steps.length && handleSubmit(onSubmit)();
-            step === steps.length && toHome();
-            setStep((step) => step + 1);
+            e.target.type === "submit" && e.preventDefault();
+            setTimeout(() => {
+                step + 1 === steps.length && handleSubmit(onSubmit)();
+                step === steps.length && toHome();
+                setStep((step) => step + 1);
+            }, 450);
         },
         [setStep, step, handleSubmit, onSubmit, toHome],
     );
+
+    const onPrev = useCallback(() => {
+        setStep((step) => step - 1);
+    }, []);
 
     useEffect(() => {
         steps[step] &&
             steps[step].focus &&
             (() => {
-                setTimeout(() => document.getElementById(steps[step].focus).focus(), 250);
+                setTimeout(() => document.getElementById(steps[step].focus).focus(), 100);
             })();
     }, [step]);
 
@@ -140,6 +146,11 @@ export const QuizPage = () => {
                                                         <Tag
                                                             {...tagProps}
                                                             {...commonProps}
+                                                            onClick={
+                                                                item.type === "radio"
+                                                                    ? onNext
+                                                                    : undefined
+                                                            }
                                                             ref={register()}
                                                         />
                                                     </div>
@@ -160,10 +171,10 @@ export const QuizPage = () => {
                         >
                             <h2 className="h3 mb-3">Дякуємо 😊</h2>
                             <h3 className="regular">
-                                Наш кастомер ловер Марина перетелефонує вам найближчим часом, або dи
-                                можеnt зробити це самі, прямо зараз і отримати <br />
-                                <span className="font-weight-semibold">знижку 10%</span>, тисни{" "}
-                                <a href="tel:+380982864800">+380982864800</a> 😉
+                                Наш кастомер ловер Марина заретелефонує тобі найближчим часом, або
+                                ти можеш зробити це сам і отримати{" "}
+                                <span className="font-weight-semibold">знижку 10%</span> <br />{" "}
+                                Тисни <a href="tel:+380982864800">+380982864800</a> 😉
                             </h3>
                         </div>
                     </div>
@@ -171,12 +182,16 @@ export const QuizPage = () => {
                 <div>
                     <Button
                         block
-                        className="bg-primary-new rounded-lg font-weight-semibold"
+                        className="d-flex align-items-center justify-content-center bg-primary-new rounded-lg font-weight-semibold"
                         size="lg"
-                        onClick={onNext}
+                        onClick={step < steps.length - 1 ? onPrev : onNext}
                         type="submit"
+                        disabled={step === 0}
                     >
-                        {step === steps.length ? "На головну 👀" : "Далі 👉"}
+                        {step === steps.length - 1 && "Відправити"}
+                        {step === steps.length - 1 && <Check className="ml-2" fill="#fff" />}
+                        {step < steps.length - 1 && "👈 Назад"}
+                        {step === steps.length && "На головну 👀"}
                     </Button>
                     <div className="w-100 mt-3 border p-1 rounded-xl border-primary-new">
                         <div
