@@ -82,20 +82,21 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
                     [styles.visible]: isPortable && isOpen,
                 })}
             >
-                <ul className="d-flex scrollbar-invisible overflow-auto py-4 pl-3">
+                <ul className="d-flex scrollbar-invisible overflow-auto px-3 pt-3 pb-4 mb-n3">
                     {navigation.map((item) => (
                         <NavItem onClick={handleRedirect} key={item.id} {...item} />
                     ))}
                 </ul>
-                <span
+                <Button
                     onClick={onClick}
-                    className={cx("flex-row-reverse ml-auto pr-4 mt-n2", {
+                    className={cx("p-1 ml-auto", {
                         "d-none": !isPortable,
                         "d-flex": isPortable,
                     })}
+                    color={buttonColorEnum.UNSTYLED}
                 >
                     закрити
-                </span>
+                </Button>
             </nav>
         </header>
     );

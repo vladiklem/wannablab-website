@@ -5,10 +5,10 @@ import { mentorsList } from "constants/lists";
 
 import { MentorScrollableItem } from "./MentorScrollableItem/MentorScrollableItem";
 
-export const MentorsScrollableList = ({ toMentor, list = mentorsList }) => {
+export const MentorsScrollableList = ({ toMentor, list = mentorsList, className }) => {
     return (
         <Scrollable
-            containerClassName="ml-n4 mr-n4"
+            containerClassName={className}
             hasArrows={true}
             isScrollbarVisible={false}
             offset={250}

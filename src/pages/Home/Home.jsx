@@ -9,8 +9,6 @@ import { LeadForm } from "components/styled/LeadForm/LeadForm";
 
 import { mediaBreakpointsEnum } from "constants/enums";
 
-import styles from "./Home.module.scss";
-
 export const Home = () => {
     const [description, setDescription] = useState("");
 
@@ -64,7 +62,7 @@ export const Home = () => {
                 onGroupSelect={onGroupSelect}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className={styles.formSection}>
+            <section id="blaber-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
                     <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
                         Вже <strong>44 людини</strong> займаються з нами!

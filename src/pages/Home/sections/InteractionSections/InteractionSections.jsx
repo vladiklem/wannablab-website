@@ -10,9 +10,9 @@ export const InteractionSections = ({ toMentor }) => {
         <>
             <section
                 id="wannablab-teachers"
-                className={cx("container pt-3 mb-5", styles.container)}
+                className={cx("container pt-3 mb-4", styles.container)}
             >
-                <MentorsScrollableList toMentor={toMentor} />
+                <MentorsScrollableList className="mx-n4" toMentor={toMentor} />
             </section>
         </>
     );

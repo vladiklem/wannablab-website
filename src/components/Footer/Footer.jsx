@@ -6,11 +6,9 @@ import { Button, buttonColorEnum } from "components/index";
 
 import logo from "assets/images/logo.png";
 
-import styles from "./Footer.module.scss";
-
 export const Footer = ({ isPortable, isVisible, handleLogin }) => {
     return (
-        <footer className={cx(styles.footer, { "d-none": !isVisible })} id="wannablab-footer">
+        <footer className={cx("bg-white-new", { "d-none": !isVisible })} id="wannablab-footer">
             <div
                 className={cx("d-flex px-4 pt-3_5 pb-5 container", {
                     "flex-column": isPortable,

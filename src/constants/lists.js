@@ -2,8 +2,8 @@ import { IMAGES } from "./images";
 
 import { Input, inputTypeEnum, Radio } from "components/index";
 import beginner from "assets/audio/beginner_elementary.mp3";
-import intermediate from "assets/audio/pre_intermediate_intermediate.mp3"
-import advanced from "assets/audio/upper_intermediate_advanced.mp3"
+import intermediate from "assets/audio/pre_intermediate_intermediate.mp3";
+import advanced from "assets/audio/upper_intermediate_advanced.mp3";
 
 export const servicesList = [
     {
@@ -33,6 +33,8 @@ export const coursesList = [
     {
         title: "Pro - для швидкого навчання",
         slug: "pro-plan",
+        name: "Pro",
+        quoteId: 0,
         description:
             "2 групових заняття в тиждень, 1 індивідуальне заняття в тиждень, 2 small talk з нейтів спікером в тиждень, вічна підписка на Netflix",
         list: [
@@ -40,6 +42,19 @@ export const coursesList = [
             "1 індивідуальне/тиждень",
             "2 small talks з нейтів спікером / тиждень",
             "∞ підписка на Netflix",
+        ],
+        matchesList: [
+            "Тобі потрібно покращити розмовну англійську в найкоротший термін",
+            "Хочеш зробити англійську частиною буденної рутини",
+            "Потрібно навчитись розмовляти на професійні теми",
+            "Рівень англійської: A2+",
+        ],
+        advantagesList: [
+            "Швидко думати англійською ",
+            "Спілкуватись з носіями один на один",
+            "Швидко сприймати на слух",
+            "Поставиш правильну вимову",
+            "Зможеш правильно використовувати професійну лексику",
         ],
         imgSrc: IMAGES.proCover,
         lessonsCount: 20,
@@ -52,6 +67,8 @@ export const coursesList = [
     {
         title: "Basiс - для веселого навчання",
         slug: "basic-plan",
+        quoteId: 1,
+        name: "Basic",
         description:
             "2 групових заняття в тиждень, вічна підписка на Netflix, командний перегляд серіалів англійською",
         imgSrc: IMAGES.groupCover,
@@ -63,6 +80,19 @@ export const coursesList = [
             "∞ підписка на Netflix",
             "командний перегляд серіалів англійською",
         ],
+        matchesList: [
+            "Можеш будувати прості речення англійською у помірному темпі",
+            "Орієнтуєшся в минулому та майбутньому часах",
+            "Розумієш базову граматику ",
+            "Рівень англійської: B1+",
+        ],
+        advantagesList: [
+            "Швидше формувати думки англійською",
+            "Покращиш вимову та граматику в розмові",
+            "Швидко переключатись з рідної мови на англійську",
+            "Підтримувати діалог на побутові та професійні теми",
+            "Краще сприймати на слух",
+        ],
         status: {
             id: "ongoing",
         },
@@ -70,7 +100,10 @@ export const coursesList = [
     {
         title: "Solo - для персонального навчання",
         slug: "solo-plan",
-        description: "Все під вас",
+        name: "Solo",
+        quoteId: 2,
+        description:
+            "Індивідуальний план навчання, 2 індивідуальних заняття в тиждень, вічна підписка на Netflix",
         imgSrc: IMAGES.soloCover,
         lessonsCount: 8,
         price: 2470,
@@ -80,12 +113,24 @@ export const coursesList = [
             "2 індивідуальні заняття /тиждень",
             "∞ підписка на Netflix",
         ],
+        matchesList: [
+            "Хочеш вивчити англійську з 0",
+            "Хочеш заповнити свої пробіли у граматиці",
+            "Є чітке розуміння потрібної лексики",
+            "Потрібен гнучкий графік",
+            "Рівень англійської: будь-який",
+        ],
+        advantagesList: [
+            "Базовій граматиці",
+            "Поставиш правильну вимову",
+            "Зможеш правильно використовувати професійну лексику",
+            "Зможеш коригувати свій план навчання так, щоб тобі було максимально цікаво та ефективно",
+        ],
         status: {
             id: "ongoing",
         },
     },
 ];
-
 
 export const valuesList = [
     "Розмовляємо 100% навчання",
@@ -157,7 +202,7 @@ export const questionsList = [
         component: Radio,
         audio: {
             source: beginner,
-            description: "Прослухай аудіо і відміть правильну відповідь"
+            description: "Прослухай аудіо і відміть правильну відповідь",
         },
         description: "Kelly is satisfied with her rest in Blackpool.",
         commonProps: {
@@ -200,15 +245,22 @@ export const questionsList = [
         type: "radio",
         name: "reading-1",
         component: Radio,
-        text: "David is  не выбрано a typical man – he is 27 and works  не выбрано as a manager for an international company. But there is something special about him – he designs clothes for his pet Dolly – the hairless Sphynx cat. In university he went to sewing courses and now he cannot imagine his life without creating clothes even for a cat.",
+        text:
+            "David is  не выбрано a typical man – he is 27 and works  не выбрано as a manager for an international company. But there is something special about him – he designs clothes for his pet Dolly – the hairless Sphynx cat. In university he went to sewing courses and now he cannot imagine his life without creating clothes even for a cat.",
         description: "Why does David design clothes for his cat?",
         commonProps: {
             name: "reading-1",
         },
         list: [
-            { value: "answer-1", children: "All Sphynx cats need clothes because they do not have fur." },
+            {
+                value: "answer-1",
+                children: "All Sphynx cats need clothes because they do not have fur.",
+            },
             { value: "answer-2", children: "He attended special classes and likes sewing." },
-            { value: "answer-3", children: "He is bored at his work so he wants to do something new." },
+            {
+                value: "answer-3",
+                children: "He is bored at his work so he wants to do something new.",
+            },
         ],
     },
     {
@@ -246,7 +298,7 @@ export const questionsList = [
         component: Radio,
         audio: {
             source: intermediate,
-            description: "Прослухай аудіо і відміть правильну відповідь"
+            description: "Прослухай аудіо і відміть правильну відповідь",
         },
         description: "Nina was shy that is why she didn’t give her telephone number.",
         commonProps: {
@@ -291,7 +343,8 @@ export const questionsList = [
         type: "radio",
         name: "reading-2",
         component: Radio,
-        text: "Stress can be caused by any type of physical or emotional stimulus usually without us noticing it. Different factors can be the reason  не выбрано for stress, starting from social and financial problems ending with illness and family discord. Stress can result in mood changes, poor health and even depression.",
+        text:
+            "Stress can be caused by any type of physical or emotional stimulus usually without us noticing it. Different factors can be the reason  не выбрано for stress, starting from social and financial problems ending with illness and family discord. Stress can result in mood changes, poor health and even depression.",
         description: "According to the paragraph...",
         commonProps: {
             name: "reading-2",
@@ -323,7 +376,7 @@ export const questionsList = [
         component: Radio,
         audio: {
             source: advanced,
-            description: "Прослухай аудіо і відміть правильну відповідь"
+            description: "Прослухай аудіо і відміть правильну відповідь",
         },
         description: "Which word most fits the description of a person?",
         commonProps: {
@@ -355,15 +408,22 @@ export const questionsList = [
         type: "radio",
         name: "reading-3",
         component: Radio,
-        text: "The amount of information on offer is so considerable that along with an abundance of distractions like advertisements and tempting news blocks the choice of that needed piece of information virtually becomes a torture for many. Users go online with an intention of receiving knowledge but  не выбрано end up purposelessly roaming from site to site losing their time and temper occasionally.",
+        text:
+            "The amount of information on offer is so considerable that along with an abundance of distractions like advertisements and tempting news blocks the choice of that needed piece of information virtually becomes a torture for many. Users go online with an intention of receiving knowledge but  не выбрано end up purposelessly roaming from site to site losing their time and temper occasionally.",
         description: "According to the paragraph...",
         commonProps: {
             name: "reading-3",
         },
         list: [
             { value: "answer-1", children: "How much violence there can be on the Net." },
-            { value: "answer-2", children: "How people struggle to find valuable and useful information." },
-            { value: "answer-3", children: "How much time people waste on reading pop-up advertisements." },
+            {
+                value: "answer-2",
+                children: "How people struggle to find valuable and useful information.",
+            },
+            {
+                value: "answer-3",
+                children: "How much time people waste on reading pop-up advertisements.",
+            },
         ],
     },
     {
@@ -399,7 +459,8 @@ export const questionsList = [
     {
         type: "input",
         component: Input,
-        description: "Супер! Тепер ми краще розуміємо, що тобі потрібно. 😊 Залиш свій номер телефону і тобі зателефонує наша менеджер Марина. ",
+        description:
+            "Супер! Тепер ми краще розуміємо, що тобі потрібно. 😊 Залиш свій номер телефону і тобі зателефонує наша менеджер Марина. ",
         focus: "firstName",
         commonProps: { type: inputTypeEnum.NEW },
         list: [

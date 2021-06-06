@@ -19,7 +19,9 @@ import { MentorsScrollableList } from "components/styled/MentorsScrollableList/M
 export const CoursePage = () => {
     const groups = useSelector(selectGroups);
     const { slug } = useParams();
-    const course = coursesList.find(({ slug: courseSlug }) => slug === courseSlug);
+    const { matchesList, advantagesList, name, quoteId, ...course } = coursesList.find(
+        ({ slug: courseSlug }) => slug === courseSlug,
+    );
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     useEffect(() => {
@@ -28,29 +30,34 @@ export const CoursePage = () => {
 
     return (
         <article className="pt-4">
-            <section className="mb-5 container">
+            <section className="mb-4 container">
                 <div className="row">
                     <div className="col-md-6 col-sm-12">
-                        <h1 className="h1 mb-2">{course.title}</h1>
+                        <h1 className="h1 mb-3">{course.title}</h1>
                         <img
-                            className={cx(styles.coursePage__image, "d-md-none")}
+                            className={cx(
+                                styles.coursePage__image,
+                                "d-md-none shadow-soft rounded-lg mb-3",
+                            )}
                             src={course.imgSrc}
                             alt={course.description}
                         />
                         <h2 className="regular mb-3">{course.description}</h2>
-                        <div className="row flex-nowrap mb-3">
+                        <div className="row flex-nowrap mb-5">
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted py-2 font-weight-bold"
-                                    color="blue-soft"
+                                    className="w-100 text-highlighted rounded-lg py-2 font-weight-bold"
+                                    color="primary-new"
+                                    outline
+                                    href="#wannablab-course-description"
                                 >
                                     {isPortable ? "Більше" : "Читати більше"}
                                 </Button>
                             </span>
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted py-2 font-weight-bold"
-                                    color="purple-soft"
+                                    className="w-100 rounded-lg py-2 font-weight-bold"
+                                    color="primary-new"
                                     href="#wannablab-lead-form"
                                 >
                                     {isPortable ? "Хочу" : "Хочу...дуже :3"}
@@ -59,16 +66,12 @@ export const CoursePage = () => {
                         </div>
                         <div>
                             {slug === "solo-plan" && (
-                                <>
-                                    <h2 className="h3">Наші ментори</h2>
-                                    <MentorsScrollableList />
-                                </>
+                                <MentorsScrollableList
+                                    className={cx({ "mx-n4": isPortable, "mx-n2": !isPortable })}
+                                />
                             )}
                             {(slug === "pro-plan" || slug === "basic-plan") && (
-                                <>
-                                    <h2 className="h3">Календар груп</h2>
-                                    <GroupsScrollableList list={groups} isPortable={isPortable} />
-                                </>
+                                <GroupsScrollableList list={groups} isPortable={isPortable} />
                             )}
                         </div>
                         <div className="row">
@@ -84,49 +87,33 @@ export const CoursePage = () => {
                     </div>
                     <div className={cx("col-md-6 col-sm-12", { "d-none": isPortable })}>
                         <img
-                            className={styles.coursePage__image}
+                            className={cx(styles.coursePage__image, "rounded-lg shadow-soft")}
                             src={course.imgSrc}
                             alt={course.description}
                         />
                     </div>
                 </div>
             </section>
-            <section className="mb-5 container">
-                <h2 className="h2 mb-3">Про курс</h2>
-                <div className="row mb-5">
-                    <div className="col-md-8 col-sm-12">
-                        <h3 className="regular">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Facilisis gravida
-                            neque convallis a. Lobortis feugiat vivamus at augue eget. Sit amet nisl
-                            purus in mollis nunc sed. <br /> <br /> Enim blandit volutpat maecenas
-                            volutpat blandit aliquam etiam erat. Consequat semper viverra nam libero
-                            justo laoreet. Commodo quis imperdiet massa tincidunt. Condimentum
-                            lacinia quis vel eros. Sollicitudin nibh sit amet commodo nulla facilisi
-                            nullam. Ante in nibh mauris cursus mattis molestie a iaculis at. Viverra
-                            ipsum nunc aliquet bibendum enim facilisis gravida neque convallis.{" "}
-                            <br /> <br /> Vel facilisis volutpat est velit egestas. Non nisi est sit
-                            amet. Lectus proin nibh nisl condimentum id venenatis a condimentum
-                            vitae. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim.
-                            Posuere sollicitudin aliquam ultrices sagittis. Faucibus scelerisque
-                            eleifend donec pretium vulputate. Orci ac auctor augue mauris augue
-                            neque gravida in fermentum. Nunc mi ipsum faucibus vitae.
-                        </h3>
-                    </div>
-                </div>
-                <Quote
-                    src={usersFeedbackList[0].avatar}
-                    text={usersFeedbackList[0].description}
-                    author={usersFeedbackList[0].name}
-                    isPortable={isPortable}
-                    className={cx("mb-5", { "w-75": isPortable })}
-                />
-                <h2 className="h2 mb-3">Ми навчимося</h2>
-                <List list={["класно", "комунікувати", "англійською"]} />
+            <section id="wannablab-course-description" className="pt-3 mb-5 container">
+                <h2 className="h2 mb-2">{`План ${name} підходить тобі, якщо:`}</h2>
+                <List list={matchesList} className="mb-4" />
             </section>
-            <section id="wannablab-lead-form" className="exp-bg full-screen-height">
+            <section className="mb-5 container">
+                <h2 className="h2 mb-2">Відгук студента курсу</h2>
+                <Quote
+                    src={usersFeedbackList[quoteId].avatar}
+                    text={usersFeedbackList[quoteId].description}
+                    author={usersFeedbackList[quoteId].name}
+                    isPortable={isPortable}
+                />
+            </section>
+            <section className="mb-5 container">
+                <h2 className="h2 mb-2">План Pro підходить тобі, якщо:</h2>
+                <List list={advantagesList} className="mb-4" />
+            </section>
+            <section id="wannablab-lead-form" className="bg-primary-new-75 full-screen-height">
                 <div className="container d-flex flex-column align-items-center">
-                    <h2 className="h2 mt-5 mb-5 text-center">
+                    <h2 className="h2 mt-5 mb-5 text-center text-white">
                         Курс пройшли вже <strong>57 людей</strong>
                     </h2>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">

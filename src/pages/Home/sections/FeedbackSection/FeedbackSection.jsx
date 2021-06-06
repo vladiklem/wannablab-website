@@ -9,13 +9,13 @@ import styles from "./FeedbackSection.module.scss";
 
 export const FeedbackSection = ({ isPortable }) => (
     <section id="wannablab-feedback" className="mb-4 pt-4 container">
-        <h2 className="h2 font-weight-bold mb-3">Наші студенти про нас</h2>
         <div>
             <Scrollable
                 hasArrows={true}
                 isScrollbarVisible={false}
                 offset={350}
                 containerClassName="mr-n4 ml-n4"
+                components={{ Header: <h2 className="h3 font-weight-bold">Відгуки студентів</h2>, }}
             >
                 {usersFeedbackList.map((item, index) => (
                     <ScrollableItem
