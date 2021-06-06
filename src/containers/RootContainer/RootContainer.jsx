@@ -12,6 +12,7 @@ import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
 import { CoursePage } from "pages/CoursePage/CoursePage";
 import { MentorPage } from "pages/MentorPage/MentorPage";
 import { QuizPage } from "pages/QuizPage/QuizPage";
+import { TestPage } from "pages/TestPage/TestPage";
 import { Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
@@ -103,6 +104,7 @@ export const RootContainer = () => {
                         render={renderRoute({ routeComponent: ChecklistPage })}
                     />
                     <Route path="/quiz" render={renderRoute({ routeComponent: QuizPage })} />
+                    <Route path="/test" render={renderRoute({ routeComponent: TestPage })} />
                     <PrivateRoute path="/admin" component={AdminPage} selector={selectIsAdmin} />
                     <Route component={NotFoundPage} />
                 </Switch>
