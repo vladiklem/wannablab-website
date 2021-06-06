@@ -15,18 +15,18 @@ export const FeedbackSection = ({ isPortable }) => (
                 isScrollbarVisible={false}
                 offset={350}
                 containerClassName="mr-n4 ml-n4"
-                components={{ Header: <h2 className="h3 font-weight-bold">Відгуки студентів</h2>, }}
+                components={{ Header: <h2 className="h3 font-weight-bold">Відгуки студентів</h2> }}
             >
                 {usersFeedbackList.map((item, index) => (
                     <ScrollableItem
                         className={cx(styles.item, { "mr-4": index < usersFeedbackList.length })}
+                        key={item.name}
                     >
                         <Quote
                             src={item.avatar}
                             text={item.description}
                             author={item.name}
                             isPortable={isPortable}
-                            key={item.name}
                             className="p-2"
                         />
                     </ScrollableItem>

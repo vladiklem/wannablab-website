@@ -89,7 +89,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
                 </ul>
                 <Button
                     onClick={onClick}
-                    className={cx("p-1 ml-auto", {
+                    className={cx("p-1 ml-auto mr-4", {
                         "d-none": !isPortable,
                         "d-flex": isPortable,
                     })}

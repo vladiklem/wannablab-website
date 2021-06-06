@@ -16,7 +16,7 @@ const steps = {
             type: "radio",
             name: "proffesion",
             component: Radio,
-            description: "А з якої ти сфери, страннік?",
+            description: "В якій сфері розвиваєшся зараз?",
             commonProps: {
                 name: "profession",
             },
@@ -30,29 +30,67 @@ const steps = {
         },
         {
             type: "radio",
+            name: "level",
+            component: Radio,
+            description: "Як оцінюєш свій рівень англійської?",
+            commonProps: {
+                name: "level",
+            },
+            list: [
+                { value: "elementary", children: "Початковий" },
+                { value: "intermediate", children: "Середній" },
+                { value: "advanced", children: "Просунутий" },
+            ],
+        },
+        {
+            type: "radio",
+            name: "problems",
+            component: Radio,
+            description: "Проблеми, які виникають у мене при вивченні англійської:",
+            commonProps: {
+                name: "problems",
+            },
+            list: [
+                {
+                    value: "words-translation",
+                    children: "Будую речення англійською, перекладаючи слова в голові",
+                },
+                { value: "grammer", children: "У мене виникають проблеми з граматикою" },
+                {
+                    value: "hardly-switch",
+                    children: "Важко одразу переключитись з рідної мови на англійську",
+                },
+            ],
+        },
+        {
+            type: "radio",
             name: "evolution",
             component: Radio,
-            description: "Відміть будь ласка в чому хочеш розвиватися ",
+            description: "Над чим бужемо працювати?",
             commonProps: {
                 name: "evolution",
             },
+
             list: [
-                { value: "speak", children: "Розмовна" },
-                { value: "listen", children: "Слухання" },
-                { value: "writing", children: "Письмо" },
-                { value: "vocab", children: "Словарний запас" },
-                { value: "prof", children: "Проф комунікація" },
+                { value: "speaking", children: "Хочу вільно розмовляти" },
+                { value: "vocabulary", children: "Збільшити словарний запас" },
+                { value: "not-afraid-talking", children: "Хочу не боятись говорити" },
+                {
+                    value: "proffesional-communication",
+                    children: "Покрищити професійну комунікацію",
+                },
             ],
         },
         {
             type: "input",
             component: Input,
+            description:
+                "Супер! Тепер ми краще розуміємо, що тобі потрібно. 😊 Залиш свій номер телефону і тобі зателефонує наша менеджер Марина. ",
             focus: "firstName",
             commonProps: { type: inputTypeEnum.NEW },
             list: [
                 { name: "firstName", label: "Ім'я", className: "mx-4 mt-2" },
                 {
-                    type: "tel",
                     name: "phoneNumber",
                     label: "Номер телефону",
                     className: "mx-4 mt-4",

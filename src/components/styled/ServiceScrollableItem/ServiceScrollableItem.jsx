@@ -19,11 +19,11 @@ export const ServiceScrollableItem = ({
     isPortable,
     description,
     onClick,
-    ...props
+    slug,
 }) => {
     const toCourse = useCallback(() => {
-        onClick(props.slug);
-    }, [props.slug, onClick]);
+        onClick(slug);
+    }, [slug, onClick]);
 
     return (
         <ScrollableItem
@@ -36,7 +36,6 @@ export const ServiceScrollableItem = ({
                 },
                 className,
             )}
-            {...props}
         >
             <div className="d-flex align-items-center">
                 <p className={cx("mr-3", { "font-small": isPortable })}>{lessonsCount} уроків</p>
