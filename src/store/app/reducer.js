@@ -38,16 +38,13 @@ const handlers = {
         ...state,
         admin: { isAdmin: true, isVisible: true },
     }),
-    [APP.ADMIN.TOGGLE_VISIBILITY.IDLE]: ({ admin, ...state }, { payload }) => {
-        console.log(admin, payload.isVisible);
-        return {
-            ...state,
-            admin: {
-                ...admin,
-                isVisible: payload.isVisible === null ? !admin.isVisible : payload.isVisible,
-            },
-        };
-    },
+    [APP.ADMIN.TOGGLE_VISIBILITY.IDLE]: ({ admin, ...state }, { payload }) => ({
+        ...state,
+        admin: {
+            ...admin,
+            isVisible: payload.isVisible === null ? !admin.isVisible : payload.isVisible,
+        },
+    }),
 };
 
 export const appReducer = createReducer(initialState, handlers);

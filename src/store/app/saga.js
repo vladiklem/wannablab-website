@@ -28,7 +28,6 @@ function* initAppSaga() {
 function* authAsAdminSaga() {
     try {
         yield call(localStorageService.setItem, LOCAL_STORAGE_APP, { isAdmin: true });
-        console.log(localStorage);
         yield put(authAsAdminSuccess());
     } catch (error) {}
 }

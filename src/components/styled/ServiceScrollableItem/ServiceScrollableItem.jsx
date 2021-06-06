@@ -9,7 +9,7 @@ export const ServiceScrollableItem = ({
     index,
     array,
     src,
-    featuredList,
+    list,
     priceList,
     title,
     lessonsCount,
@@ -17,6 +17,7 @@ export const ServiceScrollableItem = ({
     price = "300",
     className,
     isPortable,
+    description,
     onClick,
     ...props
 }) => {
@@ -53,18 +54,21 @@ export const ServiceScrollableItem = ({
                 </p>
             </div>
             <h3 className="h3 mt-3 mb-2">{title}</h3>
-            <div className="row flex-grow-1">
+            <div className="row flex-grow-1 mb-2">
                 <div className={cx("col-md-8 col-sm-12", { "d-flex flex-column": isPortable })}>
-                    <List className="mb-2" type="features-white" list={featuredList} />
-                    {/* <h4 className={cx("regular", { "mb-4": !isPortable })}>{shortDescription}</h4> */}
+                    <List className="mb-2" type="features-white" list={list} />
                     {isPortable && (
                         <div className="row flex-grow-1">
-                            <span className="col-6 d-flex align-items-center">
-                                <img className="d-block image" src={src} alt="" />
-                            </span>
-                            <span className="col-6 d-flex align-items-center justify-content-center">
-                                <List className="mb-2" type="features-white" list={priceList} />
-                            </span>
+                            <div className="col-12 font-weight-semibold text-right">
+                                {price} грн
+                            </div>
+                            <div className="col-12 d-flex align-items-center">
+                                <img
+                                    className={cx("d-block", styles.image__mobile)}
+                                    src={src}
+                                    alt=""
+                                />
+                            </div>
                         </div>
                     )}
                 </div>

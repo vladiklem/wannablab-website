@@ -51,8 +51,8 @@ export const GroupsPanel = () => {
     );
 
     return (
-        <div className="container">
-            <Button className="mb-2" onClick={onAdd}>
+        <div className="container mt-4">
+            <Button className="mb-3" onClick={onAdd}>
                 add group
             </Button>
             <GroupsList onEdit={onEdit} groups={groups} onDelete={onDelete} />

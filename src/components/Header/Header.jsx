@@ -55,7 +55,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
                 "d-none": !isVisible,
-                "container d-flex pt-4": isVisible,
+                "container d-flex pt-3": isVisible,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">

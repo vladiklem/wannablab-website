@@ -18,7 +18,7 @@ import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 export const AdminPage = () => {
     const { url, path } = useRouteMatch();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
 
     const toggleSidebar = useCallback(() => {
         setIsOpen((open) => !open);
@@ -40,19 +40,25 @@ export const AdminPage = () => {
                 </Button>
                 <ul className="pt-3 px-2">
                     <li className="px-3 py-2">
-                        <Link to={`${url}/users`}>Блабери</Link>
+                        <Link onClick={toggleSidebar} to={`${url}/users`}>
+                            Блабери
+                        </Link>
                     </li>
                     {/* <li>
                         <Link to={`${url}/events`}>Івенти</Link>
                     </li> */}
                     <li className="px-3 py-2">
-                        <Link to={`${url}/groups`}>Групи</Link>
+                        <Link onClick={toggleSidebar} to={`${url}/groups`}>
+                            Групи
+                        </Link>
                     </li>
                     {/* <li>
                         <Link to={`${url}/app`}>Налаштування</Link>
                     </li> */}
                     <li className="px-3 py-2">
-                        <Link to={`${url}/customers`}>Кастомери</Link>
+                        <Link onClick={toggleSidebar} to={`${url}/customers`}>
+                            Кастомери
+                        </Link>
                     </li>
                 </ul>
             </SideBar>

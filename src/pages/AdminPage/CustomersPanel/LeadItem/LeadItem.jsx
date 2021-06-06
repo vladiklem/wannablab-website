@@ -5,7 +5,16 @@ import { Collapse, Button } from "components/index";
 
 import styles from "./LeadItem.module.scss";
 
-export const LeadItem = ({ id, status, name, phoneNumber, onUpdate, onDelete, isPortable }) => {
+export const LeadItem = ({
+    id,
+    status,
+    name,
+    phoneNumber,
+    firstName,
+    onUpdate,
+    onDelete,
+    isPortable,
+}) => {
     const handleUpdate = useCallback(() => onUpdate({ id, status: "touched", name, phoneNumber }), [
         id,
         name,
@@ -22,7 +31,7 @@ export const LeadItem = ({ id, status, name, phoneNumber, onUpdate, onDelete, is
             })}
             togglerContent={
                 <div className="text-left">
-                    <span className="font-weight-semibold">Ім'я: </span> {name}
+                    <span className="font-weight-semibold">Ім'я: </span> {name || firstName}
                     <br />
                     <span className="font-weight-semibold">Номер телефону: </span> {phoneNumber}
                 </div>

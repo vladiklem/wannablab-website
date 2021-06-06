@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useHistory } from "react-router-dom";
-import cx from "classnames";
 
 import { GreetingsSection } from "./sections/GreetingsSection/GreetingsSection";
 import { InteractionSections } from "./sections/InteractionSections/InteractionSections";
@@ -65,9 +64,9 @@ export const Home = () => {
                 onGroupSelect={onGroupSelect}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className={cx("exp-bg", styles.formSection)}>
+            <section id="blaber-form" className={styles.formSection}>
                 <div className="container d-flex flex-column align-items-center">
-                    <h2 className="h2 mt-5 mb-5 text-center">
+                    <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
                         Вже <strong>44 людини</strong> займаються з нами!
                     </h2>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">

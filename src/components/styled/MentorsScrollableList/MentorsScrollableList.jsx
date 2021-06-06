@@ -8,21 +8,24 @@ import { MentorScrollableItem } from "./MentorScrollableItem/MentorScrollableIte
 export const MentorsScrollableList = ({ toMentor, list = mentorsList }) => {
     return (
         <Scrollable
-                    containerClassName="ml-n4 mr-n4"
-                    hasArrows={true}
-                    isScrollbarVisible={false}
-                    offset={250}
-                >
-                    {list.map(({ name, ...itemProps }, index) => (
-                        <MentorScrollableItem
-                            index={index}
-                            array={mentorsList}
-                            key={name}
-                            name={name}
-                            onClick={toMentor}
-                            {...itemProps}
-                        />
-                    ))}
-                </Scrollable>
+            containerClassName="ml-n4 mr-n4"
+            hasArrows={true}
+            isScrollbarVisible={false}
+            offset={250}
+            components={{
+                Header: <h2 className="h3 font-weight-bold">Наші ментори</h2>,
+            }}
+        >
+            {list.map(({ name, ...itemProps }, index) => (
+                <MentorScrollableItem
+                    index={index}
+                    array={mentorsList}
+                    key={name}
+                    name={name}
+                    onClick={toMentor}
+                    {...itemProps}
+                />
+            ))}
+        </Scrollable>
     );
 };

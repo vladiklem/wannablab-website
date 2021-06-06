@@ -31,14 +31,38 @@ export const servicesList = [
 
 export const coursesList = [
     {
-        title: "Basiс - для чілового навчання",
-        slug: "basic-plan",
-        featuredList: ["2 групових заняття в тиждень", "вічна підписка на Netflix", "командний перегляд серіалів англійською"],
-        priceList: ["1370грн/місяць", "3570грн/3місяці"],
-        imgSrc: IMAGES.groupLessonsImg,
+        title: "Pro - для швидкого навчання",
+        slug: "pro-plan",
+        description:
+            "2 групових заняття в тиждень, 1 індивідуальне заняття в тиждень, 2 small talk з нейтів спікером в тиждень, вічна підписка на Netflix",
+        list: [
+            "2 групових заняття/тиждень",
+            "1 індивідуальне/тиждень",
+            "2 small talks з нейтів спікером / тиждень",
+            "∞ підписка на Netflix",
+        ],
+        imgSrc: IMAGES.proCover,
         lessonsCount: 20,
         price: 2970,
-        className: "bg-light-purple",
+        className: "bg-pro-new",
+        status: {
+            id: "ongoing",
+        },
+    },
+    {
+        title: "Basiс - для веселого навчання",
+        slug: "basic-plan",
+        description:
+            "2 групових заняття в тиждень, вічна підписка на Netflix, командний перегляд серіалів англійською",
+        imgSrc: IMAGES.groupCover,
+        lessonsCount: 8,
+        price: 1370,
+        className: "bg-group-new",
+        list: [
+            "2 групових заняття/тиждень",
+            "∞ підписка на Netflix",
+            "командний перегляд серіалів англійською",
+        ],
         status: {
             id: "ongoing",
         },
@@ -46,28 +70,18 @@ export const coursesList = [
     {
         title: "Solo - для персонального навчання",
         slug: "solo-plan",
-        featuredList: ["індивідуальний план навчання", "2 індивідуальних заняття в тиждень", "вічна підписка на Netflix"],
-        priceList: ["2470грн/місяць", "6970грн/3місяці"],
-        imgSrc: IMAGES.personalLessonsImg,
+        description: "Все під вас",
+        imgSrc: IMAGES.soloCover,
         lessonsCount: 8,
         price: 2470,
-        className: "bg-light-blue",
+        className: "bg-solo-new",
+        list: [
+            "індивідуальний план навчання",
+            "2 індивідуальні заняття /тиждень",
+            "∞ підписка на Netflix",
+        ],
         status: {
             id: "ongoing",
-        },
-    },
-    {
-        title: "Pro - для швидкого навчання",
-        slug: "pro-plan",
-        featuredList: ["2 групових заняття в тиждень", "1 індивідуальне заняття в тиждень", "2 small talk з нейтів спікером в тиждень", "вічна підписка на Netflix"],
-        priceList: ["2970грн/місяць", "8370грн/3місяці"],
-        imgSrc: IMAGES.smallTalkLessonsImg,
-        lessonsCount: 16,
-        price: 1970,
-        className: "bg-light-green text-white",
-        status: {
-            id: "start-soon",
-            date: "10 серпня",
         },
     },
 ];
@@ -114,11 +128,25 @@ export const mentorsList = [
 
 export const usersFeedbackList = [
     {
-        name: "Sofia",
+        name: "Софія",
         avatar: IMAGES.sophia,
         description:
-            "Нещодавно підписала контракт з англомовним клієнтом, з яким сама працювала. Можу говорити з ним по 45 хвилин і взагалі ніякого дискомфорту немає.",
+            "Нещодавно підписала контракт з англомовним клієнтом, з яким сама працювала. Можу говорити з ним по 45 хвилин і взагалі ніякого дискомфорту немає. Під час дзвінків я знаю, що навіть якщо щось не знатиму на англ, то зможу це пояснити і все буде окей.",
         alt: "Софія, студентка школи розмовної англійської wannablab",
+    },
+    {
+        name: "Вова",
+        avatar: IMAGES.vovaAvatar,
+        description:
+            "Мій рівень на тестуванні оцінили в А2. Ціллю була робота, пов’язана із комунікацією англійською. Через 2 місяці я успішно пройшов співбесіду та працюю customer support і далі вивчаю англійську.",
+        alt: "Вова, студент школи розмовної англійської wannablab",
+    },
+    {
+        name: "Володимир",
+        avatar: IMAGES.volodymyrAvatar,
+        description:
+            "Я навчився думати англійською на побутовому рівні. Навіть вдома я намагаюся проговорювати назви предметів англійською. Зараз я переписуюся зі своїм знайомим з Лондону і мені вже не потрібен для цього перекладач. Скоро ми плануємо зустрітися, тому це для мене ще один стимул вдосконалювати мову. ",
+        alt: "Володимир, студент школи розмовної англійської wannablab",
     },
 ];
 
