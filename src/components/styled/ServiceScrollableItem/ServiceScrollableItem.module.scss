@@ -1,15 +1,20 @@
 .container {
-    width: 460px;
-    min-height: 270px;
+    width: 480px;
+    min-height: 295px;
 
     &.mobile {
         width: auto;
         max-width: 300px;
-        min-height: 380px;
+        min-height: 520px;
     }
 
     .status {
         width: 12px;
         height: 12px;
+    }
+
+    .image__mobile {
+        max-height: 160px;
+        width: auto;
     }
 }

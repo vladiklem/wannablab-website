@@ -50,6 +50,31 @@
     background-color: $secondary-new !important;
 }
 
+.bg-positive-new {
+    background-color: $positive-new !important;
+}
+
+.bg-vibing-new {
+    background-color: $vibing-new !important;
+}
+
 .bg-white-new {
     background-color: $white-new !important;
 }
+
+.bg-group-new {
+    background-color: $group-cover-new !important;
+}
+
+.bg-solo-new {
+    background-color: $solo-cover-new !important;
+}
+
+.bg-pro-new {
+    background-color: $pro-cover-new !important;
+}
+
+.bg-secondary-gradient {
+    background: linear-gradient(90deg, $secondary-new 75%, $vibing-new 100%);
+}
+

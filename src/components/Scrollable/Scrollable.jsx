@@ -52,14 +52,15 @@ export const Scrollable = ({
                         <Button
                             color="unstyled"
                             onClick={onClickArrowLeft}
-                            className={cx(styles.arrow, styles.left, "p-0 mr-3")}
+                            size="sm"
+                            className={cx(styles.arrow, styles.left, "py-1 px-2 mr-2")}
                         >
                             <ArrowRightLong width={20} height={20} />
                         </Button>
                         <Button
                             color="unstyled"
                             onClick={onClickArrowRight}
-                            className={cx(styles.arrow, "p-0")}
+                            className={cx(styles.arrow, "py-1 px-2")}
                         >
                             <ArrowRightLong className="shadow-soft" width={20} height={20} />
                         </Button>

@@ -1,0 +1,42 @@
+@import "~assets/styles/config/colors";
+
+.container {
+    .circleValue {
+        max-height: 125px;
+        max-width: 250px;
+        box-shadow: rgba(8, 73, 151, 0.25) 0px 25px 50px -12px;
+    }
+
+    .line {
+        position: absolute;
+        left: 50%;
+        top: 2px;
+        transform: translateX(-50%);
+        height: 36px;
+        width: 4px;
+        background-color: $primary-new;
+        border-radius: 16px;
+
+        &:before {
+            content: " ";
+            position: absolute;
+            top: -4px;
+            left: -6px;
+            width: 16px;
+            height: 16px;
+            background-color: $primary-new;
+            border-radius: 32px;
+        }
+
+        &:after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 8px;
+            height: 8px;
+            background-color: $white;
+            border-radius: 32px;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import cx from "classnames";
 
 import { Button, Scrollable } from "components/index";
 import { coursesList } from "constants/lists";
+import { leraContact } from "constants/social";
 import { ServiceScrollableItem } from "components/styled/ServiceScrollableItem/ServiceScrollableItem";
 
 export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className }) => (
@@ -48,33 +49,35 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
         </Scrollable>
         <div className={cx("d-flex mt-3", { "flex-column": isPortable })}>
             <Button
-                className={cx("font-weight-bold text-highlighted rounded-xl", {
+                className={cx("font-weight-bold text-highlighted rounded-xl bg-primary-new", {
                     "mr-3": !isPortable,
                     "mb-3": isPortable,
                 })}
-                color="purple-soft"
                 size="lg"
                 onClick={onOrderClick}
             >
                 Замовити дзвінок
             </Button>
             <Button
-                className={cx("font-weight-bold text-highlighted rounded-xl", {
+                className={cx("font-weight-bold rounded-xl", {
                     "mr-3": !isPortable,
                     "mb-3": isPortable,
                 })}
-                href="https://t.me/emerello"
-                color="blue-soft"
+                color="primary-new"
                 size="lg"
-            >
-                Написати нам в Телеграм
-            </Button>
-            <Button
-                className="font-weight-bold text-highlighted rounded-xl"
-                color="green-soft"
-                size="lg"
+                href="/quiz/lead"
+                outline
             >
                 Пройти тестування рівня
+            </Button>
+            <Button
+                className="font-weight-bold rounded-xl"
+                href={leraContact}
+                color="primary-new"
+                size="lg"
+                outline
+            >
+                Написати нам в Телеграм
             </Button>
         </div>
     </section>

@@ -104,7 +104,7 @@ export const RootContainer = () => {
                         path="/check-list"
                         render={renderRoute({ routeComponent: ChecklistPage })}
                     />
-                    <Route path="/quiz" render={renderRoute({ routeComponent: QuizPage })} />
+                    <Route path="/quiz/:slug" render={renderRoute({ routeComponent: QuizPage })} />
                     <PrivateRoute
                         path="/admin"
                         isLoading={admin.isLoading}

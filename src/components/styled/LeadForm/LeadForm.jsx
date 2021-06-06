@@ -4,12 +4,11 @@ import { useForm } from "react-hook-form";
 import MaskedInput from "react-input-mask";
 import cx from "classnames";
 
-import { Button, buttonColorEnum, Input } from "components/index";
-import { SuccessIcon } from "components/Icons/SuccessIcon";
+import { Button, Input } from "components/index";
 import { Instagram, Telegram } from "components/Icons/social";
 import { addLead } from "store/leads/actions";
 import { bookTest } from "store/app/actions";
-import { instagramLink } from "constants/social";
+import { instagramLink, telegramLink } from "constants/social";
 
 import styles from "./LeadForm.module.scss";
 
@@ -37,7 +36,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
                 {description} {description && <br />} Залиште свої контакти і ми самі
                 перетелефонуємо 😃
             </h3>
-            <Input name="name" label="Ім'я" ref={register({ required: true })} />
+            <Input className="mx-2" name="name" label="Ім'я" ref={register({ required: true })} />
             <MaskedInput
                 mask="+38 (\099) 999 9999"
                 maskChar="_"
@@ -46,8 +45,10 @@ export const LeadForm = ({ className, description = "", ...props }) => {
             >
                 {(inputProps) => (
                     <Input
+                        type="tel"
                         name="phoneNumber"
                         label="Номер телефону"
+                        className="mx-2"
                         ref={register({
                             required: true,
                         })}
@@ -62,7 +63,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
             </MaskedInput>
             <Button
                 block
-                color={buttonColorEnum.SUCCESS_GRADIENT}
+                color="primary-new"
                 className={styles.button}
                 size="lg"
                 type="submit"
@@ -73,25 +74,28 @@ export const LeadForm = ({ className, description = "", ...props }) => {
                 Приєднатися
             </Button>
             <div
-                className={cx(
-                    "d-flex align-items-center justify-content-center flex-column rounded",
-                    styles.successCover,
-                    { [styles.isSuccess]: isSuccess, "mt-5": !isSuccess },
-                )}
+                className={cx("rounded-xl", styles.successCover, {
+                    [styles.isSuccess]: isSuccess,
+                    "mt-5": !isSuccess,
+                })}
             >
-                <div className="d-flex align-items-center text-green-500 mb-2">
-                    <SuccessIcon height={24} width={24} fill="#19bf33" className="mr-2" /> Готово
-                </div>
+                <p className="regular mb-4">
+                    Наш кастомер ловер Марина зателефонує вам протягом 15-ти хвилин ❤️
+                </p>
+                <p className="regular mb-3">А ось, що ми пропонуємо по контенту:</p>
                 <a
                     href={isSuccess ? instagramLink : undefined}
-                    className="d-flex align-items-center text-gray-900 mb-2"
+                    className="d-flex align-items-center mb-3 h3"
                 >
-                    <Instagram height={24} width={24} className="mr-2" /> @eng.wannablab
+                    <Instagram height={24} width={24} className="mr-2" /> креативний інгліш
                 </a>
-                <div className="d-flex align-items-center text-gray-900">
-                    <Telegram height={28} width={28} className="mr-2" />
-                    @wannablab_love
-                </div>
+                <a
+                    href={isSuccess ? telegramLink : undefined}
+                    className="d-flex align-items-center h3"
+                >
+                    <Telegram height={28} width={28} className="mr-1" />
+                    фрази на кожен день
+                </a>
             </div>
         </form>
     );
