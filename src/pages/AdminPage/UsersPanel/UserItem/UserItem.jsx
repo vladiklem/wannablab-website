@@ -22,7 +22,7 @@ export const UserItem = ({ user, onEdit, onDelete, onPay }) => {
 
     return (
         <li className="mb-4">
-            <Collapse togglerContent={togglerContent} className="w-100 bg-white">
+            <Collapse togglerContent={togglerContent} className="w-100 bg-white-new border rounded">
                 <div>{description}</div>
                 <div>
                     <Button onClick={handleEdit} color="primary" className="mr-3">Змінити</Button>

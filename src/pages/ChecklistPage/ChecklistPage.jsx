@@ -1,8 +1,6 @@
-import React, { Fragment, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { Fragment } from "react";
 import cx from "classnames";
 
-import { toggleTopBar } from "store/app/actions";
 import checklist from "assets/images/checklist.jpeg";
 import goal from "assets/images/goal.png";
 import vocabulary from "assets/images/vocabulary.png";
@@ -13,12 +11,6 @@ import regularity from "assets/images/regularity.png";
 import styles from "./ChecklistPage.module.scss";
 
 export const ChecklistPage = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(toggleTopBar());
-    }, [dispatch]);
-
     return (
         <Fragment>
             <div className={styles.container}>

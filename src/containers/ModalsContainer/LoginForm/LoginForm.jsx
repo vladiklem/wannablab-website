@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Modal, ModalFooter } from "reactstrap";
 
 import { Input, Button } from "components/index";
-import { authAsAdmin } from "store/app/actions";
+import { appAdminAuth } from "store/app/actions";
 import { adminPasswordCheck } from "utils/password";
 
 export const LoginForm = ({ isOpen, toggle }) => {
@@ -14,7 +14,7 @@ export const LoginForm = ({ isOpen, toggle }) => {
     const { handleSubmit, register } = useForm();
 
     const toAdmin = useCallback(() => {
-        dispatch(authAsAdmin());
+        dispatch(appAdminAuth());
         history.push("/admin");
         toggle();
     }, [dispatch, history, toggle]);

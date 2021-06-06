@@ -11,6 +11,8 @@ import {
     initLeadsFailure,
     updateLeadFailure,
     updateLeadSuccess,
+    deleteLeadSuccess,
+    deleteLeadFailure,
 } from "./actions";
 
 function* initLeadsSaga() {
@@ -44,8 +46,18 @@ function* updateLeadSaga({ payload: { lead } }) {
     }
 }
 
+function* deleteLeadSaga({ payload }) {
+    try {
+        yield call(firebaseService.delete, FIREBASE_DATA_LEADS, payload.id);
+        yield put(deleteLeadSuccess(payload.id));
+    } catch (error) {
+        yield put(deleteLeadFailure(error.message));
+    }
+}
+
 export const leadsSaga = [
     takeLatest(LEADS.ADD.IDLE, addLeadSaga),
     takeLatest(LEADS.INIT.IDLE, initLeadsSaga),
     takeLatest(LEADS.UPDATE.IDLE, updateLeadSaga),
+    takeLatest(LEADS.DELETE.IDLE, deleteLeadSaga),
 ];
