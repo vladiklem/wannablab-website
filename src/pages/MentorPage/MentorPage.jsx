@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
@@ -19,6 +19,11 @@ export const MentorPage = () => {
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
+
+    const onOrderClick = useCallback(() => {
+        document.getElementById("wannablab-lead-form").scrollIntoView();
+        setTimeout(() => document.getElementById("name").focus(), 750);
+    }, []);
 
     useEffect(() => {
         scrollToTop();
@@ -54,6 +59,7 @@ export const MentorPage = () => {
                                     className="w-100 font-weight-bold py-2"
                                     color="primary-new"
                                     href="#wannablab-lead-form"
+                                    onClick={onOrderClick}
                                 >
                                     Записатися
                                 </Button>
@@ -103,13 +109,13 @@ export const MentorPage = () => {
                     </div>
                 </div>
             </section>
-            <section id="wannablab-lead-form" className="exp-bg full-screen-height">
+            <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
                     <h2 className="hidden-element">
                         Форма для запису на курс англійської мови від школи розмовної англійської
                         wannablab
                     </h2>
-                    <h3 className="h2 mt-5 mb-5 text-center">
+                    <h3 className="h2 mt-5 mb-5 text-center text-white">
                         Курс пройшли вже <strong>57 людей</strong>
                     </h3>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">

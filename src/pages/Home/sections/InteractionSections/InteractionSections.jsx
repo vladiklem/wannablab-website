@@ -10,7 +10,7 @@ export const InteractionSections = (props) => {
         <>
             <section
                 id="wannablab-teachers"
-                className={cx("container pt-3 mb-4", styles.container)}
+                className={cx("container pt-3 mb-5", styles.container)}
             >
                 <MentorsScrollableList className="mx-n4" {...props} />
             </section>

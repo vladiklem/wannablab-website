@@ -16,7 +16,7 @@ export const Home = () => {
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
     const onOrderClick = useCallback(() => {
-        document.getElementById("blaber-form").scrollIntoView();
+        document.getElementById("wannablab-lead-form").scrollIntoView();
         setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
@@ -63,7 +63,7 @@ export const Home = () => {
                 isPortable={isPortable}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className="full-screen-height bg-primary-new-75">
+            <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
                     <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
                         Вже <strong>44 людини</strong> займаються з нами!

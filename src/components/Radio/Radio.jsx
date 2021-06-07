@@ -41,7 +41,7 @@ export const Radio = forwardRef(
             />
             <label
                 className={cx(
-                    "position-relative transition-250 border rounded-lg w-100 mb-3 font-weight-bold h3",
+                    "position-relative transition-250 border rounded-lg w-100 mb-3 font-weight-bold regular",
                     {
                         [styles.radio__defaultLabel]: type === radioTypesEnum.DEFAULT,
                         [cx(styles.radio__borderedLabel, "border")]:

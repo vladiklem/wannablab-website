@@ -89,11 +89,11 @@ const steps = {
             focus: "firstName",
             commonProps: { type: inputTypeEnum.NEW },
             list: [
-                { name: "firstName", label: "Ім'я", className: "mx-4 mt-2" },
+                { name: "firstName", label: "Ім'я", className: "mx-3 mt-2" },
                 {
                     name: "phoneNumber",
                     label: "Номер телефону",
-                    className: "mx-4 mt-4",
+                    className: "mx-3 mt-4",
                     maskProps: {
                         mask: `+38 (\\099) 999 9999`,
                         maskChar: "_",
