@@ -51,7 +51,7 @@ export const Home = () => {
 
     return (
         <article className="mt-4">
-            <h1 className="hidden element">
+            <h1 className="hidden-element">
                 Навчаємо розмовній англійській онлайн для професійних цілей. Професійна англійська,
                 англійська для IT, практика, speaking club. Учить английский, разговорный
                 английский, практика английского языка.
@@ -71,7 +71,7 @@ export const Home = () => {
             <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
                     <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
-                        Вже <strong>44 людини</strong> займаються з нами!
+                        Вже <strong>44 людини</strong> вивчили англійську з нами
                     </h2>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                         <LeadForm description={description} />

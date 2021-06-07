@@ -54,7 +54,7 @@ export const MentorScrollableItem = ({
                 height={250}
                 width={250}
                 src={src}
-                alt={name}
+                alt={`${name} - вчитель англійської на курсах wannablab`}
             />
         </ScrollableItem>
     );

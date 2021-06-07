@@ -16,7 +16,7 @@ export const Quote = ({ src, alt, text, author, className = "p-2", isPortable })
                     "mb-2": isPortable,
                 })}
                 src={src}
-                alt={alt}
+                alt={`${author} - студент курсів англійської від wanalab.`}
             />
         </div>
         <div className="col-md-10 col-sm-12 d-flex flex-column position-relative">

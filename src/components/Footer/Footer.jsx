@@ -16,7 +16,7 @@ export const Footer = ({ isPortable, isVisible, handleLogin }) => {
                 })}
             >
                 <div className="row align-items-center mb-3 no-gutters w-100">
-                    <img className="mr-3" src={logo} width="50" height="60" alt="wannablab logo" />
+                    <img className="mr-3" src={logo} width="50" height="60" alt="Логотип компанії wannablab" />
                     <p className="regular">
                         powered by <br />{" "}
                         <span className="font-weight-semibold">wannablab family</span>

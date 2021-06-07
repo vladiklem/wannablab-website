@@ -65,7 +65,7 @@ export const ServiceScrollableItem = ({
                                 <img
                                     className={cx("d-block", styles.image__mobile)}
                                     src={src}
-                                    alt=""
+                                    alt={title}
                                 />
                             </div>
                         </div>
@@ -73,7 +73,9 @@ export const ServiceScrollableItem = ({
                 </div>
                 {!isPortable && (
                     <div className="col-4 d-flex align-items-center justify-content-center">
-                        {src && <img className="d-block ml-auto mr-auto image" src={src} alt="" />}
+                        {src && (
+                            <img className="d-block ml-auto mr-auto image" src={src} alt={title} />
+                        )}
                     </div>
                 )}
             </div>

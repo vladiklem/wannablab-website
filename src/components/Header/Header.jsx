@@ -60,7 +60,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
         >
             <div className="d-flex align-items-center justify-content-between">
                 <a href="/">
-                    <img src={logo} width="50" height="60" alt="wannablab logo" />
+                    <img src={logo} width="50" height="60" alt="Логотип компанії wannablab" />
                 </a>
                 <a href="/" className="text-decoration-none text-gray-900">
                     <p className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>

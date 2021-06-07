@@ -37,7 +37,7 @@ export const MentorPage = () => {
                         <img
                             className="image rounded-xl mb-2 shadow-soft"
                             src={mentor.src}
-                            alt={mentor.description}
+                            alt={`${mentor.name}. ${mentor.description}`}
                         />
                     </div>
                     <div className="col-md-6 col-sm-12">
@@ -80,7 +80,7 @@ export const MentorPage = () => {
                         <img
                             className="image rounded-xl shadow-soft"
                             src={mentor.src}
-                            alt={mentor.description}
+                            alt={`${mentor.name}. ${mentor.description}`}
                         />
                     </div>
                 </div>

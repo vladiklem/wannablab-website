@@ -40,7 +40,7 @@ export const CoursePage = () => {
                                 "d-md-none shadow-soft rounded-lg mb-3",
                             )}
                             src={course.imgSrc}
-                            alt={course.description}
+                            alt={course.title}
                         />
                         <h2 className="regular mb-3">{course.description}</h2>
                         <div className="row flex-nowrap mb-5">
@@ -90,7 +90,7 @@ export const CoursePage = () => {
                         <img
                             className={cx(styles.coursePage__image, "rounded-lg shadow-soft")}
                             src={course.imgSrc}
-                            alt={course.description}
+                            alt={course.title}
                         />
                     </div>
                 </div>
