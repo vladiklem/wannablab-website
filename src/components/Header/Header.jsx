@@ -82,7 +82,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
                     [styles.visible]: isPortable && isOpen,
                 })}
             >
-                <ul className="d-flex scrollbar-invisible overflow-auto px-3 pt-3 pb-4 mb-n3">
+                <ul className="d-flex scrollbar-invisible overflow-auto p-3">
                     {navigation.map((item) => (
                         <NavItem onClick={handleRedirect} key={item.id} {...item} />
                     ))}

@@ -5,14 +5,14 @@ import { MentorsScrollableList } from "components/styled/MentorsScrollableList/M
 
 import styles from "./InteractionSection.module.scss";
 
-export const InteractionSections = ({ toMentor }) => {
+export const InteractionSections = (props) => {
     return (
         <>
             <section
                 id="wannablab-teachers"
                 className={cx("container pt-3 mb-4", styles.container)}
             >
-                <MentorsScrollableList className="mx-n4" toMentor={toMentor} />
+                <MentorsScrollableList className="mx-n4" {...props} />
             </section>
         </>
     );

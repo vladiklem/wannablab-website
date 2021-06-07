@@ -48,7 +48,8 @@
 
     &__check {
         position: absolute;
-        top: 23px;
+        top: 50%;
+        transform: translateY(-110%);
         left: 8px;
         clip-path: circle(0);
 

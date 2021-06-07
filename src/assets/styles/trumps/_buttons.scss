@@ -130,4 +130,11 @@
 .btn-outline-primary-new {
     border-color: $primary-new;
     color: $primary-new;
+    transition: all .25s;
+
+    &:hover {
+        background-color: $primary-new;
+        color: $white;
+        box-shadow: $shadow-soft;
+    }
 }

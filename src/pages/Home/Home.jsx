@@ -60,6 +60,7 @@ export const Home = () => {
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}
                 onGroupSelect={onGroupSelect}
+                isPortable={isPortable}
             />
             <FeedbackSection isPortable={isPortable} />
             <section id="blaber-form" className="full-screen-height bg-primary-new-75">

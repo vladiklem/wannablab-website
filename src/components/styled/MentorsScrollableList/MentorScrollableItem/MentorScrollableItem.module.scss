@@ -1,6 +1,10 @@
 .container {
-    max-width: 250px;
-    min-height: 485px;
+    max-width: 520px;
+
+    &.isPortable {
+        max-width: 264px;
+        min-height: 520px;
+    }
 
     .name {
         &:before {

@@ -68,6 +68,7 @@ export const CoursePage = () => {
                             {slug === "solo-plan" && (
                                 <MentorsScrollableList
                                     className={cx({ "mx-n4": isPortable, "mx-n2": !isPortable })}
+                                    isPortable={isPortable}
                                 />
                             )}
                             {(slug === "pro-plan" || slug === "basic-plan") && (

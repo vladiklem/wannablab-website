@@ -5,7 +5,7 @@ import { mentorsList } from "constants/lists";
 
 import { MentorScrollableItem } from "./MentorScrollableItem/MentorScrollableItem";
 
-export const MentorsScrollableList = ({ toMentor, list = mentorsList, className }) => {
+export const MentorsScrollableList = ({ toMentor, list = mentorsList, className, isPortable }) => {
     return (
         <Scrollable
             containerClassName={className}
@@ -23,6 +23,7 @@ export const MentorsScrollableList = ({ toMentor, list = mentorsList, className 
                     key={name}
                     name={name}
                     onClick={toMentor}
+                    isPortable={isPortable}
                     {...itemProps}
                 />
             ))}
