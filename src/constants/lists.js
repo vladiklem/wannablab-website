@@ -148,20 +148,20 @@ export const mentorsList = [
         description: "Ваш нереально короткий дескріпшен.",
     },
     {
-        slug: "kate-timchenko",
-        name: "Катя Тимченко",
-        src: IMAGES.kateAvatar,
-        list: ["Список заслуг", "перед родіной"],
-        description: "Ваш нереально короткий дескріпшен.",
-        color: "soft-purple",
-    },
-    {
         slug: "ann-stepova",
         name: "Аня Степова",
         src: IMAGES.anyaAvatar,
         description: "Ваш нереально короткий дескріпшен.",
         list: ["Список заслуг", "перед родіной"],
         color: "soft-blue",
+    },
+    {
+        slug: "kate-timchenko",
+        name: "Катя Тимченко",
+        src: IMAGES.kateAvatar,
+        list: ["Список заслуг", "перед родіной"],
+        description: "Ваш нереально короткий дескріпшен.",
+        color: "soft-purple",
     },
     {
         slug: "marina-torokhtiy",

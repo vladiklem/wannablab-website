@@ -63,9 +63,9 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
                     <img src={logo} width="50" height="60" alt="wannablab logo" />
                 </a>
                 <a href="/" className="text-decoration-none text-gray-900">
-                    <h1 className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>
+                    <p className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>
                         wannablab
-                    </h1>
+                    </p>
                 </a>
                 <Button
                     className={cx({ "d-none": !isPortable })}

@@ -51,6 +51,11 @@ export const Home = () => {
 
     return (
         <article className="mt-4">
+            <h1 className="hidden element">
+                Навчаємо розмовній англійській онлайн для професійних цілей. Професійна англійська,
+                англійська для IT, практика, speaking club. Учить английский, разговорный
+                английский, практика английского языка.
+            </h1>
             <GreetingsSection
                 onOrderClick={onOrderClick}
                 isPortable={isPortable}

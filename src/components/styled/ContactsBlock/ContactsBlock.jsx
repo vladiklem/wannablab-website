@@ -7,7 +7,7 @@ import { email, instagramLink, telegramLink, telNumber } from "constants/social"
 
 export const ContactsBlock = ({ isRow = true, className }) => (
     <div className={cx("d-flex flex-column", className)}>
-        <h1 className="hidden-element">Контакти</h1>
+        {/* <h1 className="hidden-element">Контакти</h1> */}
         <p className="regular mb-1">коннект з нами:</p>
         <ul className={cx("d-flex flex-wrap mb-3", { "flex-column": !isRow })}>
             <li className="mr-4 mb-1">
