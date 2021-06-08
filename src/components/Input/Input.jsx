@@ -20,12 +20,12 @@ export const Input = forwardRef(
             invalid,
             errorMessage,
             alternative = false,
-            type = inputTypeEnum.DEFAULT,
+            inputType = inputTypeEnum.DEFAULT,
             ...props
         },
         ref,
     ) => {
-        return alternative || (type === inputTypeEnum.ALTERNATIVE) ? (
+        return alternative || (inputType === inputTypeEnum.ALTERNATIVE) ? (
             <div>
                 <Tag
                     className={cx(styles.alternativeInput, className)}
@@ -44,14 +44,14 @@ export const Input = forwardRef(
                     className={cx(styles.customFormInput, {
                         [styles.invalid]: invalid || errorMessage,
                         [styles.textarea]: Tag === "textarea",
-                        [styles.new]: type === inputTypeEnum.NEW,
+                        [styles.new]: inputType === inputTypeEnum.NEW,
                     })}
                     {...props}
                 />
                 {!!label && (
                     <label
                         className={cx(styles.customFormLabel, {
-                            "bg-white-new": type === inputTypeEnum.NEW,
+                            "bg-white-new": inputType === inputTypeEnum.NEW,
                         }, labelClassName)}
                         htmlFor={id || name}
                     >

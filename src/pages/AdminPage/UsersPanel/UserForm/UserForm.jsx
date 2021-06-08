@@ -6,7 +6,7 @@ import { Input, CustomSelect } from "components/index";
 import { objWithId } from "utils/converters";
 import { initialUser } from "constants/initialValues";
 import { formModeEnum, formSubmitButtonEnum } from "constants/enums";
-import { levelOptions } from "constants/options";
+import { levelOptions, sourceOptions } from "constants/options";
 
 import styles from "./UserForm.module.scss";
 
@@ -77,10 +77,26 @@ export const UserForm = ({
                         errorMessage={errors.phoneNumber && "Невалідний номер телефону"}
                     />
                     <CustomSelect
-                        name="startLevel"
+                        name="engLevel"
                         ref={register}
                         options={levelOptions.map((item) => ({ label: item, value: item }))}
-                        label="Стартовий рівень"
+                        label="Рівень наразі"
+                    />
+                    <CustomSelect
+                        name="source"
+                        ref={register}
+                        options={sourceOptions}
+                        label="Звідки прийшов"
+                    />
+                    <Input
+                        label="Дата наступної оплати"
+                        name="chargeDate"
+                        type="date"
+                    />
+                    <Input
+                        label="Сума до сплати"
+                        name="chargeSum"
+                        type="number"
                     />
                     <Input
                         label="Опис"
