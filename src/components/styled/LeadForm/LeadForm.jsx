@@ -10,6 +10,10 @@ import { addLead } from "store/leads/actions";
 import { bookTest } from "store/app/actions";
 import { instagramLink, telegramLink } from "constants/social";
 
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
+
+
 import styles from "./LeadForm.module.scss";
 
 export const LeadForm = ({ className, description = "", ...props }) => {
@@ -22,6 +26,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
         (data) => {
             dispatch(addLead(data));
             data.time && dispatch(bookTest(data.time));
+            fireAnalyticsEvent(events.LEAD_FORM_SUBMIT)
         },
         [dispatch],
     );

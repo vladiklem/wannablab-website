@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import cx from "classnames";
 
 import { Input, inputTypeEnum, Radio } from "components/index";
@@ -9,6 +9,10 @@ import { useHistory, useParams } from "react-router";
 import { QuizForm } from "./QuizForm/QuizForm";
 import { useDispatch } from "react-redux";
 import { addLead } from "store/leads/actions";
+
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
+
 
 const steps = {
     lead: [
@@ -113,6 +117,10 @@ export const QuizPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { slug } = useParams();
+
+    useEffect(() => {
+        fireAnalyticsEvent(events.JOIN_QUIZ)
+    }, [])
 
     const onSubmit = useCallback(
         (data) => {

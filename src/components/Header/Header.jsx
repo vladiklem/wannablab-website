@@ -9,6 +9,9 @@ import styles from "./Header.module.scss";
 
 import logo from "assets/images/logo.png";
 
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
+
 const navigation = [
     {
         children: "Вчителі",
@@ -45,6 +48,9 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
             history.location.pathname !== "/" && history.push("/");
             id === "wannablab-courses" && onCoursesClick();
             id === "wannablab-prices" && onPricesClick();
+
+            fireAnalyticsEvent(events.TOP_NAVIGATION_MENU, id)
+        
         },
         [history, onCoursesClick, onPricesClick],
     );

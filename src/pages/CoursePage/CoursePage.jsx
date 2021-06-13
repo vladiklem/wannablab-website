@@ -16,6 +16,9 @@ import { LeadForm } from "components/styled/LeadForm/LeadForm";
 import { GroupsScrollableList } from "components/styled/GroupsScrollableList/GroupsScrollableList";
 import { MentorsScrollableList } from "components/styled/MentorsScrollableList/MentorsScrollableList";
 
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
+
 export const CoursePage = () => {
     const groups = useSelector(selectGroups);
     const { slug } = useParams();
@@ -23,6 +26,9 @@ export const CoursePage = () => {
         ({ slug: courseSlug }) => slug === courseSlug,
     );
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
+
+    const onClick = () => fireAnalyticsEvent(events.WANT_THIS_COURSE, slug)
+    
 
     useEffect(() => {
         scrollToTop();
@@ -59,6 +65,7 @@ export const CoursePage = () => {
                                     className="w-100 rounded-lg py-2 font-weight-bold"
                                     color="primary-new"
                                     href="#wannablab-lead-form"
+                                    onClick={onClick}
                                 >
                                     {isPortable ? "Хочу" : "Хочу...дуже :3"}
                                 </Button>
