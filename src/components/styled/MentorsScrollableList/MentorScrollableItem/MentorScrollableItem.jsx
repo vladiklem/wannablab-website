@@ -13,7 +13,7 @@ export const MentorScrollableItem = ({
     array,
     className,
     list,
-    description,
+    shortDescription,
     instHref = "",
     slug,
     isPortable,
@@ -42,7 +42,7 @@ export const MentorScrollableItem = ({
                             {name}
                         </h3>
                     </a>
-                    {!!description && <p className="mb-1">{description}</p>}
+                    {!!shortDescription && <p className="mb-1">{shortDescription}</p>}
                     <List className="mb-2" type="primary-new" list={list} />
                 </div>
                 <Button color="primary-new" onClick={handleClick} outline>

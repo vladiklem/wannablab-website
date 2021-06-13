@@ -4,7 +4,7 @@ export const AllFeaturedPlanIcon = ({ width = 150, height = 150, fill = "#9065dd
         version="1.0"
         x="0px"
         y="0px"
-        viewBox="0 0 100 125"
+        viewBox="0 0 100 100"
         enableBackground="new 0 0 100 100"
         width={width}
         height={height}

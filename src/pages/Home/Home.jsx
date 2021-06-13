@@ -2,12 +2,13 @@ import React, { useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useHistory } from "react-router-dom";
 
-import { GreetingsSection } from "./sections/GreetingsSection/GreetingsSection";
-import { InteractionSections } from "./sections/InteractionSections/InteractionSections";
-import { FeedbackSection } from "./sections/FeedbackSection/FeedbackSection";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
-
 import { mediaBreakpointsEnum } from "constants/enums";
+
+import { GreetingsSection } from "./GreetingsSection/GreetingsSection";
+import { InteractionSections } from "./InteractionSections/InteractionSections";
+import { FeedbackSection } from "./FeedbackSection/FeedbackSection";
+import { ValuesSection } from "./ValuesSection/ValuesSection";
 
 export const Home = () => {
     const [description, setDescription] = useState("");
@@ -61,6 +62,7 @@ export const Home = () => {
                 isPortable={isPortable}
                 toCourse={toCourse}
             />
+            <ValuesSection />
             <InteractionSections
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}
@@ -68,7 +70,7 @@ export const Home = () => {
                 isPortable={isPortable}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
+            <section id="wannablab-lead-form" className="full-screen-height bg-secondary-new-70">
                 <div className="container d-flex flex-column align-items-center">
                     <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
                         Вже <strong>44 людини</strong> вивчили англійську з нами

@@ -5,7 +5,7 @@ import { Scrollable } from "components/index";
 
 import { GroupScrollableItem } from "./GroupScrollableItem/GroupScrollableItem";
 
-export const GroupsScrollableList = ({ isPortable, list = [], ...props }) => (
+export const GroupsScrollableList = ({ isPortable, list = [], onClick, ...props }) => (
     <Scrollable
         hasArrows={true}
         isScrollbarVisible={false}
@@ -17,7 +17,13 @@ export const GroupsScrollableList = ({ isPortable, list = [], ...props }) => (
         }}
     >
         {list.map((item, index, array) => (
-            <GroupScrollableItem key={item.id} index={index} array={array} item={item} />
+            <GroupScrollableItem
+                key={item.id}
+                index={index}
+                array={array}
+                item={item}
+                onClick={onClick}
+            />
         ))}
     </Scrollable>
 );

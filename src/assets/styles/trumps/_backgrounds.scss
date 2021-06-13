@@ -29,7 +29,7 @@
 }
 
 .bg-gradient {
-    background: linear-gradient(to right, #FBF8FF, #F9F4FF);
+    background: linear-gradient(to right, #fbf8ff, #f9f4ff);
 }
 
 .bg-green-200 {
@@ -37,7 +37,11 @@
 }
 
 .exp-bg {
-    background: linear-gradient(180deg, rgba(228, 199, 255, .5) 92.19%, rgba(253, 253, 150, .5) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(228, 199, 255, 0.5) 92.19%,
+        rgba(253, 253, 150, 0.5) 100%
+    );
 }
 
 // New Design System
@@ -47,11 +51,15 @@
 }
 
 .bg-primary-new-75 {
-    background-color: rgba(8, 73, 151, .75) !important;
+    background-color: rgba(8, 73, 151, 0.75) !important;
 }
 
 .bg-secondary-new {
     background-color: $secondary-new !important;
+}
+
+.bg-secondary-new-70 {
+    background-color: rgba(245, 138, 7, 0.7) !important;
 }
 
 .bg-positive-new {
@@ -81,4 +89,3 @@
 .bg-secondary-gradient {
     background: linear-gradient(90deg, $secondary-new 75%, $vibing-new 100%);
 }
-

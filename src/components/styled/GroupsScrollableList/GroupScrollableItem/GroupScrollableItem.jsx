@@ -6,10 +6,10 @@ import { ScrollableItem, Button, List } from "components/index";
 
 import styles from "./GroupScrollableItem.module.scss";
 
-export const GroupScrollableItem = ({ item: { title, members }, index, array, onGroupSelect }) => {
-    const onClick = useCallback(() => {
-        onGroupSelect({ title });
-    }, [onGroupSelect, title]);
+export const GroupScrollableItem = ({ item: { id, title, members }, index, array, onClick }) => {
+    const handleClick = useCallback(() => {
+        onClick({ id, title });
+    }, [onClick, title, id]);
 
     return (
         <ScrollableItem
@@ -27,7 +27,7 @@ export const GroupScrollableItem = ({ item: { title, members }, index, array, on
             </div>
             <Button
                 block={true}
-                onClick={onClick}
+                onClick={handleClick}
                 color="vibing-new"
                 className="rounded-lg mt-4 text-highlighted font-weight-semibold"
             >

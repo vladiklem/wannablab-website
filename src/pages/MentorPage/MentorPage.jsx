@@ -20,9 +20,9 @@ export const MentorPage = () => {
 
     const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
 
-    const onOrderClick = useCallback(() => {
+    const onGroupSelect = useCallback(() => {
         document.getElementById("wannablab-lead-form").scrollIntoView();
-        setTimeout(() => document.getElementById("name").focus(), 750);
+        setTimeout(() => document.getElementById("name").focus(), 500);
     }, []);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export const MentorPage = () => {
 
     return (
         <article className="pt-4">
-            <section className="mb-4 container">
+            <section className="mb-5 container">
                 <div className="row">
                     <div className={cx("col-md-6 col-sm-12 d-none", { "d-block": isPortable })}>
                         <img
@@ -42,9 +42,9 @@ export const MentorPage = () => {
                     </div>
                     <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{mentor.name}</h1>
-                        <h2 className="regular mb-3">{mentor.description}</h2>
-                        <div className="row flex-nowrap mb-4">
-                            <span className="col-6">
+                        <h2 className="regular mb-3">{mentor.longDescription}</h2>
+                        <div className="row flex-wrap mb-4">
+                            {/* <span className="col-6">
                                 <Button
                                     className="w-100 font-weight-bold py-2"
                                     color="primary-new"
@@ -53,27 +53,20 @@ export const MentorPage = () => {
                                 >
                                     {isPortable ? "Більше" : "Читати більше"}
                                 </Button>
+                            </span> */}
+                            <span className={cx("col-md-6 col-12", { "mb-3": isPortable })}>
+                                <List list={mentor.list} />
                             </span>
-                            <span className="col-6">
+                            <span className="col-md-6 col-12">
                                 <Button
                                     className="w-100 font-weight-bold py-2"
                                     color="primary-new"
                                     href="#wannablab-lead-form"
-                                    onClick={onOrderClick}
+                                    onClick={onGroupSelect}
                                 >
                                     Записатися
                                 </Button>
                             </span>
-                        </div>
-                        {groups.length ? (
-                            <>
-                                <GroupsScrollableList isPortable={isPortable} list={groups} />
-                            </>
-                        ) : (
-                            <Loader />
-                        )}
-                        <div>
-                            <List list={mentor.list} />
                         </div>
                     </div>
                     <div className={cx("col-md-6 col-sm-12", { "d-none": isPortable })}>
@@ -81,33 +74,24 @@ export const MentorPage = () => {
                             className="image rounded-xl shadow-soft"
                             src={mentor.src}
                             alt={`${mentor.name}. ${mentor.description}`}
+                            height={300}
+                            width={300}
                         />
                     </div>
                 </div>
             </section>
-            <section className="pt-4 container" id="wannablab-teacher-description">
-                <h2 className="h2 mb-3">Про Ментора</h2>
-                <div className="row mb-5">
-                    <div className="col-md-8 col-sm-12">
-                        <p className="regular">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Facilisis gravida
-                            neque convallis a. Lobortis feugiat vivamus at augue eget. Sit amet nisl
-                            purus in mollis nunc sed. <br /> <br /> Enim blandit volutpat maecenas
-                            volutpat blandit aliquam etiam erat. Consequat semper viverra nam libero
-                            justo laoreet. Commodo quis imperdiet massa tincidunt. Condimentum
-                            lacinia quis vel eros. Sollicitudin nibh sit amet commodo nulla facilisi
-                            nullam. Ante in nibh mauris cursus mattis molestie a iaculis at. Viverra
-                            ipsum nunc aliquet bibendum enim facilisis gravida neque convallis.{" "}
-                            <br /> <br /> Vel facilisis volutpat est velit egestas. Non nisi est sit
-                            amet. Lectus proin nibh nisl condimentum id venenatis a condimentum
-                            vitae. Eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim.
-                            Posuere sollicitudin aliquam ultrices sagittis. Faucibus scelerisque
-                            eleifend donec pretium vulputate. Orci ac auctor augue mauris augue
-                            neque gravida in fermentum. Nunc mi ipsum faucibus vitae.
-                        </p>
-                    </div>
-                </div>
+            <section className="container mb-4">
+                {groups.length ? (
+                    <>
+                        <GroupsScrollableList
+                            onClick={onGroupSelect}
+                            isPortable={isPortable}
+                            list={groups}
+                        />
+                    </>
+                ) : (
+                    <Loader />
+                )}
             </section>
             <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
