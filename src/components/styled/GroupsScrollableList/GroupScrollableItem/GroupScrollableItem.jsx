@@ -17,9 +17,9 @@ export const GroupScrollableItem = ({ item: { title, members }, index, array, on
                 "mr-3": index !== array.length - 1,
             })}
         >
-            <h3 className="h3 font-weight-bold mb-1">{title}</h3>
+            <h3 className="h3 font-weight-bold mb-2">{title}</h3>
             <div className="flex-grow-1">
-                <List list={["Понеділок, 19:00", "Середа, 19:00"]} />
+                <List className="mb-1" list={["Понеділок, 19:00", "Середа, 19:00"]} />
                 <div className="d-flex align-items-center">
                     <Team height={32} width={32} />
                     <h3 className="ml-2 h3">{`${members.length}/4`}</h3>
@@ -28,7 +28,7 @@ export const GroupScrollableItem = ({ item: { title, members }, index, array, on
             <Button
                 block={true}
                 onClick={onClick}
-                color="green-soft"
+                color="vibing-new"
                 className="rounded-lg mt-4 text-highlighted font-weight-semibold"
             >
                 записатися

@@ -1,47 +1,49 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import cx from "classnames";
 
 import { ModalsContainer } from "containers/ModalsContainer/ModalsContainer";
 import { Home } from "pages/Home/Home";
-import { BlaberRoom } from "pages/BlaberRoom/BlaberRoom";
 import { AdminPage } from "pages/AdminPage/AdminPage";
 import { ChecklistPage } from "pages/ChecklistPage/ChecklistPage";
 import { NotFoundPage } from "pages/NotFoundPage/NotFoundPage";
 import { CoursePage } from "pages/CoursePage/CoursePage";
 import { MentorPage } from "pages/MentorPage/MentorPage";
-import { Button, TopBar, buttonColorEnum, Header, Footer } from "components/index";
+import { QuizPage } from "pages/QuizPage/QuizPage";
+import { TestPage } from "pages/TestPage/TestPage";
+import { Header, Footer } from "components/index";
 import { firebaseService } from "services/firebaseService";
 import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
-import { initGeneral } from "store/general/actions";
+import { initApp } from "store/app/actions";
 import { initCurrentUser } from "store/currentUser/actions";
-import { isAdminSelector } from "selectors/general";
+import { selectAdmin } from "store/app/selectors";
 import { toggleModal } from "store/modals/actions";
-import { isLoggedInSelector } from "selectors/blaber";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
+import { RouterListener } from "./RouterListener/RouterListener";
 
 import styles from "./RootContainer.module.scss";
 import "assets/styles/index.scss";
+import { initLeads } from "store/leads/actions";
 
 firebaseService.init();
 
 export const RootContainer = () => {
     const dispatch = useDispatch();
+    const admin = useSelector(selectAdmin);
     const [coursesClicked, setCoursesClicked] = useState(false);
     const [pricesClicked, setPricesClicked] = useState(false);
 
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
-    const openLoginModal = useCallback(
-        () => dispatch(toggleModal(modalNamesEnum.LOGIN )),
-        [dispatch],
-    );
+    const openLoginModal = useCallback(() => dispatch(toggleModal(modalNamesEnum.LOGIN)), [
+        dispatch,
+    ]);
 
     const onCoursesClick = useCallback(() => {
         setTimeout(() => {
@@ -59,11 +61,6 @@ export const RootContainer = () => {
         }, 560);
     };
 
-    // const openAdModal = useCallback(
-    //     () => setModalState({ name: modalNamesEnum.AD, isOpen: true }),
-    //     [setModalState],
-    // );
-
     const renderRoute = useCallback(
         ({ routeComponent: Component }) => (props) => <Component {...props} />,
         [],
@@ -73,33 +70,18 @@ export const RootContainer = () => {
         dispatch(initUsers());
         dispatch(initEvents());
         dispatch(initGroups());
-        dispatch(initGeneral());
+        dispatch(initApp());
         dispatch(initCurrentUser());
+        dispatch(initLeads());
     }, [dispatch]);
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         dispatch(toggleModal(modalNamesEnum.AD));
-    //     }, 5000);
-    // }, [dispatch]);
 
     return (
         <Router>
-            <TopBar isVisible={false}>
-                <Button color={buttonColorEnum.UNSTYLED} size="lg" onClick={openLoginModal}>
-                    Залогінитись
-                </Button>
-                <a
-                    className={cx(styles.topBarLink, "text-gray-900 font-weight-bold")}
-                    href="#prices"
-                >
-                    Ціни
-                </a>
-            </TopBar>
             <Header
                 isPortable={isPortable}
                 onCoursesClick={onCoursesClick}
                 onPricesClick={onPricesClick}
+                isVisible={!admin.isVisible}
             />
             <main
                 className={cx(styles.background, {
@@ -108,6 +90,7 @@ export const RootContainer = () => {
                 })}
             >
                 <ModalsContainer />
+                <RouterListener />
                 <Switch>
                     <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
                     <Route
@@ -122,16 +105,23 @@ export const RootContainer = () => {
                         path="/check-list"
                         render={renderRoute({ routeComponent: ChecklistPage })}
                     />
+                    <Route path="/test" render={renderRoute({ routeComponent: TestPage })} />
+                    <Route path="/quiz/:slug" render={renderRoute({ routeComponent: QuizPage })} />
                     <PrivateRoute
-                        path="/profile"
-                        component={BlaberRoom}
-                        selector={isLoggedInSelector}
+                        path="/admin"
+                        isLoading={admin.isLoading}
+                        hasAccess={admin.isAdmin}
+                        component={AdminPage}
+                        selector={selectAdmin}
                     />
-                    <PrivateRoute path="/admin" component={AdminPage} selector={isAdminSelector} />
                     <Route component={NotFoundPage} />
                 </Switch>
             </main>
-            <Footer handleLogin={openLoginModal} isPortable={isPortable} />
+            <Footer
+                handleLogin={openLoginModal}
+                isPortable={isPortable}
+                isVisible={!admin.isVisible}
+            />
         </Router>
     );
 };

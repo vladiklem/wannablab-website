@@ -12,11 +12,11 @@ export const MentorScrollableItem = ({
     index,
     array,
     className,
-    color,
     list,
     description,
     instHref = "",
     slug,
+    isPortable,
     onClick,
 }) => {
     const handleClick = useCallback(() => {
@@ -25,40 +25,37 @@ export const MentorScrollableItem = ({
 
     return (
         <ScrollableItem
+            direction={!isPortable ? "row" : undefined}
             className={cx(
-                "shadow-soft rounded-xl bg-white transition-250 d-flex flex-column",
-                { "mr-3": array.length - 1 !== index },
+                "shadow-soft rounded-xl bg-white-exp transition-250 p-2",
+                { [cx(styles.isPortable, "flex-column-reverse")]: isPortable },
+                { "mr-4": array.length - 1 !== index },
                 styles.container,
                 className,
             )}
         >
-            <img
-                className={cx("d-block image", styles.image)}
-                height={300}
-                width={300}
-                src={src}
-                alt={name}
-            />
-            <a
-                className={cx("position-relative text-decoration-none px-2", styles.name)}
-                href={instHref}
-            >
-                <h3 className="h3 d-flex align-items-center justify-content-center text-center mb-3 text-gray-900">
-                    <Instagram width={20} height={20} className="mr-2" />
-                    {name}
-                </h3>
-            </a>
-            <div
-                className={`text-wrap flex-grow-1 d-flex flex-column justify-content-between p-3 rounded-xl bg-${color} font-weight-semibold text-white text-highlighted`}
-            >
+            <div className="d-flex flex-column justify-content-between mr-2 p-2 flex-grow-1">
                 <div>
-                    <p className="mb-2">{description}</p>
-                    <List className="mb-2" type="features-white" list={list} />
+                    <a className="position-relative text-decoration-none" href={instHref}>
+                        <h3 className="h3 d-flex align-items-center text-gray-900 mb-2 mt-1">
+                            <Instagram width={20} height={20} className="mr-2" />
+                            {name}
+                        </h3>
+                    </a>
+                    {!!description && <p className="mb-1">{description}</p>}
+                    <List className="mb-2" type="primary-new" list={list} />
                 </div>
-                <Button color="white" className="rounded-lg" block={true} onClick={handleClick}>
+                <Button color="primary-new" onClick={handleClick} outline>
                     Більше
                 </Button>
             </div>
+            <img
+                className="d-block image rounded-lg"
+                height={250}
+                width={250}
+                src={src}
+                alt={`${name} - вчитель англійської на курсах wannablab`}
+            />
         </ScrollableItem>
     );
 };

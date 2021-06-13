@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useHistory } from "react-router-dom";
-import cx from "classnames";
 
 import { GreetingsSection } from "./sections/GreetingsSection/GreetingsSection";
 import { InteractionSections } from "./sections/InteractionSections/InteractionSections";
@@ -10,9 +9,8 @@ import { LeadForm } from "components/styled/LeadForm/LeadForm";
 
 import { mediaBreakpointsEnum } from "constants/enums";
 
-import ReactGA from 'react-ga';
-
-import styles from "./Home.module.scss";
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
 
 export const Home = () => {
     const [description, setDescription] = useState("");
@@ -20,13 +18,15 @@ export const Home = () => {
     const history = useHistory();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
+    const onContactTelegramClick = () => {
+        fireAnalyticsEvent(events.CONTACT_US_TELEGRAM)
+    };
+
+
     const onOrderClick = useCallback(() => {
-        document.getElementById("blaber-form").scrollIntoView();
-        ReactGA.event({
-            category: 'Homepage',
-            action: 'Clicked Позвонити пізніше',
-            label: 'Test'
-          });
+        document.getElementById("wannablab-lead-form").scrollIntoView();
+
+        fireAnalyticsEvent(events.CALL_LATER)
         setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
@@ -40,6 +40,7 @@ export const Home = () => {
     const onMentorSelect = useCallback(
         ({ name }) => {
             setDescription(`Ви записуєтесь на приватні заняття до \n\n "${name}" 🎉 `);
+            fireAnalyticsEvent(events.CALL_LATER)
             onOrderClick();
         },
         [setDescription, onOrderClick],
@@ -48,6 +49,7 @@ export const Home = () => {
     const toCourse = useCallback(
         (slug) => {
             history.push(`/course/${slug}`);
+            fireAnalyticsEvent(events.READ_MORE_ABOUT_COURSE, slug)
         },
         [history],
     );
@@ -55,12 +57,18 @@ export const Home = () => {
     const toMentor = useCallback(
         (slug) => {
             history.push(`/mentor/${slug}`);
+            fireAnalyticsEvent(events.READ_MORE_ABOUT_TEACHER, slug)
         },
         [history],
     );
 
     return (
         <article className="mt-4">
+            <h1 className="hidden-element">
+                Навчаємо розмовній англійській онлайн для професійних цілей. Професійна англійська,
+                англійська для IT, практика, speaking club. Учить английский, разговорный
+                английский, практика английского языка.
+            </h1>
             <GreetingsSection
                 onOrderClick={onOrderClick}
                 isPortable={isPortable}
@@ -70,12 +78,13 @@ export const Home = () => {
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}
                 onGroupSelect={onGroupSelect}
+                isPortable={isPortable}
             />
             <FeedbackSection isPortable={isPortable} />
-            <section id="blaber-form" className={cx("exp-bg", styles.formSection)}>
+            <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
-                    <h2 className="h2 mt-5 mb-5 text-center">
-                        Вже <strong>44 людини</strong> займаються з нами!
+                    <h2 className="h2 mt-5 mb-5 text-center text-white text-highlighted">
+                        Вже <strong>44 людини</strong> вивчили англійську з нами
                     </h2>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                         <LeadForm description={description} />

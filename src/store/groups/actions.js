@@ -60,22 +60,22 @@ export const deleteGroupFailure = (error) => ({
     },
 });
 
-export const editGroup = (group) => ({
-    type: GROUPS.EDIT.IDLE,
+export const updateGroup = (group) => ({
+    type: GROUPS.UPDATE.IDLE,
     payload: {
         group,
     },
 });
 
-export const editGroupSuccess = (group) => ({
-    type: GROUPS.EDIT.SUCCESS,
+export const updateGroupSuccess = (group) => ({
+    type: GROUPS.UPDATE.SUCCESS,
     payload: {
         group,
     },
 });
 
-export const editGroupFailure = (error) => ({
-    type: GROUPS.EDIT.FAILURE,
+export const updateGroupFailure = (error) => ({
+    type: GROUPS.UPDATE.FAILURE,
     payload: {
         error,
     },

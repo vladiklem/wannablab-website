@@ -32,7 +32,7 @@ const navigation = [
     },
 ];
 
-export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
+export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible }) => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,25 +40,32 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
         setIsOpen((open) => !open);
     }, [setIsOpen]);
 
-    const handleRedirect = useCallback(() => {
-        history.location.pathname !== "/" && history.push("/");
-    }, [history]);
+    const handleRedirect = useCallback(
+        (id) => {
+            history.location.pathname !== "/" && history.push("/");
+            id === "wannablab-courses" && onCoursesClick();
+            id === "wannablab-prices" && onPricesClick();
+        },
+        [history, onCoursesClick, onPricesClick],
+    );
 
     return (
         <header
-            className={cx("container d-flex pt-4", {
+            className={cx({
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
+                "d-none": !isVisible,
+                "container d-flex pt-3": isVisible,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">
                 <a href="/">
-                    <img src={logo} width="50" height="60" alt="wannablab logo" />
+                    <img src={logo} width="50" height="60" alt="Логотип компанії wannablab" />
                 </a>
                 <a href="/" className="text-decoration-none text-gray-900">
-                    <h1 className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>
+                    <p className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>
                         wannablab
-                    </h1>
+                    </p>
                 </a>
                 <Button
                     className={cx({ "d-none": !isPortable })}
@@ -75,20 +82,21 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
                     [styles.visible]: isPortable && isOpen,
                 })}
             >
-                <ul className="d-flex scrollbar-invisible overflow-auto py-4 pl-3">
+                <ul className="d-flex scrollbar-invisible overflow-auto p-3">
                     {navigation.map((item) => (
-                        <NavItem onClick={handleRedirect} {...item} />
+                        <NavItem onClick={handleRedirect} key={item.id} {...item} />
                     ))}
                 </ul>
-                <span
+                <Button
                     onClick={onClick}
-                    className={cx("flex-row-reverse ml-auto pr-4 mt-n2", {
+                    className={cx("p-1 ml-auto mr-4", {
                         "d-none": !isPortable,
                         "d-flex": isPortable,
                     })}
+                    color={buttonColorEnum.UNSTYLED}
                 >
                     закрити
-                </span>
+                </Button>
             </nav>
         </header>
     );

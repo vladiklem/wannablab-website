@@ -5,24 +5,28 @@ import { mentorsList } from "constants/lists";
 
 import { MentorScrollableItem } from "./MentorScrollableItem/MentorScrollableItem";
 
-export const MentorsScrollableList = ({ toMentor, list = mentorsList }) => {
+export const MentorsScrollableList = ({ toMentor, list = mentorsList, className, isPortable }) => {
     return (
         <Scrollable
-                    containerClassName="ml-n4 mr-n4"
-                    hasArrows={true}
-                    isScrollbarVisible={false}
-                    offset={250}
-                >
-                    {list.map(({ name, ...itemProps }, index) => (
-                        <MentorScrollableItem
-                            index={index}
-                            array={mentorsList}
-                            key={name}
-                            name={name}
-                            onClick={toMentor}
-                            {...itemProps}
-                        />
-                    ))}
-                </Scrollable>
+            containerClassName={className}
+            hasArrows={true}
+            isScrollbarVisible={false}
+            offset={250}
+            components={{
+                Header: <h2 className="h3 font-weight-bold">Наші ментори</h2>,
+            }}
+        >
+            {list.map(({ name, ...itemProps }, index) => (
+                <MentorScrollableItem
+                    index={index}
+                    array={mentorsList}
+                    key={name}
+                    name={name}
+                    onClick={toMentor}
+                    isPortable={isPortable}
+                    {...itemProps}
+                />
+            ))}
+        </Scrollable>
     );
 };

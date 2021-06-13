@@ -1,42 +1,78 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback, useEffect, useState } from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 import cx from "classnames";
 
-import { SideBar } from "components/index";
+import { buttonColorEnum, SideBar, Button } from "components/index";
+import { scrollToTop } from "helpers/general";
+import { mediaBreakpointsEnum } from "constants/enums";
 
-import { EventsPanel } from "./panels/EventsPanel/EventsPanel";
-import { UsersPanel } from "./panels/UsersPanel/UsersPanel";
-import { GroupsPanel } from "./panels/GroupsPanel/GroupsPanel";
-import { GeneralPanel } from "./panels/GeneralPanel/GeneralPanel";
+import { EventsPanel } from "./EventsPanel/EventsPanel";
+import { UsersPanel } from "./UsersPanel/UsersPanel";
+import { GroupsPanel } from "./GroupsPanel/GroupsPanel";
+import { CustomersPanel } from "./CustomersPanel/CustomersPanel";
+
+import styles from "./AdminPage.module.scss";
+import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 
 export const AdminPage = () => {
-    const { withSideBar } = useSelector(state => state.general);
     const { url, path } = useRouteMatch();
+    const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
+    const [isOpen, setIsOpen] = useState(true);
+
+    const toggleSidebar = useCallback(() => {
+        setIsOpen((open) => !open);
+    }, [setIsOpen]);
+
+    useEffect(() => {
+        scrollToTop();
+    }, []);
 
     return (
         <>
-            <SideBar title="wannablab" isOpen={true}>
-                <ul>
-                    <li>
-                        <Link to={`${url}/users`}>Блабери</Link>
+            <SideBar isOpen={isOpen} title="wannablab">
+                <Button
+                    className="px-3 py-2 mx-2 mt-3"
+                    color={buttonColorEnum.UNSTYLED}
+                    onClick={toggleSidebar}
+                >
+                    закрити
+                </Button>
+                <ul className="pt-3 px-2">
+                    <li className="px-3 py-2">
+                        <Link onClick={toggleSidebar} to={`${url}/users`}>
+                            Блабери
+                        </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to={`${url}/events`}>Івенти</Link>
+                    </li> */}
+                    <li className="px-3 py-2">
+                        <Link onClick={toggleSidebar} to={`${url}/groups`}>
+                            Групи
+                        </Link>
                     </li>
-                    <li>
-                        <Link to={`${url}/groups`}>Групи</Link>
-                    </li>
-                    <li>
-                        <Link to={`${url}/general`}>Налаштування</Link>
+                    {/* <li>
+                        <Link to={`${url}/app`}>Налаштування</Link>
+                    </li> */}
+                    <li className="px-3 py-2">
+                        <Link onClick={toggleSidebar} to={`${url}/customers`}>
+                            Кастомери
+                        </Link>
                     </li>
                 </ul>
             </SideBar>
-            <div className={cx({
-                "container-with-side-bar": withSideBar,
-            })}>
-                <div>
+            <div>
+                <div className="ml-4 mt-4">
+                    <Button color={buttonColorEnum.UNSTYLED} onClick={toggleSidebar}>
+                        меню <ArrowRightLong height={24} />
+                    </Button>
+                </div>
+                <div className={cx(styles.container, { [styles.isDektop]: !isPortable })}>
                     <Switch>
+                        <Route exact={true} path={`${path}/customers`}>
+                            <CustomersPanel isPortable={isPortable} />
+                        </Route>
                         <Route path={`${path}/users`}>
                             <UsersPanel />
                         </Route>
@@ -45,9 +81,6 @@ export const AdminPage = () => {
                         </Route>
                         <Route path={`${path}/groups`}>
                             <GroupsPanel />
-                        </Route>
-                        <Route path={`${path}/general`}>
-                            <GeneralPanel />
                         </Route>
                     </Switch>
                 </div>

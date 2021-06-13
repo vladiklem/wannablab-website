@@ -1,6 +1,5 @@
 export * from "./Button/Button";
 export * from "./SideBar/SideBar";
-export * from "./TopBar/TopBar";
 export * from "./Collapse/Collapse";
 export * from "./Input/Input";
 export * from "./CustomSelect/CustomSelect";

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useParams } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import { useSelector } from "react-redux";
@@ -6,7 +6,8 @@ import cx from "classnames";
 
 import { mentorsList } from "constants/lists";
 import { mediaBreakpointsEnum } from "constants/enums";
-import { Button, Loader } from "components/index";
+import { Button, List, Loader } from "components/index";
+import { scrollToTop } from "helpers/general";
 
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
 import { GroupsScrollableList } from "components/styled/GroupsScrollableList/GroupsScrollableList";
@@ -19,42 +20,46 @@ export const MentorPage = () => {
 
     const mentor = mentorsList.find(({ slug: courseSlug }) => slug === courseSlug);
 
+    const onOrderClick = useCallback(() => {
+        document.getElementById("wannablab-lead-form").scrollIntoView();
+        setTimeout(() => document.getElementById("name").focus(), 750);
+    }, []);
+
     useEffect(() => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
+        scrollToTop();
     }, []);
 
     return (
         <article className="pt-4">
-            <section className="mb-5 container">
+            <section className="mb-4 container">
                 <div className="row">
                     <div className={cx("col-md-6 col-sm-12 d-none", { "d-block": isPortable })}>
                         <img
-                            className="image rounded-xl mb-2"
+                            className="image rounded-xl mb-2 shadow-soft"
                             src={mentor.src}
-                            alt={mentor.description}
+                            alt={`${mentor.name}. ${mentor.description}`}
                         />
                     </div>
                     <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{mentor.name}</h1>
                         <h2 className="regular mb-3">{mentor.description}</h2>
-                        <div className="row flex-nowrap mb-3">
+                        <div className="row flex-nowrap mb-4">
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-bold py-2"
-                                    color="blue-soft"
+                                    className="w-100 font-weight-bold py-2"
+                                    color="primary-new"
                                     href="#wannablab-teacher-description"
+                                    outline
                                 >
                                     {isPortable ? "Більше" : "Читати більше"}
                                 </Button>
                             </span>
                             <span className="col-6">
                                 <Button
-                                    className="w-100 text-highlighted font-weight-bold py-2"
-                                    color="purple-soft"
+                                    className="w-100 font-weight-bold py-2"
+                                    color="primary-new"
                                     href="#wannablab-lead-form"
+                                    onClick={onOrderClick}
                                 >
                                     Записатися
                                 </Button>
@@ -62,36 +67,29 @@ export const MentorPage = () => {
                         </div>
                         {groups.length ? (
                             <>
-                                <h2 className="h3">Календар груп</h2>
                                 <GroupsScrollableList isPortable={isPortable} list={groups} />
                             </>
                         ) : (
                             <Loader />
                         )}
-                        <div className="row">
-                            <div className={cx("col-md-6 col-sm-12", { "mb-1": isPortable })}>
-                                <span className="font-weight-semibold">Формат:</span> онлайн уроки
-                                по Google Meet
-                            </div>
-                            <div className="col-md-6 col-sm-12">
-                                <span className="font-weight-semibold">Ціна:</span> 1190 грн
-                            </div>
+                        <div>
+                            <List list={mentor.list} />
                         </div>
                     </div>
                     <div className={cx("col-md-6 col-sm-12", { "d-none": isPortable })}>
                         <img
-                            className="image rounded-xl"
+                            className="image rounded-xl shadow-soft"
                             src={mentor.src}
-                            alt={mentor.description}
+                            alt={`${mentor.name}. ${mentor.description}`}
                         />
                     </div>
                 </div>
             </section>
-            <section className="pt-5 container" id="wannablab-teacher-description">
+            <section className="pt-4 container" id="wannablab-teacher-description">
                 <h2 className="h2 mb-3">Про Ментора</h2>
                 <div className="row mb-5">
                     <div className="col-md-8 col-sm-12">
-                        <h3 className="regular">
+                        <p className="regular">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                             tempor incididunt ut labore et dolore magna aliqua. Facilisis gravida
                             neque convallis a. Lobortis feugiat vivamus at augue eget. Sit amet nisl
@@ -107,15 +105,19 @@ export const MentorPage = () => {
                             Posuere sollicitudin aliquam ultrices sagittis. Faucibus scelerisque
                             eleifend donec pretium vulputate. Orci ac auctor augue mauris augue
                             neque gravida in fermentum. Nunc mi ipsum faucibus vitae.
-                        </h3>
+                        </p>
                     </div>
                 </div>
             </section>
-            <section id="wannablab-lead-form" className="exp-bg full-screen-height">
+            <section id="wannablab-lead-form" className="full-screen-height bg-primary-new-75">
                 <div className="container d-flex flex-column align-items-center">
-                    <h2 className="h2 mt-5 mb-5 text-center">
-                        Курс пройшли вже <strong>57 людей</strong>
+                    <h2 className="hidden-element">
+                        Форма для запису на курс англійської мови від школи розмовної англійської
+                        wannablab
                     </h2>
+                    <h3 className="h2 mt-5 mb-5 text-center text-white">
+                        Курс пройшли вже <strong>57 людей</strong>
+                    </h3>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
                         <LeadForm />
                     </div>

@@ -4,7 +4,29 @@ import { firebaseService } from "services/firebaseService";
 import { FIREBASE_DATA_LEADS } from "constants/firebase";
 
 import { LEADS } from "./constants";
-import { addLeadSuccess, addLeadFailure } from "./actions";
+import {
+    addLeadSuccess,
+    addLeadFailure,
+    initLeadsSuccess,
+    initLeadsFailure,
+    updateLeadFailure,
+    updateLeadSuccess,
+    deleteLeadSuccess,
+    deleteLeadFailure,
+} from "./actions";
+
+function* initLeadsSaga() {
+    try {
+        const dataSnapshot = yield call(firebaseService.get, FIREBASE_DATA_LEADS);
+        const leads = [];
+
+        dataSnapshot.forEach((lead) => leads.push({ ...lead.data(), id: lead.id }));
+        yield put(initLeadsSuccess(leads));
+    } catch (error) {
+        console.error(error);
+        yield put(initLeadsFailure(error.message));
+    }
+}
 
 function* addLeadSaga({ payload }) {
     try {
@@ -15,4 +37,27 @@ function* addLeadSaga({ payload }) {
     }
 }
 
-export const leadsSaga = [takeLatest(LEADS.ADD.IDLE, addLeadSaga)];
+function* updateLeadSaga({ payload: { lead } }) {
+    try {
+        yield call(firebaseService.update, FIREBASE_DATA_LEADS, lead.id, lead, { merge: true });
+        yield put(updateLeadSuccess(lead));
+    } catch (error) {
+        yield put(updateLeadFailure(error));
+    }
+}
+
+function* deleteLeadSaga({ payload }) {
+    try {
+        yield call(firebaseService.delete, FIREBASE_DATA_LEADS, payload.id);
+        yield put(deleteLeadSuccess(payload.id));
+    } catch (error) {
+        yield put(deleteLeadFailure(error.message));
+    }
+}
+
+export const leadsSaga = [
+    takeLatest(LEADS.ADD.IDLE, addLeadSaga),
+    takeLatest(LEADS.INIT.IDLE, initLeadsSaga),
+    takeLatest(LEADS.UPDATE.IDLE, updateLeadSaga),
+    takeLatest(LEADS.DELETE.IDLE, deleteLeadSaga),
+];

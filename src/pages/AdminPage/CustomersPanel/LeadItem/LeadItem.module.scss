@@ -1,0 +1,13 @@
+.container {
+    &.isNew:before {
+        content: " ";
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        height: 16px;
+        width: 16px;
+        border: 2px solid white;
+        background-color: #e96779;
+        border-radius: 16px;
+    }
+}

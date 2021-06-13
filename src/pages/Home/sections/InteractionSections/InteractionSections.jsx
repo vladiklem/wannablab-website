@@ -1,13 +1,18 @@
 import React from "react";
+import cx from "classnames";
 
 import { MentorsScrollableList } from "components/styled/MentorsScrollableList/MentorsScrollableList";
 
-export const InteractionSections = ({ toMentor }) => {
+import styles from "./InteractionSection.module.scss";
+
+export const InteractionSections = (props) => {
     return (
         <>
-            <section id="wannablab-teachers" className="container pt-3 mb-5">
-                <h2 className="h2 font-weight-bold mb-3">Наші ментори</h2>
-                <MentorsScrollableList toMentor={toMentor} />
+            <section
+                id="wannablab-teachers"
+                className={cx("container pt-3 mb-5", styles.container)}
+            >
+                <MentorsScrollableList className="mx-n4" {...props} />
             </section>
         </>
     );

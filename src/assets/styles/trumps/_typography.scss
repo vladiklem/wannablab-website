@@ -69,6 +69,18 @@ h1, h2, h3, h4, p, .h1, .h2, .h3, .regular, label {
         }
     }
 
+    &-primary-new {
+        li:before {
+            content: " ";
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background-color: $primary-new;
+            border-radius: 12px;
+        } 
+    }
+
     &-features {
         li:before {
             content: " ";

@@ -13,7 +13,7 @@ export const EmailNewsForm = ({ className, isPortable }) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={cx(className)}>
-            <label for="email" className="font-weight-semibold mb-1">
+            <label htmlFor="email" className="font-weight-semibold mb-1">
                 Хочу бути в курсі всього
             </label>
             <div className="d-flex">

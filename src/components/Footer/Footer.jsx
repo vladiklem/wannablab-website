@@ -6,11 +6,9 @@ import { Button, buttonColorEnum } from "components/index";
 
 import logo from "assets/images/logo.png";
 
-import styles from "./Footer.module.scss";
-
-export const Footer = ({ isPortable, handleLogin }) => {
+export const Footer = ({ isPortable, isVisible, handleLogin }) => {
     return (
-        <footer className={styles.footer} id="wannablab-footer">
+        <footer className={cx("bg-white-new", { "d-none": !isVisible })} id="wannablab-footer">
             <div
                 className={cx("d-flex px-4 pt-3_5 pb-5 container", {
                     "flex-column": isPortable,
@@ -18,7 +16,7 @@ export const Footer = ({ isPortable, handleLogin }) => {
                 })}
             >
                 <div className="row align-items-center mb-3 no-gutters w-100">
-                    <img className="mr-3" src={logo} width="50" height="60" alt="wannablab logo" />
+                    <img className="mr-3" src={logo} width="50" height="60" alt="Логотип компанії wannablab" />
                     <p className="regular">
                         powered by <br />{" "}
                         <span className="font-weight-semibold">wannablab family</span>

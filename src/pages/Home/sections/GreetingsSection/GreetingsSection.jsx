@@ -3,6 +3,7 @@ import cx from "classnames";
 
 import { Button, Scrollable } from "components/index";
 import { coursesList } from "constants/lists";
+import { leraContact } from "constants/social";
 import { ServiceScrollableItem } from "components/styled/ServiceScrollableItem/ServiceScrollableItem";
 
 export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className }) => (
@@ -13,17 +14,27 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
                 "regular font-weight-semibold": isPortable,
             })}
         >
-            <strong> Англійська </strong> під культурним соусом. Єднаємо українського спеціаліста та
-            англомовного клієнта.
+            Навчаємо розмовній <strong>англійській</strong> онлайн для професійних цілей
         </h2>
-        <div className="typing-container mb-2" id="wannablab-courses">
-            <div className={cx("typing-wrapper", {
-                "font-medium": !isPortable,
-                "regular font-weight-semibold": isPortable,
-            })}>Цінуємо кожного 😊</div>
+        <div className="typing-container mb-4" id="wannablab-courses">
+            <div
+                className={cx("typing-wrapper", {
+                    "font-medium": !isPortable,
+                    "regular font-weight-semibold": isPortable,
+                })}
+            >
+                Цінуємо кожного 😊
+            </div>
         </div>
-        <h2 className="hidden-element">Що ми пропонуємо?</h2>
-        <Scrollable hasArrows={true} offset={isPortable ? 300 : 460} containerClassName="ml-n4 mr-n4" isScrollbarVisible={false}>
+        <Scrollable
+            hasArrows={true}
+            offset={isPortable ? 300 : 460}
+            containerClassName="ml-n4 mr-n4"
+            isScrollbarVisible={false}
+            components={{
+                Header: <h2 className="h3 font-weight-bold">Наші плани та курси</h2>,
+            }}
+        >
             {coursesList.map(({ imgSrc, ...item }, index, array) => (
                 <ServiceScrollableItem
                     index={index}
@@ -38,33 +49,35 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
         </Scrollable>
         <div className={cx("d-flex mt-3", { "flex-column": isPortable })}>
             <Button
-                className={cx("font-weight-bold text-highlighted rounded-xl", {
+                className={cx("font-weight-bold text-highlighted rounded-xl bg-primary-new", {
                     "mr-3": !isPortable,
                     "mb-3": isPortable,
                 })}
-                color="purple-soft"
                 size="lg"
                 onClick={onOrderClick}
             >
                 Замовити дзвінок
             </Button>
             <Button
-                className={cx("font-weight-bold text-highlighted rounded-xl", {
+                className={cx("font-weight-bold rounded-xl", {
                     "mr-3": !isPortable,
                     "mb-3": isPortable,
                 })}
-                href="https://t.me/emerello"
-                color="blue-soft"
+                color="primary-new"
                 size="lg"
+                href="/quiz/lead"
+                outline
             >
-                Написати нам
+                Пройти тестування рівня
             </Button>
             <Button
-                className="font-weight-bold text-highlighted rounded-xl"
-                color="green-soft"
+                className="font-weight-bold rounded-xl"
+                href={leraContact}
+                color="primary-new"
                 size="lg"
+                outline
             >
-                Інтерактивний тест
+                Написати нам в Телеграм
             </Button>
         </div>
     </section>

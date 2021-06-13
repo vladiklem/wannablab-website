@@ -67,8 +67,12 @@
 }
 
 .customFormInput:focus {
-    border-image: linear-gradient(to right, $primary, $secondary);
+    border-image: linear-gradient(to right, $secondary-new, $primary-new);
     border-image-slice: 1;
+
+    ~ .customFormLabel {
+        color: $primary-new;
+    }
 
     ~ .customFormLabel {
         position: absolute;
@@ -76,7 +80,6 @@
         display: block;
         transition: 0.2s;
         font-size: 1rem;
-        color: $primary;
     }
 }
 

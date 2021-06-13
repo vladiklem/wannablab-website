@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Button, buttonColorEnum } from "components/index";
 
-export const NavItem = ({ id, children, ...props }) => (
-    <li>
-        <Button
-            href={`#${id}`}
-            className="bg-white text-gray-900 py-2 px-4 text-decoration-none shadow-soft mr-3 border-blue-500 rounded border border-primary-soft transition-250"
-            color={buttonColorEnum.UNSTYLED}
-            {...props}
-        >
-            {children}
-        </Button>
-    </li>
-);
+export const NavItem = ({ id, children, onClick, ...props }) => {
+    const handleClick = useCallback(() => onClick(id), [onClick, id]);
+
+    return (
+        <li>
+            <Button
+                href={`#${id}`}
+                className="bg-white text-gray-900 py-2 px-4 text-decoration-none shadow-soft mr-3 rounded border border-blue-soft transition-250"
+                color={buttonColorEnum.UNSTYLED}
+                onClick={handleClick}
+                {...props}
+            >
+                {children}
+            </Button>
+        </li>
+    );
+};

@@ -1,4 +1,5 @@
 @import "~assets/styles/config/borders";
+@import "~assets/styles/config/colors";
 
 .rounded-lg {
     border-radius: $border-radius-lg !important;
@@ -18,4 +19,26 @@
 
 .border-primary-soft {
     border-color: $primary-soft !important;
+}
+
+.border-transparent {
+    border-color: transparent !important;
+}
+
+// New Design System
+
+.border-primary-new {
+    border-color: $primary-new !important;
+}
+
+.border-positive-new {
+    border-color: $positive-new !important;
+}
+
+.border-blue-soft {
+    border-color: $blue-soft !important;
+}
+
+.border-primary-new-75 {
+    border-color: rgba(8, 73, 151, .75) !important;
 }

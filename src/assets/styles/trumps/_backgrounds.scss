@@ -39,3 +39,46 @@
 .exp-bg {
     background: linear-gradient(180deg, rgba(228, 199, 255, .5) 92.19%, rgba(253, 253, 150, .5) 100%);
 }
+
+// New Design System
+
+.bg-primary-new {
+    background-color: $primary-new !important;
+}
+
+.bg-primary-new-75 {
+    background-color: rgba(8, 73, 151, .75) !important;
+}
+
+.bg-secondary-new {
+    background-color: $secondary-new !important;
+}
+
+.bg-positive-new {
+    background-color: $positive-new !important;
+}
+
+.bg-vibing-new {
+    background-color: $vibing-new !important;
+}
+
+.bg-white-new {
+    background-color: $white-new !important;
+}
+
+.bg-group-new {
+    background-color: $group-cover-new !important;
+}
+
+.bg-solo-new {
+    background-color: $solo-cover-new !important;
+}
+
+.bg-pro-new {
+    background-color: $pro-cover-new !important;
+}
+
+.bg-secondary-gradient {
+    background: linear-gradient(90deg, $secondary-new 75%, $vibing-new 100%);
+}
+

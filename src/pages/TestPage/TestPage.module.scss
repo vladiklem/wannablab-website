@@ -1,0 +1,19 @@
+.container {
+    .form {
+        min-height: calc(100vh - 200px);
+    }
+
+    .progressBar {
+        height: 8px;
+        background-color: red;
+    }
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+    background-color: #d7bcf7;
+}
+
+audio {
+    width: 100%;
+}

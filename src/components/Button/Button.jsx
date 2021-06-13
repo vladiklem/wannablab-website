@@ -25,7 +25,7 @@ export const Button = ({
 }) => {
     return (
         <ReactstrapButton
-            className={cx(className, {
+            className={cx(className, "rounded-lg", {
                 "py-3": isSquare && size === "lg",
                 "p-1": isSquare && size === "md",
                 [styles.rounded50]: isRounded,

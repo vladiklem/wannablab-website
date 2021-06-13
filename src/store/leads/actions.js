@@ -17,3 +17,63 @@ export const addLeadFailure = (error) => ({
         error,
     },
 });
+
+export const initLeads = () => ({
+    type: LEADS.INIT.IDLE,
+});
+
+export const initLeadsSuccess = (leads) => ({
+    type: LEADS.INIT.SUCCESS,
+    payload: {
+        leads,
+    },
+});
+
+export const initLeadsFailure = (error) => ({
+    type: LEADS.INIT.FAILURE,
+    payload: {
+        error,
+    },
+});
+
+export const updateLead = (lead) => ({
+    type: LEADS.UPDATE.IDLE,
+    payload: {
+        lead
+    },
+});
+
+export const updateLeadSuccess = (lead) => ({
+    type: LEADS.UPDATE.SUCCESS,
+    payload: {
+        lead,
+    },
+});
+
+export const updateLeadFailure = (error) => ({
+    type: LEADS.UPDATE.FAILURE,
+    payload: {
+        error,
+    },
+});
+
+export const deleteLead = (id) => ({
+    type: LEADS.DELETE.IDLE,
+    payload: {
+        id,
+    },
+});
+
+export const deleteLeadSuccess = (id) => ({
+    type: LEADS.DELETE.SUCCESS,
+    payload: {
+        id,
+    },
+});
+
+export const deleteLeadFailure = (error) => ({
+    type: LEADS.DELETE.FAILURE,
+    payload: {
+        error,
+    },
+});
