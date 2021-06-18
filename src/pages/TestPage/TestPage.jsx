@@ -10,6 +10,10 @@ import { Check } from "components/Icons/Check";
 
 import { TestItem } from "./TestItem/TestItem";
 
+import { fireAnalyticsEvent } from "analytics"
+import events from 'analytics/events'
+
+
 import { questionsList } from "constants/lists";
 
 const elementaryLimit = 10
@@ -89,6 +93,10 @@ export const TestPage = () => {
     const [test, setTest] = useState(0);
     const [level, setLevel] = useState('')
     const [resultCounter, setResultCounter] = useState(0)
+
+    useEffect(() => {
+        fireAnalyticsEvent(events.JOIN_LEVEL_TEST)
+    }, [])
 
     const testItem = useMemo(() => questionsList[test] || {}, [test]);
 
