@@ -13,7 +13,7 @@ export const FeedbackSection = ({ isPortable }) => (
             <Scrollable
                 hasArrows={true}
                 isScrollbarVisible={false}
-                offset={350}
+                offset={isPortable ? 350 : 1400}
                 containerClassName="mr-n4 ml-n4"
                 components={{ Header: <h2 className="h3 font-weight-bold">Відгуки студентів</h2> }}
             >

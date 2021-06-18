@@ -62,7 +62,6 @@ export const Home = () => {
                 isPortable={isPortable}
                 toCourse={toCourse}
             />
-            <ValuesSection />
             <InteractionSections
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}
