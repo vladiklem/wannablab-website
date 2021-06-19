@@ -9,10 +9,10 @@ export const RouterListener = () => {
     const history = useHistory();
 
     useEffect(() => {
-        const isAdmin = history.location.pathname.substring(0, 6) === "/admin";
-        !isAdmin && dispatch(toggleAdminVisibility(false));
-        isAdmin && dispatch(toggleAdminVisibility(true));
-    }, [history, dispatch]);
+        const isAdminOpened = history.location.pathname.substring(0, 6) === "/admin";
+        !isAdminOpened && dispatch(toggleAdminVisibility(false));
+        isAdminOpened && dispatch(toggleAdminVisibility(true));
+    }, [history.location.pathname, dispatch]);
 
     return null;
 };
