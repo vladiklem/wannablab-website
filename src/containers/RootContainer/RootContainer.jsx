@@ -19,7 +19,6 @@ import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initApp } from "store/app/actions";
-import { initCurrentUser } from "store/currentUser/actions";
 import { selectAdmin } from "store/app/selectors";
 import { toggleModal } from "store/modals/actions";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
@@ -71,7 +70,6 @@ export const RootContainer = () => {
         dispatch(initEvents());
         dispatch(initGroups());
         dispatch(initApp());
-        dispatch(initCurrentUser());
         dispatch(initLeads());
     }, [dispatch]);
 

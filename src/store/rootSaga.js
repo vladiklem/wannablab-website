@@ -5,7 +5,6 @@ import { eventsSaga } from "./events/saga";
 import { groupsSaga } from "./groups/saga";
 import { leadsSaga } from "./leads/saga";
 import { appSaga } from "./app/saga";
-import { currentUserSaga } from "./currentUser/saga";
 
 export const rootSaga = function* () {
     yield all([
@@ -14,6 +13,5 @@ export const rootSaga = function* () {
         ...groupsSaga,
         ...leadsSaga,
         ...appSaga,
-        ...currentUserSaga,
     ]);
 };

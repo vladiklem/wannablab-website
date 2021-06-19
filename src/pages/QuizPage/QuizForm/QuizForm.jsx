@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import cx from "classnames";
 
-import { Button } from "components/index";
+import { Button, ProgressBar } from "components/index";
 import { telNumber } from "constants/social";
 
 import styles from "./QuizForm.module.scss";
@@ -15,7 +15,6 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
     const [step, setStep] = useState(0);
 
     const stepItem = useMemo(() => stepList[step] || {}, [step, stepList]);
-
     const len = useMemo(() => stepList.length, [stepList]);
 
     const onNext = useCallback(
@@ -33,8 +32,6 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
     const onPrev = useCallback(() => {
         step > 0 && setStep((step) => step - 1);
     }, [step]);
-
-    const progressBarWidth = useMemo(() => (step === 0 ? 5 : (100 / len) * step), [len, step]);
 
     const buttonOnClick = useMemo(() => (step < len - 1 ? onPrev : onNext), [
         onNext,
@@ -105,15 +102,7 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
                     {step < len - 1 && "👈 Назад"}
                     {step === len && "На головну 👀"}
                 </Button>
-                <div className="w-100 mt-3 border p-1 rounded-xl border-primary-new">
-                    <div
-                        style={{ width: `${progressBarWidth}%` }}
-                        className={cx(
-                            styles.progressBar,
-                            "bg-secondary-gradient rounded-xl transition-250",
-                        )}
-                    />
-                </div>
+                <ProgressBar progress={step} steps={len} className="mt-3" />
             </div>
         </form>
     );
