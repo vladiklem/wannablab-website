@@ -1,11 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import cx from "classnames";
 
 import { buttonColorEnum, SideBar, Button } from "components/index";
+import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 import { scrollToTop } from "helpers/general";
 import { mediaBreakpointsEnum } from "constants/enums";
+import { CustomRoute } from "containers/RootContainer/CustomRoute/CustomRoute";
+import { selectAdmin } from "store/app/selectors";
 
 import { EventsPanel } from "./EventsPanel/EventsPanel";
 import { UsersPanel } from "./UsersPanel/UsersPanel";
@@ -13,12 +17,16 @@ import { GroupsPanel } from "./GroupsPanel/GroupsPanel";
 import { CustomersPanel } from "./CustomersPanel/CustomersPanel";
 
 import styles from "./AdminPage.module.scss";
-import { ArrowRightLong } from "components/Icons/ArrowRightLong";
+import { GeneralDashboard } from "./GeneralDashboard/GeneralDashboard";
+import { BudgetDashboard } from "./BudgetDashboard/BudgetDashboard";
 
 export const AdminPage = () => {
     const { url, path } = useRouteMatch();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(!isPortable);
+    const admin = useSelector(selectAdmin);
+
+    const isBudgetVisible = useMemo(() => admin.roles.some((role) => role === "org"), [admin]);
 
     const toggleSidebar = useCallback(() => {
         setIsOpen((open) => !open);
@@ -40,37 +48,46 @@ export const AdminPage = () => {
                 </Button>
                 <ul className="pt-3 px-2">
                     <li className="px-3 py-2">
+                        <Link onClick={toggleSidebar} to={`${url}/dashboard`}>
+                            Дашборд
+                        </Link>
+                    </li>
+                    <li className="px-3 py-2">
                         <Link onClick={toggleSidebar} to={`${url}/users`}>
                             Блабери
                         </Link>
                     </li>
-                    {/* <li>
-                        <Link to={`${url}/events`}>Івенти</Link>
-                    </li> */}
                     <li className="px-3 py-2">
                         <Link onClick={toggleSidebar} to={`${url}/groups`}>
                             Групи
                         </Link>
                     </li>
-                    {/* <li>
-                        <Link to={`${url}/app`}>Налаштування</Link>
-                    </li> */}
                     <li className="px-3 py-2">
                         <Link onClick={toggleSidebar} to={`${url}/customers`}>
                             Кастомери
                         </Link>
                     </li>
+                    {admin.roles.some((role) => role === "org") && (
+                        <li className="px-3 py-2">
+                            <Link onClick={toggleSidebar} to={`${url}/budget`}>
+                                Бюджет
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </SideBar>
             <div>
-                <div className="ml-4 mt-4">
+                <div className="container mb-4 mt-4">
                     <Button color={buttonColorEnum.UNSTYLED} onClick={toggleSidebar}>
                         меню <ArrowRightLong height={24} />
                     </Button>
                 </div>
                 <div className={cx(styles.container, { [styles.isDektop]: !isPortable })}>
                     <Switch>
-                        <Route exact={true} path={`${path}/customers`}>
+                        <Route exact path={`${path}/dashboard`}>
+                            <GeneralDashboard isPortable={isPortable} />
+                        </Route>
+                        <Route path={`${path}/customers`}>
                             <CustomersPanel isPortable={isPortable} />
                         </Route>
                         <Route path={`${path}/users`}>
@@ -82,6 +99,9 @@ export const AdminPage = () => {
                         <Route path={`${path}/groups`}>
                             <GroupsPanel />
                         </Route>
+                        <CustomRoute isVisible={isBudgetVisible} path={`${path}/budget`}>
+                            <BudgetDashboard />
+                        </CustomRoute>
                     </Switch>
                 </div>
             </div>

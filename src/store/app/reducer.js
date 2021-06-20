@@ -6,6 +6,8 @@ const initialState = {
     admin: {
         isAdmin: false,
         isVisible: false,
+        username: "",
+        roles: [],
     },
     isLoading: true,
     testTime: [],
@@ -13,10 +15,10 @@ const initialState = {
 };
 
 const handlers = {
-    [APP.INIT.SUCCESS]: ({ admin, ...state }, { payload: { settings } }) => ({
+    [APP.INIT.SUCCESS]: ({ admin, ...state }, { payload }) => ({
         ...state,
-        ...settings,
-        admin: { ...admin, isAdmin: settings.isAdmin },
+        ...payload,
+        admin: { ...admin, ...payload.admin },
         isLoading: false,
     }),
     [APP.INIT.FAILURE]: (state, { payload }) => ({
@@ -24,27 +26,10 @@ const handlers = {
         error: payload.error,
         isLoading: false,
     }),
-    [APP.ADD_TEST.SUCCESS]: (state, { payload }) => ({
+    [APP.ADMIN.AUTH.SUCCESS]: (state, { payload }) => { console.log(payload); return ({
         ...state,
-        testTime: [...state.testTime, ...payload.test],
-    }),
-    [APP.ADD_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [APP.BOOK_TEST.SUCCESS]: (state, { payload }) => ({
-        ...state,
-        testTime: { ...state.testTime, ...payload.entity },
-    }),
-    [APP.BOOK_TEST.FAILURE]: (state, { payload }) => ({ ...state, error: payload.error }),
-    [APP.ADMIN.AUTH.SUCCESS]: (state) => ({
-        ...state,
-        admin: { isAdmin: true, isVisible: true },
-    }),
-    [APP.ADMIN.TOGGLE_VISIBILITY.IDLE]: ({ admin, ...state }, { payload }) => ({
-        ...state,
-        admin: {
-            ...admin,
-            isVisible: payload.isVisible === null ? !admin.isVisible : payload.isVisible,
-        },
-    }),
+        admin: { isAdmin: true, isVisible: true, ...payload },
+    })},
 };
 
 export const appReducer = createReducer(initialState, handlers);

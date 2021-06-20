@@ -1,10 +1,9 @@
 import React, { useCallback } from "react";
-import cx from "classnames";
 import { useForm } from "react-hook-form";
 
 import { Input, Button } from "components/index";
 
-export const EmailNewsForm = ({ className, isPortable }) => {
+export const EmailNewsForm = ({ className }) => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = useCallback((data) => {
@@ -12,7 +11,7 @@ export const EmailNewsForm = ({ className, isPortable }) => {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={cx(className)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={className}>
             <label htmlFor="email" className="font-weight-semibold mb-1">
                 Хочу бути в курсі всього
             </label>

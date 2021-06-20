@@ -24,7 +24,6 @@ import { toggleModal } from "store/modals/actions";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
 import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
-import { RouterListener } from "./RouterListener/RouterListener";
 
 import styles from "./RootContainer.module.scss";
 import "assets/styles/index.scss";
@@ -79,7 +78,6 @@ export const RootContainer = () => {
                 isPortable={isPortable}
                 onCoursesClick={onCoursesClick}
                 onPricesClick={onPricesClick}
-                isVisible={!admin.isVisible}
             />
             <main
                 className={cx(styles.background, {
@@ -88,7 +86,6 @@ export const RootContainer = () => {
                 })}
             >
                 <ModalsContainer />
-                <RouterListener />
                 <Switch>
                     <Route path="/" render={renderRoute({ routeComponent: Home })} exact />
                     <Route
@@ -115,11 +112,7 @@ export const RootContainer = () => {
                     <Route component={NotFoundPage} />
                 </Switch>
             </main>
-            <Footer
-                handleLogin={openLoginModal}
-                isPortable={isPortable}
-                isVisible={!admin.isVisible}
-            />
+            <Footer handleLogin={openLoginModal} isPortable={isPortable} />
         </Router>
     );
 };

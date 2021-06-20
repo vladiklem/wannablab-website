@@ -102,7 +102,7 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
                     {step < len - 1 && "👈 Назад"}
                     {step === len && "На головну 👀"}
                 </Button>
-                <ProgressBar progress={step} steps={len} className="mt-3" />
+                <ProgressBar current={step} goal={len} className="mt-3" />
             </div>
         </form>
     );

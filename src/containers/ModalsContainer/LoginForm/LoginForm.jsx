@@ -13,15 +13,16 @@ export const LoginForm = ({ isOpen, toggle }) => {
     const history = useHistory();
     const { handleSubmit, register } = useForm();
 
-    const toAdmin = useCallback(() => {
-        dispatch(appAdminAuth());
+    const toAdmin = useCallback((data) => {
+        dispatch(appAdminAuth(data));
         history.push("/admin");
         toggle();
     }, [dispatch, history, toggle]);
 
     const onSubmit = useCallback(
         (data) => {
-            adminPasswordCheck(data) && toAdmin();
+            const admin = adminPasswordCheck(data);
+            admin && toAdmin(admin);
         },
         [toAdmin],
     );

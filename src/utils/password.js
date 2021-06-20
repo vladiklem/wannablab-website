@@ -1,5 +1,6 @@
-// TODO: remove
+import { admins } from "constants/auth";
 
-export const adminPasswordCheck = ({ login, password }) =>
-    (login === "Lera" || login === "vlad" || login === "Marina") &&
-    password === process.env.REACT_APP_ADMIN_PASSWORD;
+export const adminPasswordCheck = ({ login, password }) => {
+    const user = admins.find(({ username }) => username === login);
+    return password === process.env.REACT_APP_ADMIN_PASSWORD && user;
+};
