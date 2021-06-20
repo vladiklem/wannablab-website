@@ -89,3 +89,7 @@
 .bg-secondary-gradient {
     background: linear-gradient(90deg, $secondary-new 75%, $vibing-new 100%);
 }
+
+.bg-action-new {
+    background-color: $action-new !important;
+}

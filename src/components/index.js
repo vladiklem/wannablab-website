@@ -12,3 +12,4 @@ export * from "./Scrollable/ScrollableItem/ScrollableItem";
 export * from "./List/List";
 export * from "./Header/Header";
 export * from "./Footer/Footer";
+export * from "./ProgressBar/ProgressBar";

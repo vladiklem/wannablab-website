@@ -35,7 +35,7 @@ const navigation = [
     },
 ];
 
-export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible }) => {
+export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -57,11 +57,9 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible })
 
     return (
         <header
-            className={cx({
+            className={cx("container d-flex pt-3", {
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
-                "d-none": !isVisible,
-                "container d-flex pt-3": isVisible,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">

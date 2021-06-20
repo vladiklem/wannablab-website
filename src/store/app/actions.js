@@ -7,7 +7,7 @@ export const initApp = () => ({
 export const initAppSuccess = (settings) => ({
     type: APP.INIT.SUCCESS,
     payload: {
-        settings,
+        ...settings,
     },
 });
 
@@ -81,17 +81,12 @@ export const deleteTestFailure = (error) => ({
     },
 });
 
-export const toggleAdminVisibility = (isVisible = null) => ({
-    type: APP.ADMIN.TOGGLE_VISIBILITY.IDLE,
-    payload: {
-        isVisible
-    }
-});
-
-export const appAdminAuth = () => ({
+export const appAdminAuth = (data) => ({
     type: APP.ADMIN.AUTH.IDLE,
+    payload: { ...data },
 });
 
-export const authAsAdminSuccess = () => ({
+export const authAsAdminSuccess = (data) => ({
     type: APP.ADMIN.AUTH.SUCCESS,
+    payload: { ...data },
 });

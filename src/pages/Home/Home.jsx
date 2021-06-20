@@ -17,11 +17,6 @@ export const Home = () => {
     const history = useHistory();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
-    const onContactTelegramClick = () => {
-        fireAnalyticsEvent(events.CONTACT_US_TELEGRAM)
-    };
-
-
     const onOrderClick = useCallback(() => {
         document.getElementById("wannablab-lead-form").scrollIntoView();
 

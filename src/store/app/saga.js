@@ -7,6 +7,7 @@ import { LOCAL_STORAGE_APP } from "constants/localStorage";
 
 import { APP } from "./constants";
 import { initAppSuccess, initAppFailure, authAsAdminSuccess } from "./actions";
+import { getInstagramInfo } from "./api";
 
 function* initAppSaga() {
     try {
@@ -19,16 +20,24 @@ function* initAppSaga() {
 
         const localData = yield call(localStorageService.init);
 
-        yield put(initAppSuccess({ ...app, ...localData }));
+        yield put(initAppSuccess({ ...app, admin: { ...localData } }));
+
+        const instagram = yield call(getInstagramInfo);
+        console.log(instagram);
     } catch (error) {
         yield put(initAppFailure(error.message));
     }
 }
 
-function* authAsAdminSaga() {
+function* authAsAdminSaga({ payload: { username, roles } }) {
     try {
-        yield call(localStorageService.setItem, LOCAL_STORAGE_APP, { isAdmin: true });
-        yield put(authAsAdminSuccess());
+        const data = {
+            isAdmin: true,
+            username,
+            roles,
+        };
+        yield call(localStorageService.setItem, LOCAL_STORAGE_APP, data);
+        yield put(authAsAdminSuccess(data));
     } catch (error) {}
 }
 
