@@ -13,8 +13,8 @@ export const ProgressItem = ({ isPortable, current, goal, className, children })
             })}
         >
             <span
-                style={{ width: "10%" }}
-                className={cx("text-center font-weight-semibold", { "mr-3": !isPortable, "mb-1": isPortable })}
+                style={{ width: "13%" }}
+                className={cx("font-weight-semibold", { "mr-3": !isPortable, "mb-1": isPortable })}
             >{`${current}/${goal}`}</span>
             <ProgressBar current={current} goal={goal} />
         </div>

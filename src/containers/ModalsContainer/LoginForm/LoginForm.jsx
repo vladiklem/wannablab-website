@@ -15,7 +15,7 @@ export const LoginForm = ({ isOpen, toggle }) => {
 
     const toAdmin = useCallback((data) => {
         dispatch(appAdminAuth(data));
-        history.push("/admin");
+        history.push("/admin/dashboard");
         toggle();
     }, [dispatch, history, toggle]);
 
