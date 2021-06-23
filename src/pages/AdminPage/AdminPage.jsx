@@ -64,7 +64,7 @@ export const AdminPage = () => {
                     </li>
                     <li className="px-3 py-2">
                         <Link onClick={toggleSidebar} to={`${url}/customers`}>
-                            Кастомери
+                            Ліди
                         </Link>
                     </li>
                     {admin.roles.some((role) => role === "org") && (

@@ -26,10 +26,10 @@ const handlers = {
         error: payload.error,
         isLoading: false,
     }),
-    [APP.ADMIN.AUTH.SUCCESS]: (state, { payload }) => { console.log(payload); return ({
+    [APP.ADMIN.AUTH.SUCCESS]: (state, { payload }) => ({
         ...state,
         admin: { isAdmin: true, isVisible: true, ...payload },
-    })},
+    }),
 };
 
 export const appReducer = createReducer(initialState, handlers);

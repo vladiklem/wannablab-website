@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import cx from "classnames";
 
 import { Collapse, Button } from "components/index";
+import { isNewLead } from "helpers/general";
 
 import styles from "./LeadItem.module.scss";
 
@@ -27,7 +28,7 @@ export const LeadItem = ({
     return (
         <Collapse
             className={cx("border rounded mb-3 px-4 position-relative", styles.container, {
-                [styles.isNew]: status === "new",
+                [styles.isNew]: isNewLead(status),
             })}
             togglerContent={
                 <div className="text-left">

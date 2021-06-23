@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Input } from "components/index";
 import { deleteLead, updateLead } from "store/leads/actions";
+import { isNewLead } from "helpers/general";
 
 import { LeadItem } from "./LeadItem/LeadItem";
 
@@ -46,7 +47,10 @@ export const CustomersPanel = ({ isPortable }) => {
     const [newLeads, oldLeads] = useMemo(
         () =>
             filteredLeads.reduce(
-                ([a, b], item) => (item.status === "new" ? [[...a, item], b] : [a, [...b, item]]),
+                ([a, b], item) =>
+                    isNewLead(item.status)
+                        ? [[...a, item], b]
+                        : [a, [...b, item]],
                 [[], []],
             ),
         [filteredLeads],

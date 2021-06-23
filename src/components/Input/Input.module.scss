@@ -98,6 +98,14 @@
 }
 
 @media only screen and (max-width: 1024px) {
+    .customFormInput {
+        font-size: 1.1rem;
+
+        &:placeholder-shown ~ .customFormLabel {
+            font-size: 1.1rem;
+        }
+    }
+
     .customErrorMessage {
         font-size: 14px;
     }

@@ -170,7 +170,8 @@ export const mentorsList = [
         name: "Марина Торохтій",
         src: IMAGES.marynaAvatar,
         shortDescription: "Вчитель яка знає 6 мов  та пожила вже у чотирьох країнах!",
-        longDescription: "Привіт, я Марина, думаєш говорити англійською страшно? Тоді мої смол токи саме для тебе, це буде ізі & фані адже я маю безліч досвіду в спілкуванні з іноземцями, чого і тебе навчу😊 Жила в Португалії, в Канаді та наразі в Німеччині.",
+        longDescription:
+            "Привіт, я Марина, думаєш говорити англійською страшно? Тоді мої смол токи саме для тебе, це буде ізі & фані адже я маю безліч досвіду в спілкуванні з іноземцями, чого і тебе навчу😊 Жила в Португалії, в Канаді та наразі в Німеччині.",
         list: ["native speaker", "500+ проведених уроків"],
         color: "soft-purple",
     },
@@ -200,6 +201,105 @@ export const usersFeedbackList = [
     },
 ];
 
+export const quizQuestionsObj = {
+    lead: [
+        {
+            type: "radio",
+            name: "proffesion",
+            component: Radio,
+            description: "В якій сфері розвиваєшся зараз?",
+            commonProps: {
+                name: "profession",
+            },
+            list: [
+                { value: "it", children: "IT" },
+                { value: "marketing", children: "Маркетинг" },
+                { value: "management", children: "Менеджмент" },
+                { value: "medicine", children: "Медицина" },
+                { value: "other", children: "Інше" },
+            ],
+        },
+        {
+            type: "radio",
+            name: "level",
+            component: Radio,
+            description: "Як оцінюєш свій рівень англійської?",
+            commonProps: {
+                name: "level",
+            },
+            list: [
+                { value: "elementary", children: "Початковий" },
+                { value: "intermediate", children: "Середній" },
+                { value: "advanced", children: "Просунутий" },
+            ],
+        },
+        {
+            type: "radio",
+            name: "problems",
+            component: Radio,
+            description: "Проблеми, які виникають у мене при вивченні англійської:",
+            commonProps: {
+                name: "problems",
+            },
+            list: [
+                {
+                    value: "words-translation",
+                    children: "Будую речення англійською, перекладаючи слова в голові",
+                },
+                { value: "grammer", children: "У мене виникають проблеми з граматикою" },
+                {
+                    value: "hardly-switch",
+                    children: "Важко одразу переключитись з рідної мови на англійську",
+                },
+            ],
+        },
+        {
+            type: "radio",
+            name: "evolution",
+            component: Radio,
+            description: "Над чим бужемо працювати?",
+            commonProps: {
+                name: "evolution",
+            },
+
+            list: [
+                { value: "speaking", children: "Хочу вільно розмовляти" },
+                { value: "vocabulary", children: "Збільшити словарний запас" },
+                { value: "not-afraid-talking", children: "Хочу не боятись говорити" },
+                {
+                    value: "proffesional-communication",
+                    children: "Покрищити професійну комунікацію",
+                },
+            ],
+        },
+        {
+            type: "input",
+            component: Input,
+            description:
+                "Супер! Тепер ми краще розуміємо, що тобі потрібно. 😊 Залиш свій номер телефону і тобі зателефонує наша менеджер Марина. ",
+            focus: "firstName",
+            commonProps: { type: inputTypeEnum.NEW, labelClassName: "bg-white-new" },
+            list: [
+                { name: "firstName", label: "Ім'я", className: "mx-3 mb-2" },
+                {
+                    name: "phoneNumber",
+                    label: "Номер телефону",
+                    className: "mx-3",
+                    maskProps: {
+                        mask: `+38 (\\099) 999 9999`,
+                        maskChar: "_",
+                        alwaysShowMask: false,
+                        name: "phoneNumber",
+                    },
+                },
+            ],
+            props: {
+                type: inputTypeEnum.NEW,
+            },
+        },
+    ],
+};
+
 export const questionsList = [
     {
         type: "radio",
@@ -214,8 +314,8 @@ export const questionsList = [
             name: "listening-1",
         },
         list: [
-            { value: "yes", children: "yes" },
-            { value: "no", children: "no" },
+            { value: "yes1", children: "yes" },
+            { value: "no1", children: "no" },
         ],
     },
     {
@@ -227,7 +327,7 @@ export const questionsList = [
             name: "grammer-1",
         },
         list: [
-            { value: "gos", children: "gos" },
+            { value: "going", children: "going" },
             { value: "go", children: "go" },
             { value: "goes", children: "goes" },
         ],
@@ -251,19 +351,19 @@ export const questionsList = [
         name: "reading-1",
         component: Radio,
         text:
-            "David is  не выбрано a typical man – he is 27 and works  не выбрано as a manager for an international company. But there is something special about him – he designs clothes for his pet Dolly – the hairless Sphynx cat. In university he went to sewing courses and now he cannot imagine his life without creating clothes even for a cat.",
+            "David is a typical man – he is 27 and works as a manager for an international company. But there is something special about him – he designs clothes for his pet Dolly – the hairless Sphynx cat. In university he went to sewing courses and now he cannot imagine his life without creating clothes even for a cat.",
         description: "Why does David design clothes for his cat?",
         commonProps: {
             name: "reading-1",
         },
         list: [
             {
-                value: "answer-1",
+                value: "answer-1-1",
                 children: "All Sphynx cats need clothes because they do not have fur.",
             },
-            { value: "answer-2", children: "He attended special classes and likes sewing." },
+            { value: "answer-2-1", children: "He attended special classes and likes sewing." },
             {
-                value: "answer-3",
+                value: "answer-3-1",
                 children: "He is bored at his work so he wants to do something new.",
             },
         ],
@@ -310,8 +410,8 @@ export const questionsList = [
             name: "listening-2",
         },
         list: [
-            { value: "yes", children: "yes" },
-            { value: "no", children: "no" },
+            { value: "yes2", children: "yes" },
+            { value: "no2", children: "no" },
         ],
     },
     {
@@ -349,15 +449,15 @@ export const questionsList = [
         name: "reading-2",
         component: Radio,
         text:
-            "Stress can be caused by any type of physical or emotional stimulus usually without us noticing it. Different factors can be the reason  не выбрано for stress, starting from social and financial problems ending with illness and family discord. Stress can result in mood changes, poor health and even depression.",
+            "Stress can be caused by any type of physical or emotional stimulus usually without us noticing it. Different factors can be the reason for stress, starting from social and financial problems ending with illness and family discord. Stress can result in mood changes, poor health and even depression.",
         description: "According to the paragraph...",
         commonProps: {
             name: "reading-2",
         },
         list: [
-            { value: "answer-1", children: "People know all the causes of stress." },
-            { value: "answer-2", children: "Stress does not worsen people’s health." },
-            { value: "answer-3", children: "Stress can “hit” us from everywhere." },
+            { value: "answer-1-2", children: "People know all the causes of stress." },
+            { value: "answer-2-2", children: "Stress does not worsen people’s health." },
+            { value: "answer-3-2", children: "Stress can “hit” us from everywhere." },
         ],
     },
     {
@@ -414,19 +514,19 @@ export const questionsList = [
         name: "reading-3",
         component: Radio,
         text:
-            "The amount of information on offer is so considerable that along with an abundance of distractions like advertisements and tempting news blocks the choice of that needed piece of information virtually becomes a torture for many. Users go online with an intention of receiving knowledge but  не выбрано end up purposelessly roaming from site to site losing their time and temper occasionally.",
+            "The amount of information on offer is so considerable that along with an abundance of distractions like advertisements and tempting news blocks the choice of that needed piece of information virtually becomes a torture for many. Users go online with an intention of receiving knowledge but end up purposelessly roaming from site to site losing their time and temper occasionally.",
         description: "According to the paragraph...",
         commonProps: {
             name: "reading-3",
         },
         list: [
-            { value: "answer-1", children: "How much violence there can be on the Net." },
+            { value: "answer-1-3", children: "How much violence there can be on the Net." },
             {
-                value: "answer-2",
+                value: "answer-2-3",
                 children: "How people struggle to find valuable and useful information.",
             },
             {
-                value: "answer-3",
+                value: "answer-3-3",
                 children: "How much time people waste on reading pop-up advertisements.",
             },
         ],
@@ -467,13 +567,13 @@ export const questionsList = [
         description:
             "Супер! Тепер ми краще розуміємо, що тобі потрібно. 😊 Залиш свій номер телефону і тобі зателефонує наша менеджер Марина. ",
         focus: "firstName",
-        commonProps: { type: inputTypeEnum.NEW },
+        commonProps: { type: inputTypeEnum.NEW, labelClassName: "bg-white-new" },
         list: [
-            { name: "firstName", label: "Ім'я", className: "mx-4 mt-2" },
+            { name: "firstName", label: "Ім'я", className: "mt-n2" },
             {
                 name: "phoneNumber",
                 label: "Номер телефону",
-                className: "mx-4 mt-4",
+                className: "mb-3",
                 maskProps: {
                     mask: `+38 (\\099) 999 9999`,
                     maskChar: "_",

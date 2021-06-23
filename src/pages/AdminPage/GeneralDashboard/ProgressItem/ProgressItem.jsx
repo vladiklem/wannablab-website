@@ -16,7 +16,7 @@ export const ProgressItem = ({ isPortable, current, goal, className, children })
                 style={{ width: "13%" }}
                 className={cx("font-weight-semibold", { "mr-3": !isPortable, "mb-1": isPortable })}
             >{`${current}/${goal}`}</span>
-            <ProgressBar current={current} goal={goal} />
+            <ProgressBar redLimit={25} current={current} goal={goal} />
         </div>
     </div>
 );

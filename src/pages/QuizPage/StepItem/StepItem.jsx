@@ -4,11 +4,11 @@ import MaskedInput from "react-input-mask";
 
 const renderTag = (renderChildren, { maskProps, ...props }) =>
     maskProps ? (
-        <MaskedInput {...maskProps}>
+        <MaskedInput key={props.value || props.name} {...maskProps}>
             {(maskedInputProps) => renderChildren({ ...maskedInputProps, ...props })}
         </MaskedInput>
     ) : (
-        renderChildren(props)
+        renderChildren(props.value || props.name)
     );
 
 export const StepItem = ({ component, list, isHidden, commonProps, register, onClick }) => {
@@ -20,10 +20,10 @@ export const StepItem = ({ component, list, isHidden, commonProps, register, onC
                 "hidden-element": isHidden,
             })}
         >
-            {list.map(({ maskProps, ...tagProps }, index) =>
+            {list.map(({ maskProps, ...tagProps }) =>
                 renderTag(
-                    () => (
-                        <div key={index} className="col-sm-12 col-md-6">
+                    (key) => (
+                        <div className="col-sm-12 col-md-6" key={key}>
                             <Tag
                                 {...tagProps}
                                 {...commonProps}

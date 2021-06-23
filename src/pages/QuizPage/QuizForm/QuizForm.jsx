@@ -3,14 +3,13 @@ import { useForm } from "react-hook-form";
 import cx from "classnames";
 
 import { Button, ProgressBar } from "components/index";
-import { telNumber } from "constants/social";
+import { Check } from "components/Icons/Check";
 
 import styles from "./QuizForm.module.scss";
-import { Check } from "components/Icons/Check";
 
 import { StepItem } from "../StepItem/StepItem";
 
-export const QuizForm = ({ stepList, toHome, onSubmit }) => {
+export const QuizForm = ({ stepList, onFinish, onSubmit, lastSlideNode }) => {
     const { handleSubmit, register } = useForm();
     const [step, setStep] = useState(0);
 
@@ -22,11 +21,12 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
             e.target.type === "submit" && e.preventDefault();
             setTimeout(() => {
                 step + 1 === len && handleSubmit(onSubmit)();
-                step === len && toHome();
+                !lastSlideNode && onFinish && onFinish();
+                !!lastSlideNode && step === len && onFinish && onFinish();
                 setStep((step) => step + 1);
             }, 350);
         },
-        [setStep, step, len, handleSubmit, onSubmit, toHome],
+        [setStep, step, len, handleSubmit, onSubmit, onFinish, lastSlideNode],
     );
 
     const onPrev = useCallback(() => {
@@ -52,9 +52,7 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
             )}
         >
             <div className="flex-grow-1">
-                {stepItem.description && (
-                    <h2 className="h3 mb-3 text-highlighted">{stepItem.description}</h2>
-                )}
+                {stepItem.description && <h2 className="h3 mb-3">{stepItem.description}</h2>}
                 <div className="mb-3">
                     {stepList.map(({ component, commonProps = {}, ...item }, index) => (
                         <StepItem
@@ -64,21 +62,16 @@ export const QuizForm = ({ stepList, toHome, onSubmit }) => {
                             isHidden={step !== index}
                             register={register}
                             onClick={item.type === "radio" ? onNext : undefined}
-                            key={item.name}
+                            key={item.name || item.type}
                         />
                     ))}
                     <div
                         className={cx("transition-250", {
                             "hidden-element": len !== step,
+                            "d-none": !lastSlideNode,
                         })}
                     >
-                        <h2 className="h3 mb-3">Дякуємо 😊</h2>
-                        <h3 className="regular">
-                            Наш кастомер ловер Марина заретелефонує тобі найближчим часом, або ти
-                            можеш зробити це сам і отримати{" "}
-                            <span className="font-weight-semibold">знижку 10%</span> <br /> Тисни{" "}
-                            <a href={`tel:${telNumber.short}`}>{telNumber.long}</a> 😉
-                        </h3>
+                        {lastSlideNode}
                     </div>
                 </div>
             </div>

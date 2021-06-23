@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import cx from "classnames";
 
-export const ProgressBar = ({ current = 0, goal = 1, redLimit = 25, className }) => {
+export const ProgressBar = ({ current = 0, goal = 1, redLimit = 0, className }) => {
     const progressBarWidth = useMemo(() => (current / goal) * 100 || 5, [goal, current]);
     const isRed = useMemo(() => progressBarWidth <= redLimit, [progressBarWidth, redLimit]);
 
