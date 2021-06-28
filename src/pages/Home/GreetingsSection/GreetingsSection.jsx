@@ -7,7 +7,7 @@ import { leraContact } from "constants/social";
 import { ServiceScrollableItem } from "components/styled/ServiceScrollableItem/ServiceScrollableItem";
 
 export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className }) => (
-    <section className={cx("d-flex flex-column container mb-4", className)}>
+    <section className={cx("d-flex flex-column container", className)}>
         <h2
             className={cx({
                 "font-medium": !isPortable,

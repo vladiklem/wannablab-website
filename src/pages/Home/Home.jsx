@@ -8,8 +8,9 @@ import { mediaBreakpointsEnum } from "constants/enums";
 import { GreetingsSection } from "./GreetingsSection/GreetingsSection";
 import { InteractionSections } from "./InteractionSections/InteractionSections";
 import { FeedbackSection } from "./FeedbackSection/FeedbackSection";
-import { fireAnalyticsEvent } from "analytics"
-import events from 'analytics/events'
+import { fireAnalyticsEvent } from "analytics";
+import events from "analytics/events";
+import { ValuesSection } from "./ValuesSection/ValuesSection";
 
 export const Home = () => {
     const [description, setDescription] = useState("");
@@ -20,7 +21,7 @@ export const Home = () => {
     const onOrderClick = useCallback(() => {
         document.getElementById("wannablab-lead-form").scrollIntoView();
 
-        fireAnalyticsEvent(events.CALL_LATER)
+        fireAnalyticsEvent(events.CALL_LATER);
         setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
@@ -34,7 +35,7 @@ export const Home = () => {
     const onMentorSelect = useCallback(
         ({ name }) => {
             setDescription(`Ви записуєтесь на приватні заняття до \n\n "${name}" 🎉 `);
-            fireAnalyticsEvent(events.CALL_LATER)
+            fireAnalyticsEvent(events.CALL_LATER);
             onOrderClick();
         },
         [setDescription, onOrderClick],
@@ -43,7 +44,7 @@ export const Home = () => {
     const toCourse = useCallback(
         (slug) => {
             history.push(`/course/${slug}`);
-            fireAnalyticsEvent(events.READ_MORE_ABOUT_COURSE, slug)
+            fireAnalyticsEvent(events.READ_MORE_ABOUT_COURSE, slug);
         },
         [history],
     );
@@ -51,7 +52,7 @@ export const Home = () => {
     const toMentor = useCallback(
         (slug) => {
             history.push(`/mentor/${slug}`);
-            fireAnalyticsEvent(events.READ_MORE_ABOUT_TEACHER, slug)
+            fireAnalyticsEvent(events.READ_MORE_ABOUT_TEACHER, slug);
         },
         [history],
     );
@@ -67,7 +68,9 @@ export const Home = () => {
                 onOrderClick={onOrderClick}
                 isPortable={isPortable}
                 toCourse={toCourse}
+                className="mb-5"
             />
+            <ValuesSection className="mb-5" isPortable={isPortable} />
             <InteractionSections
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}

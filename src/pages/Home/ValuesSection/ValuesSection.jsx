@@ -1,18 +1,22 @@
 import React from "react";
-import { AllFeaturedPlanIcon } from "components/Icons/AllFeaturedPlanIcon";
+import cx from "classnames";
 
-export const ValuesSection = () => (
-    <section className="container">
-        <h1 className="h2">Наші цінності</h1>
-        <div>
-            <div className="d-flex align-items-center">
-                <AllFeaturedPlanIcon height={32} width={32} className="mr-2" />
-                <h2 className="h3">Люди</h2>
-            </div>
-            <h3 className="regular">
-                Наші клієнти та наша команда, адже ми не просто вивчаємо інгліш, ми будуємо
-                ком'юніті та вчимося найефективнішій комунікації.
-            </h3>
-        </div>
+import { valuesList } from "constants/lists";
+import { objToArray } from "utils/converters";
+
+import { ValueItem } from "./ValueItem/ValueItem";
+
+export const ValuesSection = ({ isPortable, className }) => (
+    <section className={cx("container", className)}>
+        <h2 className="h2 mb-3 font-weight-bold">Наші цінності</h2>
+        {objToArray(valuesList).map(({ Icon, ...valueProps }, index) => (
+            <ValueItem
+                icon={<Icon height={64} width={64} />}
+                className="mb-2"
+                isPortable={isPortable}
+                index={index}
+                {...valueProps}
+            />
+        ))}
     </section>
 );
