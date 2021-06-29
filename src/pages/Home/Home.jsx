@@ -68,9 +68,9 @@ export const Home = () => {
                 onOrderClick={onOrderClick}
                 isPortable={isPortable}
                 toCourse={toCourse}
-                className="mb-5"
+                className="mb-4"
             />
-            <ValuesSection className="mb-5" isPortable={isPortable} />
+            <ValuesSection className="mb-5 pt-4" isPortable={isPortable} />
             <InteractionSections
                 toMentor={toMentor}
                 onMentorSelect={onMentorSelect}

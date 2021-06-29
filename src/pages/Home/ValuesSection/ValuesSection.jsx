@@ -7,7 +7,7 @@ import { objToArray } from "utils/converters";
 import { ValueItem } from "./ValueItem/ValueItem";
 
 export const ValuesSection = ({ isPortable, className }) => (
-    <section className={cx("container", className)}>
+    <section id="wannablab-values" className={cx("container", className)}>
         <h2 className="h2 mb-3 font-weight-bold">Наші цінності</h2>
         {objToArray(valuesList).map(({ Icon, ...valueProps }, index) => (
             <ValueItem
