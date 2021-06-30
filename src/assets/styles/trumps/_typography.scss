@@ -6,6 +6,11 @@
     -webkit-font-smoothing: antialiased;
 }
 
+@mixin h3Font {
+    font-size: 18px;
+    line-height: 24px;
+}
+
 .h1 {
     @include smoothFont();
 
@@ -20,13 +25,16 @@
     font-size: 24px;
     line-height: 32px;
     margin-bottom: 0;
+
+    @media only screen and (max-width: 1024px) {
+        @include h3Font();
+    }
 }
 
 .h3 {
     @include smoothFont();
 
-    font-size: 18px;
-    line-height: 24px;
+    @include h3Font();
 }
 
 .regular {

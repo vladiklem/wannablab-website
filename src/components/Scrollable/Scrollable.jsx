@@ -70,7 +70,7 @@ export const Scrollable = ({
             <div
                 ref={scrollableContainer}
                 className={cx(
-                    "p-4",
+                    "p-4 transition-quart-250",
                     {
                         "overflow-hidden": isScrollHidden,
                         [styles.containerScrollbarInvisible]: !isScrollbarVisible,

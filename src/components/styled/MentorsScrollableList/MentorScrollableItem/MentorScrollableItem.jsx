@@ -14,10 +14,10 @@ export const MentorScrollableItem = ({
     className,
     list,
     shortDescription,
-    instHref = "",
     slug,
     isPortable,
     onClick,
+    instaHref,
 }) => {
     const handleClick = useCallback(() => {
         onClick(slug);
@@ -36,7 +36,7 @@ export const MentorScrollableItem = ({
         >
             <div className="d-flex flex-column justify-content-between mr-2 p-2 flex-grow-1">
                 <div>
-                    <a className="position-relative text-decoration-none" href={instHref}>
+                    <a className="position-relative text-decoration-none" href={instaHref}>
                         <h3 className="h3 d-flex align-items-center text-gray-900 mb-2 mt-1">
                             <Instagram width={20} height={20} className="mr-2" />
                             {name}
@@ -49,13 +49,15 @@ export const MentorScrollableItem = ({
                     Більше
                 </Button>
             </div>
-            <img
-                className="d-block image rounded-lg"
-                height={250}
-                width={250}
-                src={src}
-                alt={`${name} - вчитель англійської на курсах wannablab`}
-            />
+            <a href={`/mentor/${slug}`} className="d-block image">
+                <img
+                    className="rounded-lg"
+                    height={250}
+                    width={250}
+                    src={src}
+                    alt={`${name} - вчитель англійської на курсах wannablab`}
+                />
+            </a>
         </ScrollableItem>
     );
 };
