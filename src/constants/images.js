@@ -9,6 +9,7 @@ import proCover from "assets/images/pro-cover.png";
 import vovaAvatar from "assets/images/vova_avatar.webp"
 import volodymyrAvatar from "assets/images/volodymyr_avatar.webp";
 import marynaAvatar from "assets/images/maryna_avatar.webp";
+import soloEconomCover from "assets/images/solo-econom-cover.webp";
 
 export const IMAGES = {
     smallTalkLessonsImg,
@@ -22,4 +23,5 @@ export const IMAGES = {
     vovaAvatar,
     volodymyrAvatar,
     marynaAvatar,
+    soloEconomCover,
 };

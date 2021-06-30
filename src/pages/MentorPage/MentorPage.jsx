@@ -42,7 +42,7 @@ export const MentorPage = () => {
                     </div>
                     <div className="col-md-6 col-sm-12">
                         <h1 className="h1 mb-2">{mentor.name}</h1>
-                        <h2 className="regular mb-3">{mentor.longDescription}</h2>
+                        <p className="regular mb-3">{mentor.longDescription}</p>
                         <div className="row flex-wrap mb-4">
                             {/* <span className="col-6">
                                 <Button

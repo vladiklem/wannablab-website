@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { Scrollable } from "components/index";
 import { mentorsList } from "constants/lists";
@@ -6,14 +6,16 @@ import { mentorsList } from "constants/lists";
 import { MentorScrollableItem } from "./MentorScrollableItem/MentorScrollableItem";
 
 export const MentorsScrollableList = ({ toMentor, list = mentorsList, className, isPortable }) => {
+    const offset = useMemo(() => (isPortable ? 250 : 556), [isPortable]);
+
     return (
         <Scrollable
             containerClassName={className}
             hasArrows={true}
             isScrollbarVisible={false}
-            offset={250}
+            offset={offset}
             components={{
-                Header: <h2 className="h3 font-weight-bold">Наші ментори</h2>,
+                Header: <h2 className="h2 font-weight-bold">Наші ментори</h2>,
             }}
         >
             {list.map(({ name, ...itemProps }, index) => (

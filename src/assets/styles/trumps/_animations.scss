@@ -1,7 +1,8 @@
 @import "~assets/styles/config/colors";
+@import "~assets/styles/config/transitions";
 
-@mixin scale1Items {
-    animation: scale1 250ms forwards;
+@mixin scaleItems {
+    animation: scale 250ms forwards;
 
     &:nth-child(1) {
         animation-delay: 100ms;
@@ -13,23 +14,19 @@
 
     &:nth-child(3) {
         animation-delay: 300ms;
+    }
+
+    &:nth-child(4) {
+        animation-delay: 400ms;
     }
 }
 
-@mixin scale2Items {
-    animation: scale2 250ms forwards;
+.transition-250 {
+    transition: all 250ms ease-in-out;
+}
 
-    &:nth-child(1) {
-        animation-delay: 100ms;
-    }
-
-    &:nth-child(2) {
-        animation-delay: 200ms;
-    }
-
-    &:nth-child(3) {
-        animation-delay: 300ms;
-    }
+.transition-quart-250 {
+    transition: $easeOutQuart;
 }
 
 .typing {
@@ -76,9 +73,9 @@
 
     &.start-soon {
         &:before {
-            background-color: rgba(255, 179, 71, .5);
+            background-color: rgba(255, 179, 71, 0.5);
         }
-    
+
         &:after {
             background-color: $orange-soft;
         }
@@ -87,37 +84,17 @@
 
 .list-scale-animation1 {
     .scale-item1 {
-        @include scale1Items();
+        @include scaleItems();
     }
 }
 
-.list-scale-animation2 {
-    .scale-item2 {
-        @include scale2Items();
+.list-scale-animation.animation-enabled {
+    .scale-item {
+        @include scaleItems();
     }
 }
 
-.list-scale-animation3 {
-    .scale-item3 {
-        @include scale1Items();
-    }
-}
-
-@keyframes scale1 {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes scale2 {
+@keyframes scale {
     0% {
         transform: scale(1);
     }

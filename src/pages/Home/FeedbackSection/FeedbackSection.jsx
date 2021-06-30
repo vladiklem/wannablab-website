@@ -1,37 +1,35 @@
-import React from "react";
-import cx from "classnames";
+import React, { useMemo } from "react";
 
-import { Quote } from "components/styled/index";
 import { usersFeedbackList } from "constants/lists";
-import { Scrollable, ScrollableItem } from "components/index";
+import { Scrollable } from "components/index";
 
-import styles from "./FeedbackSection.module.scss";
+import { FeedbackScrollableItem } from "./FeedbackScrollableItem/FeedbackScrollableItem";
 
-export const FeedbackSection = ({ isPortable }) => (
-    <section id="wannablab-feedback" className="mb-4 pt-4 container">
-        <div>
-            <Scrollable
-                hasArrows={true}
-                isScrollbarVisible={false}
-                offset={isPortable ? 350 : 1400}
-                containerClassName="mr-n4 ml-n4"
-                components={{ Header: <h2 className="h3 font-weight-bold">Відгуки студентів</h2> }}
-            >
-                {usersFeedbackList.map((item, index) => (
-                    <ScrollableItem
-                        className={cx(styles.item, { "mr-4": index < usersFeedbackList.length })}
-                        key={item.name}
-                    >
-                        <Quote
-                            src={item.avatar}
-                            text={item.description}
-                            author={item.name}
+export const FeedbackSection = ({ isPortable }) => {
+    const offset = useMemo(() => (isPortable ? 390 : 1416), [isPortable]);
+
+    return (
+        <section id="wannablab-feedback" className="mb-4 pt-4 container">
+            <div>
+                <Scrollable
+                    hasArrows={true}
+                    isScrollbarVisible={false}
+                    offset={offset}
+                    containerClassName="mr-n4 ml-n4"
+                    components={{
+                        Header: <h2 className="h2 font-weight-bold">Відгуки студентів</h2>,
+                    }}
+                >
+                    {usersFeedbackList.map((item, index) => (
+                        <FeedbackScrollableItem
+                            index={index}
                             isPortable={isPortable}
-                            className="p-2"
+                            length={usersFeedbackList.length}
+                            {...item}
                         />
-                    </ScrollableItem>
-                ))}
-            </Scrollable>
-        </div>
-    </section>
-);
+                    ))}
+                </Scrollable>
+            </div>
+        </section>
+    );
+};

@@ -55,7 +55,7 @@ export const ServiceScrollableItem = ({
             <h3 className="h3 mt-3 mb-2">{title}</h3>
             <div className="row flex-grow-1 mb-2">
                 <div className={cx("col-md-8 col-sm-12", { "d-flex flex-column": isPortable })}>
-                    <List className="mb-2" type="features-white" list={list} />
+                    <List className="mb-2" type="features-white" list={list} isShort={true} />
                     {isPortable && (
                         <div className="row flex-grow-1">
                             <div className="col-12 font-weight-semibold text-right">

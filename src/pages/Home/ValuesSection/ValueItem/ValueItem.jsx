@@ -7,7 +7,7 @@ export const ValueItem = ({ title, icon, description, className, isPortable, ind
             [`w-75 ml-${index + 2}`]: !isPortable,
         })}
     >
-        <div className="d-flex align-items-center mb-2">
+        <div className="d-flex align-items-center mb-3">
             <span className="mr-3">{icon}</span>
             <h3 className="h3">{title}</h3>
         </div>
