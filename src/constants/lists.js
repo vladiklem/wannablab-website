@@ -9,6 +9,15 @@ import { PersonalAttitude } from "components/Icons/PersonalAttitude";
 import { Learning } from "components/Icons/Learning";
 import { Grammar } from "components/Icons/Grammar";
 
+export const budgetsList = [
+    {
+        name: "Карта 1",
+        slug: "card1",
+    },
+    { name: "Карта 2", slug: "card2" },
+    { name: "Заначка", slug: "blackSum" },
+];
+
 export const servicesList = [
     {
         slug: "group-lessons",

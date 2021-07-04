@@ -8,31 +8,38 @@ export const admins = [
         roles: ["org"],
     },
     {
-        username: "Marina",
-        roles: ["manager"],
+        username: "Marina Pekar",
+        roles: ["Manager"],
     },
     {
         username: "Roma",
-        roles: ["marketing"],
+        roles: ["Targeting"],
     },
     {
         username: "Diana",
-        roles: ["copywriter"],
+        roles: ["Copywriter"],
     },
     {
         username: "Anya",
-        roles: ["teacher"],
+        roles: ["Teacher"],
     },
     {
         username: "Marta",
-        roles: ["teacher"],
+        roles: ["Teacher"],
     },
     {
-        username: "Maryna",
-        roles: ["teacher"],
+        username: "Maryna Torokhtiy",
+        roles: ["Teacher"],
     },
     {
         username: "Kate",
-        roles: ["teacher"],
+        roles: ["Teacher"],
+    },
+    {
+        username: "Liuda",
+        roles: ["Designer"],
     },
 ];
+
+export const toEmployees = (admins) =>
+    admins.reduce((acc, item) => (item.roles.includes("org") ? acc : [...acc, item]), []);
