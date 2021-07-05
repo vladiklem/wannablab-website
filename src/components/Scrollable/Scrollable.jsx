@@ -62,7 +62,7 @@ export const Scrollable = ({
                             onClick={onClickArrowRight}
                             className={cx(styles.arrow, "py-1 px-2")}
                         >
-                            <ArrowRightLong className="shadow-soft" width={20} height={20} />
+                            <ArrowRightLong width={20} height={20} />
                         </Button>
                     </div>
                 </div>
