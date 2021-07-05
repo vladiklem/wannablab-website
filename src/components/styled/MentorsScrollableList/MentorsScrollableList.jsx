@@ -15,7 +15,7 @@ export const MentorsScrollableList = ({ toMentor, list = mentorsList, className,
             isScrollbarVisible={false}
             offset={offset}
             components={{
-                Header: <h2 className="h2 font-weight-bold">Наші ментори</h2>,
+                Header: <h2 className="h2-responsive font-weight-bold">Наші ментори</h2>,
             }}
         >
             {list.map(({ name, ...itemProps }, index) => (

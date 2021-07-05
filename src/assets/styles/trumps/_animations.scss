@@ -47,6 +47,18 @@
     }
 }
 
+.flying-animation {
+    animation: flying 4s infinite;
+}
+
+.flying-fast-animation {
+    animation: flying 3s infinite;
+}
+
+.flying-slow-animation {
+    animation: flying 5s infinite;
+}
+
 .circle-pulp-animation {
     position: relative;
 
@@ -91,6 +103,20 @@
 .list-scale-animation.animation-enabled {
     .scale-item {
         @include scaleItems();
+    }
+}
+
+@keyframes flying {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
     }
 }
 

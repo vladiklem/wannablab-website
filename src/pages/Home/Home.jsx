@@ -84,7 +84,7 @@ export const Home = () => {
                         Вже <strong>44 людини</strong> вивчили англійську з нами
                     </h2>
                     <div className="flex-grow-1 d-flex align-items-center justify-content-center">
-                        <LeadForm description={description} />
+                        <LeadForm description="Залиште свої контакти і ми самі перетелефонуємо 😃" />
                     </div>
                 </div>
             </section>

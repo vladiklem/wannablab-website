@@ -10,6 +10,7 @@ export const buttonColorEnum = {
     WHITE: "white",
     INVISIBLE: "invisible",
     UNSTYLED: "unstyled",
+    SECONDARY_NEW: "secondary-new",
 };
 
 export const Button = ({

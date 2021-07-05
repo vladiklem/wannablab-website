@@ -112,6 +112,21 @@
     }
 }
 
+.btn-secondary-new {
+    background-color: $secondary-new;
+    color: $white;
+    box-shadow: $shadow-soft;
+    transition: all .25s;
+
+    &:hover {
+        color: $white !important;
+    }
+
+    &:active {
+        box-shadow: none;
+    }
+}
+
 .btn-vibing-new {
     background-color: $vibing-new;
     color: $white;

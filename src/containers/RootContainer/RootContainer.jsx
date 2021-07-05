@@ -19,7 +19,7 @@ import { initUsers } from "store/users/actions";
 import { initEvents } from "store/events/actions";
 import { initGroups } from "store/groups/actions";
 import { initApp } from "store/app/actions";
-import { selectAdmin } from "store/app/selectors";
+import { selectAdmin, selectHeaderSettings } from "store/app/selectors";
 import { toggleModal } from "store/modals/actions";
 import { modalNamesEnum, mediaBreakpointsEnum } from "constants/enums";
 
@@ -28,12 +28,14 @@ import { PrivateRoute } from "./PrivateRoute/PrivateRoute";
 import styles from "./RootContainer.module.scss";
 import "assets/styles/index.scss";
 import { initLeads } from "store/leads/actions";
+import { ItTeamCoursePage } from "pages/ItTeamCoursePage/ItTeamCoursePage";
 
 firebaseService.init();
 
 export const RootContainer = () => {
     const dispatch = useDispatch();
     const admin = useSelector(selectAdmin);
+    const headerSettings = useSelector(selectHeaderSettings);
     const [coursesClicked, setCoursesClicked] = useState(false);
     const [pricesClicked, setPricesClicked] = useState(false);
 
@@ -60,7 +62,9 @@ export const RootContainer = () => {
     };
 
     const renderRoute = useCallback(
-        ({ routeComponent: Component }) => (props) => <Component {...props} />,
+        ({ routeComponent: Component, props: outerProps }) => (props) => (
+            <Component {...props} {...outerProps} />
+        ),
         [],
     );
 
@@ -78,6 +82,7 @@ export const RootContainer = () => {
                 isPortable={isPortable}
                 onCoursesClick={onCoursesClick}
                 onPricesClick={onPricesClick}
+                isVisible={headerSettings.isVisible}
             />
             <main
                 className={cx(styles.background, {
@@ -99,6 +104,13 @@ export const RootContainer = () => {
                     <Route
                         path="/check-list"
                         render={renderRoute({ routeComponent: ChecklistPage })}
+                    />
+                    <Route
+                        path="/it-team-communication-course"
+                        render={renderRoute({
+                            routeComponent: ItTeamCoursePage,
+                            props: { isPortable },
+                        })}
                     />
                     <Route path="/test" render={renderRoute({ routeComponent: TestPage })} />
                     <Route path="/quiz/:slug" render={renderRoute({ routeComponent: QuizPage })} />

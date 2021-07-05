@@ -24,9 +24,9 @@ export const Footer = ({ isPortable, handleLogin }) => {
                 </div>
                 <ContactsBlock className="mb-3" />
             </div>
-            <Button onClick={handleLogin} color={buttonColorEnum.UNSTYLED}>
+            {/* <Button onClick={handleLogin} color={buttonColorEnum.UNSTYLED}>
                 Залогінитися
-            </Button>
+            </Button> */}
         </footer>
     );
 };

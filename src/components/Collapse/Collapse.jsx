@@ -12,6 +12,7 @@ export const Collapse = ({
     togglerContent = "Toggle",
     contentClassName = "p-3",
     togglerClassName = "",
+    activeTogglerClassName = "",
     withArrow = false,
     arrowClassName = "",
     onToggle,
@@ -27,7 +28,7 @@ export const Collapse = ({
     return (
         <div className={className}>
             <Button
-                className={togglerClassName}
+                className={cx(togglerClassName, { [activeTogglerClassName]: isOpen })}
                 color={buttonColorEnum.UNSTYLED}
                 size="lg"
                 block={true}

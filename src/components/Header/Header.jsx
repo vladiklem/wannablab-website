@@ -9,8 +9,8 @@ import styles from "./Header.module.scss";
 
 import logo from "assets/images/logo.png";
 
-import { fireAnalyticsEvent } from "analytics"
-import events from 'analytics/events'
+import { fireAnalyticsEvent } from "analytics";
+import events from "analytics/events";
 
 const navigation = [
     {
@@ -35,7 +35,7 @@ const navigation = [
     },
 ];
 
-export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
+export const Header = ({ onCoursesClick, onPricesClick, isPortable, isVisible }) => {
     const history = useHistory();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -49,17 +49,18 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
             id === "wannablab-courses" && onCoursesClick();
             id === "wannablab-prices" && onPricesClick();
 
-            fireAnalyticsEvent(events.TOP_NAVIGATION_MENU, id)
-        
+            fireAnalyticsEvent(events.TOP_NAVIGATION_MENU, id);
         },
         [history, onCoursesClick, onPricesClick],
     );
 
     return (
         <header
-            className={cx("container d-flex pt-3", {
+            className={cx("container pt-3", {
                 "flex-column": isPortable,
                 "align-items-center": !isPortable,
+                "d-none": !isVisible,
+                "d-flex": isVisible,
             })}
         >
             <div className="d-flex align-items-center justify-content-between">
@@ -67,9 +68,7 @@ export const Header = ({ onCoursesClick, onPricesClick, isPortable }) => {
                     <img src={logo} width="50" height="60" alt="Логотип компанії wannablab" />
                 </a>
                 <a href="/" className="text-decoration-none text-gray-900">
-                    <p className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>
-                        wannablab
-                    </p>
+                    <p className={cx("font-weight-bold h1", { "ml-4": !isPortable })}>wannablab</p>
                 </a>
                 <Button
                     className={cx({ "d-none": !isPortable })}
