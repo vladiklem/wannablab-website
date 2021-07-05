@@ -1,6 +1,6 @@
 import React from "react";
 
-export const ArrowRightLong = ({ props, width = 48, height = 48 }) => (
+export const ArrowRightLong = ({ width = 48, height = 48, ...props }) => (
     <svg
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

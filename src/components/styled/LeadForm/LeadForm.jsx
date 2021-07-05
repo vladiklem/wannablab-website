@@ -10,13 +10,18 @@ import { addLead } from "store/leads/actions";
 import { bookTest } from "store/app/actions";
 import { instagramLink, telegramLink } from "constants/social";
 
-import { fireAnalyticsEvent } from "analytics"
-import events from 'analytics/events'
-
+import { fireAnalyticsEvent } from "analytics";
+import events from "analytics/events";
 
 import styles from "./LeadForm.module.scss";
 
-export const LeadForm = ({ className, description = "", ...props }) => {
+export const LeadForm = ({
+    className,
+    description = "",
+    actionButtonProps,
+    afterWord = "Наш кастомер ловер Марина зателефонує вам протягом 15-ти хвилин ❤️",
+    ...props
+}) => {
     const dispatch = useDispatch();
     const { isLoading, isSuccess } = useSelector((state) => state.leads);
 
@@ -26,7 +31,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
         (data) => {
             dispatch(addLead(data));
             data.time && dispatch(bookTest(data.time));
-            fireAnalyticsEvent(events.LEAD_FORM_SUBMIT)
+            fireAnalyticsEvent(events.LEAD_FORM_SUBMIT);
         },
         [dispatch],
     );
@@ -37,10 +42,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
             onSubmit={handleSubmit(onSubmit)}
             {...props}
         >
-            <h3 className="regular mb-2">
-                {description} {description && <br />} Залиште свої контакти і ми самі
-                перетелефонуємо 😃
-            </h3>
+            <h3 className="regular mb-2">{description}</h3>
             <Input className="mx-2" name="name" label="Ім'я" ref={register({ required: true })} />
             <MaskedInput
                 mask="+38 (\099) 999 9999"
@@ -69,12 +71,13 @@ export const LeadForm = ({ className, description = "", ...props }) => {
             <Button
                 block
                 color="primary-new"
-                className={styles.button}
+                className={cx(styles.button, "rounded-circle")}
                 size="lg"
                 type="submit"
                 isRounded
                 isBold
                 isLoading={isLoading}
+                {...actionButtonProps}
             >
                 Приєднатися
             </Button>
@@ -85,7 +88,7 @@ export const LeadForm = ({ className, description = "", ...props }) => {
                 })}
             >
                 <p className="regular mb-4">
-                    Наш кастомер ловер Марина зателефонує вам протягом 15-ти хвилин ❤️
+                    {afterWord}
                 </p>
                 <p className="regular mb-3">А ось, що ми пропонуємо по контенту:</p>
                 <a

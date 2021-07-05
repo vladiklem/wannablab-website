@@ -10,6 +10,9 @@ import vovaAvatar from "assets/images/vova_avatar.webp"
 import volodymyrAvatar from "assets/images/volodymyr_avatar.webp";
 import marynaAvatar from "assets/images/maryna_avatar.webp";
 import soloEconomCover from "assets/images/solo-econom-cover.webp";
+import leraItAvatar from "assets/images/lera_it_avatar.jpeg";
+import martaItAvatar from "assets/images/marta_it_avatar.jpeg";
+import vladItAvatar from "assets/images/vlad_it_avatar.jpeg";
 
 export const IMAGES = {
     smallTalkLessonsImg,
@@ -24,4 +27,7 @@ export const IMAGES = {
     volodymyrAvatar,
     marynaAvatar,
     soloEconomCover,
+    leraItAvatar,
+    martaItAvatar,
+    vladItAvatar
 };

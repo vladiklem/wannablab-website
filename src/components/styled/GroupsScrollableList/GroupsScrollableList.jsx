@@ -13,7 +13,7 @@ export const GroupsScrollableList = ({ isPortable, list = [], onClick, ...props 
         offset={250}
         {...props}
         components={{
-            Header: <h2 className="h3 font-weight-bold px-4">Календар груп</h2>,
+            Header: <h2 className="h2-responsive font-weight-bold px-4">Календар груп</h2>,
         }}
     >
         {list.map((item, index, array) => (

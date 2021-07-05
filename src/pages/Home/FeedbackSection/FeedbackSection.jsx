@@ -17,7 +17,7 @@ export const FeedbackSection = ({ isPortable }) => {
                     offset={offset}
                     containerClassName="mr-n4 ml-n4"
                     components={{
-                        Header: <h2 className="h2 font-weight-bold">Відгуки студентів</h2>,
+                        Header: <h2 className="h2-responsive font-weight-bold">Відгуки студентів</h2>,
                     }}
                 >
                     {usersFeedbackList.map((item, index) => (

@@ -2,12 +2,14 @@ import { createReducer } from "helpers/store";
 import { APP } from "./constants";
 
 const initialState = {
-    withSideBar: true,
     admin: {
         isAdmin: false,
         isVisible: false,
         username: "",
         roles: [],
+    },
+    header: {
+        isVisible: true,
     },
     isLoading: true,
     testTime: [],
@@ -29,6 +31,10 @@ const handlers = {
     [APP.ADMIN.AUTH.SUCCESS]: (state, { payload }) => ({
         ...state,
         admin: { isAdmin: true, isVisible: true, ...payload },
+    }),
+    [APP.HEADER.TOGGLE.IDLE]: (state) => ({
+        ...state,
+        header: { isVisible: !state.header.isVisible}
     }),
 };
 

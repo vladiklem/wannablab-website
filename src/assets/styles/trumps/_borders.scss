@@ -9,6 +9,10 @@
     border-radius: $border-radius-xl !important;
 }
 
+.rounded-circle {
+    border-radius: $border-radius-xl * 15 !important;
+}
+
 .border-circle {
     border-radius: $border-radius-circle !important;
 }

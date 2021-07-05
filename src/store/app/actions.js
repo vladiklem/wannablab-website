@@ -90,3 +90,7 @@ export const authAsAdminSuccess = (data) => ({
     type: APP.ADMIN.AUTH.SUCCESS,
     payload: { ...data },
 });
+
+export const toggleHeader = () => ({
+    type: APP.HEADER.TOGGLE.IDLE,
+});

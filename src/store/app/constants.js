@@ -11,6 +11,11 @@ export const APP = {
             FAILURE: "ADMIN_AUTH_FAILURE",
         },
     },
+    HEADER: {
+        TOGGLE: {
+            IDLE: "HEADER_TOGGLE_IDLE",
+        },
+    },
 };
 
 export const testSettingID = "testTime";

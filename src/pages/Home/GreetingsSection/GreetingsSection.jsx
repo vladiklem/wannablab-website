@@ -32,7 +32,7 @@ export const GreetingsSection = ({ onOrderClick, isPortable, toCourse, className
             containerClassName="ml-n4 mr-n4"
             isScrollbarVisible={false}
             components={{
-                Header: <h2 className="h2 font-weight-bold">Наші плани та курси</h2>,
+                Header: <h2 className="h2-responsive font-weight-bold">Наші плани та курси</h2>,
             }}
         >
             {coursesList.map(({ imgSrc, ...item }, index, array) => (
