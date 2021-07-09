@@ -35,6 +35,10 @@
     border-color: $primary-new !important;
 }
 
+.border-secondary-new {
+    border-color: $secondary-new !important;
+}
+
 .border-positive-new {
     border-color: $positive-new !important;
 }
@@ -44,5 +48,5 @@
 }
 
 .border-primary-new-75 {
-    border-color: rgba(8, 73, 151, .75) !important;
+    border-color: rgba(8, 73, 151, 0.75) !important;
 }

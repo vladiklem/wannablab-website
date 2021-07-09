@@ -4,18 +4,19 @@ import cx from "classnames";
 
 import { IMAGES } from "constants/images";
 import { toggleHeader } from "store/app/actions";
-import { Button, buttonColorEnum } from "components/index";
+import { Button, buttonColorEnum, Scrollable, ScrollableItem } from "components/index";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
 
 import styles from "./ItTeamCoursePage.module.scss";
 import { Menu } from "./Menu/Menu";
 import { CourseStructure } from "./CourseStructure/CourseStructure";
+import { GeneralInfoBanner } from "./GeneralInfoBanner/GeneralInfoBanner";
 
 const translations = {
     ua: {
-        h1: "Курс “Англійська комунікації в IT команді”",
-        h2_1:
-            "Якщо ти давно хотів навчитися ефективно комунікувати в англомовній команді, цей курс саме для тебе.",
+        h1: "Курс “English communication in team”",
+        h2_1: "Про Курс",
+        h2_2: "Програма Курсу",
         authorsList: [
             {
                 name: "Лєра Михальова",
@@ -53,94 +54,75 @@ const translations = {
     },
 };
 
+const authors = [
+    {
+        slug: "marta-yarosh",
+        name: "Марта Ярош",
+        src: IMAGES.martaAvatar,
+        list: ["IELTS (7.5 CERF C1)", "50+ успішних студентів"],
+        color: "light-green",
+        shortDescription: "Вчитель англійської мови для дорослих починаючи від рівня А2 до С1.",
+        longDescription:
+            'Знання підтверджені міжнародним сертифікатом IELTS (7.5 CERF C1) \nЗа рік роботи вчителем у wannablab допомогла більше 30 студентам позбавитися мовного бар\'єру та перестати нарешті говорити "I am agree". \n Маю досвід в підготовці студентів до таких екзаменів як ЄВІ, ЗНО, IELTS.',
+        instaHref: "https://www.instagram.com/p/CKQ3toJnQRk/",
+    },
+];
+
 export const ItTeamCoursePage = ({ isPortable }) => {
     const dispatch = useDispatch();
-    const [isActionVisible, setIsActionVisible] = useState(false);
-
-    const onActionClick = useCallback(() => {
-        setTimeout(() => {
-            document.querySelector("#name").focus();
-        }, 750);
-    }, []);
 
     const imgSize = useMemo(() => (isPortable ? 90 : 100), [isPortable]);
 
     useEffect(() => {
-        document.querySelector("#root").classList.add("bg-primary-new");
         dispatch(toggleHeader());
-
-        document.addEventListener("scroll", function () {
-            const toTop = document
-                .querySelector("#wannablab-it-course-registration")
-                .getBoundingClientRect().top;
-            setIsActionVisible(toTop <= 500);
-        });
     }, [dispatch]);
 
     return (
-        <article
-            className={cx("container text-white", { "pt-5": !isPortable, "pt-4": isPortable })}
-        >
-            <h1 className="h1 mb-2">{translations.ua.h1}</h1>
-            <div className="mb-2" style={{ width: "100%", height: 180, backgroundColor: "#fff" }} />
-            <h2 className="regular mb-3">{translations.ua.h2_1}</h2>
-            <section className="mb-2">
-                <h2 className="hidden-element">Менюшечка</h2>
-                <Menu />
-                {/* <p>Опис мотивації до створення</p> */}
-            </section>
-            <section id="wannablab-it-who-done" className="pt-5">
-                <h2 className="h2 mb-4">Хто зробив курс?</h2>
-                <div>
-                    <ul className="row">
-                        {translations.ua.authorsList.map(
-                            ({ role, isBig, name, description, img: { src, alt } }, index) => (
-                                <li className="col-md-4 col-12 mt-auto d-flex flex-column align-items-center mb-4">
-                                    <img
-                                        src={src}
-                                        alt={alt}
-                                        style={{
-                                            width: isBig ? `${imgSize}%` : `${imgSize - 20}%`,
-                                        }}
-                                        className={cx(
-                                            "rounded-circle border-secondary-new image mb-2",
-                                            {
-                                                "flying-animation": index === 0 && !isPortable,
-                                                "flying-fast-animation": index === 1 && !isPortable,
-                                                "flying-slow-animation": index === 2 && !isPortable,
-                                            },
-                                        )}
-                                    />
-                                    <h3 className="h3 text-center mb-1">{name}</h3>
-                                    <h4 className="h4 text-center mb-2">{role}</h4>
-                                    <p className="regular">{description}</p>
-                                </li>
-                            ),
-                        )}
-                    </ul>
+        <article className={cx({ "pt-5": !isPortable, "pt-4": isPortable })}>
+            {/* <h1 className="h1 mb-2">{translations.ua.h1}</h1> */}
+            <section className="mb-5">
+                <h1 className="h1 lh-44 container">{translations.ua.h1}</h1>
+                <div className="d-md-none">
+                    <img
+                        alt="Командна робота в IT компанії. Командная работа в IT компании. Корпоративный английский."
+                        src={IMAGES.itCover}
+                        className="image mb-2"
+                    />
+                </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 col-md-7 d-none d-md-block">
+                            <img
+                                alt="Командна робота в IT компанії. Командная работа в IT компании. Корпоративный английский."
+                                src={IMAGES.itCover}
+                                className="image mb-2"
+                            />
+                            <h2 className="h0 mb-4">{translations.ua.h2_1}</h2>
+                            <h3 className="font-weight-normal h2-28 mb-5">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry. Lorem Ipsum has been the industry's standard dummy text
+                                ever since the 1500s, when an unknown printer took a galley of type
+                                and scrambled it to make a type specimen book. It has survived not
+                                only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged. It was popularised in the 1960s
+                                with the release of Letraset sheets containing Lorem Ipsum passages,
+                                and more recently with desktop publishing software like Aldus
+                                PageMaker including versions of Lorem Ipsum.
+                            </h3>
+                            <h2 className="h0 mb-4">{translations.ua.h2_2}</h2>
+                            <CourseStructure />
+                        </div>
+                        <div className="col-12 col-md-5">
+                            <GeneralInfoBanner className={cx({ [styles.panel]: !isPortable })} />
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section id="wannablab-it-what-inside" className="pt-5 mb-3">
-                <h2 className="h2 mb-4">Яка начинка?</h2>
-                <CourseStructure />
-            </section>
-            <section id="wannablab-it-for-who" className="pt-5 mb-3">
-                <h2 className="h2 mb-4">Для кого цей курс?</h2>
-                <div>
-                    <h3 className="h3">Опис людини якій підійде курс</h3>
-                </div>
-            </section>
-            <section id="wannablab-it-what-after" className="pt-5 mb-3">
-                <h2 className="h2 mb-4">Які можливості я отримаю після курсу?</h2>
-                <div>
-                    <h3 className="h3">Опис можливостей які відкриються після проходження курсу</h3>
-                </div>
-            </section>
-            <section id="wannablab-it-course-registration" className="pt-6 full-screen-height">
+            <section
+                id="wannablab-it-course-registration"
+                className="pt-6 full-screen-height container d-flex align-items-center justify-content-center"
+            >
                 <h2 className="hidden-element">Запис на курс</h2>
-                <h3 className="h3 mb-5 text-center font-weight-semibold">
-                    Спробуй, не пожалкуєш 😉
-                </h3>
                 <LeadForm
                     className="text-gray-900"
                     description="Залиш свій контак і Лєра або Влад зателефонують тобі вже сьогодні ввечері 😃"
@@ -148,18 +130,6 @@ export const ItTeamCoursePage = ({ isPortable }) => {
                     actionButtonProps={{ color: "secondary-new" }}
                 />
             </section>
-
-            <Button
-                size="lg"
-                color={buttonColorEnum.SECONDARY_NEW}
-                className={cx("rounded-circle font-weight-bold shadow-soft", styles.actionButton, {
-                    [styles.isHidden]: isActionVisible,
-                })}
-                href="#wannablab-it-course-registration"
-                onClick={onActionClick}
-            >
-                Записатися
-            </Button>
         </article>
     );
 };

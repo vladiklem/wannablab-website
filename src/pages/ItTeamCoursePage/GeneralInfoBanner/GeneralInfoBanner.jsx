@@ -1,0 +1,41 @@
+import React from "react";
+import cx from "classnames";
+import { Button } from "components/index";
+
+const bannerFields = [
+    {
+        label: "Старт",
+        value: "20 липня",
+    },
+    {
+        label: "Тривалість",
+        value: "2 місяці",
+    },
+    {
+        label: "Час",
+        value: "вівторок i четверг 18:15–19:15",
+    },
+    {
+        label: "Вартість",
+        value: "4 770 грн або 5540 ( 2 платежі по 2770 грн)",
+    },
+];
+
+export const GeneralInfoBanner = ({ className }) => (
+    <div
+        className={cx(
+            "h3 font-weight-normal border p-4 rounded-lg border-width-2",
+            className,
+        )}
+    >
+        {bannerFields.map(({ label, value }, index, array) => (
+            <div className={cx({ "mb-3": index + 1 !== array.length })}>
+                <span className="mr-1">{label}:</span>
+                <span>{value}</span>
+            </div>
+        ))}
+        <Button color="green-soft" className="mt-4 py-3 h3 font-weight-bold rounded-xl" block>
+            Записатися
+        </Button>
+    </div>
+);

@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import { Collapse, List } from "components/index";
-import React from "react";
+
+import cx from "classnames";
 
 const structure = [
     {
@@ -13,6 +15,7 @@ const structure = [
         ],
         description:
             "Базові часи - Past Simple, Present Simple, Future Simple. По уроку на кожний та спікінг клаб в кінці.",
+        emoji: "🕑",
     },
     {
         title: "",
@@ -24,6 +27,7 @@ const structure = [
             "Спікінг клаб",
         ],
         description: "",
+        emoji: "🤝",
     },
     {
         title: "",
@@ -35,6 +39,7 @@ const structure = [
         ],
         titleEng: "Projects",
         description: "",
+        emoji: "⚙️",
     },
     {
         title: "",
@@ -46,20 +51,33 @@ const structure = [
             "Спікінг клаб",
         ],
         description: "",
+        emoji: "🧑‍💻",
     },
 ];
 
 export const CourseStructure = () => {
+    const [openCollapseId, setOpenCollapseId] = useState(null);
+
     return (
         <div>
-            {structure.map(({ lessons, titleEng }, index) => (
+            {structure.map(({ lessons, titleEng, emoji }, index, array) => (
                 <Collapse
-                    togglerClassName="text-white font-weight-semibold text-left px-3"
-                    togglerContent={`${index + 1}/ ${titleEng}`}
-                    className="border border-white border-width-2 rounded-xl mb-3"
+                    togglerClassName="font-weight-semibold text-left px-3"
+                    togglerContent={`${emoji}  ${titleEng}`}
+                    className={cx("border border-primary-new border-width-2 rounded-xl", {
+                        "mb-3": index + 1 !== array.length,
+                    })}
                     contentClassName="px-3 pb-3"
+                    hasArrow
+                    isControlled
+                    isOpen={openCollapseId === index}
+                    onToggle={() =>
+                        index === openCollapseId
+                            ? setOpenCollapseId(null)
+                            : setOpenCollapseId(index)
+                    }
                 >
-                    <List list={lessons} type="features-white" />
+                    <List list={lessons} type="primary-new" />
                 </Collapse>
             ))}
         </div>

@@ -13,6 +13,7 @@ import soloEconomCover from "assets/images/solo-econom-cover.webp";
 import leraItAvatar from "assets/images/lera_it_avatar.jpeg";
 import martaItAvatar from "assets/images/marta_it_avatar.jpeg";
 import vladItAvatar from "assets/images/vlad_it_avatar.jpeg";
+import itCover from "assets/images/it_cover.png";
 
 export const IMAGES = {
     smallTalkLessonsImg,
@@ -29,5 +30,6 @@ export const IMAGES = {
     soloEconomCover,
     leraItAvatar,
     martaItAvatar,
-    vladItAvatar
+    vladItAvatar,
+    itCover,
 };

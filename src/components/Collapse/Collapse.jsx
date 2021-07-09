@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Collapse as ReactstrapCollapse } from "reactstrap";
 import cx from "classnames";
 
 import { Button, buttonColorEnum } from "components/Button/Button";
-import { ArrowDownFill } from "components/Icons/ArrowDownFill";
+import { ArrowRightLong } from "components/Icons/ArrowRightLong";
 
 import styles from "./Collapse.module.scss";
 
@@ -13,17 +13,25 @@ export const Collapse = ({
     contentClassName = "p-3",
     togglerClassName = "",
     activeTogglerClassName = "",
-    withArrow = false,
+    hasArrow = false,
+    isControlled = false,
+    isOpen: passedIsOpen = false,
     arrowClassName = "",
     onToggle,
     children,
 }) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [open, setOpen] = useState(passedIsOpen);
 
     const toggle = useCallback(() => {
         onToggle && onToggle();
-        setIsOpen((isOpen) => !isOpen);
-    }, [onToggle, setIsOpen]);
+        !isControlled && setOpen((o) => !o);
+    }, [onToggle, setOpen, isControlled]);
+
+    const isOpen = useMemo(() => (isControlled ? passedIsOpen : open), [
+        isControlled,
+        passedIsOpen,
+        open,
+    ]);
 
     return (
         <div className={className}>
@@ -37,17 +45,17 @@ export const Collapse = ({
             >
                 <div
                     className={cx({
-                        "d-flex align-items-center justify-content-between": withArrow,
+                        "d-flex align-items-center justify-content-between": hasArrow,
                     })}
                 >
                     {togglerContent}
-                    {withArrow && (
+                    {hasArrow && (
                         <span
                             className={cx("mr-3", styles.arrow, arrowClassName, {
                                 [styles.rotated]: isOpen,
                             })}
                         >
-                            <ArrowDownFill width={32} height={32} />
+                            <ArrowRightLong width={32} height={32} />
                         </span>
                     )}
                 </div>
