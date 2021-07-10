@@ -42,7 +42,7 @@ export const LeadForm = ({
             onSubmit={handleSubmit(onSubmit)}
             {...props}
         >
-            <h3 className="regular mb-2">{description}</h3>
+            <h3 className="h3 font-weight-normal mb-3">{description}</h3>
             <Input className="mx-2" name="name" label="Ім'я" ref={register({ required: true })} />
             <MaskedInput
                 mask="+38 (\099) 999 9999"

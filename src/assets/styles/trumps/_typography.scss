@@ -11,6 +11,88 @@
     line-height: 24px;
 }
 
+.list {
+    &__item {
+        padding-left: 16px;
+        margin-bottom: 4px;
+        position: relative;
+        font-size: 16px;
+
+        &:before {
+            position: absolute;
+        }
+    }
+
+    &-primary-new {
+        li:before {
+            content: " ";
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: $primary-new;
+            border-radius: 12px;
+        }
+    }
+
+    &-features {
+        li:before {
+            content: " ";
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: $purple-soft;
+            border-radius: 12px;
+        }
+
+        &-white {
+            li:before {
+                content: " ";
+                left: 0;
+                top: 8px;
+                width: 8px;
+                height: 8px;
+                background-color: $white;
+                border-radius: 12px;
+            }
+        }
+    }
+
+    &-check {
+        li {
+            padding-left: 24px;
+            &:before {
+                content: "✅";
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+}
+
+.features-list {
+    li {
+        padding-left: 16px;
+        margin-bottom: 4px;
+        position: relative;
+        font-size: 16px;
+
+        &:before {
+            content: " ";
+            width: 8px;
+            height: 8px;
+            background-color: $purple-soft;
+            border-radius: 12px;
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+    }
+}
+
 .h0 {
     @include smoothFont();
 
@@ -103,86 +185,6 @@ p,
 .regular,
 label {
     margin-bottom: 0;
-}
-
-.list {
-    li {
-        padding-left: 16px;
-        margin-bottom: 4px;
-        position: relative;
-        font-size: 16px;
-
-        &:before {
-            position: absolute;
-        }
-    }
-
-    &-primary-new {
-        li:before {
-            content: " ";
-            left: 0;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background-color: $primary-new;
-            border-radius: 12px;
-        }
-    }
-
-    &-features {
-        li:before {
-            content: " ";
-            left: 0;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            background-color: $purple-soft;
-            border-radius: 12px;
-        }
-
-        &-white {
-            li:before {
-                content: " ";
-                left: 0;
-                top: 8px;
-                width: 8px;
-                height: 8px;
-                background-color: $white;
-                border-radius: 12px;
-            }
-        }
-    }
-
-    &-check {
-        li {
-            padding-left: 24px;
-            &:before {
-                content: "✅";
-                top: 0;
-                left: 0;
-            }
-        }
-    }
-}
-
-.features-list {
-    li {
-        padding-left: 16px;
-        margin-bottom: 4px;
-        position: relative;
-        font-size: 16px;
-
-        &:before {
-            content: " ";
-            width: 8px;
-            height: 8px;
-            background-color: $purple-soft;
-            border-radius: 12px;
-            position: absolute;
-            left: 0;
-            top: 8px;
-        }
-    }
 }
 
 .exp-list {

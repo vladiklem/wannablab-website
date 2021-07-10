@@ -55,11 +55,11 @@ const structure = [
     },
 ];
 
-export const CourseStructure = () => {
-    const [openCollapseId, setOpenCollapseId] = useState(null);
+export const CourseStructure = ({ className }) => {
+    const [openCollapseId, setOpenCollapseId] = useState(0);
 
     return (
-        <div>
+        <div className={className}>
             {structure.map(({ lessons, titleEng, emoji }, index, array) => (
                 <Collapse
                     togglerClassName="font-weight-semibold text-left px-3"

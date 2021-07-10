@@ -1,6 +1,14 @@
 import React from "react";
+import cx from "classnames";
 
-export const List = ({ title, list = [], type = "primary-new", className, isShort = false }) => {
+export const List = ({
+    title,
+    list = [],
+    type = "primary-new",
+    className,
+    itemClassName,
+    isShort = false,
+}) => {
     const finalList = isShort ? list.slice(0, 2) : list;
 
     return (
@@ -8,12 +16,12 @@ export const List = ({ title, list = [], type = "primary-new", className, isShor
             {title && <h2 className="h3 mb-2_5">{title}</h2>}
             <ul className={`list list-${type} text-left`}>
                 {finalList.map((item) => (
-                    <li className="mb-1" key={item}>
+                    <li className={cx("mb-1 list__item", itemClassName)} key={item}>
                         {item}
                     </li>
                 ))}
                 {isShort && (
-                    <li className="mb-1" key="uniq">
+                    <li className={cx("mb-1 list__item", itemClassName)} key="uniq">
                         Більше...👇
                     </li>
                 )}

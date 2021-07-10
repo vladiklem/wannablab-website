@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import cx from "classnames";
 import { Button } from "components/index";
 
@@ -21,21 +21,29 @@ const bannerFields = [
     },
 ];
 
-export const GeneralInfoBanner = ({ className }) => (
-    <div
-        className={cx(
-            "h3 font-weight-normal border p-4 rounded-lg border-width-2",
-            className,
-        )}
-    >
-        {bannerFields.map(({ label, value }, index, array) => (
-            <div className={cx({ "mb-3": index + 1 !== array.length })}>
-                <span className="mr-1">{label}:</span>
-                <span>{value}</span>
-            </div>
-        ))}
-        <Button color="green-soft" className="mt-4 py-3 h3 font-weight-bold rounded-xl" block>
-            Записатися
-        </Button>
-    </div>
-);
+export const GeneralInfoBanner = ({ className }) => {
+    const onClick = useCallback(() => {
+        setTimeout(() => document.querySelector("#name").focus(), 700);
+    }, []);
+    return (
+        <div
+            className={cx("h3 font-weight-normal border p-4 rounded-lg border-width-2", className)}
+        >
+            {bannerFields.map(({ label, value }, index, array) => (
+                <div className={cx({ "mb-3": index + 1 !== array.length })}>
+                    <span className="mr-1">{label}:</span>
+                    <span>{value}</span>
+                </div>
+            ))}
+            <Button
+                href="#wannablab-it-course-registration"
+                color="green-soft"
+                className="mt-4 py-3 h3 font-weight-bold rounded-xl"
+                onClick={onClick}
+                block
+            >
+                Записатися ⬇️
+            </Button>
+        </div>
+    );
+};

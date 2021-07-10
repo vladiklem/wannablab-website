@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
 
 import { IMAGES } from "constants/images";
 import { toggleHeader } from "store/app/actions";
-import { Button, buttonColorEnum, Scrollable, ScrollableItem } from "components/index";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
 
 import styles from "./ItTeamCoursePage.module.scss";
-import { Menu } from "./Menu/Menu";
-import { CourseStructure } from "./CourseStructure/CourseStructure";
+import { CourseStructure } from "./DetailedInfo/CourseStructure/CourseStructure";
 import { GeneralInfoBanner } from "./GeneralInfoBanner/GeneralInfoBanner";
+import { DetailedInfo } from "./DetailedInfo/DetailedInfo";
 
 const translations = {
     ua: {
@@ -71,15 +70,12 @@ const authors = [
 export const ItTeamCoursePage = ({ isPortable }) => {
     const dispatch = useDispatch();
 
-    const imgSize = useMemo(() => (isPortable ? 90 : 100), [isPortable]);
-
     useEffect(() => {
         dispatch(toggleHeader());
     }, [dispatch]);
 
     return (
         <article className={cx({ "pt-5": !isPortable, "pt-4": isPortable })}>
-            {/* <h1 className="h1 mb-2">{translations.ua.h1}</h1> */}
             <section className="mb-5">
                 <h1 className="h1 lh-44 container">{translations.ua.h1}</h1>
                 <div className="d-md-none">
@@ -97,20 +93,7 @@ export const ItTeamCoursePage = ({ isPortable }) => {
                                 src={IMAGES.itCover}
                                 className="image mb-2"
                             />
-                            <h2 className="h0 mb-4">{translations.ua.h2_1}</h2>
-                            <h3 className="font-weight-normal h2-28 mb-5">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s, when an unknown printer took a galley of type
-                                and scrambled it to make a type specimen book. It has survived not
-                                only five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was popularised in the 1960s
-                                with the release of Letraset sheets containing Lorem Ipsum passages,
-                                and more recently with desktop publishing software like Aldus
-                                PageMaker including versions of Lorem Ipsum.
-                            </h3>
-                            <h2 className="h0 mb-4">{translations.ua.h2_2}</h2>
-                            <CourseStructure />
+                            <DetailedInfo isPortable={isPortable} />
                         </div>
                         <div className="col-12 col-md-5">
                             <GeneralInfoBanner className={cx({ [styles.panel]: !isPortable })} />
@@ -118,16 +101,20 @@ export const ItTeamCoursePage = ({ isPortable }) => {
                     </div>
                 </div>
             </section>
+            {isPortable && (
+                <section className="container mb-5">
+                    <DetailedInfo isPortable={isPortable} />
+                </section>
+            )}
             <section
                 id="wannablab-it-course-registration"
-                className="pt-6 full-screen-height container d-flex align-items-center justify-content-center"
+                className="pt-6 full-screen-height container d-flex justify-content-center"
             >
                 <h2 className="hidden-element">Запис на курс</h2>
                 <LeadForm
-                    className="text-gray-900"
+                    className="text-gray-900 align-self-start"
                     description="Залиш свій контак і Лєра або Влад зателефонують тобі вже сьогодні ввечері 😃"
                     afterWord="Дякуємо, що вирішили займатися з нами ❤️ Чекайте на наш дзвінок після 18-ти вечора."
-                    actionButtonProps={{ color: "secondary-new" }}
                 />
             </section>
         </article>
