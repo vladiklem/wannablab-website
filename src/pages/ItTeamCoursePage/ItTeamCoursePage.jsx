@@ -77,6 +77,7 @@ export const ItTeamCoursePage = ({ isPortable, strings }) => {
                         className="text-gray-900"
                         description={strings.itRegistrationSection.form.description}
                         afterWord={strings.itRegistrationSection.form.afterWord}
+                        type="it"
                     />
                 </div>
             </section>

@@ -1,6 +1,5 @@
-import ReactGA from 'react-ga';
+import ReactGA from "react-ga";
 
 export const fireAnalyticsEvent = (event, label = null) => {
-    
-    ReactGA.event({...event, label});
-}
+    ReactGA.event({ ...event, label });
+};

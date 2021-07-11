@@ -18,69 +18,6 @@ export const initAppFailure = (error) => ({
     },
 });
 
-export const addTest = (test) => ({
-    type: APP.ADD_TEST.IDLE,
-    payload: {
-        test,
-    },
-});
-
-export const addTestSuccess = (test) => ({
-    type: APP.ADD_TEST.SUCCESS,
-    payload: {
-        test,
-    },
-});
-
-export const addTestFailure = (error) => ({
-    type: APP.ADD_TEST.FAILURE,
-    payload: {
-        error,
-    },
-});
-
-export const bookTest = (id) => ({
-    type: APP.BOOK_TEST.IDLE,
-    payload: {
-        id,
-    },
-});
-
-export const bookTestSuccess = (entity) => ({
-    type: APP.BOOK_TEST.SUCCESS,
-    payload: {
-        entity,
-    },
-});
-
-export const bookTestFailure = (error) => ({
-    type: APP.BOOK_TEST.FAILURE,
-    payload: {
-        error,
-    },
-});
-
-export const deleteTest = (id) => ({
-    type: APP.DELETE_TEST.IDLE,
-    payload: {
-        id,
-    },
-});
-
-export const deleteTestSuccess = (id) => ({
-    type: APP.DELETE_TEST.SUCCESS,
-    payload: {
-        id,
-    },
-});
-
-export const deleteTestFailure = (error) => ({
-    type: APP.DELETE_TEST.FAILURE,
-    payload: {
-        error,
-    },
-});
-
 export const appAdminAuth = (data) => ({
     type: APP.ADMIN.AUTH.IDLE,
     payload: { ...data },

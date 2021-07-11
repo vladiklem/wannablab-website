@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import cx from "classnames";
 import { Button } from "components/index";
+import { fireAnalyticsEvent } from "analytics/";
 
 const bannerFields = [
     {
@@ -23,6 +24,10 @@ const bannerFields = [
 
 export const GeneralInfoBanner = ({ className, isPortable }) => {
     const onClick = useCallback(() => {
+        fireAnalyticsEvent({
+            category: "IT",
+            action: "clicked Sign Up Course",
+        });
         setTimeout(() => document.querySelector("#name").focus(), 750);
     }, []);
 

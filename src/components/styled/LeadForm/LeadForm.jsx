@@ -7,7 +7,6 @@ import cx from "classnames";
 import { Button, Input } from "components/index";
 import { Instagram, Telegram } from "components/Icons/social";
 import { addLead } from "store/leads/actions";
-import { bookTest } from "store/app/actions";
 import { instagramLink, telegramLink } from "constants/social";
 
 import { fireAnalyticsEvent } from "analytics";
@@ -20,6 +19,7 @@ export const LeadForm = ({
     description = "",
     actionButtonProps,
     afterWord = "Наш кастомер ловер Марина зателефонує вам протягом 15-ти хвилин ❤️",
+    type = "regular",
     ...props
 }) => {
     const dispatch = useDispatch();
@@ -29,11 +29,10 @@ export const LeadForm = ({
 
     const onSubmit = useCallback(
         (data) => {
-            dispatch(addLead(data));
-            data.time && dispatch(bookTest(data.time));
-            fireAnalyticsEvent(events.LEAD_FORM_SUBMIT);
+            dispatch(addLead({ ...data, type }));
+            fireAnalyticsEvent(events.LEAD_FORM_SUBMIT(type));
         },
-        [dispatch],
+        [dispatch, type],
     );
 
     return (
@@ -87,9 +86,7 @@ export const LeadForm = ({
                     "mt-5": !isSuccess,
                 })}
             >
-                <p className="regular mb-4">
-                    {afterWord}
-                </p>
+                <p className="regular mb-4">{afterWord}</p>
                 <p className="regular mb-3">А ось, що ми пропонуємо по контенту:</p>
                 <a
                     href={isSuccess ? instagramLink : undefined}

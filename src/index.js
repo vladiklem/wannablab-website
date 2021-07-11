@@ -16,10 +16,6 @@ TagManager.initialize(tagManagerArgs);
 
 // ReactGA.initialize('250646407', { debug: true });
 ReactGA.initialize("UA-181455329-1");
-ReactGA.event({
-    category: "User",
-    action: "Created an Account",
-});
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
