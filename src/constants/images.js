@@ -1,5 +1,4 @@
 import smallTalkLessonsImg from "assets/images/small-talk.png";
-import martaAvatar from "assets/images/marta_avatar.png";
 import sophia from "assets/images/sophia.jpeg";
 import kateAvatar from "assets/images/kate_avatar.jpeg";
 import anyaAvatar from "assets/images/anya_avatar.jpeg";
@@ -18,7 +17,6 @@ import itHero from "assets/images/it-hero.png";
 
 export const IMAGES = {
     smallTalkLessonsImg,
-    martaAvatar,
     sophia,
     kateAvatar,
     anyaAvatar,

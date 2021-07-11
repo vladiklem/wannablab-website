@@ -10,3 +10,5 @@ export const selectInstagramInfo = (state) => state.app.instagram;
 export const selectTelegramInfo = (state) => state.app.telegram;
 
 export const selectHeaderSettings = (state) => state.app.header;
+
+export const selectLanguage = (state) => state.app.lang;

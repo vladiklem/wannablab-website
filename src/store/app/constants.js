@@ -16,6 +16,9 @@ export const APP = {
             IDLE: "HEADER_TOGGLE_IDLE",
         },
     },
+    CHANGE_LANGUAGE: {
+        IDLE: "CHANGE_LANGUAGE_IDLE",
+    }
 };
 
 export const testSettingID = "testTime";

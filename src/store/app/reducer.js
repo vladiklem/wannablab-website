@@ -13,6 +13,7 @@ const initialState = {
     },
     isLoading: true,
     testTime: [],
+    lang: "ua",
     error: "",
 };
 
@@ -34,7 +35,11 @@ const handlers = {
     }),
     [APP.HEADER.TOGGLE.IDLE]: (state) => ({
         ...state,
-        header: { isVisible: !state.header.isVisible}
+        header: { isVisible: !state.header.isVisible },
+    }),
+    [APP.CHANGE_LANGUAGE.IDLE]: (state, { payload }) => ({
+        ...state,
+        lang: payload.lang,
     }),
 };
 

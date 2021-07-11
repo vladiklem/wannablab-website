@@ -94,3 +94,8 @@ export const authAsAdminSuccess = (data) => ({
 export const toggleHeader = () => ({
     type: APP.HEADER.TOGGLE.IDLE,
 });
+
+export const changeLanguage = (lang) => ({
+    type: APP.CHANGE_LANGUAGE.IDLE,
+    payload: { lang },
+});

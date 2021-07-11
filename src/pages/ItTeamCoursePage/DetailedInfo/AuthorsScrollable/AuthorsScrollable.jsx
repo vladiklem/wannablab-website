@@ -4,17 +4,13 @@ import { Scrollable } from "components/";
 
 import { AuthorScrollableItem } from "./AuthorScrollableItem/AuthorScrollableItem";
 
-const getWidth = (isPortable) =>
-    isPortable
-        ? document.documentElement.clientWidth - 64
-        : document.querySelector("#wannablab-authors").clientWidth;
+const getOffset = (isPortable) => (isPortable ? document.documentElement.clientWidth - 64 : 599);
 
 export const AuthorsScrollable = ({ array, isPortable, className }) => {
     const [offset, setOffset] = useState(100);
 
     useEffect(() => {
-        console.log(getWidth(isPortable));
-        setOffset(getWidth(isPortable));
+        setOffset(getOffset(isPortable));
     }, [isPortable]);
 
     return (
@@ -34,6 +30,7 @@ export const AuthorsScrollable = ({ array, isPortable, className }) => {
                     description={description}
                     inst="/"
                     array={array}
+                    isPortable={isPortable}
                 />
             ))}
         </Scrollable>

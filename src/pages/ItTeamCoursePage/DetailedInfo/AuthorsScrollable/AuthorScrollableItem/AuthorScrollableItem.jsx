@@ -5,10 +5,22 @@ import { ScrollableItem } from "components/";
 
 import styles from "./AuthorScrollableItem.module.scss";
 
-export const AuthorScrollableItem = ({ index, array, src, alt, name, description, inst }) => {
+export const AuthorScrollableItem = ({
+    index,
+    array,
+    src,
+    alt,
+    name,
+    description,
+    inst,
+    isPortable,
+}) => {
     return (
         <ScrollableItem
-            className={cx(styles.item, "pl-1", { "mr-4": index < array.length })}
+            className={cx(styles.item, "pl-1", {
+                "mr-4": index < array.length,
+                [styles.isPortable]: isPortable,
+            })}
             key={src}
         >
             <div className="row">
