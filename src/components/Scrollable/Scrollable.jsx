@@ -6,7 +6,7 @@ import { Button } from "components/index";
 
 import styles from "./Scrollable.module.scss";
 
-export const Scrollable = ({
+export const Scrollable =                   ({
     className,
     hasArrows = false,
     isScrollHidden = false,
@@ -15,6 +15,7 @@ export const Scrollable = ({
     children,
     containerClassName = "",
     components,
+    id,
 }) => {
     const scrollableContainer = useRef(null);
     const Header = useMemo(() => (components && components.Header ? components.Header : null), [
@@ -39,7 +40,7 @@ export const Scrollable = ({
     }, [onScrollLeftTo, offset]);
 
     return (
-        <div className={cx("position-relative", styles.scrollable, className)}>
+        <div className={cx("position-relative", styles.scrollable, className)} id={id}>
             {hasArrows && (
                 <div
                     className={cx("d-flex align-items-center", {

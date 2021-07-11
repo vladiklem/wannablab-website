@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useHistory } from "react-router-dom";
 
@@ -13,8 +13,6 @@ import events from "analytics/events";
 import { ValuesSection } from "./ValuesSection/ValuesSection";
 
 export const Home = () => {
-    const [description, setDescription] = useState("");
-
     const history = useHistory();
     const isPortable = useMediaQuery({ maxWidth: mediaBreakpointsEnum.MD });
 
@@ -25,21 +23,21 @@ export const Home = () => {
         setTimeout(() => document.getElementById("name").focus(), 750);
     }, []);
 
-    const onGroupSelect = useCallback(
-        (item) => {
-            setDescription(`Ви записуєтесь в группу \n\n "${item.title}" 🎉 `);
-            onOrderClick();
-        },
-        [setDescription, onOrderClick],
-    );
-    const onMentorSelect = useCallback(
-        ({ name }) => {
-            setDescription(`Ви записуєтесь на приватні заняття до \n\n "${name}" 🎉 `);
-            fireAnalyticsEvent(events.CALL_LATER);
-            onOrderClick();
-        },
-        [setDescription, onOrderClick],
-    );
+    // const onGroupSelect = useCallback(
+    //     (item) => {
+    //         setDescription(`Ви записуєтесь в группу \n\n "${item.title}" 🎉 `);
+    //         onOrderClick();
+    //     },
+    //     [setDescription, onOrderClick],
+    // );
+    // const onMentorSelect = useCallback(
+    //     ({ name }) => {
+    //         setDescription(`Ви записуєтесь на приватні заняття до \n\n "${name}" 🎉 `);
+    //         fireAnalyticsEvent(events.CALL_LATER);
+    //         onOrderClick();
+    //     },
+    //     [setDescription, onOrderClick],
+    // );
 
     const toCourse = useCallback(
         (slug) => {
@@ -73,8 +71,8 @@ export const Home = () => {
             <ValuesSection className="mb-5 pt-4" isPortable={isPortable} />
             <InteractionSections
                 toMentor={toMentor}
-                onMentorSelect={onMentorSelect}
-                onGroupSelect={onGroupSelect}
+                // onMentorSelect={onMentorSelect}
+                // onGroupSelect={onGroupSelect}
                 isPortable={isPortable}
             />
             <FeedbackSection isPortable={isPortable} />

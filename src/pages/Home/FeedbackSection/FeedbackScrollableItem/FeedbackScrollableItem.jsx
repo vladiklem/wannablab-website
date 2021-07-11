@@ -12,6 +12,7 @@ export const FeedbackScrollableItem = ({
     length,
     isPortable,
     avatar,
+    alt = "",
     description,
 }) => (
     <ScrollableItem className={cx(styles.item, { "mr-4": index < length })} key={name}>
@@ -20,6 +21,7 @@ export const FeedbackScrollableItem = ({
             text={description}
             author={name}
             isPortable={isPortable}
+            alt={alt}
             className="p-2"
         />
     </ScrollableItem>
