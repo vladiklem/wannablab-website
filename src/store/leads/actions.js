@@ -3,7 +3,7 @@ import { LEADS } from "./constants";
 export const addLead = (lead) => ({
     type: LEADS.ADD.IDLE,
     payload: {
-        lead,
+        lead: { ...lead, timestamp: Date.now() },
     },
 });
 
@@ -39,7 +39,7 @@ export const initLeadsFailure = (error) => ({
 export const updateLead = (lead) => ({
     type: LEADS.UPDATE.IDLE,
     payload: {
-        lead
+        lead,
     },
 });
 

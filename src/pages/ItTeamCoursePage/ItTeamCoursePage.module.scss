@@ -1,16 +1,11 @@
 .actionButton {
     position: fixed;
-    bottom: 32px;
-    left: 32px;
-    right: 32px;
-    width: calc(100vw - 64px);
-
-    &.isHidden {
-        bottom: -100px;
-    }
+    bottom: 24px;
+    right: 24px;
 }
 
 .panel {
     position: sticky;
     top: 48px;
 }
+

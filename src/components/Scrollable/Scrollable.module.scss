@@ -18,6 +18,10 @@
         border-radius: 12px;
     }
 
+    .arrowsPanel {
+        width: 35%;
+    }
+
     .arrow {
         &:active svg {
             transform: scale(1.1);

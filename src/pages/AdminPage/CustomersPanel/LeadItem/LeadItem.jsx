@@ -15,6 +15,7 @@ export const LeadItem = ({
     onUpdate,
     onDelete,
     isPortable,
+    ...props
 }) => {
     const handleUpdate = useCallback(() => onUpdate({ id, status: "touched", name, phoneNumber }), [
         id,
@@ -25,6 +26,8 @@ export const LeadItem = ({
 
     const handleDelete = useCallback(() => onDelete(id), [id, onDelete]);
 
+    console.log(props);
+
     return (
         <Collapse
             className={cx("border rounded mb-3 px-4 position-relative", styles.container, {
@@ -32,7 +35,10 @@ export const LeadItem = ({
             })}
             togglerContent={
                 <div className="text-left">
-                    <span className="font-weight-semibold">Ім'я: </span> {name || firstName}
+                    <div>
+                        <span className="font-weight-semibold">Ім'я: </span> {name || firstName}
+                        {props.type && <span className="badge badge-primary ml-2">IT</span>}
+                    </div>
                     <br />
                     <span className="font-weight-semibold">Номер телефону: </span> {phoneNumber}
                 </div>

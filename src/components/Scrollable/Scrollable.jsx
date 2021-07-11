@@ -6,7 +6,7 @@ import { Button } from "components/index";
 
 import styles from "./Scrollable.module.scss";
 
-export const Scrollable =                   ({
+export const Scrollable = ({
     className,
     hasArrows = false,
     isScrollHidden = false,
@@ -49,19 +49,19 @@ export const Scrollable =                   ({
                     })}
                 >
                     {!!Header && <span>{Header}</span>}
-                    <div className="w-25">
+                    <div className={styles.arrowsPanel}>
                         <Button
                             color="unstyled"
                             onClick={onClickArrowLeft}
                             size="sm"
-                            className={cx(styles.arrow, styles.left, "py-1 px-2")}
+                            className={cx(styles.arrow, styles.left, "py-2 px-3")}
                         >
                             <ArrowRightLong width={20} height={20} />
                         </Button>
                         <Button
                             color="unstyled"
                             onClick={onClickArrowRight}
-                            className={cx(styles.arrow, "py-1 px-2")}
+                            className={cx(styles.arrow, "py-2 px-3")}
                         >
                             <ArrowRightLong width={20} height={20} />
                         </Button>

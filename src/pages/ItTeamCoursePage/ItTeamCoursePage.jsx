@@ -1,16 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import cx from "classnames";
 
 import { toggleHeader } from "store/app/actions";
 import { LeadForm } from "components/styled/LeadForm/LeadForm";
+// import { Button } from "components/";
+// import { AddUserIcon } from "components/Icons/AddUserIcon";
+import { fireAnalyticsEvent } from "analytics/";
 
-import styles from "./ItTeamCoursePage.module.scss";
 import { GeneralInfoBanner } from "./GeneralInfoBanner/GeneralInfoBanner";
 import { DetailedInfo } from "./DetailedInfo/DetailedInfo";
 
+import styles from "./ItTeamCoursePage.module.scss";
+
 export const ItTeamCoursePage = ({ isPortable, strings }) => {
     const dispatch = useDispatch();
+    // const [isVisible, setIsVisible] = useState(isPortable);
+
+    const onSignUpClick = useCallback(() => {
+        fireAnalyticsEvent({
+            category: "IT",
+            action: "clicked Sign Up Course",
+        });
+        setTimeout(() => document.querySelector("#name").focus(), 750);
+    }, []);
+
+    // const onMobileSignUpClick = useCallback(() => {
+    //     setIsVisible(false);
+    //     onSignUpClick();
+    // }, [setIsVisible, onSignUpClick]);
 
     useEffect(() => {
         dispatch(toggleHeader());
@@ -18,6 +36,16 @@ export const ItTeamCoursePage = ({ isPortable, strings }) => {
 
     return (
         <article className={cx({ "pt-5": !isPortable, "pt-4": isPortable })}>
+            {/* <Button
+                href={`#wannablab-it-course-registration${isPortable ? "" : "-inner-container"}`}
+                color="green-soft"
+                className={cx("p-3 h3 rounded-circle shadow-soft", styles.actionButton, {
+                    "d-none": !isVisible,
+                })}
+                onClick={onMobileSignUpClick}
+            >
+                <AddUserIcon width={32} height={32} fill="#fff" />
+            </Button> */}
             <section name="itIntroSection" className="mb-5">
                 <h1 className={cx("container", { "h1 lh-44": isPortable, h0: !isPortable })}>
                     {strings.itIntroSection.h1}
@@ -45,6 +73,7 @@ export const ItTeamCoursePage = ({ isPortable, strings }) => {
                         <div className="col-12 col-md-5">
                             <GeneralInfoBanner
                                 className={cx({ [cx(styles.panel, "mt-5")]: !isPortable })}
+                                onClick={onSignUpClick}
                                 isPortable={isPortable}
                             />
                         </div>
