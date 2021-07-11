@@ -18,7 +18,7 @@ export const AuthorScrollableItem = ({
     return (
         <ScrollableItem
             className={cx(styles.item, "pl-1", {
-                "mr-4": index < array.length,
+                "mr-4": index !== array.length -1,
                 [styles.isPortable]: isPortable,
             })}
             key={src}

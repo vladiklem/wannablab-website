@@ -45,6 +45,7 @@ export const ItTeamCoursePage = ({ isPortable, strings }) => {
                         <div className="col-12 col-md-5">
                             <GeneralInfoBanner
                                 className={cx({ [cx(styles.panel, "mt-5")]: !isPortable })}
+                                isPortable={isPortable}
                             />
                         </div>
                     </div>
@@ -61,7 +62,10 @@ export const ItTeamCoursePage = ({ isPortable, strings }) => {
                 name="itRegistrationSection"
             >
                 <h2 className="h0 mb-4">{strings.itRegistrationSection.h2}</h2>
-                <div className="d-flex align-items-center justify-content-center flex-column">
+                <div
+                    id="wannablab-it-course-registration-inner-container"
+                    className="d-flex align-items-center justify-content-center flex-column"
+                >
                     <div className={isPortable ? "col-6" : "col-4"}>
                         <img
                             className="image"

@@ -7,9 +7,9 @@ import { CollapseGroup } from "components/";
 
 export const DetailedInfo = ({ isPortable, strings }) => {
     const getCollapseProps = useCallback(
-        (item, index, array) => ({
+        (emoji) => (item, index, array) => ({
             togglerClassName: "font-weight-semibold text-left px-3",
-            togglerContent: `✅ ${item.title}`,
+            togglerContent: `${emoji} ${item.title}`,
             children: item.description,
             className: cx("border border-primary-new border-width-2 rounded-xl", {
                 "mb-3": index + 1 !== array.length,
@@ -32,7 +32,17 @@ export const DetailedInfo = ({ isPortable, strings }) => {
                 array={strings.authorsList}
             />
             <h2 className="h0 mb-4">{strings.h2_4}</h2>
-            <CollapseGroup list={strings.valuesList} getCollapseProps={getCollapseProps} />
+            <CollapseGroup
+                className="mb-5"
+                list={strings.valuesList}
+                getCollapseProps={getCollapseProps("✅")}
+            />
+            <h2 className="h0 mb-4">{strings.h2_5}</h2>
+            <CollapseGroup
+                className="mb-5"
+                list={strings.faqList}
+                getCollapseProps={getCollapseProps("🤔")}
+            />
         </>
     );
 };

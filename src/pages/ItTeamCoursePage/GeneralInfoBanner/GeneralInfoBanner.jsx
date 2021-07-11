@@ -21,10 +21,11 @@ const bannerFields = [
     },
 ];
 
-export const GeneralInfoBanner = ({ className }) => {
+export const GeneralInfoBanner = ({ className, isPortable }) => {
     const onClick = useCallback(() => {
-        setTimeout(() => document.querySelector("#name").focus(), 700);
+        setTimeout(() => document.querySelector("#name").focus(), 750);
     }, []);
+
     return (
         <div
             className={cx("h3 font-weight-normal border p-4 rounded-lg border-width-2", className)}
@@ -36,7 +37,7 @@ export const GeneralInfoBanner = ({ className }) => {
                 </div>
             ))}
             <Button
-                href="#wannablab-it-course-registration"
+                href={`#wannablab-it-course-registration${isPortable ? "" : "-inner-container"}`}
                 color="green-soft"
                 className="mt-4 py-3 h3 font-weight-bold rounded-xl"
                 onClick={onClick}

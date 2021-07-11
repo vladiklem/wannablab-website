@@ -1,23 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App.jsx";
-import TagManager from 'react-gtm-module'
-import ReactGA from 'react-ga';
+import TagManager from "react-gtm-module";
+import ReactGA from "react-ga";
 
 import "./index.scss";
 
 const tagManagerArgs = {
-    gtmId: 'GTM-NVXXWWW'
-}
+    gtmId: "GTM-NVXXWWW",
+};
 
-TagManager.initialize(tagManagerArgs)
+TagManager.initialize(tagManagerArgs);
 
- //Google Analytics init
+//Google Analytics init
 
 // ReactGA.initialize('250646407', { debug: true });
-ReactGA.initialize('250646407');
+ReactGA.initialize("UA-181455329-1");
+ReactGA.event({
+    category: "User",
+    action: "Created an Account",
+});
 ReactGA.pageview(window.location.pathname + window.location.search);
-
 
 ReactDOM.render(
     <React.StrictMode>
