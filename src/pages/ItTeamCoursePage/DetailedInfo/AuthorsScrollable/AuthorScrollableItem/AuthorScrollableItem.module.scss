@@ -1,7 +1,7 @@
 .item {
     width: 575px;
 
-    .isPortable {
+    &.isPortable {
         width: calc(100vw - 92px);
     }
 }
